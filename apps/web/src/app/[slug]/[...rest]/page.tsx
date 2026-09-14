@@ -7,6 +7,7 @@ import { UCAboutPage } from '@/components/underground-colosseum/UCAboutPage';
 import { UCContactPage } from '@/components/underground-colosseum/UCContactPage';
 import { ACTIVE_NETWORK_SLUG, getNetworkSite } from '@/lib/tours';
 import { getMoneyPageContent, getSupportPageContent } from '@/lib/underground-colosseum-content';
+import { ARENA_FLOOR_PAGE, MONEY_PAGES, SUPPORT_PAGES, WORTH_IT_PAGE } from '@/lib/underground-colosseum';
 import { SITE_DOMAIN } from '@/lib/firestore';
 
 /**
@@ -21,6 +22,26 @@ import { SITE_DOMAIN } from '@/lib/firestore';
  * as every other not-yet-built network property's sub-paths.
  */
 const BESPOKE_HERO_SLUG = 'underground-colosseum';
+
+// Pre-renders Underground Colosseum's 13 real sub-paths (5 money + 6 support
+// + about + contact) at build time, matching the pattern the root [slug]
+// page and /tours/[slug] already use (generateStaticParams off a static
+// registry). Everything else this catch-all handles (other network sites'
+// placeholder sub-paths, /go/:slug, etc.) is intentionally left out —
+// dynamicParams defaults to true, so those still render on-demand exactly as
+// before; this only removes the per-request render cost for the pages that
+// are actually real, indexable content (doc 00's "SSG/ISR" baseline).
+export async function generateStaticParams() {
+  const hrefs = [
+    ...MONEY_PAGES.map((p) => p.href),
+    ...SUPPORT_PAGES.map((p) => p.href),
+    ARENA_FLOOR_PAGE.href,
+    WORTH_IT_PAGE.href,
+    '/about',
+    '/contact',
+  ];
+  return hrefs.map((href) => ({ slug: 'underground-colosseum', rest: [href.replace(/^\//, '')] }));
+}
 
 function resolveUndergroundColosseumPage(path: string) {
   const money = getMoneyPageContent(path);
@@ -63,8 +84,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
     if (resolved?.type === 'about') {
       return {
-        title: { absolute: 'About | Underground Colosseum' },
-        description: "The independent, first-hand guide behind Underground Colosseum — who writes it, and why it doesn't take payment for placement.",
+        title: { absolute: 'About Underground Colosseum — First-Hand, Independent Tour Research' },
+        description:
+          'Every Colosseum underground tour comparison here is written by someone who walked the routes and cross-checked GetYourGuide, Viator, and Tiqets in person — zero sponsored placements.',
         alternates: { canonical },
       };
     }

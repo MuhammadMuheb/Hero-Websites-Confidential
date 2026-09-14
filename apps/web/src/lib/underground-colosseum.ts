@@ -85,6 +85,20 @@ export interface FeaturedTour {
   tags: string[];
 }
 
+/**
+ * Deliberately a static array, not a Firestore-backed collection like Street
+ * Food Rome's `tours` (lib/firestore.ts's TourDoc/getAllTours) — verified
+ * during the v2 design-blueprint pass, not left as an open migration item.
+ * These aren't first-party tour content the way Street Food Rome's TourDocs
+ * are: each entry is a third-party affiliate partner's live product listing
+ * (GetYourGuide/Viator/Tiqets), where price and availability are the
+ * partner's to change and matter for affiliate-disclosure accuracy — a
+ * human should confirm a partner's current price before it changes here,
+ * not have it silently drift via an unreviewed CMS sync. If Underground
+ * Colosseum ever gets its own affiliate-feed integration, this is the file
+ * to replace with a fetch — but that's a partner-API decision, not a
+ * refactor to make speculatively.
+ */
 export const FEATURED_TOURS: FeaturedTour[] = [
   {
     partner: 'GetYourGuide',

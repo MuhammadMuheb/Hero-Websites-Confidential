@@ -69,7 +69,7 @@ function NavDropdown({ label, items, footerHref, footerLabel }: { label: string;
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex items-center gap-1 text-sm font-medium text-[#5c6166] transition-colors hover:text-[#ff0022]"
+        className="flex items-center gap-1 text-sm font-medium text-ink-muted transition-colors hover:text-accent"
       >
         {label}
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true" className={`transition-transform ${open ? 'rotate-180' : ''}`}>
@@ -78,17 +78,17 @@ function NavDropdown({ label, items, footerHref, footerLabel }: { label: string;
       </button>
 
       {open ? (
-        <div className="absolute left-1/2 top-full z-50 mt-3 w-[340px] -translate-x-1/2 rounded-2xl border border-[#e8ebed] bg-white p-2 shadow-[0_20px_40px_rgba(26,26,26,0.14)]">
+        <div className="absolute left-1/2 top-full z-50 mt-3 w-[340px] -translate-x-1/2 rounded-2xl border border-line bg-white p-2 shadow-[0_20px_40px_rgba(26,26,26,0.14)]">
           <div className="max-h-[60vh] overflow-y-auto">
             {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex flex-col gap-0.5 rounded-xl px-3 py-2.5 transition-colors hover:bg-[#f9fafa]"
+                className="flex flex-col gap-0.5 rounded-xl px-3 py-2.5 transition-colors hover:bg-paper-tint"
               >
-                <span className="text-sm font-semibold text-[#1a1a1a]">{item.title}</span>
-                <span className="text-xs text-[#9aa0a5]">{item.keyword}</span>
+                <span className="text-sm font-semibold text-ink">{item.title}</span>
+                <span className="text-xs text-faint">{item.keyword}</span>
               </Link>
             ))}
           </div>
@@ -96,7 +96,7 @@ function NavDropdown({ label, items, footerHref, footerLabel }: { label: string;
             <Link
               href={footerHref}
               onClick={() => setOpen(false)}
-              className="mt-1 flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-[#ff0022] transition-colors hover:bg-[rgba(237,56,54,0.06)]"
+              className="mt-1 flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-accent transition-colors hover:bg-accent/6"
             >
               {footerLabel}
               <span aria-hidden="true">&rarr;</span>
@@ -121,13 +121,45 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
   ctaHref?: string;
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Scroll-hide behavior, matching Street Food Rome's shared Header.tsx —
+  // closes the blueprint's v3 §7 "LOW" finding that the two properties'
+  // headers behaved differently. Skipped entirely while the mobile menu is
+  // open so it can't hide itself out from under an open dropdown.
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    function onScroll() {
+      if (mobileOpen) return;
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollY.current;
+
+      if (currentY < 80) {
+        setHidden(false);
+      } else if (delta > 4) {
+        setHidden(true);
+      } else if (delta < -4) {
+        setHidden(false);
+      }
+      lastScrollY.current = currentY;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#e8ebed] bg-white">
+    <header
+      className={`sticky top-0 z-40 border-b border-line bg-white ${
+        hidden ? '-translate-y-full transition-transform duration-300 ease-in-out' : 'translate-y-0'
+      }`}
+    >
       <div className="mx-auto flex h-[65px] max-w-[1440px] items-center justify-between gap-4 px-6 sm:px-14">
         <Link href="/" className="flex min-w-0 shrink items-center gap-2.5">
           <UCBrandMark />
-          <span className="truncate text-base font-bold leading-none tracking-tight text-[#1a1a1a] sm:text-lg">
+          <span className="truncate text-base font-bold leading-none tracking-tight text-ink sm:text-lg">
             Underground Colosseum
           </span>
         </Link>
@@ -135,7 +167,7 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
         <nav aria-label="Primary" className="hidden min-w-0 items-center gap-8 lg:flex">
           <NavDropdown label="Tours" items={TOURS_NAV_ITEMS} footerHref={toursHref} footerLabel="Compare all 5 tours" />
           <NavDropdown label="Plan Your Visit" items={PLAN_NAV_ITEMS} footerHref={planHref} footerLabel="See all guides" />
-          <a href={faqHref} className="text-sm font-medium text-[#5c6166] transition-colors hover:text-[#ff0022]">
+          <a href={faqHref} className="text-sm font-medium text-ink-muted transition-colors hover:text-accent">
             FAQ
           </a>
           <NavDropdown label="Our Network" items={NETWORK_NAV_ITEMS} />
@@ -143,19 +175,19 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
 
         <div className="flex shrink-0 items-center gap-3 sm:gap-4">
           <div className="hidden items-center gap-5 sm:flex">
-            <Link href="/about" className="text-sm font-medium text-[#5c6166] transition-colors hover:text-[#ff0022]">
+            <Link href="/about" className="text-sm font-medium text-ink-muted transition-colors hover:text-accent">
               About
             </Link>
-            <Link href="/contact" className="text-sm font-medium text-[#5c6166] transition-colors hover:text-[#ff0022]">
+            <Link href="/contact" className="text-sm font-medium text-ink-muted transition-colors hover:text-accent">
               Contact
             </Link>
           </div>
 
-          <span className="hidden h-6 w-px bg-[#e8ebed] sm:block" aria-hidden="true" />
+          <span className="hidden h-6 w-px bg-line sm:block" aria-hidden="true" />
 
           <a
             href={ctaHref}
-            className="flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] bg-[#ff0022] px-4 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#e0001d]"
+            className="flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] bg-accent px-4 text-sm font-bold text-white shadow-sm transition-colors hover:bg-accent-hover"
           >
             Check Availability
           </a>
@@ -165,7 +197,7 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[6px] border border-[#e8ebed] text-[#1a1a1a] lg:hidden"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[6px] border border-line text-ink lg:hidden"
           >
             {mobileOpen ? (
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -181,29 +213,29 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
       </div>
 
       {mobileOpen ? (
-        <div className="max-h-[calc(100vh-65px)] overflow-y-auto border-t border-[#e8ebed] bg-white px-6 py-5 sm:px-14 lg:hidden">
-          <p className="text-xs font-bold uppercase tracking-wide text-[#9aa0a5]">Tours</p>
+        <div className="max-h-[calc(100vh-65px)] overflow-y-auto border-t border-line bg-white px-6 py-5 sm:px-14 lg:hidden">
+          <p className="text-xs font-bold uppercase tracking-wide text-faint">Tours</p>
           <div className="mt-2 flex flex-col">
             {TOURS_NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="border-b border-[#f4f4f4] py-3 text-[15px] font-semibold text-[#1a1a1a]"
+                className="border-b border-media py-3 text-[15px] font-semibold text-ink"
               >
                 {item.title}
               </Link>
             ))}
           </div>
 
-          <p className="mt-5 text-xs font-bold uppercase tracking-wide text-[#9aa0a5]">Plan Your Visit</p>
+          <p className="mt-5 text-xs font-bold uppercase tracking-wide text-faint">Plan Your Visit</p>
           <div className="mt-2 flex flex-col">
             {PLAN_NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="border-b border-[#f4f4f4] py-3 text-[15px] font-semibold text-[#1a1a1a]"
+                className="border-b border-media py-3 text-[15px] font-semibold text-ink"
               >
                 {item.title}
               </Link>
@@ -211,25 +243,25 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
           </div>
 
           <div className="mt-5 flex flex-col gap-1">
-            <a href={faqHref} onClick={() => setMobileOpen(false)} className="py-2 text-[15px] font-semibold text-[#1a1a1a]">
+            <a href={faqHref} onClick={() => setMobileOpen(false)} className="py-2 text-[15px] font-semibold text-ink">
               FAQ
             </a>
-            <Link href="/about" onClick={() => setMobileOpen(false)} className="py-2 text-[15px] font-semibold text-[#1a1a1a]">
+            <Link href="/about" onClick={() => setMobileOpen(false)} className="py-2 text-[15px] font-semibold text-ink">
               About
             </Link>
-            <Link href="/contact" onClick={() => setMobileOpen(false)} className="py-2 text-[15px] font-semibold text-[#1a1a1a]">
+            <Link href="/contact" onClick={() => setMobileOpen(false)} className="py-2 text-[15px] font-semibold text-ink">
               Contact
             </Link>
           </div>
 
-          <p className="mt-5 text-xs font-bold uppercase tracking-wide text-[#9aa0a5]">Our Network</p>
+          <p className="mt-5 text-xs font-bold uppercase tracking-wide text-faint">Our Network</p>
           <div className="mt-2 flex flex-col">
             {SIBLING_SITES.map((site) => (
               <Link
                 key={site.slug}
                 href={`/${site.slug}`}
                 onClick={() => setMobileOpen(false)}
-                className="border-b border-[#f4f4f4] py-2.5 text-sm text-[#5c6166]"
+                className="border-b border-media py-2.5 text-sm text-ink-muted"
               >
                 {site.name}
               </Link>
@@ -239,7 +271,7 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
           <a
             href={ctaHref}
             onClick={() => setMobileOpen(false)}
-            className="mt-5 flex h-11 items-center justify-center rounded-[6px] bg-[#ff0022] text-sm font-bold text-white"
+            className="mt-5 flex h-11 items-center justify-center rounded-[6px] bg-accent text-sm font-bold text-white"
           >
             Check Availability
           </a>
@@ -251,24 +283,24 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
 
 export function UCAuthorBox() {
   return (
-    <section className="border-b border-[#e8ebed] bg-[#f9fafa] py-14">
+    <section className="border-b border-line bg-paper-tint py-14">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-        <div className="flex flex-col items-start gap-6 rounded-2xl border border-[#e8ebed] bg-white p-6 shadow-[0_16px_32px_rgba(26,26,26,0.04)] sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <div className="flex flex-col items-start gap-6 rounded-2xl border border-line bg-white p-6 shadow-[0_16px_32px_rgba(26,26,26,0.04)] sm:flex-row sm:items-center sm:justify-between sm:p-8">
           <div className="flex items-center gap-5">
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#ff3344] to-[#b8001c] text-lg font-bold text-white shadow-sm sm:h-20 sm:w-20 sm:text-xl">
               {AUTHOR.initials}
             </div>
             <div>
-              <p className="text-[17px] font-bold text-[#1a1a1a]">{AUTHOR.name}</p>
-              <p className="text-sm font-medium text-[#9aa0a5]">
+              <p className="text-[17px] font-bold text-ink">{AUTHOR.name}</p>
+              <p className="text-sm font-medium text-faint">
                 {AUTHOR.title} &middot; {AUTHOR.domain}
               </p>
-              <p className="mt-2 max-w-[52ch] text-sm leading-relaxed text-[#5c6166]">{AUTHOR.bio}</p>
+              <p className="mt-2 max-w-[52ch] text-sm leading-relaxed text-ink-muted">{AUTHOR.bio}</p>
             </div>
           </div>
           <Link
             href="/about"
-            className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] border border-[#ff0022] px-5 text-sm font-bold text-[#ff0022] transition-colors hover:bg-[rgba(237,56,54,0.08)]"
+            className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] border border-accent px-5 text-sm font-bold text-accent transition-colors hover:bg-accent/8"
           >
             About our approach &rarr;
           </Link>
@@ -280,29 +312,29 @@ export function UCAuthorBox() {
 
 export function UCFooter() {
   return (
-    <footer className="border-t border-[#e8ebed] bg-[#f9fafa]">
+    <footer className="border-t border-line bg-paper-tint">
       <div className="mx-auto max-w-[1440px] px-6 py-16 sm:px-14">
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
               <UCBrandMark />
-              <span className="text-lg font-bold tracking-tight text-[#1a1a1a]">Underground Colosseum</span>
+              <span className="text-lg font-bold tracking-tight text-ink">Underground Colosseum</span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#5c6166]">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
               Independent, first-hand guide to Colosseum underground and arena-floor tours — part of the Italy Tours
               network of Rome and Italy travel guides.
             </p>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#9aa0a5]">
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-faint">
               GetYourGuide &middot; Viator &middot; Tiqets
             </p>
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wide text-[#1a1a1a]">Explore</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wide text-ink">Explore</h3>
             <ul className="mt-4 space-y-3">
               {EXPLORE_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-[#5c6166] transition-colors hover:text-[#ff0022]">
+                  <Link href={link.href} className="text-sm text-ink-muted transition-colors hover:text-accent">
                     {link.label}
                   </Link>
                 </li>
@@ -311,11 +343,11 @@ export function UCFooter() {
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wide text-[#1a1a1a]">Learn</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wide text-ink">Learn</h3>
             <ul className="mt-4 space-y-3">
               {LEARN_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-[#5c6166] transition-colors hover:text-[#ff0022]">
+                  <Link href={link.href} className="text-sm text-ink-muted transition-colors hover:text-accent">
                     {link.label}
                   </Link>
                 </li>
@@ -324,20 +356,20 @@ export function UCFooter() {
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wide text-[#1a1a1a]">Company</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wide text-ink">Company</h3>
             <ul className="mt-4 space-y-3">
               <li>
-                <Link href="/about" className="text-sm text-[#5c6166] transition-colors hover:text-[#ff0022]">
+                <Link href="/about" className="text-sm text-ink-muted transition-colors hover:text-accent">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-[#5c6166] transition-colors hover:text-[#ff0022]">
+                <Link href="/contact" className="text-sm text-ink-muted transition-colors hover:text-accent">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/contact#disclosure" className="text-sm text-[#5c6166] transition-colors hover:text-[#ff0022]">
+                <Link href="/contact#disclosure" className="text-sm text-ink-muted transition-colors hover:text-accent">
                   Affiliate Disclosure
                 </Link>
               </li>
@@ -345,11 +377,11 @@ export function UCFooter() {
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wide text-[#1a1a1a]">Our Network</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wide text-ink">Our Network</h3>
             <ul className="mt-4 space-y-3">
               {SIBLING_SITES.map((site) => (
                 <li key={site.slug}>
-                  <Link href={`/${site.slug}`} className="text-sm text-[#5c6166] transition-colors hover:text-[#ff0022]">
+                  <Link href={`/${site.slug}`} className="text-sm text-ink-muted transition-colors hover:text-accent">
                     {site.name}
                   </Link>
                 </li>
@@ -358,9 +390,9 @@ export function UCFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-[#e8ebed] pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-[#9aa0a5]">&copy; {new Date().getFullYear()} Underground Colosseum. All rights reserved.</p>
-          <p className="text-xs text-[#9aa0a5]">
+        <div className="mt-12 flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-faint">&copy; {new Date().getFullYear()} Underground Colosseum. All rights reserved.</p>
+          <p className="text-xs text-faint">
             As an affiliate partner, this site may earn a commission on bookings made through outbound links, at no
             extra cost to you.
           </p>
@@ -372,7 +404,7 @@ export function UCFooter() {
 
 export function RibbonBadge({ label }: { label: string }) {
   return (
-    <span className="absolute left-3 top-3 rounded-full bg-[#1a1a1a]/80 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+    <span className="absolute left-3 top-3 rounded-full bg-ink/80 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
       {label}
     </span>
   );
@@ -409,7 +441,7 @@ export function CarouselArrows({ onPrev, onNext, label }: { onPrev: () => void; 
         type="button"
         aria-label={`Previous ${label}`}
         onClick={onPrev}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e8ebed] bg-white text-[#9aa0a5] transition-colors hover:border-[#ff0022] hover:text-[#ff0022] sm:h-11 sm:w-11"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent sm:h-11 sm:w-11"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M15 5 8 12l7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -419,7 +451,7 @@ export function CarouselArrows({ onPrev, onNext, label }: { onPrev: () => void; 
         type="button"
         aria-label={`Next ${label}`}
         onClick={onNext}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e8ebed] bg-white text-[#9aa0a5] transition-colors hover:border-[#ff0022] hover:text-[#ff0022] sm:h-11 sm:w-11"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent sm:h-11 sm:w-11"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -438,40 +470,40 @@ export function CarouselArrows({ onPrev, onNext, label }: { onPrev: () => void; 
  */
 export function TourComparisonTable({ tours, caption }: { tours: FeaturedTour[]; caption?: string }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-[#e8ebed] bg-white">
+    <div className="overflow-x-auto rounded-2xl border border-line bg-white">
       <table className="w-full min-w-[640px] border-collapse text-left text-sm">
         {caption ? <caption className="sr-only">{caption}</caption> : null}
         <thead>
-          <tr className="border-b border-[#e8ebed] bg-[#f9fafa]">
-            <th scope="col" className="px-4 py-3 font-bold text-[#1a1a1a]">Tour</th>
-            <th scope="col" className="px-4 py-3 font-bold text-[#1a1a1a]">Partner</th>
-            <th scope="col" className="px-4 py-3 font-bold text-[#1a1a1a]">Duration</th>
-            <th scope="col" className="px-4 py-3 font-bold text-[#1a1a1a]">Arena floor</th>
-            <th scope="col" className="px-4 py-3 text-right font-bold text-[#1a1a1a]">From</th>
+          <tr className="border-b border-line bg-paper-tint">
+            <th scope="col" className="px-4 py-3 font-bold text-ink">Tour</th>
+            <th scope="col" className="px-4 py-3 font-bold text-ink">Partner</th>
+            <th scope="col" className="px-4 py-3 font-bold text-ink">Duration</th>
+            <th scope="col" className="px-4 py-3 font-bold text-ink">Arena floor</th>
+            <th scope="col" className="px-4 py-3 text-right font-bold text-ink">From</th>
             <th scope="col" className="px-4 py-3" aria-label="Link" />
           </tr>
         </thead>
         <tbody>
           {tours.map((tour) => (
-            <tr key={tour.slug} className="border-b border-[#e8ebed] last:border-b-0 even:bg-[#f9fafa]/50">
-              <td className="px-4 py-3 font-semibold text-[#1a1a1a]">{tour.title}</td>
-              <td className="px-4 py-3 text-[#5c6166]">{tour.partner}</td>
-              <td className="px-4 py-3 text-[#5c6166]">{(tour.meta.split('·')[0] ?? '').trim()}</td>
+            <tr key={tour.slug} className="border-b border-line last:border-b-0 even:bg-paper-tint/50">
+              <td className="px-4 py-3 font-semibold text-ink">{tour.title}</td>
+              <td className="px-4 py-3 text-ink-muted">{tour.partner}</td>
+              <td className="px-4 py-3 text-ink-muted">{(tour.meta.split('·')[0] ?? '').trim()}</td>
               <td className="px-4 py-3">
                 {tour.arenaFloor ? (
-                  <span className="inline-flex items-center gap-1 font-semibold text-[#3f7a3f]">
+                  <span className="inline-flex items-center gap-1 font-semibold text-success">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path d="m5 12.5 4.5 4.5L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     Included
                   </span>
                 ) : (
-                  <span className="text-[#9aa0a5]">Not included</span>
+                  <span className="text-faint">Not included</span>
                 )}
               </td>
-              <td className="px-4 py-3 text-right font-bold text-[#1a1a1a]">&euro;{tour.priceFrom}</td>
+              <td className="px-4 py-3 text-right font-bold tabular-nums text-ink">&euro;{tour.priceFrom}</td>
               <td className="px-4 py-3 text-right">
-                <Link href={`/go/${tour.slug}`} className="text-sm font-bold text-[#ff0022] hover:underline">
+                <Link href={`/go/${tour.slug}`} className="text-sm font-bold text-accent hover:underline">
                   View &rarr;
                 </Link>
               </td>
@@ -493,10 +525,10 @@ export function QuickFactsStrip({ facts }: { facts: { value: string; label: stri
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
       {facts.map((fact) => (
-        <div key={fact.label} className="rounded-2xl border border-[#e8ebed] bg-white p-5 text-center">
-          <p className="font-sans text-[26px] font-extrabold leading-none tracking-tight text-[#ff0022]">{fact.value}</p>
-          <p className="mt-2 text-[13px] font-bold leading-snug text-[#1a1a1a]">{fact.label}</p>
-          <p className="mt-1.5 text-[12px] leading-snug text-[#9aa0a5]">{fact.detail}</p>
+        <div key={fact.label} className="rounded-2xl border border-line bg-white p-5 text-center">
+          <p className="font-sans text-[26px] font-extrabold leading-none tracking-tight text-accent">{fact.value}</p>
+          <p className="mt-2 text-[13px] font-bold leading-snug text-ink">{fact.label}</p>
+          <p className="mt-1.5 text-[12px] leading-snug text-faint">{fact.detail}</p>
         </div>
       ))}
     </div>
@@ -511,13 +543,13 @@ export function QuickFactsStrip({ facts }: { facts: { value: string; label: stri
  */
 export function AtAGlanceBox({ items }: { items: { label: string; value: string }[] }) {
   return (
-    <div className="rounded-2xl border border-[#e8ebed] bg-[#f9fafa] p-5">
-      <p className="text-xs font-bold uppercase tracking-wide text-[#9aa0a5]">At a glance</p>
-      <dl className="mt-3 divide-y divide-[#e8ebed]">
+    <div className="rounded-2xl border border-line bg-paper-tint p-5">
+      <p className="text-xs font-bold uppercase tracking-wide text-faint">At a glance</p>
+      <dl className="mt-3 divide-y divide-line">
         {items.map((item) => (
           <div key={item.label} className="flex items-start justify-between gap-4 py-2.5 first:pt-0 last:pb-0">
-            <dt className="text-sm text-[#5c6166]">{item.label}</dt>
-            <dd className="text-right text-sm font-bold text-[#1a1a1a]">{item.value}</dd>
+            <dt className="text-sm text-ink-muted">{item.label}</dt>
+            <dd className="text-right text-sm font-bold tabular-nums text-ink">{item.value}</dd>
           </div>
         ))}
       </dl>
@@ -534,7 +566,7 @@ export function PhotoGallery({ images }: { images: { src: string; alt: string }[
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {images.map((image) => (
-        <div key={image.src} className="relative aspect-square overflow-hidden rounded-xl bg-[#f4f4f4]">
+        <div key={image.src} className="relative aspect-square overflow-hidden rounded-xl bg-media">
           <SafeImage src={image.src} alt={image.alt} fill sizes="(min-width: 640px) 25vw, 50vw" className="object-cover" />
         </div>
       ))}

@@ -74,14 +74,14 @@ export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[];
   const items = lists[active];
 
   return (
-    <section className="bg-[#f9fafa] py-14">
+    <section className="bg-paper-tint py-14">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
-        <h2 className="text-center font-sans text-xl font-extrabold tracking-tight text-[#1a1a1a] sm:text-2xl">
+        <h2 className="text-center font-sans text-xl font-extrabold tracking-tight text-ink sm:text-2xl">
           Places You Can Plan Your Next Trip
         </h2>
 
         <div className="mt-8 flex justify-center">
-          <div className="inline-flex flex-wrap justify-center gap-1 rounded-full bg-[#eef0f1] p-1">
+          <div className="inline-flex flex-wrap justify-center gap-1 rounded-full bg-line p-1">
             {TABS.map((tab) => (
               <button
                 key={tab}
@@ -89,8 +89,8 @@ export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[];
                 onClick={() => setActive(tab)}
                 className={`rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${
                   active === tab
-                    ? 'bg-white text-[#1a1a1a] shadow-[0_1px_3px_rgba(45,51,57,0.15)]'
-                    : 'text-[#5c6166] hover:text-[#1a1a1a]'
+                    ? 'bg-white text-ink shadow-[0_1px_3px_rgba(45,51,57,0.15)]'
+                    : 'text-ink-muted hover:text-ink'
                 }`}
               >
                 {tab}
@@ -105,17 +105,17 @@ export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[];
               <Link
                 key={item.label}
                 href={item.href}
-                className="flex items-baseline gap-2 text-[15px] text-[#3b3e3f] transition-colors hover:text-[#ff0022]"
+                className="flex items-baseline gap-2 text-[15px] text-ink-muted transition-colors hover:text-accent"
               >
                 {item.hideNumber ? null : (
-                  <span className="tabular-nums text-sm text-[#9aa0a5]">{index + 1}.</span>
+                  <span className="tabular-nums text-sm text-faint">{index + 1}.</span>
                 )}
                 <span className="font-medium">{item.label}</span>
               </Link>
             ) : (
-              <span key={item.label} className="flex items-baseline gap-2 text-[15px] text-[#3b3e3f]">
+              <span key={item.label} className="flex items-baseline gap-2 text-[15px] text-ink-muted">
                 {item.hideNumber ? null : (
-                  <span className="tabular-nums text-sm text-[#9aa0a5]">{index + 1}.</span>
+                  <span className="tabular-nums text-sm text-faint">{index + 1}.</span>
                 )}
                 <span className="font-medium">{item.label}</span>
               </span>

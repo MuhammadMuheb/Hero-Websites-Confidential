@@ -47,16 +47,16 @@ const POINTS = [
 
 export function TrustPointsSection() {
   return (
-    <section className="bg-[#f9fafa] py-12">
+    <section className="bg-paper-tint py-12">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
-        <h2 className="text-center font-sans text-xl font-extrabold tracking-tight text-[#1a1a1a] sm:text-2xl">
+        <h2 className="text-center font-sans text-xl font-extrabold tracking-tight text-ink sm:text-2xl">
           Why Book Rome Food Tours With Us?
         </h2>
 
         <div className="mx-auto mt-10 grid max-w-[1312px] grid-cols-1 gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
           {POINTS.map((point) => (
             <div key={point.label} className="flex items-start gap-3.5">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[rgba(237,56,54,0.08)] text-[rgb(197,48,48)]">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/8 text-accent-hover">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   {point.icon}
                 </svg>

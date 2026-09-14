@@ -43,29 +43,29 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="bg-[#f9fafa] py-10 sm:py-14">
+      <section className="bg-paper-tint py-10 sm:py-14">
         <div className="mx-auto max-w-[1100px] px-6 sm:px-14">
-          <nav className="text-sm text-[#9aa0a5]">
-            <Link href="/" className="hover:text-[#ff0022]">
+          <nav className="text-sm text-faint">
+            <Link href="/" className="hover:text-accent">
               Home
             </Link>
             <span className="mx-2">/</span>
             {category ? (
               <>
-                <Link href={category.href} className="hover:text-[#ff0022]">
+                <Link href={category.href} className="hover:text-accent">
                   {category.label}
                 </Link>
                 <span className="mx-2">/</span>
               </>
             ) : null}
-            <span className="text-[#5c6166]">{tour.title}</span>
+            <span className="text-ink-muted">{tour.title}</span>
           </nav>
 
-          <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-[#1a1a1a] sm:text-4xl">
+          <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
             {tour.title}
           </h1>
 
-          <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-[#5c6166]">
+          <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-ink-muted">
             {tour.duration ? (
               <span className="flex items-center gap-1.5">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -75,12 +75,12 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
                 {tour.duration}
               </span>
             ) : null}
-            <span className="rounded-md bg-white px-2 py-1 text-xs font-semibold text-[#5c6166]">Free Cancellation</span>
-            <span className="rounded-md bg-white px-2 py-1 text-xs font-semibold text-[#5c6166]">Small Group</span>
+            <span className="rounded-md bg-white px-2 py-1 text-xs font-semibold text-ink-muted">Free Cancellation</span>
+            <span className="rounded-md bg-white px-2 py-1 text-xs font-semibold text-ink-muted">Small Group</span>
             {neighborhood ? (
               <Link
                 href={neighborhood.href}
-                className="rounded-md bg-white px-2 py-1 text-xs font-semibold text-[#5c6166] hover:text-[#ff0022]"
+                className="rounded-md bg-white px-2 py-1 text-xs font-semibold text-ink-muted hover:text-accent"
               >
                 Set in {neighborhood.name}
               </Link>
@@ -92,7 +92,7 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
       <section className="py-10 sm:py-14">
         <div className="mx-auto grid max-w-[1100px] gap-10 px-6 sm:px-14 lg:grid-cols-[1.6fr_1fr]">
           <div>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#f4f4f4]">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-media">
               {tour.imageUrl ? (
                 <SafeImage
                   src={tour.imageUrl}
@@ -107,17 +107,17 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
 
             {tour.firstHandNotes ? (
               <div className="mt-8">
-                <h2 className="font-display text-xl font-semibold text-[#1a1a1a]">What to expect</h2>
-                <p className="mt-3 text-base leading-relaxed text-[#5c6166]">{tour.firstHandNotes}</p>
+                <h2 className="font-display text-xl font-semibold text-ink">What to expect</h2>
+                <p className="mt-3 text-base leading-relaxed text-ink-muted">{tour.firstHandNotes}</p>
               </div>
             ) : null}
           </div>
 
-          <aside className="h-fit rounded-2xl border border-[#e8ebed] bg-white p-6 shadow-[0_8px_32px_rgba(45,51,57,0.08)] lg:sticky lg:top-24">
+          <aside className="h-fit rounded-2xl border border-line bg-white p-6 shadow-[0_8px_32px_rgba(45,51,57,0.08)] lg:sticky lg:top-24">
             {tour.priceBand ? (
               <p>
-                <span className="font-display text-3xl font-semibold text-[#1a1a1a]">{tour.priceBand}</span>
-                <span className="ml-1 text-sm text-[#9aa0a5]">/adult</span>
+                <span className="font-display text-3xl font-semibold text-ink">{tour.priceBand}</span>
+                <span className="ml-1 text-sm text-faint">/adult</span>
               </p>
             ) : null}
 
@@ -125,12 +125,12 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
               href={tour.affiliateUrl}
               target="_blank"
               rel="noopener noreferrer sponsored"
-              className="mt-4 flex h-12 w-full items-center justify-center rounded-[6px] bg-[#ff0022] text-sm font-bold text-white transition-colors hover:bg-[#e0001d]"
+              className="mt-4 flex h-12 w-full items-center justify-center rounded-[6px] bg-accent text-sm font-bold text-white transition-colors hover:bg-accent-hover"
             >
               Check Availability
             </Link>
 
-            <p className="mt-4 text-xs leading-relaxed text-[#9aa0a5]">
+            <p className="mt-4 text-xs leading-relaxed text-faint">
               Booking is handled by GetYourGuide, our booking partner — you&rsquo;ll be taken to their site to
               confirm your date and pay. Free cancellation up to 24 hours before the tour.
             </p>
@@ -139,13 +139,13 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
       </section>
 
       {otherTours.length > 0 ? (
-        <section className="bg-[#f9fafa] py-14">
+        <section className="bg-paper-tint py-14">
           <div className="mx-auto max-w-[1100px] px-6 sm:px-14">
-            <h2 className="font-display text-2xl font-semibold text-[#1a1a1a]">You might also like</h2>
+            <h2 className="font-display text-2xl font-semibold text-ink">You might also like</h2>
             <ul className="mt-6 space-y-3">
               {otherTours.map((other) => (
                 <li key={other.href}>
-                  <Link href={other.href} className="text-sm font-bold text-[#ff0022] hover:underline">
+                  <Link href={other.href} className="text-sm font-bold text-accent hover:underline">
                     {other.title}
                   </Link>
                 </li>

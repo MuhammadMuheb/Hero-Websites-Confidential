@@ -24,10 +24,10 @@ const TOURS_AND_BLOG: NavItem[] = [
 ];
 
 function ColumnHeading({ children }: { children: React.ReactNode }) {
-  return <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#9aa0a5]">{children}</p>;
+  return <p className="text-xs font-semibold uppercase tracking-[0.1em] text-faint">{children}</p>;
 }
 
-const linkClass = 'text-sm text-[#3b3e3f] transition-colors hover:text-[#ff0022]';
+const linkClass = 'text-sm text-ink-muted transition-colors hover:text-accent';
 
 export function ViewToursMenu() {
   const [open, setOpen] = useState(false);
@@ -49,7 +49,7 @@ export function ViewToursMenu() {
         type="button"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[6px] bg-[#ff0022] px-3 text-sm font-bold text-white sm:h-10 sm:px-4 sm:text-base"
+        className="flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[6px] bg-accent px-3 text-sm font-bold text-white sm:h-10 sm:px-4 sm:text-base"
       >
         View Tours
         <svg
@@ -65,7 +65,7 @@ export function ViewToursMenu() {
       </button>
 
       {open ? (
-        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-2xl border border-[#e8ebed] bg-white p-6 shadow-[0_16px_48px_rgba(45,51,57,0.18)] lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-3 lg:max-h-none lg:w-[92vw] lg:max-w-[560px] lg:overflow-visible">
+        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-2xl border border-line bg-white p-6 shadow-[0_16px_48px_rgba(45,51,57,0.18)] lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-3 lg:max-h-none lg:w-[92vw] lg:max-w-[560px] lg:overflow-visible">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
             <div>
               <ColumnHeading>Pages</ColumnHeading>

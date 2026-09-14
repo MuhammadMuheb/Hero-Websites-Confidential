@@ -34,22 +34,22 @@ const CARDS = [
 
 export function HowItStartedSection() {
   return (
-    <section className="bg-[#f9fafa] py-16 sm:py-20">
+    <section className="bg-paper-tint py-16 sm:py-20">
       <div className="mx-auto max-w-[1100px] px-6 sm:px-14">
-        <h2 className="font-sans text-2xl font-extrabold tracking-tight text-[#1a1a1a] sm:text-3xl">
+        <h2 className="font-sans text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
           How It Started
         </h2>
 
         <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
           {CARDS.map((card) => (
             <div key={card.title}>
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-[#ff0022] to-[#c8102e] text-white">
+              <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-hover text-white">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   {card.icon}
                 </svg>
               </div>
-              <h3 className="mt-4 font-sans text-base font-bold text-[#ff0022]">{card.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[#5c6166]">{card.body}</p>
+              <h3 className="mt-4 font-sans text-base font-bold text-accent">{card.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">{card.body}</p>
             </div>
           ))}
         </div>

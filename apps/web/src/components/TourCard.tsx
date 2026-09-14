@@ -13,7 +13,7 @@ interface TourCardProps {
 export function TourCard({ tour, priority, href }: TourCardProps) {
   return (
     <Link href={href ?? tourHref(tour.slug)} className="group flex h-full flex-col">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#f4f4f4]">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
         {tour.imageUrl ? (
           <SafeImage
             src={tour.imageUrl}
@@ -24,7 +24,7 @@ export function TourCard({ tour, priority, href }: TourCardProps) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : null}
-        <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#e8ebed] bg-white/95 text-[#9aa0a5] shadow-sm transition-colors hover:border-[#ff0022] hover:text-[#ff0022]">
+        <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border border-line bg-white/95 text-faint shadow-sm transition-colors hover:border-accent hover:text-accent">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
               d="M12 20s-7-4.35-9.5-8.8C.6 8 2 4.5 5.5 4c2-.28 3.7.7 4.5 2.3.8-1.6 2.5-2.58 4.5-2.3C18 4.5 19.4 8 17.5 11.2 15 15.65 12 20 12 20Z"
@@ -40,7 +40,7 @@ export function TourCard({ tour, priority, href }: TourCardProps) {
         <h3 className="font-sans text-base font-bold leading-snug text-[rgb(30,30,30)]">{tour.title}</h3>
 
         <div className="mt-2 flex items-center gap-2 text-sm text-[rgb(117,124,127)]">
-          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[rgba(237,56,54,0.08)] text-[rgb(197,48,48)]">
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/8 text-accent-hover">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
               <path d="M12 7v5l3.5 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
@@ -50,10 +50,10 @@ export function TourCard({ tour, priority, href }: TourCardProps) {
         </div>
 
         <div className="mt-3 flex flex-wrap gap-1.5">
-          <span className="rounded-md bg-[#f4f4f4] px-2 py-1 text-xs font-semibold text-[rgb(117,124,127)]">
+          <span className="rounded-md bg-media px-2 py-1 text-xs font-semibold text-[rgb(117,124,127)]">
             Free Cancellation
           </span>
-          <span className="rounded-md bg-[#f4f4f4] px-2 py-1 text-xs font-semibold text-[rgb(117,124,127)]">
+          <span className="rounded-md bg-media px-2 py-1 text-xs font-semibold text-[rgb(117,124,127)]">
             Small Group
           </span>
         </div>
@@ -66,7 +66,7 @@ export function TourCard({ tour, priority, href }: TourCardProps) {
           {tour.priceBand ? (
             <span className="text-right">
               <span className="font-sans text-2xl font-bold text-[rgb(30,30,30)]">{tour.priceBand}</span>
-              <span className="ml-1 text-sm text-[#9aa0a5]">/adult</span>
+              <span className="ml-1 text-sm text-faint">/adult</span>
             </span>
           ) : null}
         </div>

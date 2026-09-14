@@ -59,19 +59,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="bg-[#f9fafa] py-10 sm:py-14">
+      <section className="bg-paper-tint py-10 sm:py-14">
         <div className="mx-auto max-w-[720px] px-6 sm:px-14">
-          <nav className="text-sm text-[#9aa0a5]">
-            <Link href="/blog" className="hover:text-[#ff0022]">
+          <nav className="text-sm text-faint">
+            <Link href="/blog" className="hover:text-accent">
               Blog
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-[#5c6166]">{post.title}</span>
+            <span className="text-ink-muted">{post.title}</span>
           </nav>
-          <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-[#1a1a1a] sm:text-4xl">
+          <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
             {post.title}
           </h1>
-          <p className="mt-3 text-sm text-[#9aa0a5]">
+          <p className="mt-3 text-sm text-faint">
             {formatDate(post.publishedAt)}
             {author ? <> &middot; By {author.name}</> : null}
           </p>
@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <section className="py-10">
         <div className="mx-auto max-w-[720px] px-6 sm:px-14">
           {post.coverImageUrl ? (
-            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-[#f4f4f4]">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-media">
               <SafeImage src={post.coverImageUrl} alt={post.title} fill priority sizes="720px" className="object-cover" />
             </div>
           ) : null}
@@ -89,15 +89,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="rich-content mt-8" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
 
           {author ? (
-            <div className="mt-10 flex items-start gap-4 rounded-2xl border border-[#e8ebed] p-6">
+            <div className="mt-10 flex items-start gap-4 rounded-2xl border border-line p-6">
               {author.avatarUrl ? (
-                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-[#f4f4f4]">
+                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-media">
                   <SafeImage src={author.avatarUrl} alt={author.name} fill sizes="48px" className="object-cover" />
                 </div>
               ) : null}
               <div>
-                <p className="font-display text-sm font-semibold text-[#1a1a1a]">{author.name}</p>
-                {author.bio ? <p className="mt-1 text-sm leading-relaxed text-[#5c6166]">{author.bio}</p> : null}
+                <p className="font-display text-sm font-semibold text-ink">{author.name}</p>
+                {author.bio ? <p className="mt-1 text-sm leading-relaxed text-ink-muted">{author.bio}</p> : null}
               </div>
             </div>
           ) : null}

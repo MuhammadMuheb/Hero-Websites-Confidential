@@ -41,10 +41,10 @@ export default async function FaqPage() {
 
       <section className="py-14">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
-          <div className="divide-y divide-[#e8ebed] rounded-2xl border border-[#e8ebed]">
+          <div className="divide-y divide-line rounded-2xl border border-line">
             {page.faqs.map((faq) => (
               <details key={faq.question} className="group px-6 py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-[#1a1a1a] marker:content-none">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-ink marker:content-none">
                   {faq.question}
                   <svg
                     width="16"
@@ -52,12 +52,12 @@ export default async function FaqPage() {
                     viewBox="0 0 24 24"
                     fill="none"
                     aria-hidden="true"
-                    className="shrink-0 text-[#9aa0a5] transition-transform group-open:rotate-180"
+                    className="shrink-0 text-faint transition-transform group-open:rotate-180"
                   >
                     <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-[#5c6166]">{faq.answer}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{faq.answer}</p>
               </details>
             ))}
           </div>

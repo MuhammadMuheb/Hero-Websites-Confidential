@@ -74,8 +74,8 @@ export default async function ToursIndexPage({
               href="/tours"
               className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                 !category && !neighborhood
-                  ? 'border-[#ff0022] bg-[#ff0022] text-white'
-                  : 'border-[#e8ebed] bg-white text-[#5c6166] hover:border-[#ff0022] hover:text-[#ff0022]'
+                  ? 'border-accent bg-accent text-white'
+                  : 'border-line bg-white text-ink-muted hover:border-accent hover:text-accent'
               }`}
             >
               All Tours
@@ -86,8 +86,8 @@ export default async function ToursIndexPage({
                 href={`/tours?category=${c.slug}`}
                 className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                   category === c.slug
-                    ? 'border-[#ff0022] bg-[#ff0022] text-white'
-                    : 'border-[#e8ebed] bg-white text-[#5c6166] hover:border-[#ff0022] hover:text-[#ff0022]'
+                    ? 'border-accent bg-accent text-white'
+                    : 'border-line bg-white text-ink-muted hover:border-accent hover:text-accent'
                 }`}
               >
                 {c.name}
@@ -102,8 +102,8 @@ export default async function ToursIndexPage({
                 href={`/tours?neighborhood=${n.slug}`}
                 className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
                   neighborhood === n.slug
-                    ? 'border-[#ff0022] bg-[#ff0022] text-white'
-                    : 'border-[#e8ebed] bg-white text-[#5c6166] hover:border-[#ff0022] hover:text-[#ff0022]'
+                    ? 'border-accent bg-accent text-white'
+                    : 'border-line bg-white text-ink-muted hover:border-accent hover:text-accent'
                 }`}
               >
                 {n.name}
@@ -112,13 +112,13 @@ export default async function ToursIndexPage({
           </div>
 
           {(activeCategory || activeNeighborhood) && (
-            <p className="mt-6 text-sm text-[#5c6166]">
+            <p className="mt-6 text-sm text-ink-muted">
               Showing {tours.length} tour{tours.length === 1 ? '' : 's'}
-              {activeCategory ? <> in <strong className="text-[#1a1a1a]">{activeCategory.name}</strong></> : null}
+              {activeCategory ? <> in <strong className="text-ink">{activeCategory.name}</strong></> : null}
               {activeNeighborhood ? (
                 <>
                   {' '}
-                  in <strong className="text-[#1a1a1a]">{activeNeighborhood.name}</strong>
+                  in <strong className="text-ink">{activeNeighborhood.name}</strong>
                 </>
               ) : null}
               .
@@ -126,9 +126,9 @@ export default async function ToursIndexPage({
           )}
 
           {tours.length === 0 ? (
-            <p className="mt-10 text-sm text-[#5c6166]">
+            <p className="mt-10 text-sm text-ink-muted">
               No tours match that filter yet.{' '}
-              <Link href="/tours" className="font-bold text-[#ff0022] hover:underline">
+              <Link href="/tours" className="font-bold text-accent hover:underline">
                 View all tours
               </Link>
               .

@@ -4,18 +4,18 @@ import { SafeImage } from './SafeImage';
 export function ExperiencesBannerSection() {
   return (
     <section>
-      <div className="bg-[#f4f4f4] py-16 text-center sm:py-20">
+      <div className="bg-media py-16 text-center sm:py-20">
         <div className="mx-auto max-w-[720px] px-6 sm:px-14">
-          <h2 className="font-sans text-2xl font-extrabold tracking-tight text-[#1a1a1a] sm:text-3xl">
+          <h2 className="font-sans text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
             What Could Your Next Rome Food Day Taste Like?
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-[#5c6166]">
+          <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-ink-muted">
             Markets, pizza al taglio counters, wine bars, and the neighbourhoods that don&rsquo;t make it into
             most guidebooks.
           </p>
           <Link
             href="/"
-            className="mt-6 inline-flex h-11 items-center justify-center rounded-[6px] bg-[#ff0022] px-6 text-sm font-bold text-white transition-colors hover:bg-[#e0001d]"
+            className="mt-6 inline-flex h-11 items-center justify-center rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
           >
             See Our Top Rome Food Tours
           </Link>

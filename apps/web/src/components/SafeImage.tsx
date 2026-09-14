@@ -13,7 +13,7 @@ export function SafeImage({ alt, className, ...rest }: ImageProps) {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
-    return <div className={`bg-[#f4f4f4] ${className ?? ''}`} role="img" aria-label={alt} />;
+    return <div className={`bg-media ${className ?? ''}`} role="img" aria-label={alt} />;
   }
 
   return <Image alt={alt} className={className} onError={() => setFailed(true)} {...rest} />;

@@ -36,7 +36,7 @@ export default async function BlogIndexPage() {
               <Link
                 key={c.slug}
                 href={`/blog/category/${c.slug}`}
-                className="rounded-full border border-[#e8ebed] bg-white px-4 py-2 text-sm font-semibold text-[#5c6166] transition-colors hover:border-[#ff0022] hover:text-[#ff0022]"
+                className="rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-ink-muted transition-colors hover:border-accent hover:text-accent"
               >
                 {c.name}
               </Link>
@@ -50,7 +50,7 @@ export default async function BlogIndexPage() {
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
             {posts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#f4f4f4]">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-media">
                   {post.coverImageUrl ? (
                     <SafeImage
                       src={post.coverImageUrl}
@@ -61,11 +61,11 @@ export default async function BlogIndexPage() {
                     />
                   ) : null}
                 </div>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#9aa0a5]">
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-faint">
                   {formatDate(post.publishedAt)}
                 </p>
-                <h2 className="mt-1 font-display text-xl font-semibold text-[#1a1a1a]">{post.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-[#5c6166]">{post.excerpt}</p>
+                <h2 className="mt-1 font-display text-xl font-semibold text-ink">{post.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{post.excerpt}</p>
               </Link>
             ))}
           </div>

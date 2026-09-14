@@ -6,24 +6,32 @@
   /* RGB channel triples (not hex/full-color strings) — required so Tailwind's
      opacity-modifier syntax (e.g. text-paper/90) can wrap these as
      rgb(var(--x) / <alpha>) in tailwind.config.ts. A hex literal here would
-     silently break every /NN opacity utility built on these tokens. */
+     silently break every /NN opacity utility built on these tokens.
 
-  /* Crisp near-white paper, not the warm-cream default — this site's warmth
-     comes from the wine-red/ochre accents, not a tinted background. */
-  --paper: 252 251 249;
+     Reconciled against the Underground Colosseum design blueprint (v3 §7,
+     "HIGH — the design-token system exists but nothing uses it"): every
+     value below now matches the hex actually hardcoded across
+     Header.tsx/Footer.tsx/TourCard.tsx/UCShared.tsx and their Underground
+     Colosseum equivalents, instead of the aspirational wine-red palette that
+     was defined here but never shipped. Components should consume these
+     tokens (bg-accent, text-ink-muted, ...) going forward rather than
+     hardcoding new hex literals. */
+  --paper: 255 255 255;
   /* Used sparingly for alternating section backgrounds only, never as the
      dominant page color. */
-  --paper-tint: 244 239 231;
-  --ink: 24 20 15;
-  --ink-muted: 92 83 71;
-  /* Deep wine/oxblood red — Roman, specific, not a generic bright terracotta. */
-  --accent: 122 35 49;
-  --accent-hover: 94 26 37;
-  /* Roman ochre — parmesan rind, stucco facades, market produce. Secondary
-     accent only: ratings, tags, small highlights. Never the primary CTA color. */
+  --paper-tint: 249 250 250;
+  --ink: 26 26 26;
+  --ink-muted: 92 97 102;
+  --faint: 154 160 165;
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  /* Secondary accent only: ratings, tags, small highlights. Never the primary
+     CTA color. */
   --gold: 184 134 46;
-  --line: 230 221 208;
-  --line-strong: 211 198 178;
+  --success: 76 140 74;
+  --line: 232 235 237;
+  --line-strong: 216 220 222;
+  --media: 244 244 244;
 }
 
 html {

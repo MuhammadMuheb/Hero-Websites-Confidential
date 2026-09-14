@@ -72,14 +72,14 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
       <section className="py-14">
         <div className="mx-auto max-w-[1000px] px-6 sm:px-14">
           <div
-            className="rich-content mb-10 text-base leading-relaxed text-[#5c6166]"
+            className="rich-content mb-10 text-base leading-relaxed text-ink-muted"
             dangerouslySetInnerHTML={{ __html: page?.bodyHtml ?? `<p>${category.intro}</p>` }}
           />
 
           {posts.length === 0 ? (
-            <p className="text-sm text-[#5c6166]">
+            <p className="text-sm text-ink-muted">
               No posts are tagged in {category.name} yet — more coming soon. In the meantime, browse{' '}
-              <Link href="/blog" className="font-bold text-[#ff0022] hover:underline">
+              <Link href="/blog" className="font-bold text-accent hover:underline">
                 every post
               </Link>
               .
@@ -88,7 +88,7 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
               {posts.map((post) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#f4f4f4]">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-media">
                     {post.coverImageUrl ? (
                       <SafeImage
                         src={post.coverImageUrl}
@@ -99,23 +99,23 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
                       />
                     ) : null}
                   </div>
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#9aa0a5]">
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-faint">
                     {formatDate(post.publishedAt)}
                   </p>
-                  <h2 className="mt-1 font-display text-xl font-semibold text-[#1a1a1a]">{post.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-[#5c6166]">{post.excerpt}</p>
+                  <h2 className="mt-1 font-display text-xl font-semibold text-ink">{post.title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{post.excerpt}</p>
                 </Link>
               ))}
             </div>
           )}
 
-          <div className="mt-14 grid grid-cols-1 gap-8 border-t border-[#e8ebed] pt-10 sm:grid-cols-2">
+          <div className="mt-14 grid grid-cols-1 gap-8 border-t border-line pt-10 sm:grid-cols-2">
             <div>
-              <h2 className="font-display text-base font-semibold text-[#1a1a1a]">Explore by category</h2>
+              <h2 className="font-display text-base font-semibold text-ink">Explore by category</h2>
               <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
                 {CATEGORIES.map((c) => (
                   <li key={c.slug}>
-                    <Link href={`/tours/category/${c.slug}`} className="font-bold text-[#ff0022] hover:underline">
+                    <Link href={`/tours/category/${c.slug}`} className="font-bold text-accent hover:underline">
                       {c.name}
                     </Link>
                   </li>
@@ -123,11 +123,11 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
               </ul>
             </div>
             <div>
-              <h2 className="font-display text-base font-semibold text-[#1a1a1a]">Our Network</h2>
+              <h2 className="font-display text-base font-semibold text-ink">Our Network</h2>
               <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
                 {NETWORK_SITES.map((site) => (
                   <li key={site.number}>
-                    <Link href={`/${site.slug}`} className="font-bold text-[#ff0022] hover:underline">
+                    <Link href={`/${site.slug}`} className="font-bold text-accent hover:underline">
                       {site.name}
                     </Link>
                   </li>

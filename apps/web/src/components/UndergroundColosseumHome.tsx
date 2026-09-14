@@ -53,18 +53,18 @@ function MoneyPagesCarousel() {
   const { trackRef, scrollByOneCard } = useCardCarousel();
 
   return (
-    <section id="tours" className="scroll-mt-[65px] border-b border-[#e8ebed] py-16 sm:py-20">
+    <section id="tours" className="scroll-mt-[65px] border-b border-line py-16 sm:py-20">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
         <div className="flex flex-wrap items-end justify-between gap-y-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#ff0022]">The 5 ways to book</p>
-            <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-[#1a1a1a] sm:text-[36px]">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">The 5 ways to book</p>
+            <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[36px]">
               Choose Your Colosseum Tour
             </h2>
           </div>
           <CarouselArrows label="tour page" onPrev={() => scrollByOneCard(-1)} onNext={() => scrollByOneCard(1)} />
         </div>
-        <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-[#5c6166]">
+        <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
           Every card below is its own page with its own primary keyword — no two share intent, so each can rank on
           its own.
         </p>
@@ -79,9 +79,9 @@ function MoneyPagesCarousel() {
               key={page.href}
               href={page.href}
               style={{ scrollSnapAlign: 'start' }}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-[#e8ebed] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#e8ebed] hover:shadow-[0_16px_32px_rgba(26,26,26,0.08)]"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-line hover:shadow-[0_16px_32px_rgba(26,26,26,0.08)]"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#f4f4f4]">
+              <div className="relative aspect-[4/3] overflow-hidden bg-media">
                 <SafeImage
                   src={page.image.src}
                   alt={page.image.alt}
@@ -92,12 +92,12 @@ function MoneyPagesCarousel() {
                 {page.badge ? <RibbonBadge label={page.badge} /> : null}
               </div>
               <div className="flex flex-1 flex-col p-4">
-                <h3 className="font-sans text-[17px] font-bold leading-snug text-[#1a1a1a]">{page.title}</h3>
-                <p className="mt-2 flex-1 text-[14.5px] leading-relaxed text-[#5c6166]">{page.blurb}</p>
-                <span className="mt-3 inline-block w-fit rounded-full bg-[#f4f4f4] px-2.5 py-1 text-xs font-semibold text-[#5c6166]">
+                <h3 className="font-sans text-[17px] font-bold leading-snug text-ink">{page.title}</h3>
+                <p className="mt-2 flex-1 text-[14.5px] leading-relaxed text-ink-muted">{page.blurb}</p>
+                <span className="mt-3 inline-block w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">
                   {page.keyword}
                 </span>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-[#ff0022]">
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-accent">
                   {page.cta}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
                     <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -121,26 +121,26 @@ function FeaturedToursCarousel() {
   const { trackRef, scrollByOneCard } = useCardCarousel();
 
   return (
-    <section id="featured-tours" className="scroll-mt-[65px] border-b border-[#e8ebed] bg-[#f9fafa] py-16 sm:py-20">
+    <section id="featured-tours" className="scroll-mt-[65px] border-b border-line bg-paper-tint py-16 sm:py-20">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
         <div className="flex flex-wrap items-end justify-between gap-y-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#ff0022]">Live tour comparison</p>
-            <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-[#1a1a1a] sm:text-[36px]">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Live tour comparison</p>
+            <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[36px]">
               Featured Tours
             </h2>
           </div>
           <div className="flex items-center gap-3">
-            <span className="hidden rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-[#5c6166] sm:inline-block">
+            <span className="hidden rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-ink-muted sm:inline-block">
               €50 – €110 price band
             </span>
             <CarouselArrows label="tour" onPrev={() => scrollByOneCard(-1)} onNext={() => scrollByOneCard(1)} />
           </div>
         </div>
-        <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-[#5c6166]">
+        <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
           Every card pulls partner, price band, and duration live from the Tour collection.
         </p>
-        <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-[#b8862e]">
+        <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-gold">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
             <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
             <path d="M12 7v5l3.5 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -157,9 +157,9 @@ function FeaturedToursCarousel() {
             <div
               key={tour.slug}
               style={{ scrollSnapAlign: 'start' }}
-              className="flex flex-col overflow-hidden rounded-2xl border border-[#e8ebed] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(26,26,26,0.08)]"
+              className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(26,26,26,0.08)]"
             >
-              <div className="relative aspect-[4/3] bg-[#f4f4f4]">
+              <div className="relative aspect-[4/3] bg-media">
                 <SafeImage
                   src={tour.image.src}
                   alt={tour.image.alt}
@@ -170,14 +170,14 @@ function FeaturedToursCarousel() {
                 {tour.badge ? <RibbonBadge label={tour.badge} /> : null}
               </div>
               <div className="flex flex-1 flex-col p-4">
-                <span className="w-fit rounded-full bg-[#f4f4f4] px-2.5 py-1 text-xs font-semibold text-[#5c6166]">
+                <span className="w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">
                   {tour.partner}
                 </span>
-                <h3 className="mt-3 font-sans text-[17px] font-bold leading-snug text-[#1a1a1a]">{tour.title}</h3>
-                <p className="mt-1.5 text-sm text-[#5c6166]">{tour.meta}</p>
+                <h3 className="mt-3 font-sans text-[17px] font-bold leading-snug text-ink">{tour.title}</h3>
+                <p className="mt-1.5 text-sm text-ink-muted">{tour.meta}</p>
                 <div className="mt-4 flex items-end justify-between">
-                  <span className="font-sans text-2xl font-bold text-[#1a1a1a]">from &euro;{tour.priceFrom}</span>
-                  <Link href={`/go/${tour.slug}`} className="text-sm font-bold text-[#ff0022] hover:underline">
+                  <span className="font-sans text-2xl font-bold tabular-nums text-ink">from &euro;{tour.priceFrom}</span>
+                  <Link href={`/go/${tour.slug}`} className="text-sm font-bold text-accent hover:underline">
                     View tour &rarr;
                   </Link>
                 </div>
@@ -236,16 +236,16 @@ export function UndergroundColosseumHome() {
       <UCHeader />
 
       {/* ---------- hero ---------- */}
-      <section className="border-b border-[#e8ebed]">
+      <section className="border-b border-line">
         <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 sm:px-14 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-20">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9aa0a5]">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-faint">
               Colosseum underground tour
             </p>
-            <h1 className="mt-4 font-sans text-[38px] font-extrabold leading-[1.08] tracking-tight text-[#1a1a1a] sm:text-[54px]">
+            <h1 className="mt-4 font-sans text-[38px] font-extrabold leading-[1.08] tracking-tight text-ink sm:text-[54px]">
               Underground &amp; Arena Floor Colosseum Tours
             </h1>
-            <p className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-[#5c6166]">
+            <p className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-ink-muted">
               Written and photographed on-site by a Rome-based guide who has walked every underground circuit in
               person — so you know exactly what each tour actually includes before you book.
             </p>
@@ -253,22 +253,22 @@ export function UndergroundColosseumHome() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href="/underground-arena-floor-tour"
-                className="flex h-11 items-center justify-center rounded-[6px] bg-[#ff0022] px-6 text-sm font-bold text-white transition-colors hover:bg-[#e0001d]"
+                className="flex h-11 items-center justify-center rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
               >
                 Compare Underground Tours
               </Link>
               <Link
                 href="/is-the-underground-worth-it"
-                className="flex h-11 items-center justify-center rounded-[6px] border border-[#ff0022] px-6 text-sm font-medium text-[#ff0022] transition-colors hover:bg-[rgba(237,56,54,0.08)]"
+                className="flex h-11 items-center justify-center rounded-[6px] border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/8"
               >
                 Is it worth it?
               </Link>
             </div>
 
-            <div className="mt-8 flex flex-col gap-2.5 text-sm text-[#5c6166] sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
+            <div className="mt-8 flex flex-col gap-2.5 text-sm text-ink-muted sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
               {['Own arena-floor photography', 'Independent — no operator affiliation', 'Compares GetYourGuide · Viator · Tiqets'].map((label) => (
                 <span key={label} className="flex items-center gap-1.5">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0 text-[#4c8c4a]">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0 text-success">
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
                     <path d="m8 12.5 2.5 2.5L16 9.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -278,7 +278,7 @@ export function UndergroundColosseumHome() {
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#f4f4f4]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
             <SafeImage
               src={HERO_IMAGE.src}
               alt={HERO_IMAGE.alt}
@@ -292,13 +292,13 @@ export function UndergroundColosseumHome() {
       </section>
 
       {/* ---------- quick-jump topic chips ---------- */}
-      <div className="border-b border-[#e8ebed] bg-white">
+      <div className="border-b border-line bg-white">
         <div className="mx-auto flex max-w-[1200px] items-center gap-2 overflow-x-auto px-6 py-4 [scrollbar-width:none] sm:px-14 [&::-webkit-scrollbar]:hidden">
           {QUICK_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="flex h-9 shrink-0 items-center whitespace-nowrap rounded-full border border-[#e8ebed] px-3.5 text-sm font-semibold text-[#3b3e3f] transition-colors hover:border-[#ff0022] hover:text-[#ff0022]"
+              className="flex h-9 shrink-0 items-center whitespace-nowrap rounded-full border border-line px-3.5 text-sm font-semibold text-ink-muted transition-colors hover:border-accent hover:text-accent"
             >
               {link.label}
             </Link>
@@ -307,13 +307,13 @@ export function UndergroundColosseumHome() {
       </div>
 
       {/* ---------- Colosseum by the numbers ---------- */}
-      <section className="border-b border-[#e8ebed] bg-[#f9fafa] py-14 sm:py-16">
+      <section className="border-b border-line bg-paper-tint py-14 sm:py-16">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#ff0022]">Before the tunnels were tours</p>
-          <h2 className="mt-2 font-sans text-[26px] font-extrabold leading-snug tracking-tight text-[#1a1a1a] sm:text-[32px]">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Before the tunnels were tours</p>
+          <h2 className="mt-2 font-sans text-[26px] font-extrabold leading-snug tracking-tight text-ink sm:text-[32px]">
             The Colosseum, by the Numbers
           </h2>
-          <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-[#5c6166]">
+          <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
             A little history before you book — the same facts that make the underground worth seeing in the first place.
           </p>
           <div className="mt-8">
@@ -326,13 +326,13 @@ export function UndergroundColosseumHome() {
       <FeaturedToursCarousel />
 
       {/* ---------- full tour comparison table ---------- */}
-      <section className="border-b border-[#e8ebed] py-16 sm:py-20">
+      <section className="border-b border-line py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#ff0022]">Every partner, side by side</p>
-          <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-[#1a1a1a] sm:text-[36px]">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Every partner, side by side</p>
+          <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[36px]">
             Compare All 8 Tours at a Glance
           </h2>
-          <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-[#5c6166]">
+          <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
             The same 8 listings as the carousel above, laid out as a straight spec comparison — duration, whether arena-floor
             access is actually included, and price, so you can scan the whole market in one table instead of card by card.
           </p>
@@ -343,16 +343,16 @@ export function UndergroundColosseumHome() {
       </section>
 
       {/* ---------- validation teasers ---------- */}
-      <section className="border-b border-[#e8ebed] py-16 sm:py-20">
+      <section className="border-b border-line py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#ff0022]">Before you book</p>
-          <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-[#1a1a1a] sm:text-[36px]">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Before you book</p>
+          <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[36px]">
             Know Before You Go
           </h2>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="overflow-hidden rounded-2xl bg-[rgba(237,56,54,0.06)] transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
-              <div className="relative aspect-[16/9] bg-[#f4f4f4]">
+            <div className="overflow-hidden rounded-2xl bg-accent/6 transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
+              <div className="relative aspect-[16/9] bg-media">
                 <SafeImage
                   src={WORTH_IT_PAGE.image.src}
                   alt={WORTH_IT_PAGE.image.alt}
@@ -362,19 +362,19 @@ export function UndergroundColosseumHome() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-sans text-[17px] font-bold leading-snug text-[#1a1a1a]">{WORTH_IT_PAGE.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#5c6166]">
+                <h3 className="font-sans text-[17px] font-bold leading-snug text-ink">{WORTH_IT_PAGE.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                   Short answer: yes, if you book the arena-floor add-on directly — here&rsquo;s the honest breakdown,
                   including when it isn&rsquo;t worth the extra cost.
                 </p>
-                <Link href={WORTH_IT_PAGE.href} className="mt-4 inline-block text-sm font-bold text-[#ff0022] hover:underline">
+                <Link href={WORTH_IT_PAGE.href} className="mt-4 inline-block text-sm font-bold text-accent hover:underline">
                   Read the verdict &rarr;
                 </Link>
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-[#e8ebed] bg-white transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
-              <div className="relative aspect-[16/9] bg-[#f4f4f4]">
+            <div className="overflow-hidden rounded-2xl border border-line bg-white transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
+              <div className="relative aspect-[16/9] bg-media">
                 <SafeImage
                   src={ARENA_FLOOR_PAGE.image.src}
                   alt={ARENA_FLOOR_PAGE.image.alt}
@@ -384,21 +384,21 @@ export function UndergroundColosseumHome() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-sans text-[17px] font-bold leading-snug text-[#1a1a1a]">{ARENA_FLOOR_PAGE.title}</h3>
-                <span className="mt-3 inline-block w-fit rounded-full bg-[#f4f4f4] px-2.5 py-1 text-xs font-semibold text-[#5c6166]">
+                <h3 className="font-sans text-[17px] font-bold leading-snug text-ink">{ARENA_FLOOR_PAGE.title}</h3>
+                <span className="mt-3 inline-block w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">
                   {ARENA_FLOOR_PAGE.keyword}
                 </span>
-                <p className="mt-3 text-sm leading-relaxed text-[#5c6166]">
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                   First-hand photography, step by step, from the entrance to the reconstructed floor itself.
                 </p>
-                <Link href={ARENA_FLOOR_PAGE.href} className="mt-4 inline-block text-sm font-bold text-[#ff0022] hover:underline">
+                <Link href={ARENA_FLOOR_PAGE.href} className="mt-4 inline-block text-sm font-bold text-accent hover:underline">
                   Read &rarr;
                 </Link>
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-[#e8ebed] bg-white transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
-              <div className="relative aspect-[16/9] bg-[#f4f4f4]">
+            <div className="overflow-hidden rounded-2xl border border-line bg-white transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
+              <div className="relative aspect-[16/9] bg-media">
                 <SafeImage
                   src="https://images.unsplash.com/photo-1590273971191-2af8df641e2c"
                   alt="Wide view of the Colosseum under a dramatic sky"
@@ -406,7 +406,7 @@ export function UndergroundColosseumHome() {
                   sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw"
                   className="object-cover"
                 />
-                <span className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[#b8862e] backdrop-blur-sm">
+                <span className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-gold backdrop-blur-sm">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
                     <path d="M12 7v5l3.5 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
@@ -414,25 +414,25 @@ export function UndergroundColosseumHome() {
                 </span>
               </div>
               <div className="p-6">
-                <h3 className="font-sans text-[17px] font-bold leading-snug text-[#1a1a1a]">Opening Hours at a Glance</h3>
-                <ul className="mt-3 divide-y divide-[#e8ebed] text-[14.5px] text-[#5c6166]">
+                <h3 className="font-sans text-[17px] font-bold leading-snug text-ink">Opening Hours at a Glance</h3>
+                <ul className="mt-3 divide-y divide-line text-[14.5px] text-ink-muted">
                   <li className="flex items-center justify-between gap-3 py-1.5">
                     <span>Summer (late Mar–Aug)</span>
-                    <span className="font-bold text-[#1a1a1a]">8:30am–7:15pm</span>
+                    <span className="font-bold text-ink">8:30am–7:15pm</span>
                   </li>
                   <li className="flex items-center justify-between gap-3 py-1.5">
                     <span>Autumn (Sep–Oct)</span>
-                    <span className="font-bold text-[#1a1a1a]">8:30am–6:30/7pm</span>
+                    <span className="font-bold text-ink">8:30am–6:30/7pm</span>
                   </li>
                   <li className="flex items-center justify-between gap-3 py-1.5">
                     <span>Winter (Nov–mid Feb)</span>
-                    <span className="font-bold text-[#1a1a1a]">8:30am–4:30/5pm</span>
+                    <span className="font-bold text-ink">8:30am–4:30/5pm</span>
                   </li>
                 </ul>
-                <p className="mt-3 text-xs leading-relaxed text-[#9aa0a5]">
+                <p className="mt-3 text-xs leading-relaxed text-faint">
                   Closed Jan 1, May 1 &amp; Dec 25. Hours shift with sunset — always confirm before you go.
                 </p>
-                <Link href="/opening-hours-beating-the-crowds" className="mt-4 inline-block text-sm font-bold text-[#ff0022] hover:underline">
+                <Link href="/opening-hours-beating-the-crowds" className="mt-4 inline-block text-sm font-bold text-accent hover:underline">
                   Full crowd-avoidance guide &rarr;
                 </Link>
               </div>
@@ -442,13 +442,13 @@ export function UndergroundColosseumHome() {
       </section>
 
       {/* ---------- plan your visit / support pages ---------- */}
-      <section id="plan-your-visit" className="scroll-mt-[65px] border-b border-[#e8ebed] bg-[#f9fafa] py-16 sm:py-20">
+      <section id="plan-your-visit" className="scroll-mt-[65px] border-b border-line bg-paper-tint py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#ff0022]">Free planning guides</p>
-          <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-[#1a1a1a] sm:text-[36px]">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Free planning guides</p>
+          <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[36px]">
             Plan Your Visit
           </h2>
-          <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-[#5c6166]">
+          <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
             Each page below feeds trust into one of the money pages above — every link here lands on a page that
             converts.
           </p>
@@ -458,18 +458,18 @@ export function UndergroundColosseumHome() {
               <Link
                 key={page.href}
                 href={page.href}
-                className="group flex items-center gap-4 rounded-2xl border border-[#e8ebed] bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]"
+                className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]"
               >
-                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#f4f4f4] sm:h-[72px] sm:w-[72px]">
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-media sm:h-[72px] sm:w-[72px]">
                   <SafeImage src={page.image.src} alt={page.image.alt} fill sizes="72px" className="object-cover" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-[15px] font-bold leading-snug text-[#1a1a1a]">{page.title}</h3>
-                  <span className="mt-2 inline-block w-fit rounded-full bg-[#f4f4f4] px-2.5 py-1 text-xs font-semibold text-[#5c6166]">
+                  <h3 className="text-[15px] font-bold leading-snug text-ink">{page.title}</h3>
+                  <span className="mt-2 inline-block w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">
                     {page.keyword}
                   </span>
                 </div>
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#e8ebed] text-[#9aa0a5] transition-colors group-hover:border-[#ff0022] group-hover:text-[#ff0022]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-faint transition-colors group-hover:border-accent group-hover:text-accent">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
                     <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -481,16 +481,16 @@ export function UndergroundColosseumHome() {
       </section>
 
       {/* ---------- FAQ ---------- */}
-      <section id="faq" className="scroll-mt-[65px] border-b border-[#e8ebed] py-16 sm:py-20">
+      <section id="faq" className="scroll-mt-[65px] border-b border-line py-16 sm:py-20">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-[#ff0022]">Fast answers</p>
-          <h2 className="mt-2 text-center font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-[#1a1a1a] sm:text-[36px]">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-accent">Fast answers</p>
+          <h2 className="mt-2 text-center font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[36px]">
             Frequently Asked
           </h2>
-          <div className="mt-8 divide-y divide-[#e8ebed] rounded-2xl border border-[#e8ebed] bg-white">
+          <div className="mt-8 divide-y divide-line rounded-2xl border border-line bg-white">
             {FAQS.map((faq) => (
               <details key={faq.question} className="group px-6 py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-[#1a1a1a] marker:content-none">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-ink marker:content-none">
                   {faq.question}
                   <svg
                     width="16"
@@ -498,12 +498,12 @@ export function UndergroundColosseumHome() {
                     viewBox="0 0 24 24"
                     fill="none"
                     aria-hidden="true"
-                    className="shrink-0 text-[#9aa0a5] transition-transform group-open:rotate-180"
+                    className="shrink-0 text-faint transition-transform group-open:rotate-180"
                   >
                     <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-[#5c6166]">{faq.answer}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{faq.answer}</p>
               </details>
             ))}
           </div>

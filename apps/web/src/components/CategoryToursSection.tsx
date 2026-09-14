@@ -66,7 +66,7 @@ function CategoryCard({
 }) {
   return (
     <div className="relative col-span-1 overflow-hidden rounded-2xl sm:col-span-2 lg:col-span-1">
-      <div className="relative aspect-[4/3] h-full min-h-[260px] overflow-hidden bg-[#f4f4f4] sm:min-h-[300px] lg:aspect-auto">
+      <div className="relative aspect-[4/3] h-full min-h-[260px] overflow-hidden bg-media sm:min-h-[300px] lg:aspect-auto">
         <SafeImage
           src={imageUrl}
           alt={`${name} in Rome`}
@@ -80,7 +80,7 @@ function CategoryCard({
         <h3 className="font-sans text-2xl font-extrabold text-white">{name}</h3>
         <Link
           href={href}
-          className="mt-3 inline-flex h-10 items-center justify-center rounded-[6px] bg-white px-4 text-sm font-bold text-[#1a1a1a] transition-colors hover:bg-[#f4f4f4]"
+          className="mt-3 inline-flex h-10 items-center justify-center rounded-[6px] bg-white px-4 text-sm font-bold text-ink transition-colors hover:bg-media"
         >
           {ctaLabel}
         </Link>
@@ -96,10 +96,10 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
     <section className="bg-white py-20">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9aa0a5]">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-faint">
             Things you must taste in Rome
           </p>
-          <h2 className="mt-2 font-sans text-3xl font-extrabold tracking-tight text-[#1a1a1a] sm:text-4xl">
+          <h2 className="mt-2 font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Top Food Items to Try in Rome
           </h2>
         </div>

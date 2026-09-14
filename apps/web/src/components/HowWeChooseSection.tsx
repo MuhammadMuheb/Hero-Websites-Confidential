@@ -24,18 +24,18 @@ export function HowWeChooseSection() {
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[320px_1fr] lg:gap-16">
-          <h2 className="font-sans text-3xl font-extrabold leading-tight tracking-tight text-[#1a1a1a] sm:text-4xl">
+          <h2 className="font-sans text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl">
             How We Choose Our Tours
           </h2>
 
           <div className="grid grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2">
             {STEPS.map((step, index) => (
               <div key={step.title}>
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ff0022] text-base font-bold text-white">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-base font-bold text-white">
                   {index + 1}
                 </span>
-                <h3 className="mt-4 font-sans text-base font-bold text-[#ff0022]">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#5c6166]">{step.description}</p>
+                <h3 className="mt-4 font-sans text-base font-bold text-accent">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{step.description}</p>
               </div>
             ))}
           </div>

@@ -17,9 +17,9 @@ export function AccountMenu() {
   }, []);
 
   const secondaryButtonClass =
-    'flex h-11 w-full items-center justify-center gap-2 rounded-[6px] border border-[#e8ebed] text-sm font-bold text-[#1a1a1a] transition-colors hover:bg-[#f9fafa]';
+    'flex h-11 w-full items-center justify-center gap-2 rounded-[6px] border border-line text-sm font-bold text-ink transition-colors hover:bg-paper-tint';
   const primaryButtonClass =
-    'flex h-11 w-full items-center justify-center rounded-[6px] bg-[#ff0022] text-sm font-bold text-white transition-colors hover:bg-[#e0001d]';
+    'flex h-11 w-full items-center justify-center rounded-[6px] bg-accent text-sm font-bold text-white transition-colors hover:bg-accent-hover';
 
   return (
     <div className="relative" ref={menuRef}>
@@ -28,7 +28,7 @@ export function AccountMenu() {
         aria-label="Account"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="text-[#2b2e2f]"
+        className="text-ink"
       >
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="12" cy="8" r="3.6" stroke="currentColor" strokeWidth="1.6" />
@@ -37,9 +37,9 @@ export function AccountMenu() {
       </button>
 
       {open ? (
-        <div className="fixed inset-x-4 top-[73px] z-50 rounded-2xl border border-[#e8ebed] bg-white p-4 shadow-[0_16px_48px_rgba(45,51,57,0.18)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-3 sm:w-72">
-          <p className="text-sm font-bold text-[#1a1a1a]">Welcome to Street Food Rome</p>
-          <p className="mt-1 text-xs text-[#9aa0a5]">Sign in to save tours and book faster.</p>
+        <div className="fixed inset-x-4 top-[73px] z-50 rounded-2xl border border-line bg-white p-4 shadow-[0_16px_48px_rgba(45,51,57,0.18)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-3 sm:w-72">
+          <p className="text-sm font-bold text-ink">Welcome to Street Food Rome</p>
+          <p className="mt-1 text-xs text-faint">Sign in to save tours and book faster.</p>
 
           <button type="button" className={`mt-4 ${secondaryButtonClass}`}>
             <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
@@ -71,7 +71,7 @@ export function AccountMenu() {
             Create Account
           </button>
 
-          <p className="mt-3 text-center text-[11px] leading-relaxed text-[#9aa0a5]">
+          <p className="mt-3 text-center text-[11px] leading-relaxed text-faint">
             Sign-in isn&rsquo;t connected yet — coming soon.
           </p>
         </div>

@@ -18,7 +18,7 @@ interface InnerHeroProps {
 
 export function InnerHero({ eyebrow, title, subtitle, breadcrumb, imageUrl, imageAlt }: InnerHeroProps) {
   return (
-    <section className="bg-[#f9fafa]">
+    <section className="bg-paper-tint">
       {imageUrl ? (
         <div className="relative h-[220px] w-full overflow-hidden sm:h-[300px]">
           <SafeImage src={imageUrl} alt={imageAlt ?? title} fill priority sizes="100vw" className="object-cover" />
@@ -26,22 +26,22 @@ export function InnerHero({ eyebrow, title, subtitle, breadcrumb, imageUrl, imag
       ) : null}
       <div className="mx-auto max-w-[1440px] px-6 py-14 text-center sm:px-14 sm:py-16">
         {breadcrumb ? (
-          <nav className="mb-3 text-sm text-[#9aa0a5]">
-            <Link href={breadcrumb.href} className="hover:text-[#ff0022]">
+          <nav className="mb-3 text-sm text-faint">
+            <Link href={breadcrumb.href} className="hover:text-accent">
               {breadcrumb.label}
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-[#5c6166]">{title}</span>
+            <span className="text-ink-muted">{title}</span>
           </nav>
         ) : null}
         {eyebrow ? (
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9aa0a5]">{eyebrow}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-faint">{eyebrow}</p>
         ) : null}
-        <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-[#1a1a1a] sm:text-4xl">
+        <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
           {title}
         </h1>
         {subtitle ? (
-          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-[#5c6166]">{subtitle}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-ink-muted">{subtitle}</p>
         ) : null}
       </div>
     </section>

@@ -34,7 +34,7 @@ export function MediaBar() {
           {OUTLETS.map((outlet) => (
             <span
               key={outlet.name}
-              className={`text-center text-[#9aa0a5] grayscale transition-colors hover:text-[#5c6166] lg:whitespace-nowrap ${outlet.className}`}
+              className={`text-center text-faint grayscale transition-colors hover:text-ink-muted lg:whitespace-nowrap ${outlet.className}`}
             >
               {outlet.name}
             </span>

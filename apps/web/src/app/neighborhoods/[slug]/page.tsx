@@ -88,14 +88,14 @@ export default async function NeighborhoodPage({ params }: { params: Promise<{ s
         <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
           <div className="mx-auto max-w-[760px]">
             <div
-              className="rich-content text-base leading-relaxed text-[#5c6166]"
+              className="rich-content text-base leading-relaxed text-ink-muted"
               dangerouslySetInnerHTML={{ __html: page?.bodyHtml ?? `<p>${NEIGHBORHOOD_COPY[neighborhood.slug]}</p>` }}
             />
           </div>
 
           {tours.length > 0 ? (
             <>
-              <h2 className="mt-12 font-display text-2xl font-semibold text-[#1a1a1a]">
+              <h2 className="mt-12 font-display text-2xl font-semibold text-ink">
                 Tours in {neighborhood.name}
               </h2>
               <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -105,9 +105,9 @@ export default async function NeighborhoodPage({ params }: { params: Promise<{ s
               </div>
             </>
           ) : (
-            <p className="mt-12 text-sm text-[#5c6166]">
+            <p className="mt-12 text-sm text-ink-muted">
               No tours are tagged in {neighborhood.name} yet — check the full{' '}
-              <Link href="/tours" className="font-bold text-[#ff0022] hover:underline">
+              <Link href="/tours" className="font-bold text-accent hover:underline">
                 tour index
               </Link>
               .

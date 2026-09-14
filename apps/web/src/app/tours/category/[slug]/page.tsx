@@ -99,13 +99,13 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ sl
         <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
           <div className="mx-auto max-w-[760px]">
             <div
-              className="rich-content text-base leading-relaxed text-[#5c6166]"
+              className="rich-content text-base leading-relaxed text-ink-muted"
               dangerouslySetInnerHTML={{ __html: page?.bodyHtml ?? `<p>${CATEGORY_COPY[category.slug]}</p>` }}
             />
           </div>
 
           {tours.length === 0 ? (
-            <p className="mt-10 text-sm text-[#5c6166]">No tours are tagged in this category yet.</p>
+            <p className="mt-10 text-sm text-ink-muted">No tours are tagged in this category yet.</p>
           ) : (
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
               {tours.map((tour, i) => (
@@ -115,11 +115,11 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ sl
           )}
 
           {neighborhoods.length > 0 ? (
-            <p className="mt-10 text-sm text-[#5c6166]">
+            <p className="mt-10 text-sm text-ink-muted">
               Find {category.name} tours in:{' '}
               {neighborhoods.map((n, i) => (
                 <span key={n.slug}>
-                  <Link href={`/neighborhoods/${n.slug}`} className="font-bold text-[#ff0022] hover:underline">
+                  <Link href={`/neighborhoods/${n.slug}`} className="font-bold text-accent hover:underline">
                     {n.name}
                   </Link>
                   {i < neighborhoods.length - 1 ? ', ' : ''}

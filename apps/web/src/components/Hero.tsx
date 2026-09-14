@@ -70,7 +70,7 @@ export function Hero({ imageUrl }: HeroProps) {
           section below — matching the reference's actual overlap, not fully embedded in the photo. */}
       <div className="relative z-10 mx-auto -mt-[29px] max-w-[896px] px-6">
         <form action="#" className="flex items-center gap-2 rounded-2xl bg-white p-2 shadow-[0_8px_48px_rgba(45,51,57,0.16)]">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="ml-3 shrink-0 text-[#6b7280]" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="ml-3 shrink-0 text-ink-muted" aria-hidden="true">
             <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
             <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
@@ -78,11 +78,11 @@ export function Hero({ imageUrl }: HeroProps) {
             type="text"
             name="q"
             placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…."
-            className="h-10 w-full bg-transparent text-base text-[#1a1a1a] placeholder:text-[#6b7280] focus:outline-none"
+            className="h-10 w-full bg-transparent text-base text-ink placeholder:text-ink-muted focus:outline-none"
           />
           <button
             type="submit"
-            className="h-10 shrink-0 rounded-[6px] border border-[#ff0022] px-2 text-base font-medium text-[#ff0022]"
+            className="h-10 shrink-0 rounded-[6px] border border-accent px-2 text-base font-medium text-accent"
           >
             Search Tours
           </button>
@@ -99,7 +99,7 @@ export function Hero({ imageUrl }: HeroProps) {
             type="button"
             aria-label="Scroll categories left"
             onClick={() => scrollBy(-320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#e8ebed] bg-white text-[#9aa0a5] transition-colors hover:border-[#ff0022] hover:text-[#ff0022]"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -114,7 +114,7 @@ export function Hero({ imageUrl }: HeroProps) {
               <Link
                 key={chip.label}
                 href={chip.href}
-                className="flex h-[42px] shrink-0 items-center whitespace-nowrap rounded-lg border border-[#e8ebed] bg-white px-3 text-base font-bold text-[#ff0022]"
+                className="flex h-[42px] shrink-0 items-center whitespace-nowrap rounded-lg border border-line bg-white px-3 text-base font-bold text-accent"
               >
                 {chip.label}
               </Link>
@@ -125,7 +125,7 @@ export function Hero({ imageUrl }: HeroProps) {
             type="button"
             aria-label="Scroll categories right"
             onClick={() => scrollBy(320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#e8ebed] bg-white text-[#9aa0a5] transition-colors hover:border-[#ff0022] hover:text-[#ff0022]"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

@@ -28,14 +28,14 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
   }
 
   return (
-    <section className="bg-[#f9fafa] py-20">
+    <section className="bg-paper-tint py-20">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
         <div className="flex flex-wrap items-end justify-between gap-y-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9aa0a5]">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-faint">
               Our best selling tours at a glance
             </p>
-            <h2 className="mt-2 font-sans text-3xl font-extrabold tracking-tight text-[#1a1a1a] sm:text-4xl">
+            <h2 className="mt-2 font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
               Top Food Tours in Rome
             </h2>
           </div>
@@ -45,7 +45,7 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
               type="button"
               aria-label="Previous tour"
               onClick={() => scrollByOneCard(-1)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e8ebed] bg-white text-[#9aa0a5] transition-colors hover:border-[#ff0022] hover:text-[#ff0022] sm:h-11 sm:w-11"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent sm:h-11 sm:w-11"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M15 5 8 12l7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -55,7 +55,7 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
               type="button"
               aria-label="Next tour"
               onClick={() => scrollByOneCard(1)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e8ebed] bg-white text-[#9aa0a5] transition-colors hover:border-[#ff0022] hover:text-[#ff0022] sm:h-11 sm:w-11"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent sm:h-11 sm:w-11"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
