@@ -33,6 +33,10 @@ import { MoneyPageTemplate as TCMoneyPageTemplate } from '@/components/tiramisu-
 import { SupportPageTemplate as TCSupportPageTemplate } from '@/components/tiramisu-class/SupportPageTemplate';
 import { TCAboutPage } from '@/components/tiramisu-class/TCAboutPage';
 import { TCContactPage } from '@/components/tiramisu-class/TCContactPage';
+import { MoneyPageTemplate as TDTMoneyPageTemplate } from '@/components/tuscany-day-trip/MoneyPageTemplate';
+import { SupportPageTemplate as TDTSupportPageTemplate } from '@/components/tuscany-day-trip/SupportPageTemplate';
+import { TDTAboutPage } from '@/components/tuscany-day-trip/TDTAboutPage';
+import { TDTContactPage } from '@/components/tuscany-day-trip/TDTContactPage';
 import { ACTIVE_NETWORK_SLUG, getNetworkSite } from '@/lib/tours';
 import { getMoneyPageContent, getSupportPageContent } from '@/lib/underground-colosseum-content';
 import { ARENA_FLOOR_PAGE, MONEY_PAGES, SUPPORT_PAGES, WORTH_IT_PAGE } from '@/lib/underground-colosseum';
@@ -71,14 +75,19 @@ import {
   getSupportPageContent as getTCSupportPageContent,
 } from '@/lib/tiramisu-class-content';
 import { MONEY_PAGES as TC_MONEY_PAGES, SUPPORT_PAGES as TC_SUPPORT_PAGES } from '@/lib/tiramisu-class';
+import {
+  getMoneyPageContent as getTDTMoneyPageContent,
+  getSupportPageContent as getTDTSupportPageContent,
+} from '@/lib/tuscany-day-trip-content';
+import { MONEY_PAGES as TDT_MONEY_PAGES, SUPPORT_PAGES as TDT_SUPPORT_PAGES } from '@/lib/tuscany-day-trip';
 import { SITE_DOMAIN } from '@/lib/firestore';
 
 /**
  * Catches every sub-path under a network property that isn't the platform's
  * ACTIVE_NETWORK_SLUG test site. Underground Colosseum, Private Vatican,
  * Pompeii Day Trip, Rome Vespa, Golf Cart Rome, Cooking in Rome, Rome Pizza
- * Class, and Tiramisù Class are all special-cased here too (alongside their
- * root page.tsx, which exports BESPOKE_HERO_SLUGS): each
+ * Class, Tiramisù Class, and Tuscany Day Trip are all special-cased here too
+ * (alongside their root page.tsx, which exports BESPOKE_HERO_SLUGS): each
  * property's money pages, support pages, /about, and /contact are real,
  * indexable content — built from the site's own blueprint — so those
  * specific paths render their real templates. Anything else under any of the
@@ -113,6 +122,7 @@ export async function generateStaticParams() {
   const cirHrefs = [...CIR_MONEY_PAGES.map((p) => p.href), ...CIR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const rpcHrefs = [...RPC_MONEY_PAGES.map((p) => p.href), ...RPC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const tcHrefs = [...TC_MONEY_PAGES.map((p) => p.href), ...TC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const tdtHrefs = [...TDT_MONEY_PAGES.map((p) => p.href), ...TDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
 
   return [
     ...ucHrefs.map((href) => ({ slug: 'underground-colosseum', rest: [href.replace(/^\//, '')] })),
@@ -123,6 +133,7 @@ export async function generateStaticParams() {
     ...cirHrefs.map((href) => ({ slug: 'cooking-in-rome', rest: [href.replace(/^\//, '')] })),
     ...rpcHrefs.map((href) => ({ slug: 'rome-pizza-class', rest: [href.replace(/^\//, '')] })),
     ...tcHrefs.map((href) => ({ slug: 'tiramisu-class', rest: [href.replace(/^\//, '')] })),
+    ...tdtHrefs.map((href) => ({ slug: 'tuscany-day-trip', rest: [href.replace(/^\//, '')] })),
   ];
 }
 
@@ -222,6 +233,19 @@ function resolveTiramisuClassPage(path: string) {
   if (money) return { type: 'money' as const, content: money };
 
   const support = getTCSupportPageContent(path);
+  if (support) return { type: 'support' as const, content: support };
+
+  if (path === '/about') return { type: 'about' as const };
+  if (path === '/contact') return { type: 'contact' as const };
+
+  return null;
+}
+
+function resolveTuscanyDayTripPage(path: string) {
+  const money = getTDTMoneyPageContent(path);
+  if (money) return { type: 'money' as const, content: money };
+
+  const support = getTDTSupportPageContent(path);
   if (support) return { type: 'support' as const, content: support };
 
   if (path === '/about') return { type: 'about' as const };
@@ -555,6 +579,46 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
   }
 
+  if (site.slug === 'tuscany-day-trip') {
+    const path = `/${rest.join('/')}`;
+    const resolved = resolveTuscanyDayTripPage(path);
+    const canonical = `https://${SITE_DOMAIN}/${site.slug}${path}`;
+
+    if (resolved?.type === 'money') {
+      return {
+        title: { absolute: resolved.content.metaTitle },
+        description: resolved.content.metaDescription,
+        alternates: { canonical },
+        openGraph: { title: resolved.content.metaTitle, description: resolved.content.metaDescription, url: canonical },
+      };
+    }
+    if (resolved?.type === 'support') {
+      return {
+        title: { absolute: resolved.content.metaTitle },
+        description: resolved.content.metaDescription,
+        alternates: { canonical },
+        openGraph: { title: resolved.content.metaTitle, description: resolved.content.metaDescription, url: canonical },
+      };
+    }
+    if (resolved?.type === 'about') {
+      return {
+        title: { absolute: 'About Tuscany Day Trip — First-Hand, Independent Trip Planning' },
+        description:
+          'Every Tuscany day-trip comparison here is written by a Florence-based licensed regional guide who has driven and walked the routes in person — zero sponsored placements.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'contact') {
+      return {
+        title: { absolute: 'Contact | Tuscany Day Trip' },
+        description: 'Get in touch with Tuscany Day Trip, plus our full affiliate disclosure.',
+        alternates: { canonical },
+      };
+    }
+
+    return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
+  }
+
   if (site.slug === ACTIVE_NETWORK_SLUG) return {};
   return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
 }
@@ -656,6 +720,18 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <TCSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <TCAboutPage />;
     if (resolved?.type === 'contact') return <TCContactPage />;
+
+    return <UnderConstructionNotice siteName={site.name} />;
+  }
+
+  if (site.slug === 'tuscany-day-trip') {
+    const path = `/${rest.join('/')}`;
+    const resolved = resolveTuscanyDayTripPage(path);
+
+    if (resolved?.type === 'money') return <TDTMoneyPageTemplate content={resolved.content} />;
+    if (resolved?.type === 'support') return <TDTSupportPageTemplate content={resolved.content} />;
+    if (resolved?.type === 'about') return <TDTAboutPage />;
+    if (resolved?.type === 'contact') return <TDTContactPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }

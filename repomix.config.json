@@ -1,0 +1,32 @@
+{
+  "$schema": "https://repomix.com/schemas/latest/schema.json",
+  "output": {
+    "filePath": ".repomix/repomix-output.xml",
+    "style": "xml",
+    "removeComments": false,
+    "removeEmptyLines": false,
+    "showLineNumbers": true,
+    "topFilesLength": 15,
+    "calculateTokens": true
+  },
+  "include": ["**/*", ".claude/memories/**"],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/.turbo/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/*.tsbuildinfo",
+      "pnpm-lock.yaml",
+      "**/*.pdf",
+      "**/media/**",
+      ".claude/worktrees/**"
+    ]
+  },
+  "security": {
+    "enableSecurityCheck": true
+  }
+}

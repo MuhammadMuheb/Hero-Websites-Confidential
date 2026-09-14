@@ -10,6 +10,7 @@ import { GolfCartRomeHome } from '@/components/GolfCartRomeHome';
 import { CookingInRomeHome } from '@/components/CookingInRomeHome';
 import { RomePizzaClassHome } from '@/components/RomePizzaClassHome';
 import { TiramisuClassHome } from '@/components/TiramisuClassHome';
+import { TuscanyDayTripHome } from '@/components/TuscanyDayTripHome';
 import { UnderConstructionNotice } from '@/components/UnderConstructionNotice';
 import { ACTIVE_NETWORK_SLUG, NETWORK_SITES, getNetworkSite } from '@/lib/tours';
 import { HERO_IMAGE as UC_HERO_IMAGE } from '@/lib/underground-colosseum';
@@ -20,15 +21,17 @@ import { HERO_IMAGE as GCR_HERO_IMAGE } from '@/lib/golf-cart-rome';
 import { HERO_IMAGE as CIR_HERO_IMAGE } from '@/lib/cooking-in-rome';
 import { HERO_IMAGE as RPC_HERO_IMAGE } from '@/lib/rome-pizza-class';
 import { HERO_IMAGE as TC_HERO_IMAGE } from '@/lib/tiramisu-class';
+import { HERO_IMAGE as TDT_HERO_IMAGE } from '@/lib/tuscany-day-trip';
 
 /**
  * Underground Colosseum, Private Vatican, Pompeii Day Trip, Rome Vespa, Golf
- * Cart Rome, Cooking in Rome, Rome Pizza Class, and Tiramisù Class each get
- * their own bespoke homepage (built from the site's dedicated blueprint)
- * even though none is the platform's ACTIVE_NETWORK_SLUG test property —
- * everywhere else in this app that check still gates the shared T1
- * template, but these eight heroes have real, indexable content of their
- * own instead of the "under construction" placeholder. Each gets its own
+ * Cart Rome, Cooking in Rome, Rome Pizza Class, Tiramisù Class, and Tuscany
+ * Day Trip each get their own bespoke homepage (built from the site's
+ * dedicated blueprint) even though none is the platform's
+ * ACTIVE_NETWORK_SLUG test property — everywhere else in this app that
+ * check still gates the shared T1 template, but these nine heroes have
+ * real, indexable content of their own instead of the "under construction"
+ * placeholder. Each gets its own
  * explicit `site.slug === '...'` check below (rather than a single shared
  * constant) since their metadata and homepage component both differ —
  * adding a ninth bespoke hero later is still just one more such block per
@@ -204,6 +207,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  if (site.slug === 'tuscany-day-trip') {
+    const title = 'Tuscany Day Trips — From Florence: Wine, Siena & Chianti';
+    const description =
+      'First-hand Tuscany day-trip guide from Florence. Honest wine-tour logistics, hill-town routing, and when to drive vs book a tour.';
+    const ogImage = `${TDT_HERO_IMAGE.src}?w=1200&h=630&q=80&auto=format&fit=crop`;
+    return {
+      title: { absolute: title },
+      description,
+      alternates: { canonical: `https://${SITE_DOMAIN}/${site.slug}` },
+      openGraph: {
+        title,
+        description,
+        url: `https://${SITE_DOMAIN}/${site.slug}`,
+        images: [{ url: ogImage, width: 1200, height: 630, alt: TDT_HERO_IMAGE.alt }],
+      },
+      twitter: { card: 'summary_large_image', images: [ogImage] },
+    };
+  }
+
   if (site.slug !== ACTIVE_NETWORK_SLUG) {
     return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
   }
@@ -263,6 +285,10 @@ export default async function NetworkSitePage({ params }: { params: Promise<{ sl
 
   if (site.slug === 'tiramisu-class') {
     return <TiramisuClassHome />;
+  }
+
+  if (site.slug === 'tuscany-day-trip') {
+    return <TuscanyDayTripHome />;
   }
 
   // Only the one active property renders the shared-template site — the

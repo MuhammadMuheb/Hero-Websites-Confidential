@@ -10,3 +10,6 @@ build/
 media/
 firebase-service-account*.json
 *firebase-adminsdk*.json
+
+# repomix
+.repomix/

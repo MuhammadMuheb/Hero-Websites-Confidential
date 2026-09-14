@@ -147,6 +147,23 @@
   --accent-soft: 255 236 238;
 }
 
+/**
+ * Tuscany Day Trip's scoped accent. MASTER-NETWORK-BLUEPRINT.md §3.5.2
+ * specifies a distinct "Chianti Wine" accent (#7a2331) for this property,
+ * but every shipped property's scope block was deliberately overridden to
+ * the same unified red (see the "Build out 7 remaining network properties,
+ * unify all accents to Underground Colosseum palette" commit) — this class
+ * is kept only for structural consistency with the network's one-class-
+ * per-property convention; only this token trio ever varies, per the
+ * network's own scoping-convention rule (never `--ink`/`--paper`/radius/
+ * shadow/spacing/typography).
+ */
+.tdt-scope {
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  --accent-soft: 255 236 238;
+}
+
 html {
   scroll-behavior: smooth;
 }

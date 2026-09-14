@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "."
+      ]
+    },
+    "mem0": {
+      "command": "npx",
+      "args": ["-y", "@mem0/mcp-server"],
+      "env": { "MEM0_API_KEY": "${MEM0_API_KEY}" }
+    },
+    "zep": {
+      "type": "http",
+      "url": "https://api.getzep.com/mcp"
+    }
+  }
+}
