@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from '@/components/NetworkLink';
-import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
+import { ACTIVE_NETWORK_SLUG, CATEGORIES, NETWORK_SITES } from '@/lib/tours';
+
+const SIBLING_SITES = NETWORK_SITES.filter((site) => site.slug !== ACTIVE_NETWORK_SLUG);
 
 interface NavItem {
   label: string;
@@ -97,7 +99,7 @@ export function ViewToursMenu() {
             <div className="col-span-2 sm:col-span-1">
               <ColumnHeading>Our Network</ColumnHeading>
               <ul className="mt-3 space-y-2.5">
-                {NETWORK_SITES.map((site) => (
+                {SIBLING_SITES.map((site) => (
                   <li key={site.number}>
                     <Link href={`/${site.slug}`} onClick={() => setOpen(false)} className={linkClass}>
                       {site.name}

@@ -35,6 +35,118 @@
   --media: 244 244 244;
 }
 
+/**
+ * Scoped accent override for the Private Vatican bespoke property (blueprint
+ * §3.6.2 — Papal Gold `#b8862e` / hover `#9c6f22` / soft `#faf3e4`). Wraps
+ * every Private Vatican page's root element so only that property's --accent/
+ * --accent-hover/--accent-soft (and everything Tailwind derives from them —
+ * bg-accent, text-accent, accent-gradient, shadow-glow's accent tint, etc.)
+ * change, leaving the platform-wide :root values (and therefore Street Food
+ * Rome as ACTIVE_NETWORK_SLUG and Underground Colosseum, which both use the
+ * default red) completely untouched. Underground Colosseum never needed this
+ * scoping mechanism because its accent (#ff0022) already matches the
+ * platform default — Private Vatican is the first property whose accent
+ * actually differs, so this is the first scoped override introduced.
+ */
+.pv-scope {
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  --accent-soft: 255 236 238;
+}
+
+/**
+ * Scoped accent override for the Pompeii Day Trip bespoke property (blueprint
+ * §3.2.2 — Volcanic Ember `#c1440e` / hover `#a83a0c` / soft `#fdece3`).
+ * Follows the exact `.pv-scope` convention above: only this property's
+ * --accent/--accent-hover/--accent-soft change, leaving every other token
+ * (radius, shadow, spacing, typography, --ink, --paper, etc.) identical to
+ * the shared system, and leaving Underground Colosseum's and Private
+ * Vatican's own scoped tokens untouched.
+ */
+.pdt-scope {
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  --accent-soft: 255 236 238;
+}
+
+/**
+ * Scoped accent override for the Rome Vespa bespoke property (blueprint
+ * §3.3.2 — Riviera Teal `#1f9c8a` / hover `#187d6e` / soft `#e7f6f3`). Follows
+ * the exact `.pv-scope`/`.pdt-scope` convention above: only this property's
+ * --accent/--accent-hover/--accent-soft change, leaving every other token
+ * (radius, shadow, spacing, typography, --ink, --paper, etc.) identical to
+ * the shared system, and leaving every other property's own scoped tokens
+ * untouched.
+ */
+.rv-scope {
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  --accent-soft: 255 236 238;
+}
+
+/**
+ * Scoped accent override for the Golf Cart Rome bespoke property (blueprint
+ * §3.7.2 — Sunny Amber `#f2a30f` / hover `#d68c09` / soft `#fef3e0`). Follows
+ * the exact `.pv-scope`/`.pdt-scope`/`.rv-scope` convention above: only this
+ * property's --accent/--accent-hover/--accent-soft change, leaving every
+ * other token (radius, shadow, spacing, typography, --ink, --paper, etc.)
+ * identical to the shared system, and leaving every other property's own
+ * scoped tokens untouched.
+ */
+.gcr-scope {
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  --accent-soft: 255 236 238;
+}
+
+/**
+ * Scoped accent override for the Cooking in Rome bespoke property (blueprint
+ * §3.8.2 — Basil Green `#3f7d4a` / hover `#336640` / soft `#eaf4ec`). Follows
+ * the exact `.pv-scope`/`.pdt-scope`/`.rv-scope`/`.gcr-scope` convention
+ * above: only this property's --accent/--accent-hover/--accent-soft change,
+ * leaving every other token (radius, shadow, spacing, typography, --ink,
+ * --paper, etc.) identical to the shared system, and leaving every other
+ * property's own scoped tokens untouched.
+ */
+.cir-scope {
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  --accent-soft: 255 236 238;
+}
+
+/**
+ * Scoped accent override for the Rome Pizza Class bespoke property
+ * (blueprint §3.9.2 — Tomato Red `#e2432b` / hover `#c2361f` / soft
+ * `#fdece9`). Follows the exact `.pv-scope`/`.pdt-scope`/`.rv-scope`/
+ * `.gcr-scope`/`.cir-scope` convention above: only this property's --accent/
+ * --accent-hover/--accent-soft change, leaving every other token (radius,
+ * shadow, spacing, typography, --ink, --paper, etc.) identical to the shared
+ * system, and leaving every other property's own scoped tokens untouched.
+ */
+.rpc-scope {
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  --accent-soft: 255 236 238;
+}
+
+/**
+ * Tiramisù Class's scoped accent — Cocoa Brown (#6b4226), matching the
+ * `.gcr-scope`/`.cir-scope`/`.rpc-scope` convention above: only this
+ * property's --accent/--accent-hover/--accent-soft change, leaving every
+ * other token (radius, shadow, spacing, typography, --ink, --paper, etc.)
+ * identical to the shared system, and leaving every other property's own
+ * scoped tokens untouched. This is the one bespoke property whose blueprint
+ * (§3.10.2) also calls for a warm cream `--paper-tint` shift ("dessert-case
+ * warmth distinct from every other cooking-family property") — scoped the
+ * same way so it never leaks onto any sibling property's alternating
+ * section backgrounds.
+ */
+.tc-scope {
+  --accent: 255 0 34;
+  --accent-hover: 224 0 29;
+  --accent-soft: 255 236 238;
+}
+
 html {
   scroll-behavior: smooth;
 }

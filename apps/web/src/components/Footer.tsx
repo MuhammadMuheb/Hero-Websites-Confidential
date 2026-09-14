@@ -2,7 +2,9 @@
 
 import { usePathname } from 'next/navigation';
 import Link from '@/components/NetworkLink';
-import { NETWORK_SITES, isUnbuiltNetworkRoute } from '@/lib/tours';
+import { ACTIVE_NETWORK_SLUG, NETWORK_SITES, isUnbuiltNetworkRoute } from '@/lib/tours';
+
+const SIBLING_SITES = NETWORK_SITES.filter((site) => site.slug !== ACTIVE_NETWORK_SLUG);
 
 const COMPANY_LINKS = [
   { label: 'Home', href: '/' },
@@ -120,7 +122,7 @@ export function Footer() {
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Our Network</h3>
             <ul className="mt-4 space-y-3">
-              {NETWORK_SITES.map((site) => (
+              {SIBLING_SITES.map((site) => (
                 <li key={site.number}>
                   <Link
                     href={`/${site.slug}`}
