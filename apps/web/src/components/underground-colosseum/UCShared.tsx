@@ -40,7 +40,7 @@ const NETWORK_NAV_ITEMS: NavItem[] = SIBLING_SITES.map((site) => ({
 
 export function UCBrandMark() {
   return (
-    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-gradient-to-br from-[#ff3344] to-[#b8001c] shadow-sm">
+    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-gradient-to-br from-[#ff3344] to-[#b8001c] shadow-card-soft">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M5 18v-4a2 2 0 1 1 4 0v4" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M10 18v-5a2 2 0 1 1 4 0v5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -78,7 +78,7 @@ function NavDropdown({ label, items, footerHref, footerLabel }: { label: string;
       </button>
 
       {open ? (
-        <div className="absolute left-1/2 top-full z-50 mt-3 w-[340px] -translate-x-1/2 rounded-2xl border border-line bg-white p-2 shadow-[0_20px_40px_rgba(26,26,26,0.14)]">
+        <div className="absolute left-1/2 top-full z-50 mt-3 w-[340px] -translate-x-1/2 rounded-media border border-line bg-white p-2 shadow-dropdown">
           <div className="max-h-[60vh] overflow-y-auto">
             {items.map((item) => (
               <Link
@@ -96,7 +96,7 @@ function NavDropdown({ label, items, footerHref, footerLabel }: { label: string;
             <Link
               href={footerHref}
               onClick={() => setOpen(false)}
-              className="mt-1 flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-accent transition-colors hover:bg-accent/6"
+              className="mt-1 flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-accent transition-colors hover:bg-accent-soft"
             >
               {footerLabel}
               <span aria-hidden="true">&rarr;</span>
@@ -152,11 +152,11 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b border-line bg-white ${
-        hidden ? '-translate-y-full transition-transform duration-300 ease-in-out' : 'translate-y-0'
+      className={`sticky top-0 z-40 border-b border-line/80 bg-white/85 backdrop-blur-md ${
+        hidden ? '-translate-y-full transition-transform duration-300 ease-out' : 'translate-y-0'
       }`}
     >
-      <div className="mx-auto flex h-[65px] max-w-[1440px] items-center justify-between gap-4 px-6 sm:px-14">
+      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-4 px-6 sm:px-14">
         <Link href="/" className="flex min-w-0 shrink items-center gap-2.5">
           <UCBrandMark />
           <span className="truncate text-base font-bold leading-none tracking-tight text-ink sm:text-lg">
@@ -187,7 +187,7 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
 
           <a
             href={ctaHref}
-            className="flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] bg-accent px-4 text-sm font-bold text-white shadow-sm transition-colors hover:bg-accent-hover"
+            className="flex h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-control bg-accent-gradient px-4 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02]"
           >
             Check Availability
           </a>
@@ -197,7 +197,7 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[6px] border border-line text-ink lg:hidden"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-control border border-line text-ink lg:hidden"
           >
             {mobileOpen ? (
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -271,7 +271,7 @@ export function UCHeader({ toursHref = '#tours', planHref = '#plan-your-visit', 
           <a
             href={ctaHref}
             onClick={() => setMobileOpen(false)}
-            className="mt-5 flex h-11 items-center justify-center rounded-[6px] bg-accent text-sm font-bold text-white"
+            className="mt-5 flex h-11 items-center justify-center rounded-control bg-accent-gradient text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02]"
           >
             Check Availability
           </a>
@@ -285,9 +285,9 @@ export function UCAuthorBox() {
   return (
     <section className="border-b border-line bg-paper-tint py-14">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-        <div className="flex flex-col items-start gap-6 rounded-2xl border border-line bg-white p-6 shadow-[0_16px_32px_rgba(26,26,26,0.04)] sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <div className="flex flex-col items-start gap-6 rounded-media border border-line bg-white p-6 shadow-card sm:flex-row sm:items-center sm:justify-between sm:p-8">
           <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#ff3344] to-[#b8001c] text-lg font-bold text-white shadow-sm sm:h-20 sm:w-20 sm:text-xl">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#ff3344] to-[#b8001c] text-lg font-bold text-white shadow-card-soft sm:h-20 sm:w-20 sm:text-xl">
               {AUTHOR.initials}
             </div>
             <div>
@@ -300,7 +300,7 @@ export function UCAuthorBox() {
           </div>
           <Link
             href="/about"
-            className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] border border-accent px-5 text-sm font-bold text-accent transition-colors hover:bg-accent/8"
+            className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-control border border-accent px-5 text-sm font-bold text-accent transition-colors hover:bg-accent-soft"
           >
             About our approach &rarr;
           </Link>
@@ -312,29 +312,29 @@ export function UCAuthorBox() {
 
 export function UCFooter() {
   return (
-    <footer className="border-t border-line bg-paper-tint">
+    <footer className="bg-ink text-white/70">
       <div className="mx-auto max-w-[1440px] px-6 py-16 sm:px-14">
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
               <UCBrandMark />
-              <span className="text-lg font-bold tracking-tight text-ink">Underground Colosseum</span>
+              <span className="text-lg font-bold tracking-tight text-white">Underground Colosseum</span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">
               Independent, first-hand guide to Colosseum underground and arena-floor tours — part of the Italy Tours
               network of Rome and Italy travel guides.
             </p>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-faint">
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-white/35">
               GetYourGuide &middot; Viator &middot; Tiqets
             </p>
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wide text-ink">Explore</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Explore</h3>
             <ul className="mt-4 space-y-3">
               {EXPLORE_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-ink-muted transition-colors hover:text-accent">
+                  <Link href={link.href} className="text-sm text-white/65 transition-colors hover:text-accent">
                     {link.label}
                   </Link>
                 </li>
@@ -343,11 +343,11 @@ export function UCFooter() {
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wide text-ink">Learn</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Learn</h3>
             <ul className="mt-4 space-y-3">
               {LEARN_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-ink-muted transition-colors hover:text-accent">
+                  <Link href={link.href} className="text-sm text-white/65 transition-colors hover:text-accent">
                     {link.label}
                   </Link>
                 </li>
@@ -356,20 +356,20 @@ export function UCFooter() {
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wide text-ink">Company</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Company</h3>
             <ul className="mt-4 space-y-3">
               <li>
-                <Link href="/about" className="text-sm text-ink-muted transition-colors hover:text-accent">
+                <Link href="/about" className="text-sm text-white/65 transition-colors hover:text-accent">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-ink-muted transition-colors hover:text-accent">
+                <Link href="/contact" className="text-sm text-white/65 transition-colors hover:text-accent">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/contact#disclosure" className="text-sm text-ink-muted transition-colors hover:text-accent">
+                <Link href="/contact#disclosure" className="text-sm text-white/65 transition-colors hover:text-accent">
                   Affiliate Disclosure
                 </Link>
               </li>
@@ -377,11 +377,11 @@ export function UCFooter() {
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wide text-ink">Our Network</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Our Network</h3>
             <ul className="mt-4 space-y-3">
               {SIBLING_SITES.map((site) => (
                 <li key={site.slug}>
-                  <Link href={`/${site.slug}`} className="text-sm text-ink-muted transition-colors hover:text-accent">
+                  <Link href={`/${site.slug}`} className="text-sm text-white/65 transition-colors hover:text-accent">
                     {site.name}
                   </Link>
                 </li>
@@ -390,9 +390,9 @@ export function UCFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-faint">&copy; {new Date().getFullYear()} Underground Colosseum. All rights reserved.</p>
-          <p className="text-xs text-faint">
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-white/40">&copy; {new Date().getFullYear()} Underground Colosseum. All rights reserved.</p>
+          <p className="text-xs text-white/40">
             As an affiliate partner, this site may earn a commission on bookings made through outbound links, at no
             extra cost to you.
           </p>
@@ -441,7 +441,7 @@ export function CarouselArrows({ onPrev, onNext, label }: { onPrev: () => void; 
         type="button"
         aria-label={`Previous ${label}`}
         onClick={onPrev}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent sm:h-11 sm:w-11"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint shadow-card-soft transition-all duration-200 ease-out hover:border-accent hover:text-accent sm:h-11 sm:w-11"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M15 5 8 12l7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -451,7 +451,7 @@ export function CarouselArrows({ onPrev, onNext, label }: { onPrev: () => void; 
         type="button"
         aria-label={`Next ${label}`}
         onClick={onNext}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent sm:h-11 sm:w-11"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint shadow-card-soft transition-all duration-200 ease-out hover:border-accent hover:text-accent sm:h-11 sm:w-11"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -470,7 +470,7 @@ export function CarouselArrows({ onPrev, onNext, label }: { onPrev: () => void; 
  */
 export function TourComparisonTable({ tours, caption }: { tours: FeaturedTour[]; caption?: string }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-line bg-white">
+    <div className="overflow-x-auto rounded-media border border-line bg-white">
       <table className="w-full min-w-[640px] border-collapse text-left text-sm">
         {caption ? <caption className="sr-only">{caption}</caption> : null}
         <thead>
@@ -525,7 +525,7 @@ export function QuickFactsStrip({ facts }: { facts: { value: string; label: stri
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
       {facts.map((fact) => (
-        <div key={fact.label} className="rounded-2xl border border-line bg-white p-5 text-center">
+        <div key={fact.label} className="rounded-media border border-line bg-white p-5 text-center">
           <p className="font-sans text-[26px] font-extrabold leading-none tracking-tight text-accent">{fact.value}</p>
           <p className="mt-2 text-[13px] font-bold leading-snug text-ink">{fact.label}</p>
           <p className="mt-1.5 text-[12px] leading-snug text-faint">{fact.detail}</p>
@@ -543,7 +543,7 @@ export function QuickFactsStrip({ facts }: { facts: { value: string; label: stri
  */
 export function AtAGlanceBox({ items }: { items: { label: string; value: string }[] }) {
   return (
-    <div className="rounded-2xl border border-line bg-paper-tint p-5">
+    <div className="rounded-media border border-line bg-paper-tint p-5">
       <p className="text-xs font-bold uppercase tracking-wide text-faint">At a glance</p>
       <dl className="mt-3 divide-y divide-line">
         {items.map((item) => (

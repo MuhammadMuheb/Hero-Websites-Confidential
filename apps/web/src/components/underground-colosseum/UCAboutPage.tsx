@@ -65,7 +65,7 @@ export function UCAboutPage() {
             </p>
 
             <div className="mt-8 flex items-center gap-5">
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#ff3344] to-[#b8001c] text-xl font-bold text-white shadow-sm">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#ff3344] to-[#b8001c] text-xl font-bold text-white shadow-card-soft">
                 {AUTHOR.initials}
               </div>
               <div>
@@ -79,20 +79,20 @@ export function UCAboutPage() {
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 href="/underground-arena-floor-tour"
-                className="flex h-11 items-center justify-center rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+                className="flex h-11 items-center justify-center rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
               >
                 Compare Underground Tours
               </Link>
               <Link
                 href="/contact"
-                className="flex h-11 items-center justify-center rounded-[6px] border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/8"
+                className="flex h-11 items-center justify-center rounded-control border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent-soft"
               >
                 Get in Touch
               </Link>
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage
               src={HERO_IMAGE.src}
               alt={HERO_IMAGE.alt}
@@ -112,7 +112,7 @@ export function UCAboutPage() {
           </h2>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {TRUST_STATS.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-line bg-white p-5 text-center">
+              <div key={stat.label} className="rounded-media border border-line bg-white p-5 text-center">
                 <p className="font-sans text-[28px] font-extrabold leading-none tracking-tight text-accent">{stat.value}</p>
                 <p className="mt-2 text-[13px] font-bold leading-snug text-ink">{stat.label}</p>
                 <p className="mt-1.5 text-[12px] leading-snug text-faint">{stat.detail}</p>
@@ -129,7 +129,7 @@ export function UCAboutPage() {
           </h2>
           <ul className="mt-6 flex flex-col gap-3">
             {CREDENTIALS.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-[15.5px] leading-relaxed text-ink-muted">
+              <li key={item} className="flex items-start gap-3 text-base leading-relaxed text-ink-muted">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="mt-0.5 shrink-0 text-success">
                   <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
                   <path d="m8 12.5 2.5 2.5L16 9.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -139,7 +139,7 @@ export function UCAboutPage() {
             ))}
           </ul>
 
-          <div className="mt-10 space-y-4 text-[15.5px] leading-relaxed text-ink-muted">
+          <div className="mt-10 space-y-4 text-base leading-relaxed text-ink-muted">
             <p>
               Underground Colosseum exists because most guides to the Colosseum&rsquo;s underground and arena-floor
               tours are written by whoever sells the tour, not by someone who has actually compared what each
@@ -160,7 +160,7 @@ export function UCAboutPage() {
         </div>
 
         <div className="mx-auto mt-10 max-w-[760px] px-6 sm:px-14">
-          <div className="space-y-4 text-[15.5px] leading-relaxed text-ink-muted">
+          <div className="space-y-4 text-base leading-relaxed text-ink-muted">
             <p>
               This site is independent. We are not owned by, and do not receive preferential payment from, any
               single tour operator or ticketing platform — we link to whichever option is genuinely the best fit for
@@ -185,7 +185,7 @@ export function UCAboutPage() {
           <h2 className="mt-2 font-sans text-[26px] font-extrabold leading-snug tracking-tight text-ink sm:text-[32px]">
             Find the Right Tour For You
           </h2>
-          <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
+          <p className="mt-3 max-w-[62ch] text-base leading-relaxed text-ink-muted">
             Every guide below is its own independent comparison — pick the one that matches how you want to visit.
           </p>
 
@@ -194,7 +194,7 @@ export function UCAboutPage() {
               <Link
                 key={page.href}
                 href={page.href}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(26,26,26,0.08)]"
+                className="group flex flex-col overflow-hidden rounded-media border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
               >
                 <div className="relative aspect-[4/3] bg-media">
                   <SafeImage
@@ -223,7 +223,7 @@ export function UCAboutPage() {
 
       <section className="py-14 sm:py-16">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <div className="flex flex-col items-start gap-6 rounded-2xl border border-line bg-paper-tint p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="flex flex-col items-start gap-6 rounded-media border border-line bg-paper-tint p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div>
               <h2 className="font-sans text-[20px] font-extrabold leading-snug tracking-tight text-ink">
                 See Every Operator Side-by-Side
@@ -235,7 +235,7 @@ export function UCAboutPage() {
             </div>
             <Link
               href="/#featured-tours"
-              className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+              className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
             >
               Compare All Tours &rarr;
             </Link>

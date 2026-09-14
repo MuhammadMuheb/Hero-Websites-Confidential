@@ -95,7 +95,7 @@ export function UCContactPage() {
 
             <a
               href="mailto:hello@undergroundcolosseum.com"
-              className="mt-7 inline-flex h-11 items-center justify-center gap-2 rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+              className="mt-7 inline-flex h-11 items-center justify-center gap-2 rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
             >
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
@@ -105,7 +105,7 @@ export function UCContactPage() {
             </a>
           </div>
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage
               src={HERO_IMAGE.src}
               alt={HERO_IMAGE.alt}
@@ -125,7 +125,7 @@ export function UCContactPage() {
           </h2>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {RESPONSE_STATS.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-line bg-white p-5 text-center">
+              <div key={stat.label} className="rounded-media border border-line bg-white p-5 text-center">
                 <p className="font-sans text-[28px] font-extrabold leading-none tracking-tight text-accent">{stat.value}</p>
                 <p className="mt-2 text-[13px] font-bold leading-snug text-ink">{stat.label}</p>
                 <p className="mt-1.5 text-[12px] leading-snug text-faint">{stat.detail}</p>
@@ -146,9 +146,9 @@ export function UCContactPage() {
               <a
                 key={channel.label}
                 href={mailtoWithSubject(channel.subject)}
-                className="group flex flex-col rounded-2xl border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(26,26,26,0.08)]"
+                className="group flex flex-col rounded-media border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent/8 text-accent">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-soft text-accent">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     {channel.icon}
                   </svg>
@@ -164,7 +164,7 @@ export function UCContactPage() {
 
       <section className="border-b border-line bg-paper-tint py-14 sm:py-16">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
-          <div className="rounded-2xl border border-line bg-white p-6 sm:p-8">
+          <div className="rounded-media border border-line bg-white p-6 sm:p-8">
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-success/10 text-success">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -174,7 +174,7 @@ export function UCContactPage() {
               </span>
               <h2 className="font-sans text-[17px] font-bold text-ink">Why there&rsquo;s no contact form here</h2>
             </div>
-            <p className="mt-4 text-[15px] leading-relaxed text-ink-muted">
+            <p className="mt-4 text-base leading-relaxed text-ink-muted">
               A submission form implies something is queued, tracked, and answered by a team. That&rsquo;s not how
               this site works — it&rsquo;s one person, and a direct email is the honest version of that. A form that
               quietly went nowhere would be worse than no form at all, so we didn&rsquo;t build one.
@@ -190,7 +190,7 @@ export function UCContactPage() {
             How This Site Makes Money
           </h2>
 
-          <div className="mt-8 rounded-2xl border border-line bg-paper-tint p-6 sm:p-8">
+          <div className="mt-8 rounded-media border border-line bg-paper-tint p-6 sm:p-8">
             <h3 className="font-sans text-[18px] font-bold text-ink">Affiliate Disclosure</h3>
             <div className="mt-4 flex flex-wrap gap-2">
               {['GetYourGuide', 'Viator', 'Tiqets'].map((partner) => (
@@ -199,7 +199,7 @@ export function UCContactPage() {
                 </span>
               ))}
             </div>
-            <p className="mt-4 text-[15px] leading-relaxed text-ink-muted">
+            <p className="mt-4 text-base leading-relaxed text-ink-muted">
               Underground Colosseum participates in affiliate programs with the three partners above. When you book a
               tour through an outbound link on this site, we may earn a commission at no extra cost to you. This site
               independently compares tours across all three platforms and does not accept payment for placement — a
@@ -212,7 +212,7 @@ export function UCContactPage() {
 
       <section className="py-14 sm:py-16">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <div className="flex flex-col items-start gap-6 rounded-2xl border border-line bg-paper-tint p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="flex flex-col items-start gap-6 rounded-media border border-line bg-paper-tint p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div>
               <h2 className="font-sans text-[20px] font-extrabold leading-snug tracking-tight text-ink">
                 Ready to Pick a Tour?
@@ -225,13 +225,13 @@ export function UCContactPage() {
             <div className="flex shrink-0 flex-wrap gap-3">
               <Link
                 href="/about"
-                className="flex h-11 items-center justify-center whitespace-nowrap rounded-[6px] border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/8"
+                className="flex h-11 items-center justify-center whitespace-nowrap rounded-control border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent-soft"
               >
                 About This Site
               </Link>
               <Link
                 href="/underground-arena-floor-tour"
-                className="flex h-11 items-center justify-center whitespace-nowrap rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+                className="flex h-11 items-center justify-center whitespace-nowrap rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
               >
                 Compare Underground Tours
               </Link>

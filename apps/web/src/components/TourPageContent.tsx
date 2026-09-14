@@ -92,7 +92,7 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
       <section className="py-10 sm:py-14">
         <div className="mx-auto grid max-w-[1100px] gap-10 px-6 sm:px-14 lg:grid-cols-[1.6fr_1fr]">
           <div>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-media">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-media bg-media">
               {tour.imageUrl ? (
                 <SafeImage
                   src={tour.imageUrl}
@@ -113,7 +113,7 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
             ) : null}
           </div>
 
-          <aside className="h-fit rounded-2xl border border-line bg-white p-6 shadow-[0_8px_32px_rgba(45,51,57,0.08)] lg:sticky lg:top-24">
+          <aside className="h-fit rounded-media border border-line bg-white p-6 shadow-aside lg:sticky lg:top-24">
             {tour.priceBand ? (
               <p>
                 <span className="font-display text-3xl font-semibold text-ink">{tour.priceBand}</span>
@@ -125,7 +125,7 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
               href={tour.affiliateUrl}
               target="_blank"
               rel="noopener noreferrer sponsored"
-              className="mt-4 flex h-12 w-full items-center justify-center rounded-[6px] bg-accent text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+              className="mt-4 flex h-12 w-full items-center justify-center rounded-control bg-accent-gradient text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
             >
               Check Availability
             </Link>

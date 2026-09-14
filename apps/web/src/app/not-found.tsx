@@ -14,7 +14,7 @@ export default function NotFound() {
       <p className="mt-3 text-ink-muted">This page doesn&rsquo;t exist on Street Food Rome.</p>
       <Link
         href="/"
-        className="mt-8 rounded-[6px] bg-accent px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+        className="mt-8 rounded-control bg-accent-gradient px-6 py-3 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
       >
         Back to the homepage
       </Link>

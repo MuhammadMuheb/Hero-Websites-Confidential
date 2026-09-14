@@ -58,19 +58,19 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href={content.relatedMoneyHref}
-                className="flex h-11 items-center justify-center rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+                className="flex h-11 items-center justify-center rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
               >
                 {content.relatedMoneyLabel}
               </Link>
               <Link
                 href="/#featured-tours"
-                className="flex h-11 items-center justify-center rounded-[6px] border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/8"
+                className="flex h-11 items-center justify-center rounded-control border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent-soft"
               >
                 Compare All Tours
               </Link>
             </div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage src={content.heroImage.src} alt={content.heroImage.alt} fill priority sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
           </div>
         </div>
@@ -85,7 +85,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
                 {section.heading}
               </h2>
               {section.body.map((para, i) => (
-                <p key={i} className="mt-3 text-[15.5px] leading-relaxed text-ink-muted">
+                <p key={i} className="mt-3 text-base leading-relaxed text-ink-muted">
                   {para}
                 </p>
               ))}
@@ -97,7 +97,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
               <h2 className="font-sans text-[22px] font-extrabold leading-snug tracking-tight text-ink sm:text-[26px]">
                 More From the Walkthrough
               </h2>
-              <p className="mt-3 text-[15.5px] leading-relaxed text-ink-muted">
+              <p className="mt-3 text-base leading-relaxed text-ink-muted">
                 A few more frames from the same visit — all our own, shot on the routes this page describes.
               </p>
               <div className="mt-5">
@@ -112,7 +112,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       {/* ---------- closing CTA band ---------- */}
       <section className="border-b border-line py-14 sm:py-16">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <div className="flex flex-col items-start gap-6 rounded-2xl border border-line bg-paper-tint p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="flex flex-col items-start gap-6 rounded-media border border-line bg-paper-tint p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div>
               <h2 className="font-sans text-[20px] font-extrabold leading-snug tracking-tight text-ink">
                 Ready to Book?
@@ -124,7 +124,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
             </div>
             <Link
               href={content.relatedMoneyHref}
-              className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+              className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
             >
               {content.relatedMoneyLabel} &rarr;
             </Link>
@@ -139,7 +139,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
           <h2 className="mt-2 font-sans text-[26px] font-extrabold leading-snug tracking-tight text-ink sm:text-[32px]">
             Frequently Asked
           </h2>
-          <div className="mt-6 divide-y divide-line rounded-2xl border border-line bg-white">
+          <div className="mt-6 divide-y divide-line rounded-media border border-line bg-white">
             {content.faqs.map((faq) => (
               <details key={faq.question} className="group px-6 py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-ink marker:content-none">

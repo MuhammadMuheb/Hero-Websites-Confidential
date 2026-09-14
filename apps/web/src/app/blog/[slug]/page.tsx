@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <section className="py-10">
         <div className="mx-auto max-w-[720px] px-6 sm:px-14">
           {post.coverImageUrl ? (
-            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-media">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-media bg-media">
               <SafeImage src={post.coverImageUrl} alt={post.title} fill priority sizes="720px" className="object-cover" />
             </div>
           ) : null}
@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="rich-content mt-8" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
 
           {author ? (
-            <div className="mt-10 flex items-start gap-4 rounded-2xl border border-line p-6">
+            <div className="mt-10 flex items-start gap-4 rounded-card border border-line p-6">
               {author.avatarUrl ? (
                 <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-media">
                   <SafeImage src={author.avatarUrl} alt={author.name} fill sizes="48px" className="object-cover" />

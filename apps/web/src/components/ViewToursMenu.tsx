@@ -49,7 +49,7 @@ export function ViewToursMenu() {
         type="button"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[6px] bg-accent px-3 text-sm font-bold text-white sm:h-10 sm:px-4 sm:text-base"
+        className="flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-control bg-accent-gradient px-3 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] sm:h-10 sm:px-4 sm:text-base"
       >
         View Tours
         <svg
@@ -65,7 +65,7 @@ export function ViewToursMenu() {
       </button>
 
       {open ? (
-        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-2xl border border-line bg-white p-6 shadow-[0_16px_48px_rgba(45,51,57,0.18)] lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-3 lg:max-h-none lg:w-[92vw] lg:max-w-[560px] lg:overflow-visible">
+        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-media border border-line bg-white p-6 shadow-popover lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-3 lg:max-h-none lg:w-[92vw] lg:max-w-[560px] lg:overflow-visible">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
             <div>
               <ColumnHeading>Pages</ColumnHeading>

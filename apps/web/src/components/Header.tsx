@@ -49,15 +49,15 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 h-[65px] border-b border-line bg-white ${
-        hidden ? '-translate-y-full transition-transform duration-300 ease-in-out' : 'translate-y-0'
+      className={`sticky top-0 z-40 h-[72px] border-b border-line/80 bg-white/85 backdrop-blur-md ${
+        hidden ? '-translate-y-full transition-transform duration-300 ease-out' : 'translate-y-0'
       }`}
     >
       <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between gap-2 px-6 sm:px-14">
-        <div className="flex min-w-0 items-center gap-2 sm:gap-4">
-          <Link href={brandHref} className="flex min-w-0 items-center gap-2">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-white">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+          <Link href={brandHref} className="group flex min-w-0 items-center gap-2.5">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-gradient text-white shadow-glow transition-transform duration-300 ease-out group-hover:scale-105">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="M6 3v7a2 2 0 0 0 2 2v9M6 3a2 2 0 0 0-2 2M6 3a2 2 0 0 1 2 2v5M18 3c-1.6 0-3 2-3 6s1.4 5 3 5v7"
                   stroke="currentColor"
@@ -78,7 +78,7 @@ export function Header() {
         {isHomepage ? null : (
           <form
             action="#"
-            className="hidden min-w-0 max-w-[420px] flex-1 items-center gap-2 rounded-[6px] border border-line px-3 lg:flex"
+            className="hidden min-w-0 max-w-[420px] flex-1 items-center gap-2 rounded-control border border-line bg-paper-tint/70 px-3 transition-colors focus-within:border-accent lg:flex"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="shrink-0 text-faint" aria-hidden="true">
               <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
@@ -92,7 +92,7 @@ export function Header() {
             />
             <button
               type="submit"
-              className="h-8 shrink-0 whitespace-nowrap rounded-[6px] border border-accent px-3 text-sm font-medium text-accent"
+              className="h-8 shrink-0 whitespace-nowrap rounded-control border border-accent px-3 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-white"
             >
               Search Tours
             </button>

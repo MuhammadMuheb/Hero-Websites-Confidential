@@ -34,7 +34,7 @@ export function WhoWritesThisSection() {
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage
               src="https://images.unsplash.com/photo-1771476320575-02ab6cc4ecd9"
               alt="An evening aperitivo stop in Rome, the kind of first-hand experience behind every tour on this site"

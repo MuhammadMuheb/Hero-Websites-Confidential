@@ -46,7 +46,7 @@ export function Hero({ imageUrl }: HeroProps) {
 
   return (
     <section>
-      <div className="relative h-[340px] w-full sm:h-[420px]">
+      <div className="relative h-[400px] w-full overflow-hidden sm:h-[480px]">
         {imageUrl ? (
           <SafeImage
             src={imageUrl}
@@ -57,10 +57,11 @@ export function Hero({ imageUrl }: HeroProps) {
             className="object-cover"
           />
         ) : null}
-        <div className="absolute inset-0 bg-black/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
 
-        <div className="relative mx-auto flex h-full max-w-[896px] flex-col justify-center px-6 pb-8">
-          <h1 className="font-sans text-[40px] font-extrabold leading-[1.15] text-white sm:text-[56px] sm:leading-[72px]">
+        <div className="relative mx-auto flex h-full max-w-[960px] flex-col justify-center px-6 pb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Rome, Italy</p>
+          <h1 className="mt-3 max-w-2xl font-sans text-[40px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[60px] sm:leading-[1.05]">
             Rome&rsquo;s Ultimate Street Food &amp; Culinary Experiences
           </h1>
         </div>
@@ -68,8 +69,8 @@ export function Hero({ imageUrl }: HeroProps) {
 
       {/* Search bar straddles the hero/strip boundary — half over the photo, half over the light
           section below — matching the reference's actual overlap, not fully embedded in the photo. */}
-      <div className="relative z-10 mx-auto -mt-[29px] max-w-[896px] px-6">
-        <form action="#" className="flex items-center gap-2 rounded-2xl bg-white p-2 shadow-[0_8px_48px_rgba(45,51,57,0.16)]">
+      <div className="relative z-10 mx-auto -mt-8 max-w-[896px] px-6">
+        <form action="#" className="flex items-center gap-2 rounded-card border border-line/60 bg-white p-2.5 shadow-search">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="ml-3 shrink-0 text-ink-muted" aria-hidden="true">
             <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
             <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -82,7 +83,7 @@ export function Hero({ imageUrl }: HeroProps) {
           />
           <button
             type="submit"
-            className="h-10 shrink-0 rounded-[6px] border border-accent px-2 text-base font-medium text-accent"
+            className="h-11 shrink-0 rounded-control bg-accent-gradient px-5 text-base font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
           >
             Search Tours
           </button>
@@ -94,12 +95,12 @@ export function Hero({ imageUrl }: HeroProps) {
           is already that gray, and two identical backgrounds back-to-back read as one seamless
           block with no boundary between them. */}
       <div className="bg-white">
-        <div className="mx-auto flex max-w-[1200px] items-center gap-2 px-6 pb-6 pt-10">
+        <div className="mx-auto flex max-w-[1200px] items-center gap-2 px-6 pb-6 pt-8">
           <button
             type="button"
             aria-label="Scroll categories left"
             onClick={() => scrollBy(-320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-all duration-200 ease-out hover:border-accent hover:text-accent"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -108,13 +109,13 @@ export function Hero({ imageUrl }: HeroProps) {
 
           <div
             ref={scrollerRef}
-            className="flex flex-1 items-center gap-3 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex flex-1 items-center gap-2.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {CHIPS.map((chip) => (
               <Link
                 key={chip.label}
                 href={chip.href}
-                className="flex h-[42px] shrink-0 items-center whitespace-nowrap rounded-lg border border-line bg-white px-3 text-base font-bold text-accent"
+                className="flex h-[42px] shrink-0 items-center whitespace-nowrap rounded-full border border-line bg-white px-4 text-[15px] font-bold text-ink-soft transition-all duration-200 ease-out hover:border-accent hover:bg-accent-soft hover:text-accent"
               >
                 {chip.label}
               </Link>
@@ -125,7 +126,7 @@ export function Hero({ imageUrl }: HeroProps) {
             type="button"
             aria-label="Scroll categories right"
             onClick={() => scrollBy(320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-all duration-200 ease-out hover:border-accent hover:text-accent"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

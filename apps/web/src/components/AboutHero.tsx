@@ -37,7 +37,7 @@ export function AboutHero() {
 
         <a
           href="#our-story"
-          className="mt-6 inline-flex h-11 items-center justify-center rounded-[6px] bg-accent px-5 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+          className="mt-6 inline-flex h-11 items-center justify-center rounded-control bg-accent-gradient px-5 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
         >
           Read Our Story
         </a>

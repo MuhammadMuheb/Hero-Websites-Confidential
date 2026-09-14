@@ -79,7 +79,7 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
           a fixed bar keeps "book this" one thumb-tap away regardless of
           scroll position or header state. Desktop keeps just the header CTA
           since the header there is reachable in one small scroll-up. */}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 px-4 py-3 shadow-[0_-8px_24px_rgba(26,26,26,0.08)] backdrop-blur-sm lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 px-4 py-3 shadow-bar-up backdrop-blur-sm lg:hidden">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <div className="min-w-0">
             <p className="truncate text-[11px] font-semibold uppercase tracking-wide text-faint">{content.navTitle}</p>
@@ -87,7 +87,7 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
           </div>
           <a
             href="#tour-options"
-            className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-[6px] bg-accent px-5 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+            className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-control bg-accent-gradient px-5 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
           >
             See Tour Options
           </a>
@@ -120,19 +120,19 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
             <div className="mt-7 flex flex-wrap gap-3">
               <a
                 href="#tour-options"
-                className="flex h-11 items-center justify-center rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+                className="flex h-11 items-center justify-center rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
               >
                 See Tour Options
               </a>
               <Link
                 href={content.relatedSupportHref}
-                className="flex h-11 items-center justify-center rounded-[6px] border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/8"
+                className="flex h-11 items-center justify-center rounded-control border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent-soft"
               >
                 {content.relatedSupportLabel}
               </Link>
             </div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage src={content.heroImage.src} alt={content.heroImage.alt} fill priority sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
           </div>
         </div>
@@ -147,16 +147,16 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
                 {section.heading}
               </h2>
               {section.body.map((para, i) => (
-                <p key={i} className="mt-3 text-[15.5px] leading-relaxed text-ink-muted">
+                <p key={i} className="mt-3 text-base leading-relaxed text-ink-muted">
                   {para}
                 </p>
               ))}
             </div>
           ))}
 
-          <div className="mt-10 rounded-2xl border border-gold/50 bg-gold/[0.06] p-6">
+          <div className="mt-10 rounded-media border border-gold/50 bg-gold/[0.06] p-6">
             <h3 className="font-sans text-[17px] font-bold text-ink">{content.verdict.heading}</h3>
-            <p className="mt-2 text-[15px] leading-relaxed text-ink-muted">{content.verdict.body}</p>
+            <p className="mt-2 text-base leading-relaxed text-ink-muted">{content.verdict.body}</p>
           </div>
         </div>
       </section>
@@ -168,7 +168,7 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
           <h2 className="mt-2 font-sans text-[26px] font-extrabold leading-snug tracking-tight text-ink sm:text-[32px]">
             Every Tour Option, Compared
           </h2>
-          <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
+          <p className="mt-3 max-w-[62ch] text-base leading-relaxed text-ink-muted">
             The listings most relevant to this page, side by side — including whether arena-floor access is actually part of
             the ticket.
           </p>
@@ -177,7 +177,7 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
           </div>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {relevantTours.map((tour) => (
-              <div key={tour.slug} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
+              <div key={tour.slug} className="flex flex-col overflow-hidden rounded-media border border-line bg-white">
                 <div className="relative aspect-[4/3] bg-media">
                   <SafeImage src={tour.image.src} alt={tour.image.alt} fill sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 90vw" className="object-cover" />
                 </div>
@@ -204,7 +204,7 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
           <h2 className="font-sans text-[26px] font-extrabold leading-snug tracking-tight text-ink sm:text-[32px]">
             Frequently Asked
           </h2>
-          <div className="mt-6 divide-y divide-line rounded-2xl border border-line bg-white">
+          <div className="mt-6 divide-y divide-line rounded-media border border-line bg-white">
             {content.faqs.map((faq) => (
               <details key={faq.question} className="group px-6 py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-ink marker:content-none">

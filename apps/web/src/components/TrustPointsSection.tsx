@@ -56,16 +56,16 @@ export function TrustPointsSection() {
         <div className="mx-auto mt-10 grid max-w-[1312px] grid-cols-1 gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
           {POINTS.map((point) => (
             <div key={point.label} className="flex items-start gap-3.5">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/8 text-accent-hover">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-hover">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   {point.icon}
                 </svg>
               </span>
               <div>
-                <h3 className="font-sans text-[15px] font-semibold leading-snug text-[rgb(30,30,30)]">
+                <h3 className="font-sans text-[15px] font-semibold leading-snug text-ink-soft">
                   {point.label}
                 </h3>
-                <p className="mt-1 text-sm leading-relaxed text-[rgb(117,124,127)]">{point.body}</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-muted">{point.body}</p>
               </div>
             </div>
           ))}

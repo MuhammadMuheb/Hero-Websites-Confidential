@@ -79,7 +79,7 @@ function MoneyPagesCarousel() {
               key={page.href}
               href={page.href}
               style={{ scrollSnapAlign: 'start' }}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-line hover:shadow-[0_16px_32px_rgba(26,26,26,0.08)]"
+              className="group flex flex-col overflow-hidden rounded-media border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-line hover:shadow-card-hover"
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-media">
                 <SafeImage
@@ -157,7 +157,7 @@ function FeaturedToursCarousel() {
             <div
               key={tour.slug}
               style={{ scrollSnapAlign: 'start' }}
-              className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(26,26,26,0.08)]"
+              className="flex flex-col overflow-hidden rounded-media border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
             >
               <div className="relative aspect-[4/3] bg-media">
                 <SafeImage
@@ -253,13 +253,13 @@ export function UndergroundColosseumHome() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href="/underground-arena-floor-tour"
-                className="flex h-11 items-center justify-center rounded-[6px] bg-accent px-6 text-sm font-bold text-white transition-colors hover:bg-accent-hover"
+                className="flex h-11 items-center justify-center rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
               >
                 Compare Underground Tours
               </Link>
               <Link
                 href="/is-the-underground-worth-it"
-                className="flex h-11 items-center justify-center rounded-[6px] border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/8"
+                className="flex h-11 items-center justify-center rounded-control border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent-soft"
               >
                 Is it worth it?
               </Link>
@@ -278,7 +278,7 @@ export function UndergroundColosseumHome() {
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media shadow-card">
             <SafeImage
               src={HERO_IMAGE.src}
               alt={HERO_IMAGE.alt}
@@ -298,7 +298,7 @@ export function UndergroundColosseumHome() {
             <Link
               key={link.href}
               href={link.href}
-              className="flex h-9 shrink-0 items-center whitespace-nowrap rounded-full border border-line px-3.5 text-sm font-semibold text-ink-muted transition-colors hover:border-accent hover:text-accent"
+              className="flex h-9 shrink-0 items-center whitespace-nowrap rounded-full border border-line px-3.5 text-sm font-semibold text-ink-muted transition-all duration-200 ease-out hover:border-accent hover:bg-accent-soft hover:text-accent"
             >
               {link.label}
             </Link>
@@ -351,7 +351,7 @@ export function UndergroundColosseumHome() {
           </h2>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="overflow-hidden rounded-2xl bg-accent/6 transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
+            <div className="overflow-hidden rounded-media bg-accent-soft transition-shadow duration-300 hover:shadow-card-soft">
               <div className="relative aspect-[16/9] bg-media">
                 <SafeImage
                   src={WORTH_IT_PAGE.image.src}
@@ -373,7 +373,7 @@ export function UndergroundColosseumHome() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-line bg-white transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
+            <div className="overflow-hidden rounded-media border border-line bg-white transition-shadow duration-300 hover:shadow-card-soft">
               <div className="relative aspect-[16/9] bg-media">
                 <SafeImage
                   src={ARENA_FLOOR_PAGE.image.src}
@@ -397,7 +397,7 @@ export function UndergroundColosseumHome() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-line bg-white transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]">
+            <div className="overflow-hidden rounded-media border border-line bg-white transition-shadow duration-300 hover:shadow-card-soft">
               <div className="relative aspect-[16/9] bg-media">
                 <SafeImage
                   src="https://images.unsplash.com/photo-1590273971191-2af8df641e2c"
@@ -458,7 +458,7 @@ export function UndergroundColosseumHome() {
               <Link
                 key={page.href}
                 href={page.href}
-                className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:shadow-[0_16px_32px_rgba(26,26,26,0.06)]"
+                className="group flex items-center gap-4 rounded-media border border-line bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:shadow-card-soft"
               >
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-media sm:h-[72px] sm:w-[72px]">
                   <SafeImage src={page.image.src} alt={page.image.alt} fill sizes="72px" className="object-cover" />
@@ -487,7 +487,7 @@ export function UndergroundColosseumHome() {
           <h2 className="mt-2 text-center font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[36px]">
             Frequently Asked
           </h2>
-          <div className="mt-8 divide-y divide-line rounded-2xl border border-line bg-white">
+          <div className="mt-8 divide-y divide-line rounded-media border border-line bg-white">
             {FAQS.map((faq) => (
               <details key={faq.question} className="group px-6 py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-ink marker:content-none">

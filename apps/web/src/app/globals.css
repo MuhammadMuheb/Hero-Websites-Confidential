@@ -5,26 +5,27 @@
 :root {
   /* RGB channel triples (not hex/full-color strings) — required so Tailwind's
      opacity-modifier syntax (e.g. text-paper/90) can wrap these as
-     rgb(var(--x) / <alpha>) in tailwind.config.ts. A hex literal here would
-     silently break every /NN opacity utility built on these tokens.
+     rgb(var(--x) / <alpha>) in tailwind.config.ts.
 
-     Reconciled against the Underground Colosseum design blueprint (v3 §7,
-     "HIGH — the design-token system exists but nothing uses it"): every
-     value below now matches the hex actually hardcoded across
-     Header.tsx/Footer.tsx/TourCard.tsx/UCShared.tsx and their Underground
-     Colosseum equivalents, instead of the aspirational wine-red palette that
-     was defined here but never shipped. Components should consume these
-     tokens (bg-accent, text-ink-muted, ...) going forward rather than
-     hardcoding new hex literals. */
+     2026 modern refresh: same brand hues (accent red, gold) kept for network
+     recognition, but neutrals are deepened and a couple of new tokens
+     (--ink-soft, --accent-soft) added so components can move off one-off
+     rgb()/hex literals onto the shared scale. Components should consume
+     these tokens (bg-accent, text-ink-muted, ...) rather than hardcoding new
+     hex literals. */
   --paper: 255 255 255;
   /* Used sparingly for alternating section backgrounds only, never as the
      dominant page color. */
   --paper-tint: 249 250 250;
-  --ink: 26 26 26;
+  --ink: 17 18 20;
+  --ink-soft: 30 30 32;
   --ink-muted: 92 97 102;
-  --faint: 154 160 165;
+  --faint: 110 115 120;
   --accent: 255 0 34;
   --accent-hover: 224 0 29;
+  /* Low-opacity accent wash for icon chips, active pills, subtle highlights —
+     replaces the accent/6, accent/8 arbitrary-opacity one-offs. */
+  --accent-soft: 255 236 238;
   /* Secondary accent only: ratings, tags, small highlights. Never the primary
      CTA color. */
   --gold: 184 134 46;
@@ -42,6 +43,8 @@ body {
   background: rgb(var(--paper));
   color: rgb(var(--ink));
   font-family: var(--font-public-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -51,10 +54,50 @@ h3,
   font-family: var(--font-fraunces), Georgia, serif;
   font-feature-settings: 'ss01' 1;
   text-wrap: balance;
+  letter-spacing: -0.01em;
 }
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* Site-wide focus system (ui-ux-pro-max: "focus rings should never be
+   removed without a replacement indicator"). The browser default outline
+   gets clipped or looks inconsistent against this site's rounded
+   buttons/cards/pills, so it's replaced — never just deleted — with one
+   consistent accent-colored ring that only appears for keyboard/assistive
+   navigation (:focus-visible), not for a mouse click. */
+a,
+button,
+input,
+textarea,
+select,
+summary,
+[tabindex] {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Subtle, purposeful motion (ui-ux-pro-max: "motion confirms the interaction
+   happened, it doesn't decorate") shared across cards, buttons and panels
+   instead of each component inventing its own hover transform. */
+.lift-on-hover {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lift-on-hover:hover {
+  transform: translateY(-4px);
 }
 
 /* Shared typography for Firestore-authored bodyHtml (legal pages, blog
@@ -69,7 +112,7 @@ h3,
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #1a1a1a;
+  color: rgb(var(--ink));
 }
 
 .rich-content h3 {
@@ -77,14 +120,14 @@ h3,
   font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #1a1a1a;
+  color: rgb(var(--ink));
 }
 
 .rich-content p,
 .rich-content li {
   font-size: 1rem;
   line-height: 1.75;
-  color: #5c6166;
+  color: rgb(var(--ink-muted));
 }
 
 .rich-content ul,
@@ -101,12 +144,12 @@ h3,
 }
 
 .rich-content a {
-  color: #ff0022;
+  color: rgb(var(--accent));
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .rich-content strong {
-  color: #1a1a1a;
+  color: rgb(var(--ink));
   font-weight: 600;
 }

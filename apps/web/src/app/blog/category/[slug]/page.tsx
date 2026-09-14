@@ -88,7 +88,7 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
               {posts.map((post) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-media">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-media bg-media">
                     {post.coverImageUrl ? (
                       <SafeImage
                         src={post.coverImageUrl}

@@ -81,15 +81,15 @@ export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[];
         </h2>
 
         <div className="mt-8 flex justify-center">
-          <div className="inline-flex flex-wrap justify-center gap-1 rounded-full bg-line p-1">
+          <div className="inline-flex flex-wrap justify-center gap-1 rounded-full bg-line/70 p-1">
             {TABS.map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setActive(tab)}
-                className={`rounded-full px-5 py-2.5 text-sm font-bold transition-colors ${
+                className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all duration-200 ease-out ${
                   active === tab
-                    ? 'bg-white text-ink shadow-[0_1px_3px_rgba(45,51,57,0.15)]'
+                    ? 'bg-white text-ink shadow-tab'
                     : 'text-ink-muted hover:text-ink'
                 }`}
               >

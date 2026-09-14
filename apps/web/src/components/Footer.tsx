@@ -63,12 +63,12 @@ export function Footer() {
   if (isUnbuiltNetworkRoute(pathname)) return null;
 
   return (
-    <footer className="border-t border-line bg-paper-tint">
+    <footer className="bg-ink text-white/70">
       <div className="mx-auto max-w-[1440px] px-6 py-16 sm:px-14">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <Link href="/" className="flex items-center gap-2">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-white">
+            <Link href="/" className="flex items-center gap-2.5">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-gradient text-white shadow-glow">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
                     d="M6 3v7a2 2 0 0 0 2 2v9M6 3a2 2 0 0 0-2 2M6 3a2 2 0 0 1 2 2v5M18 3c-1.6 0-3 2-3 6s1.4 5 3 5v7"
@@ -79,9 +79,9 @@ export function Footer() {
                   />
                 </svg>
               </span>
-              <span className="text-lg font-bold tracking-tight text-ink">street food rome</span>
+              <span className="text-lg font-bold tracking-tight text-white">street food rome</span>
             </Link>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-muted">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/55">
               A first-hand guide to Rome&rsquo;s street food, written by a 12-year resident — honest
               neighbourhood, market, and tour recommendations, no tourist traps.
             </p>
@@ -93,7 +93,7 @@ export function Footer() {
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-ink-muted transition-colors hover:border-accent hover:text-accent"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/60 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent hover:text-accent"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   {social.icon}
@@ -103,13 +103,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
+        <div className="mt-14 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wide text-ink">Company</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Company</h3>
             <ul className="mt-4 space-y-3">
               {COMPANY_LINKS.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-ink-muted transition-colors hover:text-accent">
+                  <Link href={link.href} className="text-sm text-white/65 transition-colors hover:text-accent">
                     {link.label}
                   </Link>
                 </li>
@@ -118,13 +118,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wide text-ink">Our Network</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Our Network</h3>
             <ul className="mt-4 space-y-3">
               {NETWORK_SITES.map((site) => (
                 <li key={site.number}>
                   <Link
                     href={`/${site.slug}`}
-                    className="text-sm text-ink-muted transition-colors hover:text-accent"
+                    className="text-sm text-white/65 transition-colors hover:text-accent"
                   >
                     {site.name}
                   </Link>
@@ -134,11 +134,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wide text-ink">Privacy &amp; Terms</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Privacy &amp; Terms</h3>
             <ul className="mt-4 space-y-3">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-ink-muted transition-colors hover:text-accent">
+                  <Link href={link.href} className="text-sm text-white/65 transition-colors hover:text-accent">
                     {link.label}
                   </Link>
                 </li>
@@ -147,8 +147,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wide text-ink">Contact Us</h3>
-            <ul className="mt-4 space-y-3 text-sm text-ink-muted">
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Contact Us</h3>
+            <ul className="mt-4 space-y-3 text-sm text-white/65">
               <li>
                 <a href="mailto:hello@streetfoodrome.com" className="transition-colors hover:text-accent">
                   hello@streetfoodrome.com
@@ -157,15 +157,15 @@ export function Footer() {
               <li>Based in Rome, Italy</li>
               <li>We usually reply within 24 hours</li>
             </ul>
-            <p className="mt-5 inline-flex items-center gap-1.5 rounded-[6px] border border-line bg-white px-2.5 py-1.5 text-xs text-ink-muted">
+            <p className="mt-5 inline-flex items-center gap-1.5 rounded-control border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs text-white/55">
               Bookings powered by GetYourGuide
             </p>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-faint">© {year} Street Food Rome. All rights reserved.</p>
-          <p className="text-xs text-faint">
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-white/40">© {year} Street Food Rome. All rights reserved.</p>
+          <p className="text-xs text-white/40">
             As a GetYourGuide affiliate partner, we may earn a commission on bookings made through
             links on this site.
           </p>

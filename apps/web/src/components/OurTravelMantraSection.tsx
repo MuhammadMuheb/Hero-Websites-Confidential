@@ -21,7 +21,7 @@ export function OurTravelMantraSection() {
     <section className="relative overflow-hidden bg-white py-16 sm:py-20">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/6 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-soft blur-3xl"
       />
 
       <div className="relative mx-auto max-w-[1200px] px-6 sm:px-14">
@@ -30,7 +30,7 @@ export function OurTravelMantraSection() {
         </h2>
 
         <div className="mt-14 grid grid-cols-1 gap-x-16 gap-y-10 lg:grid-cols-2">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage
               src="https://images.unsplash.com/photo-1532117472055-4d0734b51f31"
               alt="Sharing wine and a meal together in Rome"
@@ -58,7 +58,7 @@ export function OurTravelMantraSection() {
             ))}
           </div>
 
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-media lg:mt-16">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media lg:mt-16">
             <SafeImage
               src="https://images.unsplash.com/photo-1696407868324-460a69a81c11"
               alt="A guide leading a small group through Trastevere"

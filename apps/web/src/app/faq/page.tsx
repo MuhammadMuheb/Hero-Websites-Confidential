@@ -41,7 +41,7 @@ export default async function FaqPage() {
 
       <section className="py-14">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
-          <div className="divide-y divide-line rounded-2xl border border-line">
+          <div className="divide-y divide-line rounded-card border border-line">
             {page.faqs.map((faq) => (
               <details key={faq.question} className="group px-6 py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-ink marker:content-none">

@@ -48,7 +48,7 @@ export default function NeighborhoodsIndexPage() {
               <Link
                 key={n.slug}
                 href={`/neighborhoods/${n.slug}`}
-                className="group flex items-center justify-between rounded-2xl border border-line bg-white p-6 transition-colors hover:border-accent"
+                className="group flex items-center justify-between rounded-card border border-line bg-white p-6 transition-colors hover:border-accent"
               >
                 <span className="font-display text-xl font-semibold text-ink">{n.name}</span>
                 <span className="text-faint transition-colors group-hover:text-accent">→</span>

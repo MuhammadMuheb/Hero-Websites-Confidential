@@ -17,9 +17,9 @@ export function AccountMenu() {
   }, []);
 
   const secondaryButtonClass =
-    'flex h-11 w-full items-center justify-center gap-2 rounded-[6px] border border-line text-sm font-bold text-ink transition-colors hover:bg-paper-tint';
+    'flex h-11 w-full items-center justify-center gap-2 rounded-control border border-line text-sm font-bold text-ink transition-colors hover:bg-paper-tint';
   const primaryButtonClass =
-    'flex h-11 w-full items-center justify-center rounded-[6px] bg-accent text-sm font-bold text-white transition-colors hover:bg-accent-hover';
+    'flex h-11 w-full items-center justify-center rounded-control bg-accent-gradient text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]';
 
   return (
     <div className="relative" ref={menuRef}>
@@ -37,7 +37,7 @@ export function AccountMenu() {
       </button>
 
       {open ? (
-        <div className="fixed inset-x-4 top-[73px] z-50 rounded-2xl border border-line bg-white p-4 shadow-[0_16px_48px_rgba(45,51,57,0.18)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-3 sm:w-72">
+        <div className="fixed inset-x-4 top-[73px] z-50 rounded-media border border-line bg-white p-4 shadow-popover sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-3 sm:w-72">
           <p className="text-sm font-bold text-ink">Welcome to Street Food Rome</p>
           <p className="mt-1 text-xs text-faint">Sign in to save tours and book faster.</p>
 

@@ -31,7 +31,7 @@ export function HowWeChooseSection() {
           <div className="grid grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2">
             {STEPS.map((step, index) => (
               <div key={step.title}>
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-base font-bold text-white">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-gradient text-base font-bold text-white shadow-glow">
                   {index + 1}
                 </span>
                 <h3 className="mt-4 font-sans text-base font-bold text-accent">{step.title}</h3>

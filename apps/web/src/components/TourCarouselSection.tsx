@@ -45,7 +45,7 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
               type="button"
               aria-label="Previous tour"
               onClick={() => scrollByOneCard(-1)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent sm:h-11 sm:w-11"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint shadow-card-soft transition-all duration-200 ease-out hover:border-accent hover:text-accent sm:h-11 sm:w-11"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M15 5 8 12l7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -55,7 +55,7 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
               type="button"
               aria-label="Next tour"
               onClick={() => scrollByOneCard(1)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint transition-colors hover:border-accent hover:text-accent sm:h-11 sm:w-11"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-faint shadow-card-soft transition-all duration-200 ease-out hover:border-accent hover:text-accent sm:h-11 sm:w-11"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

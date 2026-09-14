@@ -65,22 +65,22 @@ function CategoryCard({
   href: string;
 }) {
   return (
-    <div className="relative col-span-1 overflow-hidden rounded-2xl sm:col-span-2 lg:col-span-1">
+    <div className="group relative col-span-1 overflow-hidden rounded-media shadow-card-soft sm:col-span-2 lg:col-span-1">
       <div className="relative aspect-[4/3] h-full min-h-[260px] overflow-hidden bg-media sm:min-h-[300px] lg:aspect-auto">
         <SafeImage
           src={imageUrl}
           alt={`${name} in Rome`}
           fill
           sizes="(min-width: 1024px) 320px, (min-width: 640px) 100vw, 100vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-ink-gradient" />
       </div>
       <div className="absolute inset-x-0 bottom-0 p-5">
         <h3 className="font-sans text-2xl font-extrabold text-white">{name}</h3>
         <Link
           href={href}
-          className="mt-3 inline-flex h-10 items-center justify-center rounded-[6px] bg-white px-4 text-sm font-bold text-ink transition-colors hover:bg-media"
+          className="mt-3 inline-flex h-10 items-center justify-center rounded-control bg-white px-4 text-sm font-bold text-ink transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-card"
         >
           {ctaLabel}
         </Link>
