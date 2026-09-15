@@ -164,6 +164,40 @@
   --accent-soft: 255 236 238;
 }
 
+.adt-scope {
+  --accent: 232 185 35;
+  --accent-hover: 214 140 9;
+  --accent-soft: 254 243 224;
+}
+
+/**
+ * Tivoli Day Trip's scoped accent (blueprint §3.13.2 — Villa Green `#4a7c59`
+ * / hover `#3c6549` / soft `#eaf2ec`). Follows the same scoping convention:
+ * only this property's --accent/--accent-hover/--accent-soft change, leaving
+ * every other token (radius, shadow, spacing, typography, --ink, --paper, etc.)
+ * identical to the shared system, and leaving every other property's scoped
+ * tokens untouched.
+ */
+.tvdt-scope {
+  --accent: 74 124 89;
+  --accent-hover: 60 101 73;
+  --accent-soft: 234 242 236;
+}
+
+/**
+ * Naples Street Food's scoped accent (blueprint §3.11.2 — Vesuvian Coral
+ * `#ef5b4e` / hover `#d6402f` / soft `#fdece9`). Follows the same scoping
+ * convention: only this property's --accent/--accent-hover/--accent-soft
+ * change, leaving every other token (radius, shadow, spacing, typography,
+ * --ink, --paper, etc.) identical to the shared system, and leaving every
+ * other property's scoped tokens untouched.
+ */
+.nsf-scope {
+  --accent: 239 91 78;
+  --accent-hover: 214 64 47;
+  --accent-soft: 253 236 233;
+}
+
 html {
   scroll-behavior: smooth;
 }

@@ -37,6 +37,18 @@ import { MoneyPageTemplate as TDTMoneyPageTemplate } from '@/components/tuscany-
 import { SupportPageTemplate as TDTSupportPageTemplate } from '@/components/tuscany-day-trip/SupportPageTemplate';
 import { TDTAboutPage } from '@/components/tuscany-day-trip/TDTAboutPage';
 import { TDTContactPage } from '@/components/tuscany-day-trip/TDTContactPage';
+import { MoneyPageTemplate as ADTMoneyPageTemplate } from '@/components/amalfi-day-trip/MoneyPageTemplate';
+import { SupportPageTemplate as ADTSupportPageTemplate } from '@/components/amalfi-day-trip/SupportPageTemplate';
+import { ADTAboutPage } from '@/components/amalfi-day-trip/ADTAboutPage';
+import { ADTContactPage } from '@/components/amalfi-day-trip/ADTContactPage';
+import { MoneyPageTemplate as TVDTMoneyPageTemplate } from '@/components/tivoli-day-trip/MoneyPageTemplate';
+import { SupportPageTemplate as TVDTSupportPageTemplate } from '@/components/tivoli-day-trip/SupportPageTemplate';
+import { TVDTAboutPage } from '@/components/tivoli-day-trip/TVDTAboutPage';
+import { TVDTContactPage } from '@/components/tivoli-day-trip/TVDTContactPage';
+import { MoneyPageTemplate as NSFMoneyPageTemplate } from '@/components/naples-street-food/MoneyPageTemplate';
+import { SupportPageTemplate as NSFSupportPageTemplate } from '@/components/naples-street-food/SupportPageTemplate';
+import { NSFAboutPage } from '@/components/naples-street-food/NSFAboutPage';
+import { NSFContactPage } from '@/components/naples-street-food/NSFContactPage';
 import { ACTIVE_NETWORK_SLUG, getNetworkSite } from '@/lib/tours';
 import { getMoneyPageContent, getSupportPageContent } from '@/lib/underground-colosseum-content';
 import { ARENA_FLOOR_PAGE, MONEY_PAGES, SUPPORT_PAGES, WORTH_IT_PAGE } from '@/lib/underground-colosseum';
@@ -80,6 +92,21 @@ import {
   getSupportPageContent as getTDTSupportPageContent,
 } from '@/lib/tuscany-day-trip-content';
 import { MONEY_PAGES as TDT_MONEY_PAGES, SUPPORT_PAGES as TDT_SUPPORT_PAGES } from '@/lib/tuscany-day-trip';
+import {
+  getMoneyPageContent as getADTMoneyPageContent,
+  getSupportPageContent as getADTSupportPageContent,
+} from '@/lib/amalfi-day-trip-content';
+import { MONEY_PAGES as ADT_MONEY_PAGES, SUPPORT_PAGES as ADT_SUPPORT_PAGES } from '@/lib/amalfi-day-trip';
+import {
+  getMoneyPageContent as getTVDTMoneyPageContent,
+  getSupportPageContent as getTVDTSupportPageContent,
+} from '@/lib/tivoli-day-trip-content';
+import { MONEY_PAGES as TVDT_MONEY_PAGES, SUPPORT_PAGES as TVDT_SUPPORT_PAGES } from '@/lib/tivoli-day-trip';
+import {
+  getMoneyPageContent as getNSFMoneyPageContent,
+  getSupportPageContent as getNSFSupportPageContent,
+} from '@/lib/naples-street-food-content';
+import { MONEY_PAGES as NSF_MONEY_PAGES, SUPPORT_PAGES as NSF_SUPPORT_PAGES } from '@/lib/naples-street-food';
 import { SITE_DOMAIN } from '@/lib/firestore';
 
 /**
@@ -123,6 +150,9 @@ export async function generateStaticParams() {
   const rpcHrefs = [...RPC_MONEY_PAGES.map((p) => p.href), ...RPC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const tcHrefs = [...TC_MONEY_PAGES.map((p) => p.href), ...TC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const tdtHrefs = [...TDT_MONEY_PAGES.map((p) => p.href), ...TDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const adtHrefs = [...ADT_MONEY_PAGES.map((p) => p.href), ...ADT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const tvdtHrefs = [...TVDT_MONEY_PAGES.map((p) => p.href), ...TVDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const nsfHrefs = [...NSF_MONEY_PAGES.map((p) => p.href), ...NSF_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
 
   return [
     ...ucHrefs.map((href) => ({ slug: 'underground-colosseum', rest: [href.replace(/^\//, '')] })),
@@ -134,6 +164,9 @@ export async function generateStaticParams() {
     ...rpcHrefs.map((href) => ({ slug: 'rome-pizza-class', rest: [href.replace(/^\//, '')] })),
     ...tcHrefs.map((href) => ({ slug: 'tiramisu-class', rest: [href.replace(/^\//, '')] })),
     ...tdtHrefs.map((href) => ({ slug: 'tuscany-day-trip', rest: [href.replace(/^\//, '')] })),
+    ...adtHrefs.map((href) => ({ slug: 'amalfi-day-trip', rest: [href.replace(/^\//, '')] })),
+    ...tvdtHrefs.map((href) => ({ slug: 'tivoli-day-trip', rest: [href.replace(/^\//, '')] })),
+    ...nsfHrefs.map((href) => ({ slug: 'naples-street-food', rest: [href.replace(/^\//, '')] })),
   ];
 }
 
@@ -246,6 +279,45 @@ function resolveTuscanyDayTripPage(path: string) {
   if (money) return { type: 'money' as const, content: money };
 
   const support = getTDTSupportPageContent(path);
+  if (support) return { type: 'support' as const, content: support };
+
+  if (path === '/about') return { type: 'about' as const };
+  if (path === '/contact') return { type: 'contact' as const };
+
+  return null;
+}
+
+function resolveAmalfiDayTripPage(path: string) {
+  const money = getADTMoneyPageContent(path);
+  if (money) return { type: 'money' as const, content: money };
+
+  const support = getADTSupportPageContent(path);
+  if (support) return { type: 'support' as const, content: support };
+
+  if (path === '/about') return { type: 'about' as const };
+  if (path === '/contact') return { type: 'contact' as const };
+
+  return null;
+}
+
+function resolveTivoliDayTripPage(path: string) {
+  const money = getTVDTMoneyPageContent(path);
+  if (money) return { type: 'money' as const, content: money };
+
+  const support = getTVDTSupportPageContent(path);
+  if (support) return { type: 'support' as const, content: support };
+
+  if (path === '/about') return { type: 'about' as const };
+  if (path === '/contact') return { type: 'contact' as const };
+
+  return null;
+}
+
+function resolveNaplesStreetFoodPage(path: string) {
+  const money = getNSFMoneyPageContent(path);
+  if (money) return { type: 'money' as const, content: money };
+
+  const support = getNSFSupportPageContent(path);
   if (support) return { type: 'support' as const, content: support };
 
   if (path === '/about') return { type: 'about' as const };
@@ -619,6 +691,126 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
   }
 
+  if (site.slug === 'amalfi-day-trip') {
+    const path = `/${rest.join('/')}`;
+    const resolved = resolveAmalfiDayTripPage(path);
+    const canonical = `https://${SITE_DOMAIN}/${site.slug}${path}`;
+
+    if (resolved?.type === 'money') {
+      return {
+        title: { absolute: resolved.content.metaTitle },
+        description: resolved.content.metaDescription,
+        alternates: { canonical },
+        openGraph: { title: resolved.content.metaTitle, description: resolved.content.metaDescription, url: canonical },
+      };
+    }
+    if (resolved?.type === 'support') {
+      return {
+        title: { absolute: resolved.content.metaTitle },
+        description: resolved.content.metaDescription,
+        alternates: { canonical },
+        openGraph: { title: resolved.content.metaTitle, description: resolved.content.metaDescription, url: canonical },
+      };
+    }
+    if (resolved?.type === 'about') {
+      return {
+        title: { absolute: 'About Amalfi Day Trip — First-Hand, Independent Tour Research' },
+        description:
+          'Every Amalfi Coast day trip comparison here is written by someone who drove, sailed, and walked the routes in person — zero sponsored placements.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'contact') {
+      return {
+        title: { absolute: 'Contact | Amalfi Day Trip' },
+        description: 'Get in touch with Amalfi Day Trip, plus our full affiliate disclosure.',
+        alternates: { canonical },
+      };
+    }
+
+    return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
+  }
+
+  if (site.slug === 'tivoli-day-trip') {
+    const path = `/${rest.join('/')}`;
+    const resolved = resolveTivoliDayTripPage(path);
+    const canonical = `https://${SITE_DOMAIN}/${site.slug}${path}`;
+
+    if (resolved?.type === 'money') {
+      return {
+        title: { absolute: resolved.content.metaTitle },
+        description: resolved.content.metaDescription,
+        alternates: { canonical },
+        openGraph: { title: resolved.content.metaTitle, description: resolved.content.metaDescription, url: canonical },
+      };
+    }
+    if (resolved?.type === 'support') {
+      return {
+        title: { absolute: resolved.content.metaTitle },
+        description: resolved.content.metaDescription,
+        alternates: { canonical },
+        openGraph: { title: resolved.content.metaTitle, description: resolved.content.metaDescription, url: canonical },
+      };
+    }
+    if (resolved?.type === 'about') {
+      return {
+        title: { absolute: 'About Tivoli Day Trip — First-Hand, Independent Tour Research' },
+        description:
+          'Every Tivoli day trip comparison here is written by someone who walked both villas and cross-checked GetYourGuide, Viator, and Tiqets in person — zero sponsored placements.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'contact') {
+      return {
+        title: { absolute: 'Contact | Tivoli Day Trip' },
+        description: 'Get in touch with Tivoli Day Trip, plus our full affiliate disclosure.',
+        alternates: { canonical },
+      };
+    }
+
+    return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
+  }
+
+  if (site.slug === 'naples-street-food') {
+    const path = `/${rest.join('/')}`;
+    const resolved = resolveNaplesStreetFoodPage(path);
+    const canonical = `https://${SITE_DOMAIN}/${site.slug}${path}`;
+
+    if (resolved?.type === 'money') {
+      return {
+        title: { absolute: resolved.content.metaTitle },
+        description: resolved.content.metaDescription,
+        alternates: { canonical },
+        openGraph: { title: resolved.content.metaTitle, description: resolved.content.metaDescription, url: canonical },
+      };
+    }
+    if (resolved?.type === 'support') {
+      return {
+        title: { absolute: resolved.content.metaTitle },
+        description: resolved.content.metaDescription,
+        alternates: { canonical },
+        openGraph: { title: resolved.content.metaTitle, description: resolved.content.metaDescription, url: canonical },
+      };
+    }
+    if (resolved?.type === 'about') {
+      return {
+        title: { absolute: 'About Naples Street Food — First-Hand, Independent Food Tour Research' },
+        description:
+          'Every Naples food tour comparison here is written by a guide who actually visits Naples — honest recommendations, no sponsored placements.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'contact') {
+      return {
+        title: { absolute: 'Contact | Naples Street Food' },
+        description: 'Get in touch with Naples Street Food, plus our full affiliate disclosure.',
+        alternates: { canonical },
+      };
+    }
+
+    return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
+  }
+
   if (site.slug === ACTIVE_NETWORK_SLUG) return {};
   return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
 }
@@ -732,6 +924,42 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <TDTSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <TDTAboutPage />;
     if (resolved?.type === 'contact') return <TDTContactPage />;
+
+    return <UnderConstructionNotice siteName={site.name} />;
+  }
+
+  if (site.slug === 'amalfi-day-trip') {
+    const path = `/${rest.join('/')}`;
+    const resolved = resolveAmalfiDayTripPage(path);
+
+    if (resolved?.type === 'money') return <ADTMoneyPageTemplate content={resolved.content} />;
+    if (resolved?.type === 'support') return <ADTSupportPageTemplate content={resolved.content} />;
+    if (resolved?.type === 'about') return <ADTAboutPage />;
+    if (resolved?.type === 'contact') return <ADTContactPage />;
+
+    return <UnderConstructionNotice siteName={site.name} />;
+  }
+
+  if (site.slug === 'tivoli-day-trip') {
+    const path = `/${rest.join('/')}`;
+    const resolved = resolveTivoliDayTripPage(path);
+
+    if (resolved?.type === 'money') return <TVDTMoneyPageTemplate content={resolved.content} />;
+    if (resolved?.type === 'support') return <TVDTSupportPageTemplate content={resolved.content} />;
+    if (resolved?.type === 'about') return <TVDTAboutPage />;
+    if (resolved?.type === 'contact') return <TVDTContactPage />;
+
+    return <UnderConstructionNotice siteName={site.name} />;
+  }
+
+  if (site.slug === 'naples-street-food') {
+    const path = `/${rest.join('/')}`;
+    const resolved = resolveNaplesStreetFoodPage(path);
+
+    if (resolved?.type === 'money') return <NSFMoneyPageTemplate content={resolved.content} />;
+    if (resolved?.type === 'support') return <NSFSupportPageTemplate content={resolved.content} />;
+    if (resolved?.type === 'about') return <NSFAboutPage />;
+    if (resolved?.type === 'contact') return <NSFContactPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }

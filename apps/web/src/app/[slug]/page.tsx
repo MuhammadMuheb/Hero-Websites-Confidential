@@ -11,6 +11,9 @@ import { CookingInRomeHome } from '@/components/CookingInRomeHome';
 import { RomePizzaClassHome } from '@/components/RomePizzaClassHome';
 import { TiramisuClassHome } from '@/components/TiramisuClassHome';
 import { TuscanyDayTripHome } from '@/components/TuscanyDayTripHome';
+import { AmalfiDayTripHome } from '@/components/AmalfiDayTripHome';
+import { TivoliDayTripHome } from '@/components/TivoliDayTripHome';
+import { NaplesStreetFoodHome } from '@/components/NaplesStreetFoodHome';
 import { UnderConstructionNotice } from '@/components/UnderConstructionNotice';
 import { ACTIVE_NETWORK_SLUG, NETWORK_SITES, getNetworkSite } from '@/lib/tours';
 import { HERO_IMAGE as UC_HERO_IMAGE } from '@/lib/underground-colosseum';
@@ -22,6 +25,9 @@ import { HERO_IMAGE as CIR_HERO_IMAGE } from '@/lib/cooking-in-rome';
 import { HERO_IMAGE as RPC_HERO_IMAGE } from '@/lib/rome-pizza-class';
 import { HERO_IMAGE as TC_HERO_IMAGE } from '@/lib/tiramisu-class';
 import { HERO_IMAGE as TDT_HERO_IMAGE } from '@/lib/tuscany-day-trip';
+import { HERO_IMAGE as ADT_HERO_IMAGE } from '@/lib/amalfi-day-trip';
+import { HERO_IMAGE as TVDT_HERO_IMAGE } from '@/lib/tivoli-day-trip';
+import { HERO_IMAGE as NSF_HERO_IMAGE } from '@/lib/naples-street-food';
 
 /**
  * Underground Colosseum, Private Vatican, Pompeii Day Trip, Rome Vespa, Golf
@@ -226,6 +232,63 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  if (site.slug === 'amalfi-day-trip') {
+    const title = 'Amalfi Coast Day Trips — By Road or By Boat, Honestly Compared';
+    const description =
+      'First-hand Amalfi Coast day-trip guide. Positano, Ravello, and Amalfi routing, boat-vs-road comparisons, and honest crowd timing.';
+    const ogImage = `${ADT_HERO_IMAGE.src}?w=1200&h=630&q=80&auto=format&fit=crop`;
+    return {
+      title: { absolute: title },
+      description,
+      alternates: { canonical: `https://${SITE_DOMAIN}/${site.slug}` },
+      openGraph: {
+        title,
+        description,
+        url: `https://${SITE_DOMAIN}/${site.slug}`,
+        images: [{ url: ogImage, width: 1200, height: 630, alt: ADT_HERO_IMAGE.alt }],
+      },
+      twitter: { card: 'summary_large_image', images: [ogImage] },
+    };
+  }
+
+  if (site.slug === 'tivoli-day-trip') {
+    const title = "Tivoli Day Trips — Villa d'Este & Hadrian's Villa Guide";
+    const description =
+      "First-hand Tivoli day-trip guide from Rome. Villa d'Este vs Hadrian's Villa, half-day vs full-day, and honest transit logistics.";
+    const ogImage = `${TVDT_HERO_IMAGE.src}?w=1200&h=630&q=80&auto=format&fit=crop`;
+    return {
+      title: { absolute: title },
+      description,
+      alternates: { canonical: `https://${SITE_DOMAIN}/${site.slug}` },
+      openGraph: {
+        title,
+        description,
+        url: `https://${SITE_DOMAIN}/${site.slug}`,
+        images: [{ url: ogImage, width: 1200, height: 630, alt: TVDT_HERO_IMAGE.alt }],
+      },
+      twitter: { card: 'summary_large_image', images: [ogImage] },
+    };
+  }
+
+  if (site.slug === 'naples-street-food') {
+    const title = 'Naples Street Food Tours — Pizza, Markets & Spaccanapoli';
+    const description =
+      'First-hand Naples food tours from a guide who actually visits Naples. Pizza at the source, market tastings, and honest routing.';
+    const ogImage = `${NSF_HERO_IMAGE.src}?w=1200&h=630&q=80&auto=format&fit=crop`;
+    return {
+      title: { absolute: title },
+      description,
+      alternates: { canonical: `https://${SITE_DOMAIN}/${site.slug}` },
+      openGraph: {
+        title,
+        description,
+        url: `https://${SITE_DOMAIN}/${site.slug}`,
+        images: [{ url: ogImage, width: 1200, height: 630, alt: NSF_HERO_IMAGE.alt }],
+      },
+      twitter: { card: 'summary_large_image', images: [ogImage] },
+    };
+  }
+
   if (site.slug !== ACTIVE_NETWORK_SLUG) {
     return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
   }
@@ -289,6 +352,18 @@ export default async function NetworkSitePage({ params }: { params: Promise<{ sl
 
   if (site.slug === 'tuscany-day-trip') {
     return <TuscanyDayTripHome />;
+  }
+
+  if (site.slug === 'amalfi-day-trip') {
+    return <AmalfiDayTripHome />;
+  }
+
+  if (site.slug === 'tivoli-day-trip') {
+    return <TivoliDayTripHome />;
+  }
+
+  if (site.slug === 'naples-street-food') {
+    return <NaplesStreetFoodHome />;
   }
 
   // Only the one active property renders the shared-template site — the
