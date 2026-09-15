@@ -1,7 +1,8 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
 import { PhotoGallery, ADTFooter, ADTHeader } from './ADTShared';
-import { AUTHOR, HERO_IMAGE, MONEY_PAGES, SUPPORT_PAGES, Amalfi_DAY_TRIP_GALLERY } from '@/lib/amalfi-day-trip';
+import { HERO_IMAGE, MONEY_PAGES, SUPPORT_PAGES, Amalfi_DAY_TRIP_GALLERY } from '@/lib/amalfi-day-trip';
+// import { AUTHOR } from '@/lib/amalfi-day-trip';
 
 /**
  * The site's About page — mirrors Tiramisù Class's TCAboutPage.tsx structure
