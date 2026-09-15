@@ -144,28 +144,28 @@ export const QUICK_LINKS = [
 
 export const FAQS = [
   {
-    question: 'Is Naples street food different from Rome street food?',
+    question: "Is Naples street food different from Rome street food?",
     answer:
-      'Significantly — Naples is fried-food and pizza-forward (cuoppo, frittatine, true Neapolitan pizza), while Rome leans toward suppli, pizza al taglio, and market-stall Roman-Jewish specialities; this site is Naples-specific, not a repurposed Rome guide.',
+      "Significantly — Naples is fried-food and pizza-forward (cuoppo, frittatine, true Neapolitan pizza), while Rome leans toward suppli, pizza al taglio, and market-stall Roman-Jewish specialities; this site is Naples-specific, not a repurposed Rome guide.",
   },
   {
-    question: 'Is Naples safe for a food tour?',
+    question: "Is Naples safe for a food tour?",
     answer:
-      'Yes, in the well-trafficked historic center and market areas covered by these tours; standard city awareness applies, same as any major Italian city center.',
+      "Yes, in the well-trafficked historic center and market areas covered by these tours; standard city awareness applies, same as any major Italian city center.",
   },
   {
-    question: 'What's the difference between this and a Rome food tour?',
+    question: "What's the difference between this and a Rome food tour?",
     answer:
-      'Pure geography — same tour format and quality bar, but this site covers Naples specifically; see our sibling Street Food Rome for the Rome equivalent.',
+      "Pure geography — same tour format and quality bar, but this site covers Naples specifically; see our sibling Street Food Rome for the Rome equivalent.",
   },
   {
-    question: 'Do I need to book in advance?',
+    question: "Do I need to book in advance?",
     answer:
-      'Popular pizza-focused tours and famous pizzeria visits do sell out on weekends — booking 1–2 weeks ahead in peak season is safest.',
+      "Popular pizza-focused tours and famous pizzeria visits do sell out on weekends — booking 1–2 weeks ahead in peak season is safest.",
   },
   {
-    question: 'Can I combine a food tour with the underground tunnels in Naples?',
+    question: "Can I combine a food tour with the underground tunnels in Naples?",
     answer:
-      'Yes — the food-underground-combo page covers pairing a food walk with Naples' underground (Napoli Sotterranea) tunnel system in one day.',
+      "Yes — the food-underground-combo page covers pairing a food walk with Naples' underground (Napoli Sotterranea) tunnel system in one day.",
   },
 ];
