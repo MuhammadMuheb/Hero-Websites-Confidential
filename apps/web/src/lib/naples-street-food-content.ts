@@ -95,6 +95,25 @@ export const QUICK_FACTS_DETAILED = [
   },
 ];
 
+export const FAQS = [
+  {
+    question: "What's the difference between street food and sit-down meals?",
+    answer: "Street food is the rapid-fire tasting approach — small portions, multiple stops, the pace of exploration. Sit-down is for lingering. Street food tours pack the city's food identity into 3–4 hours.",
+  },
+  {
+    question: "Is Naples street food safe to eat?",
+    answer: "Yes — Italian food-safety standards are strict. What looks chaotic is actually highly regulated. The best stalls have the fastest turnover, which is the best safety marker.",
+  },
+  {
+    question: "How much do street food tours cost?",
+    answer: "Tours range €35–70 depending on the partner and the depth (pizza-focused vs. classic multi-stop). That typically includes 4–6 tastings but not drinks.",
+  },
+  {
+    question: "Can I do a street food tour with kids?",
+    answer: "Yes — portions are small, variety is high, and kids eat what they want from each stop. The walking pace suits families. Just note that some fried foods are rich.",
+  },
+];
+
 export interface MoneyPageContent {
   href: string;
   navTitle: string;

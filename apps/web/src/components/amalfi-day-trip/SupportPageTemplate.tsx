@@ -23,7 +23,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: content.faqs.map((faq) => ({
+    mainEntity: (content.faqs || []).map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: { '@type': 'Answer', text: faq.answer },
@@ -35,7 +35,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <ADTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#trip-options`} />
+      <ADTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="#faq" ctaHref={`${content.relatedMoneyHref || '/'}#trip-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">
@@ -48,17 +48,21 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
         </div>
         <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-8 sm:px-14 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-14">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{content.keyword}</p>
-            <h1 className="mt-3 font-display text-[30px] font-bold leading-[1.15] tracking-tight text-ink sm:text-[38px]">
-              {content.h1}
-            </h1>
+            {content.keyword && <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{content.keyword}</p>}
+            {content.h1 && (
+              <h1 className="mt-3 font-display text-[30px] font-bold leading-[1.15] tracking-tight text-ink sm:text-[38px]">
+                {content.h1}
+              </h1>
+            )}
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                href={content.relatedMoneyHref}
-                className="flex h-11 items-center justify-center rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
-              >
-                {content.relatedMoneyLabel}
-              </Link>
+              {content.relatedMoneyHref && content.relatedMoneyLabel && (
+                <Link
+                  href={content.relatedMoneyHref}
+                  className="flex h-11 items-center justify-center rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  {content.relatedMoneyLabel}
+                </Link>
+              )}
               <Link
                 href="/#featured-tours"
                 className="flex h-11 items-center justify-center rounded-control border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent-soft"
@@ -67,13 +71,16 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
               </Link>
             </div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
-            <SafeImage src={content.heroImage.src} alt={content.heroImage.alt} fill priority sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
-          </div>
+          {content.heroImage && (
+            <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
+              <SafeImage src={content.heroImage.src} alt={content.heroImage.alt} fill priority sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
+            </div>
+          )}
         </div>
       </section>
 
       {/* ---------- body sections ---------- */}
+      {content.sections && content.sections.length > 0 && (
       <section className="border-b border-line py-14 sm:py-16">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           {content.sections.map((section) => (
@@ -90,6 +97,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
           ))}
         </div>
       </section>
+      )}
 
       {/* ---------- closing CTA band ---------- */}
       <section className="border-b border-line py-14 sm:py-16">
@@ -104,17 +112,20 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
                 before you choose.
               </p>
             </div>
-            <Link
-              href={content.relatedMoneyHref}
-              className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
-            >
-              {content.relatedMoneyLabel} &rarr;
-            </Link>
+            {content.relatedMoneyHref && content.relatedMoneyLabel && (
+              <Link
+                href={content.relatedMoneyHref}
+                className="flex h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+              >
+                {content.relatedMoneyLabel} &rarr;
+              </Link>
+            )}
           </div>
         </div>
       </section>
 
       {/* ---------- FAQ ---------- */}
+      {content.faqs && content.faqs.length > 0 && (
       <section id="faq" className="scroll-mt-[65px] border-b border-line bg-paper-tint py-14 sm:py-16">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Common questions</p>
@@ -136,6 +147,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
           </div>
         </div>
       </section>
+      )}
 
       <ADTAuthorBox />
       <ADTFooter />

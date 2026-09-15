@@ -97,20 +97,21 @@ export const SEO_META = {
 
 export const AUTHOR = {
   name: 'Marco Rossi',
-  credentials: 'Tivoli & Roman Villas guide, 10 years',
+  initials: 'MR',
+  title: 'Tivoli & Roman Villas guide, 10 years',
+  domain: 'tivolivillas.com',
   bio: 'A guide who has explored every fountain at Villa d\'Este and walked every ruin at Hadrian\'s Villa — writes from deep first-hand knowledge, not guidebooks.',
-  aboutHref: '/about',
 };
 
 export const FAQS = FAQ_ITEMS;
 
 export const QUICK_FACTS = [
-  { label: 'Distance from Rome', value: 'Tivoli: ~28 km' },
-  { label: 'Travel time (from Rome)', value: '45 min – 1 hour by train + bus' },
-  { label: 'Villa d\'Este visit time', value: '1.5–2.5 hours' },
-  { label: "Hadrian's Villa visit time", value: '2–3 hours' },
-  { label: 'Best months', value: 'May–June, Sept–Oct' },
-  { label: 'Peak crowds', value: 'July–August' },
+  { label: 'Distance from Rome', value: 'Tivoli: ~28 km', detail: 'About 30 kilometers northeast of Rome' },
+  { label: 'Travel time (from Rome)', value: '45 min – 1 hour by train + bus', detail: 'Regional train plus local bus to both villas' },
+  { label: 'Villa d\'Este visit time', value: '1.5–2.5 hours', detail: 'Fountains and garden tour duration' },
+  { label: "Hadrian's Villa visit time", value: '2–3 hours', detail: 'Ruins and archaeological site tour duration' },
+  { label: 'Best months', value: 'May–June, Sept–Oct', detail: 'Shoulder season for crowds and weather' },
+  { label: 'Peak crowds', value: 'July–August', detail: 'Summer vacation season brings large crowds' },
 ];
 
 export interface QuickLink {
@@ -134,40 +135,95 @@ export interface PageMetadata {
 
 export interface MoneyPageContent {
   href: string;
+  navTitle?: string;
+  h1?: string;
+  keyword?: string;
   metaTitle: string;
   metaDescription: string;
+  heroImage: { src: string; alt: string };
+  intro: string[];
+  atAGlance: Array<{ label: string; value: string }>;
+  sections: Array<{ title: string; body: string }>;
+  verdict?: { heading: string; body: string };
+  faqs: Array<{ question: string; answer: string }>;
+  relatedSupportHref: string;
+  relatedSupportLabel: string;
 }
 
 export interface SupportPageContent {
   href: string;
+  navTitle?: string;
   metaTitle: string;
   metaDescription: string;
+  h1?: string;
+  keyword?: string;
+  heroImage?: { src: string; alt: string };
+  sections?: Array<{ heading?: string; title?: string; body: string[] }>;
+  faqs?: Array<{ question: string; answer: string }>;
+  relatedMoneyHref?: string;
+  relatedMoneyLabel?: string;
 }
 
 const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
     href: '/tivoli-from-rome',
+    heroImage: { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e', alt: "Cascading water fountains in the elaborate garden of Villa d'Este" },
+    h1: 'Tivoli Day Trip from Rome: Half-Day vs Full-Day',
+    keyword: 'tivoli day trip from rome',
     metaTitle: 'Tivoli Day Trip from Rome: Half-Day vs Full-Day Guide',
     metaDescription:
       'Close enough for a half-day trip, full-day lets you see both villas properly — timing, routing, and honest transit logistics from Rome.',
+    intro: [],
+    atAGlance: [],
+    sections: [],
+    faqs: [],
+    relatedSupportHref: '/getting-to-tivoli-train-vs-tour',
+    relatedSupportLabel: 'Getting to Tivoli',
   },
   {
     href: '/villa-d-este-hadrian-s-villa',
+    heroImage: { src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945', alt: "Ancient Roman columns and ruins at Hadrian's Villa, surrounded by cypress trees" },
+    h1: "Villa d'Este and Hadrian's Villa: Which to See First",
+    keyword: "villa d'este hadrian's villa tour",
     metaTitle: "Villa d'Este and Hadrian's Villa: Which to See First",
     metaDescription:
       "Combining Villa d'Este's fountains with Hadrian's Villa's ruins in one day — routing, timing, and which site to prioritise.",
+    intro: [],
+    atAGlance: [],
+    sections: [],
+    faqs: [],
+    relatedSupportHref: '/which-villa-to-prioritise',
+    relatedSupportLabel: 'Which Villa',
   },
   {
     href: '/private-tivoli-tour',
+    heroImage: { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: "Sunset light over Villa d'Este fountains with golden-hour glow on the water features" },
+    h1: 'Private Tivoli Tour: Door-to-Door Transport & Pacing',
+    keyword: 'private tivoli tour',
     metaTitle: 'Private Tivoli Tour: Door-to-Door Transport & Pacing',
     metaDescription:
       'Skip the bus transfers — private tour removes the logistics hassle and lets you customize your day between the two villas.',
+    intro: [],
+    atAGlance: [],
+    sections: [],
+    faqs: [],
+    relatedSupportHref: '/getting-to-tivoli-train-vs-tour',
+    relatedSupportLabel: 'Getting to Tivoli',
   },
   {
     href: '/half-day-tivoli',
+    heroImage: { src: 'https://images.unsplash.com/photo-1549144611-11a278e1e57a', alt: "Aerial view of Villa d'Este's terraced gardens with fountains and symmetrical landscaping" },
+    h1: "Half-Day Tivoli: Villa d'Este Fountains Only",
+    keyword: 'half day tivoli tour',
     metaTitle: "Half-Day Tivoli: Villa d'Este Fountains Only",
     metaDescription:
       "Enough time for Villa d'Este's fountain gardens without the full-day commitment — realistic round-trip timing from Rome.",
+    intro: [],
+    atAGlance: [],
+    sections: [],
+    faqs: [],
+    relatedSupportHref: '/gardens-best-season',
+    relatedSupportLabel: 'Best Season',
   },
 ];
 

@@ -10,10 +10,10 @@ export function NSFAboutPage() {
             About Naples Street Food
           </h1>
           <p className="mt-5 text-[17px] leading-relaxed text-ink-muted">
-            Naples Street Food is an independent guide to Naples' most authentic food experiences. Every tour listed here has been personally visited and tested to ensure it represents real Neapolitan food culture, not tourist traps.
+            Naples Street Food is an independent guide to Naples&apos; most authentic food experiences. Every tour listed here has been personally visited and tested to ensure it represents real Neapolitan food culture, not tourist traps.
           </p>
           <p className="mt-4 text-[17px] leading-relaxed text-ink-muted">
-            We're not affiliated with any restaurant, tour operator, or booking platform. Our recommendations are based solely on first-hand experience and what actually represents Naples' street food identity.
+            We&apos;re not affiliated with any restaurant, tour operator, or booking platform. Our recommendations are based solely on first-hand experience and what actually represents Naples&apos; street food identity.
           </p>
         </div>
       </section>

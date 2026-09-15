@@ -138,22 +138,22 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
       <section className="border-b border-line py-14 sm:py-16">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           {content.sections.map((section) => (
-            <div key={section.heading} className="mt-8 first:mt-0">
+            <div key={section.title} className="mt-8 first:mt-0">
               <h2 className="font-display text-[20px] font-bold leading-snug tracking-tight text-ink sm:text-[24px]">
-                {section.heading}
+                {section.title}
               </h2>
-              {section.body.map((para, i) => (
-                <p key={i} className="mt-3 text-base leading-relaxed text-ink-muted">
-                  {para}
-                </p>
-              ))}
+              <p className="mt-3 text-base leading-relaxed text-ink-muted">
+                {section.body}
+              </p>
             </div>
           ))}
 
-          <div className="mt-10 rounded-media border border-gold/50 bg-gold/[0.06] p-6">
-            <h3 className="font-display text-[17px] font-bold text-ink">{content.verdict.heading}</h3>
-            <p className="mt-2 text-base leading-relaxed text-ink-muted">{content.verdict.body}</p>
-          </div>
+          {content.verdict && (
+            <div className="mt-10 rounded-media border border-gold/50 bg-gold/[0.06] p-6">
+              <h3 className="font-display text-[17px] font-bold text-ink">{content.verdict.heading}</h3>
+              <p className="mt-2 text-base leading-relaxed text-ink-muted">{content.verdict.body}</p>
+            </div>
+          )}
         </div>
       </section>
 

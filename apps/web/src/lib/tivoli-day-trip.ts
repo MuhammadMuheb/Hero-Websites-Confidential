@@ -3,6 +3,8 @@
  * item lists, and the hero image constant. Mirrors the Amalfi Day Trip pattern.
  */
 
+export { AUTHOR, FAQS, QUICK_FACTS, QUICK_LINKS } from './tivoli-day-trip-content';
+
 export const HERO_IMAGE = {
   src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0',
   alt: 'Cascading fountains of Villa d\'Este at Tivoli, with terraced Renaissance gardens and tall cypress trees framing the water features',
@@ -62,6 +64,7 @@ export interface FeaturedTour {
   badge: string | null;
   href: string;
   image: { src: string; alt: string };
+  coastaltastingIncluded?: boolean;
 }
 
 export const FEATURED_TOURS: FeaturedTour[] = [
@@ -134,3 +137,24 @@ export const SUPPORT_PAGES = [
     image: { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: 'Family-friendly fountain pathway at Villa d\'Este, safe and accessible for all ages' },
   },
 ];
+
+export const EXPLORE_LINKS = MONEY_PAGES.map((p) => ({ label: p.title, href: p.href }));
+export const LEARN_LINKS = SUPPORT_PAGES.map((p) => ({ label: p.title, href: p.href }));
+
+export const TOURS_NAV_ITEMS: NavItem[] = MONEY_PAGES.map((p) => ({ title: p.title, href: p.href, keyword: p.keyword }));
+
+export const PLAN_NAV_ITEMS: NavItem[] = SUPPORT_PAGES.map((p) => ({ title: p.title, href: p.href, keyword: p.keyword }));
+
+export const Tivoli_DAY_TRIP_GALLERY = [
+  { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
+  { src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
+  { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: 'Sunset light over Villa d\'Este fountains with golden-hour glow on the water features' },
+  { src: 'https://images.unsplash.com/photo-1549144611-11a278e1e57a', alt: 'Aerial view of Villa d\'Este\'s terraced gardens with fountains and symmetrical landscaping' },
+];
+
+export function getFeaturedToursForPage(href: string, max = 4): FeaturedTour[] {
+  return FEATURED_TOURS.filter((tour) => {
+    const tourHref = tour.href.split('/go/')[1];
+    return tourHref ? (tourHref.includes(href) || href.includes(tourHref)) : false;
+  }).slice(0, max);
+}

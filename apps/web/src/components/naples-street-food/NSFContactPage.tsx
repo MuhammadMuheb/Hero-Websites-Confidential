@@ -10,7 +10,7 @@ export function NSFContactPage() {
             Contact
           </h1>
           <p className="mt-5 text-[17px] leading-relaxed text-ink-muted">
-            Have a question about a Naples food tour, a tour recommendation that should be on this site, or feedback on a tour you've taken? Get in touch.
+            Have a question about a Naples food tour, a tour recommendation that should be on this site, or feedback on a tour you&apos;ve taken? Get in touch.
           </p>
           <div className="mt-8 rounded-media border border-line bg-paper-tint p-6">
             <p className="text-sm text-ink-muted">

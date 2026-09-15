@@ -301,7 +301,7 @@ export function AmalfiDayTripHome() {
             Amalfi Coast, by the Numbers
           </h2>
           <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
-            A little geography and timing before you book — the region's logistics and when the coast road is open.
+            A little geography and timing before you book — the region&apos;s logistics and when the coast road is open.
           </p>
           <div className="mt-8">
             <QuickFactsStrip facts={QUICK_FACTS} />

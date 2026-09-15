@@ -97,20 +97,21 @@ export const SEO_META = {
 
 export const AUTHOR = {
   name: 'Marco Rossi',
-  credentials: 'Amalfi Coast guide, 8 years',
+  initials: 'MR',
+  title: 'Amalfi Coast guide, 8 years',
+  domain: 'amalficoastguide.com',
   bio: 'A guide who has driven every switchback and sailed every cove along the Amalfi Coast — writes from real experience, not travel blogs.',
-  aboutHref: '/about',
 };
 
 export const FAQS = FAQ_ITEMS;
 
 export const QUICK_FACTS = [
-  { label: 'Distance from Rome', value: 'Positano: ~260 km' },
-  { label: 'Distance from Naples', value: 'Positano: ~60 km' },
-  { label: 'Driving time (Naples base)', value: '1.5–2 hours to Positano' },
-  { label: 'Coast road condition', value: 'Narrow, cliffside, winding' },
-  { label: 'Best months', value: 'May–June, Sept–Oct' },
-  { label: 'Peak crowds', value: 'July–August' },
+  { label: 'Distance from Rome', value: 'Positano: ~260 km', detail: 'Long-day trip from Rome base' },
+  { label: 'Distance from Naples', value: 'Positano: ~60 km', detail: 'Realistic day trip from Naples base' },
+  { label: 'Driving time (Naples base)', value: '1.5–2 hours to Positano', detail: 'Coast road travel time one-way' },
+  { label: 'Coast road condition', value: 'Narrow, cliffside, winding', detail: 'Requires careful driving in summer traffic' },
+  { label: 'Best months', value: 'May–June, Sept–Oct', detail: 'Shoulder season for crowds and weather' },
+  { label: 'Peak crowds', value: 'July–August', detail: 'Summer vacation brings largest crowds' },
 ];
 
 export interface QuickLink {
@@ -134,40 +135,95 @@ export interface PageMetadata {
 
 export interface MoneyPageContent {
   href: string;
+  navTitle?: string;
+  h1?: string;
+  keyword?: string;
   metaTitle: string;
   metaDescription: string;
+  heroImage: { src: string; alt: string };
+  intro: string[];
+  atAGlance: Array<{ label: string; value: string }>;
+  sections: Array<{ title: string; body: string }>;
+  verdict?: { heading: string; body: string };
+  faqs: Array<{ question: string; answer: string }>;
+  relatedSupportHref: string;
+  relatedSupportLabel: string;
 }
 
 export interface SupportPageContent {
   href: string;
+  navTitle?: string;
   metaTitle: string;
   metaDescription: string;
+  h1?: string;
+  keyword?: string;
+  heroImage?: { src: string; alt: string };
+  sections?: Array<{ heading?: string; title?: string; body: string[] }>;
+  faqs?: Array<{ question: string; answer: string }>;
+  relatedMoneyHref?: string;
+  relatedMoneyLabel?: string;
 }
 
 const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
     href: "/amalfi-from-rome",
+    h1: "Amalfi Coast Day Trip From Rome",
+    keyword: "amalfi coast from rome",
     metaTitle: "Amalfi Coast Day Trip From Rome: Is It Worth the Travel Time?",
     metaDescription:
       "Over 4 hours of one-way travel from Rome to the Amalfi Coast — here's whether a day trip makes sense, and which towns fit in one day.",
+    heroImage: { src: 'https://images.unsplash.com/photo-1599050642881-cdeae5abac2e', alt: 'A yacht sailing along the dramatic cliffside towns of the Amalfi Coast' },
+    intro: [],
+    atAGlance: [],
+    sections: [],
+    faqs: [],
+    relatedSupportHref: "/boat-vs-road",
+    relatedSupportLabel: "Boat vs Road",
   },
   {
     href: "/amalfi-from-naples-sorrento",
+    h1: "Amalfi Coast Day Trip From Sorrento",
+    keyword: "amalfi from sorrento",
     metaTitle: "Amalfi Coast Day Trip From Sorrento: Timing and Town Selection",
     metaDescription:
       "From Sorrento or Naples, a proper Amalfi day is genuinely realistic — here's the routing, timing, and which towns to prioritize.",
+    heroImage: { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', alt: "Colorful houses stacked on the cliffs of Positano overlooking the Mediterranean" },
+    intro: [],
+    atAGlance: [],
+    sections: [],
+    faqs: [],
+    relatedSupportHref: "/best-towns-for-a-day",
+    relatedSupportLabel: "Best Towns",
   },
   {
     href: "/positano-amalfi-ravello",
+    h1: "Positano, Amalfi, and Ravello: Routing That Actually Works",
+    keyword: "positano amalfi ravello tour",
     metaTitle: "Positano, Amalfi, and Ravello: Routing That Actually Works",
     metaDescription:
       "The three-town classic — but the order and time budget per town make or break the day. Here's the routing that works in one day.",
+    heroImage: { src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34', alt: 'Clifftop view of Ravello with terraced gardens and Mediterranean landscape stretching to the horizon' },
+    intro: [],
+    atAGlance: [],
+    sections: [],
+    faqs: [],
+    relatedSupportHref: "/summer-crowds-timing",
+    relatedSupportLabel: "Summer Crowds",
   },
   {
     href: "/amalfi-boat-day-trip",
+    h1: "Amalfi Boat Day Trip",
+    keyword: "amalfi boat tour",
     metaTitle: "Amalfi Boat Day Trip: Avoiding the Coast Road's Traffic",
     metaDescription:
       "Why a boat day trip along the Amalfi Coast beats the coast road in summer — sea-route stops, timing, and what to expect.",
+    heroImage: { src: 'https://images.unsplash.com/photo-1612080626919-c3400ca199e7', alt: 'Crystal-clear Mediterranean waters lapping against lemon-colored cliffs in full summer sun' },
+    intro: [],
+    atAGlance: [],
+    sections: [],
+    faqs: [],
+    relatedSupportHref: "/boat-vs-road",
+    relatedSupportLabel: "Boat vs Road",
   },
 ];
 

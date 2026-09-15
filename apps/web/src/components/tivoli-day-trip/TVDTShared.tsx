@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
 import {
-  // AUTHOR,
-  // EXPLORE_LINKS,
-  // LEARN_LINKS,
-  // PLAN_NAV_ITEMS,
-  // TOURS_NAV_ITEMS,
+  AUTHOR,
+  EXPLORE_LINKS,
+  LEARN_LINKS,
+  PLAN_NAV_ITEMS,
+  TOURS_NAV_ITEMS,
   type FeaturedTour,
   type NavItem,
 } from '@/lib/tivoli-day-trip';
