@@ -18,7 +18,7 @@ export const MONEY_PAGES = [
   {
     title: 'Naples Street-Food Tour',
     href: '/naples-street-food-tour',
-    blurb: 'The flagship guided food walk through Naples' historic center — pizza, fried snacks, and the market stalls that define the city's food identity.',
+    blurb: "The flagship guided food walk through Naples' historic center — pizza, fried snacks, and the market stalls that define the city's food identity.",
     keyword: 'naples street food tour',
     cta: 'Compare food tours',
     badge: 'Most Popular' as string | null,
@@ -36,7 +36,7 @@ export const MONEY_PAGES = [
   {
     title: 'Naples Market Tour',
     href: '/naples-market-tour',
-    blurb: 'Naples' markets are louder, denser, and more theatrical than Rome's — this tour uses them as a tasting counter for the city's fried-food specialities.',
+    blurb: "Naples' markets are louder, denser, and more theatrical than Rome's — this tour uses them as a tasting counter for the city's fried-food specialities.",
     keyword: 'naples market tour',
     cta: 'Explore market tours',
     badge: null,

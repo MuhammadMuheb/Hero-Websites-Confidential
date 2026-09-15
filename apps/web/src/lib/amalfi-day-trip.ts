@@ -36,7 +36,7 @@ export const MONEY_PAGES = [
   {
     title: 'Positano + Amalfi + Ravello',
     href: '/positano-amalfi-ravello',
-    blurb: 'The three-town classic — but the order and time budget per town make or break the day. Here's the routing that actually works.',
+    blurb: "The three-town classic — but the order and time budget per town make or break the day. Here's the routing that actually works.",
     keyword: 'positano amalfi ravello tour',
     cta: 'Compare three-town tours',
     badge: 'Classic Trio' as string | null,
@@ -45,7 +45,7 @@ export const MONEY_PAGES = [
   {
     title: 'Amalfi Boat Day Trip',
     href: '/amalfi-boat-day-trip',
-    blurb: 'Seeing the coast from the water solves the coast road\'s worst problem — traffic and hairpin-turn queues that eat afternoons in summer.',
+    blurb: "Seeing the coast from the water solves the coast road's worst problem — traffic and hairpin-turn queues that eat afternoons in summer.",
     keyword: 'amalfi boat tour',
     cta: 'Compare boat tours',
     badge: 'Scenic Alternative' as string | null,

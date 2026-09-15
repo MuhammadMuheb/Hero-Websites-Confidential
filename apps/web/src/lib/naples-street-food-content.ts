@@ -20,7 +20,7 @@ export const HERO = {
 
 export const MONEY_PAGE_COPY = {
   naplesStreetFoodTour: {
-    hook: 'The flagship guided food walk through Naples' historic center — pizza, fried snacks, and the market stalls that define the city's food identity.',
+    hook: "The flagship guided food walk through Naples' historic center — pizza, fried snacks, and the market stalls that define the city's food identity.",
     highlights: [
       '4–6 tasting stops',
       'Historic-center routing',
@@ -36,7 +36,7 @@ export const MONEY_PAGE_COPY = {
     ],
   },
   naplesMarketTour: {
-    hook: 'Naples' markets are louder, denser, and more theatrical than Rome's — this tour uses them as a tasting counter for the city's fried-food specialities.',
+    hook: "Naples' markets are louder, denser, and more theatrical than Rome's — this tour uses them as a tasting counter for the city's fried-food specialities.",
     highlights: [
       'Market-stall tastings',
       'Fried-food sampling (cuoppo, frittatine)',
@@ -44,7 +44,7 @@ export const MONEY_PAGE_COPY = {
     ],
   },
   spaccanapoli: {
-    hook: 'The old-town route straight down Naples' famous Spaccanapoli street — food stops threaded through the historic center's narrowest, most atmospheric alleys.',
+    hook: "The old-town route straight down Naples' famous Spaccanapoli street — food stops threaded through the historic center's narrowest, most atmospheric alleys.",
     highlights: [
       'Spaccanapoli routing logic',
       'Historic-center food stops',

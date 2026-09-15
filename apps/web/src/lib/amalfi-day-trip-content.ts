@@ -37,7 +37,7 @@ export const MONEY_PAGE_COPY = {
     ],
   },
   positanoAmalfiRavello: {
-    hook: 'The three-town classic — but the order and time budget per town make or break the day. Here's the routing that actually works.',
+    hook: "The three-town classic — but the order and time budget per town make or break the day. Here's the routing that actually works.",
     highlights: [
       'Town-order logic by crowd pattern',
       'Time budget per town',
@@ -45,7 +45,7 @@ export const MONEY_PAGE_COPY = {
     ],
   },
   amalfiBoatDayTrip: {
-    hook: 'Seeing the coast from the water solves the coast road\'s worst problem — the traffic and hairpin-turn queues that eat entire afternoons in summer.',
+    hook: "Seeing the coast from the water solves the coast road's worst problem — the traffic and hairpin-turn queues that eat entire afternoons in summer.",
     highlights: [
       'Sea-route town stops',
       'Boat-vs-bus timing comparison',
