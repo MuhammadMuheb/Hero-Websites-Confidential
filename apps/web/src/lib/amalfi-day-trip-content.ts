@@ -39,8 +39,8 @@ export const MONEY_PAGE_COPY = {
   positanoAmalfiRavello: {
     hook: "The three-town classic — but the order and time budget per town make or break the day. Here's the routing that actually works.",
     highlights: [
-      'Town-order logic by crowd pattern',
-      'Time budget per town',
+      "Town-order logic by crowd pattern",
+      "Time budget per town",
       "Ravello's clifftop-garden detour value",
     ],
   },
@@ -71,9 +71,9 @@ export const FAQ_ITEMS = [
       'July and August, especially midday in Positano — the summer-crowds-timing page covers shoulder-season alternatives (late May, September) that keep the views without the gridlock.',
   },
   {
-    question: 'Can I visit Positano, Amalfi, and Ravello all in one day?',
+    question: "Can I visit Positano, Amalfi, and Ravello all in one day?",
     answer:
-      'Yes, but it\'s tight — budget realistic time per town rather than trying to linger in all three, and expect the day to run 10+ hours door to door from a Naples/Sorrento base.',
+      "Yes, but it's tight — budget realistic time per town rather than trying to linger in all three, and expect the day to run 10+ hours door to door from a Naples/Sorrento base.",
   },
   {
     question: 'Is the Amalfi Coast drivable, or should I take a tour?',
@@ -146,26 +146,26 @@ export interface SupportPageContent {
 
 const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
-    href: '/amalfi-from-rome',
-    metaTitle: 'Amalfi Coast Day Trip From Rome: Is It Worth the Travel Time?',
+    href: "/amalfi-from-rome",
+    metaTitle: "Amalfi Coast Day Trip From Rome: Is It Worth the Travel Time?",
     metaDescription:
-      'Over 4 hours of one-way travel from Rome to the Amalfi Coast — here\'s whether a day trip makes sense, and which towns fit in one day.',
+      "Over 4 hours of one-way travel from Rome to the Amalfi Coast — here's whether a day trip makes sense, and which towns fit in one day.",
   },
   {
-    href: '/amalfi-from-naples-sorrento',
-    metaTitle: 'Amalfi Coast Day Trip From Sorrento: Timing and Town Selection',
+    href: "/amalfi-from-naples-sorrento",
+    metaTitle: "Amalfi Coast Day Trip From Sorrento: Timing and Town Selection",
     metaDescription:
-      'From Sorrento or Naples, a proper Amalfi day is genuinely realistic — here\'s the routing, timing, and which towns to prioritize.',
+      "From Sorrento or Naples, a proper Amalfi day is genuinely realistic — here's the routing, timing, and which towns to prioritize.",
   },
   {
-    href: '/positano-amalfi-ravello',
-    metaTitle: 'Positano, Amalfi, and Ravello: Routing That Actually Works',
+    href: "/positano-amalfi-ravello",
+    metaTitle: "Positano, Amalfi, and Ravello: Routing That Actually Works",
     metaDescription:
-      'The three-town classic — but the order and time budget per town make or break the day. Here\'s the routing that works in one day.',
+      "The three-town classic — but the order and time budget per town make or break the day. Here's the routing that works in one day.",
   },
   {
-    href: '/amalfi-boat-day-trip',
-    metaTitle: 'Amalfi Boat Day Trip: Avoiding the Coast Road\'s Traffic',
+    href: "/amalfi-boat-day-trip",
+    metaTitle: "Amalfi Boat Day Trip: Avoiding the Coast Road's Traffic",
     metaDescription:
       "Why a boat day trip along the Amalfi Coast beats the coast road in summer — sea-route stops, timing, and what to expect.",
   },
@@ -173,22 +173,22 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
 
 const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
   {
-    href: '/boat-vs-road',
-    metaTitle: 'Boat vs Road: Which is Better for an Amalfi Coast Day Trip?',
+    href: "/boat-vs-road",
+    metaTitle: "Boat vs Road: Which is Better for an Amalfi Coast Day Trip?",
     metaDescription:
-      'Honest comparison of boat and road options for the Amalfi Coast — traffic reality, views, pacing, and when each option wins.',
+      "Honest comparison of boat and road options for the Amalfi Coast — traffic reality, views, pacing, and when each option wins.",
   },
   {
-    href: '/best-towns-for-a-day',
-    metaTitle: 'Best Towns for an Amalfi Coast Day Trip: Positano, Ravello, or Amalfi?',
+    href: "/best-towns-for-a-day",
+    metaTitle: "Best Towns for an Amalfi Coast Day Trip: Positano, Ravello, or Amalfi?",
     metaDescription:
-      'A day limits you to 2–3 towns max. Here\'s which combination gives you the coast at its best without the exhaustion.',
+      "A day limits you to 2–3 towns max. Here's which combination gives you the coast at its best without the exhaustion.",
   },
   {
-    href: '/summer-crowds-timing',
-    metaTitle: 'Amalfi Coast Summer Crowds: When to Go and How to Avoid the Peak',
+    href: "/summer-crowds-timing",
+    metaTitle: "Amalfi Coast Summer Crowds: When to Go and How to Avoid the Peak",
     metaDescription:
-      'July–August are stunning but packed. Here\'s the real timing breakdown by town and shoulder-season alternatives that keep the light.',
+      "July–August are stunning but packed. Here's the real timing breakdown by town and shoulder-season alternatives that keep the light.",
   },
 ];
 
@@ -202,43 +202,43 @@ export function getSupportPageContent(href: string): SupportPageContent | undefi
 
 export const PAGE_META: Record<string, PageMetadata> = {
   home: {
-    title: 'Amalfi Coast Day Trips — By Road or By Boat, Honestly Compared',
+    title: "Amalfi Coast Day Trips — By Road or By Boat, Honestly Compared",
     description:
-      'First-hand Amalfi Coast day-trip guide. Positano, Ravello, and Amalfi routing, boat-vs-road comparisons, and honest crowd timing.',
+      "First-hand Amalfi Coast day-trip guide. Positano, Ravello, and Amalfi routing, boat-vs-road comparisons, and honest crowd timing.",
   },
   amalfiFromRome: {
-    title: 'Amalfi Coast Day Trip From Rome: Is It Worth the Travel Time?',
+    title: "Amalfi Coast Day Trip From Rome: Is It Worth the Travel Time?",
     description:
-      'Over 4 hours of one-way travel from Rome to the Amalfi Coast — here\'s whether a day trip makes sense, and which towns fit in one day.',
+      "Over 4 hours of one-way travel from Rome to the Amalfi Coast — here's whether a day trip makes sense, and which towns fit in one day.",
   },
   amalfiFromNaplesSorrento: {
-    title: 'Amalfi Coast Day Trip From Sorrento: Timing and Town Selection',
+    title: "Amalfi Coast Day Trip From Sorrento: Timing and Town Selection",
     description:
-      'From Sorrento or Naples, a proper Amalfi day is genuinely realistic — here\'s the routing, timing, and which towns to prioritize.',
+      "From Sorrento or Naples, a proper Amalfi day is genuinely realistic — here's the routing, timing, and which towns to prioritize.",
   },
   positanoAmalfiRavello: {
-    title: 'Positano, Amalfi, and Ravello: Routing That Actually Works',
+    title: "Positano, Amalfi, and Ravello: Routing That Actually Works",
     description:
-      'The three-town classic — but the order and time budget per town make or break the day. Here\'s the routing that works in one day.',
+      "The three-town classic — but the order and time budget per town make or break the day. Here's the routing that works in one day.",
   },
   amalfiBoatDayTrip: {
-    title: 'Amalfi Boat Day Trip: Avoiding the Coast Road\'s Traffic',
+    title: "Amalfi Boat Day Trip: Avoiding the Coast Road's Traffic",
     description:
       "Why a boat day trip along the Amalfi Coast beats the coast road in summer — sea-route stops, timing, and what to expect.",
   },
   boatVsRoad: {
-    title: 'Boat vs Road: Which is Better for an Amalfi Coast Day Trip?',
+    title: "Boat vs Road: Which is Better for an Amalfi Coast Day Trip?",
     description:
-      'Honest comparison of boat and road options for the Amalfi Coast — traffic reality, views, pacing, and when each option wins.',
+      "Honest comparison of boat and road options for the Amalfi Coast — traffic reality, views, pacing, and when each option wins.",
   },
   bestTownsForADay: {
-    title: 'Best Towns for an Amalfi Coast Day Trip: Positano, Ravello, or Amalfi?',
+    title: "Best Towns for an Amalfi Coast Day Trip: Positano, Ravello, or Amalfi?",
     description:
-      'A day limits you to 2–3 towns max. Here\'s which combination gives you the coast at its best without the exhaustion.',
+      "A day limits you to 2–3 towns max. Here's which combination gives you the coast at its best without the exhaustion.",
   },
   summerCrowdsTiming: {
-    title: 'Amalfi Coast Summer Crowds: When to Go and How to Avoid the Peak',
+    title: "Amalfi Coast Summer Crowds: When to Go and How to Avoid the Peak",
     description:
-      'July–August are stunning but packed. Here\'s the real timing breakdown by town and shoulder-season alternatives that keep the light.',
+      "July–August are stunning but packed. Here's the real timing breakdown by town and shoulder-season alternatives that keep the light.",
   },
 };
