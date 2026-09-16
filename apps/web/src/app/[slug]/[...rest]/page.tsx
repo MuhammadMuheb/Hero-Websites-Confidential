@@ -49,7 +49,7 @@ import { MoneyPageTemplate as NSFMoneyPageTemplate } from '@/components/naples-s
 import { SupportPageTemplate as NSFSupportPageTemplate } from '@/components/naples-street-food/SupportPageTemplate';
 import { NSFAboutPage } from '@/components/naples-street-food/NSFAboutPage';
 import { NSFContactPage } from '@/components/naples-street-food/NSFContactPage';
-import { ACTIVE_NETWORK_SLUG, getNetworkSite } from '@/lib/tours';
+import { getNetworkSite } from '@/lib/tours';
 import { getMoneyPageContent, getSupportPageContent } from '@/lib/underground-colosseum-content';
 import { ARENA_FLOOR_PAGE, MONEY_PAGES, SUPPORT_PAGES, WORTH_IT_PAGE } from '@/lib/underground-colosseum';
 import {
@@ -811,8 +811,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
   }
 
-  if (site.slug === ACTIVE_NETWORK_SLUG) return {};
-  return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
+  // All 13 network properties now generate metadata (multi-tenancy enabled)
+  return {};
 }
 
 export default async function NetworkSiteSubPage({ params }: { params: Promise<{ slug: string; rest: string[] }> }) {
@@ -964,7 +964,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     return <UnderConstructionNotice siteName={site.name} />;
   }
 
-  if (site.slug === ACTIVE_NETWORK_SLUG) notFound();
-
+  // Fallback for any unresolved sub-paths
   return <UnderConstructionNotice siteName={site.name} />;
 }

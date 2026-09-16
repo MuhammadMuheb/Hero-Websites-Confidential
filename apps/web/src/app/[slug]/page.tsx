@@ -14,8 +14,7 @@ import { TuscanyDayTripHome } from '@/components/TuscanyDayTripHome';
 import { AmalfiDayTripHome } from '@/components/AmalfiDayTripHome';
 import { TivoliDayTripHome } from '@/components/TivoliDayTripHome';
 import { NaplesStreetFoodHome } from '@/components/NaplesStreetFoodHome';
-import { UnderConstructionNotice } from '@/components/UnderConstructionNotice';
-import { ACTIVE_NETWORK_SLUG, NETWORK_SITES, getNetworkSite } from '@/lib/tours';
+import { NETWORK_SITES, getNetworkSite } from '@/lib/tours';
 import { HERO_IMAGE as UC_HERO_IMAGE } from '@/lib/underground-colosseum';
 import { HERO_IMAGE as PV_HERO_IMAGE } from '@/lib/private-vatican';
 import { HERO_IMAGE as PDT_HERO_IMAGE } from '@/lib/pompeii-day-trip';
@@ -289,10 +288,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  if (site.slug !== ACTIVE_NETWORK_SLUG) {
-    return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
-  }
-
+  // All 13 network properties now render as active sites (multi-tenancy enabled)
   const page = await getPageDoc('home');
   const title = page?.metaTitle ? page.metaTitle.replace('Street Food Rome', site.name) : site.name;
   const description = page?.metaDesc ?? "A first-hand guide to Rome's street food — honest recommendations, no tourist traps.";
@@ -366,12 +362,7 @@ export default async function NetworkSitePage({ params }: { params: Promise<{ sl
     return <NaplesStreetFoodHome />;
   }
 
-  // Only the one active property renders the shared-template site — the
-  // remaining not-yet-built projects show a plain placeholder instead.
-  if (site.slug !== ACTIVE_NETWORK_SLUG) {
-    return <UnderConstructionNotice siteName={site.name} />;
-  }
-
+  // All 13 network properties render the shared-template home page (multi-tenancy activated)
   const [page, tours, allBlogPosts] = await Promise.all([getPageDoc('home'), getAllTours(), getAllBlogPosts()]);
 
   return (

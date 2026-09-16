@@ -58,7 +58,7 @@ export interface SupportPageContent {
 
 export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
-    href: '/underground-arena-floor-tour',
+    href: '/money/underground-arena-floor-tour',
     navTitle: 'Underground & Arena Floor Tour',
     h1: 'Underground & Arena Floor Tour: The Full Comparison',
     keyword: 'colosseum underground tour',
@@ -109,11 +109,11 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
         answer: 'Yes — a passport or valid photo ID is mandatory for underground access due to Colosseum security regulations, and you can be refused entry without one.',
       },
     ],
-    relatedSupportHref: '/how-underground-access-really-works',
+    relatedSupportHref: '/support/how-underground-access-really-works',
     relatedSupportLabel: 'How Underground Access Really Works',
   },
   {
-    href: '/skip-the-line-colosseum-tickets',
+    href: '/money/skip-the-line-colosseum-tickets',
     navTitle: 'Skip-the-Line Tickets',
     h1: 'Skip-the-Line Colosseum Tickets, Explained',
     keyword: 'skip the line colosseum',
@@ -166,7 +166,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Opening Hours & Beating the Crowds',
   },
   {
-    href: '/private-vs-group-colosseum-tour',
+    href: '/money/private-vs-group-colosseum-tour',
     navTitle: 'Private vs. Group Tour',
     h1: 'Private vs. Group Colosseum Tour: Which Fits You?',
     keyword: 'private colosseum tour',
@@ -225,7 +225,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Getting There: Metro & Meeting Points',
   },
   {
-    href: '/colosseum-with-kids-family-guide',
+    href: '/money/colosseum-with-kids-family-guide',
     navTitle: 'With Kids / Family Guide',
     h1: 'Colosseum with Kids: The Family Guide',
     keyword: 'colosseum with kids',
@@ -280,11 +280,11 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
         answer: 'Seating is limited — most of the interior is standing/walking only, so budget for breaks outside the monument if you\'re visiting with young children.',
       },
     ],
-    relatedSupportHref: '/colosseum-forum-palatine-itinerary',
+    relatedSupportHref: '/support/colosseum-forum-palatine-itinerary',
     relatedSupportLabel: 'Colosseum + Forum + Palatine Itinerary',
   },
   {
-    href: '/best-colosseum-tour-by-visitor-type',
+    href: '/money/best-colosseum-tour-by-visitor-type',
     navTitle: 'Best Tour by Visitor Type',
     h1: 'The Best Colosseum Tour, by Visitor Type',
     keyword: 'best colosseum tour',
@@ -358,7 +358,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
 
 export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
   {
-    href: '/how-underground-access-really-works',
+    href: '/support/how-underground-access-really-works',
     navTitle: 'How Underground Access Really Works',
     h1: 'How Colosseum Underground Access Really Works',
     keyword: 'colosseum underground access',
@@ -406,11 +406,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
         answer: 'Groups move on a fixed schedule set by the Colosseum authority — arriving late can mean losing your slot entirely, so plan to arrive at least 20–30 minutes early.',
       },
     ],
-    relatedMoneyHref: '/underground-arena-floor-tour',
+    relatedMoneyHref: '/money/underground-arena-floor-tour',
     relatedMoneyLabel: 'Compare Underground & Arena Floor Tours',
   },
   {
-    href: '/opening-hours-beating-the-crowds',
+    href: '/support/opening-hours-beating-the-crowds',
     navTitle: 'Opening Hours & Beating the Crowds',
     h1: 'Colosseum Opening Hours & Beating the Crowds',
     keyword: 'colosseum opening hours',
@@ -452,11 +452,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
         answer: 'Last entry is typically one hour before the posted closing time — arriving right at that cutoff means a rushed visit, so aim to arrive at least 2 hours before closing.',
       },
     ],
-    relatedMoneyHref: '/skip-the-line-colosseum-tickets',
+    relatedMoneyHref: '/money/skip-the-line-colosseum-tickets',
     relatedMoneyLabel: 'See Skip-the-Line Ticket Options',
   },
   {
-    href: '/arena-floor-walkthrough-photos',
+    href: '/support/arena-floor-walkthrough-photos',
     navTitle: 'Arena Floor Walkthrough (Photos)',
     h1: 'Arena Floor Walkthrough: What You\'ll Actually See',
     keyword: 'colosseum arena floor',
@@ -494,11 +494,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
         answer: 'They\'re related but distinct — arena floor access is walking on the reconstructed floor itself, while underground/hypogeum access is the tunnel network beneath it; some tours include both, some only one.',
       },
     ],
-    relatedMoneyHref: '/underground-arena-floor-tour',
+    relatedMoneyHref: '/money/underground-arena-floor-tour',
     relatedMoneyLabel: 'Compare Underground & Arena Floor Tours',
   },
   {
-    href: '/getting-there-metro-meeting-points',
+    href: '/support/getting-there-metro-meeting-points',
     navTitle: 'Getting There: Metro & Meeting Points',
     h1: 'Getting to the Colosseum: Metro & Meeting Points',
     keyword: 'how to get to colosseum',
@@ -582,7 +582,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     relatedMoneyLabel: 'Find the Best Tour for You',
   },
   {
-    href: '/is-the-underground-worth-it',
+    href: '/support/is-the-underground-worth-it',
     navTitle: 'Is the Underground Worth It?',
     h1: 'Is the Colosseum Underground Worth It?',
     keyword: 'is colosseum underground worth it',
@@ -620,7 +620,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
         answer: 'Yes, if it\'s available as an add-on — it\'s the single feature that makes the underground tunnels make sense, more so than the tunnels themselves.',
       },
     ],
-    relatedMoneyHref: '/underground-arena-floor-tour',
+    relatedMoneyHref: '/money/underground-arena-floor-tour',
     relatedMoneyLabel: 'Compare Underground & Arena Floor Tours',
   },
 ];

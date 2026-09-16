@@ -56,7 +56,7 @@ export interface SupportPageContent {
 
 export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
-    href: '/early-entry-vatican-sistine',
+    href: '/money/early-entry-vatican-sistine',
     navTitle: 'Early-Entry Vatican & Sistine',
     h1: 'Early-Entry Vatican & Sistine Chapel Tours: The Full Comparison',
     keyword: 'vatican early access tour',
@@ -110,11 +110,11 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           "Most do — operators route the group there directly after the Sistine Chapel, while the basilica is still comparatively quiet, rather than leaving it as a separate booking.",
       },
     ],
-    relatedSupportHref: '/how-early-access-works',
+    relatedSupportHref: '/support/how-early-access-works',
     relatedSupportLabel: 'How Early Access Really Works',
   },
   {
-    href: '/private-vatican-guide',
+    href: '/money/private-vatican-guide',
     navTitle: 'Private Vatican Guide',
     h1: 'Private Vatican Guide: Is a Licensed Guide Worth It?',
     keyword: 'private vatican tour',
@@ -173,11 +173,11 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'No — every visitor follows the same fixed circulation route set by the Vatican Museums; a private guide changes pace and depth, not which rooms are open.',
       },
     ],
-    relatedSupportHref: '/sistine-chapel-etiquette',
+    relatedSupportHref: '/support/sistine-chapel-etiquette',
     relatedSupportLabel: 'Sistine Chapel Etiquette',
   },
   {
-    href: '/vatican-st-peter-s-dome',
+    href: '/money/vatican-st-peter-s-dome',
     navTitle: "Vatican + St Peter's Dome",
     h1: "Vatican + St Peter's Dome: The Honest Timing & Fitness Guide",
     keyword: 'vatican st peters dome',
@@ -236,11 +236,11 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           "Yes — the dome is accessed through St. Peter's Basilica directly, a separate entrance and ticket from the Vatican Museums.",
       },
     ],
-    relatedSupportHref: '/what-to-see-in-3-hours',
+    relatedSupportHref: '/support/what-to-see-in-3-hours',
     relatedSupportLabel: 'What to See in 3 Hours',
   },
   {
-    href: '/vatican-with-kids-family',
+    href: '/money/vatican-with-kids-family',
     navTitle: 'Vatican with Kids / Family',
     h1: 'Vatican with Kids: The Family Guide',
     keyword: 'vatican tour with kids',
@@ -299,11 +299,11 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           "Seating is very limited overall and there is none at all inside the Sistine Chapel itself — plan breaks in the museum's courtyards or its terrace café instead.",
       },
     ],
-    relatedSupportHref: '/quietest-times-to-visit',
+    relatedSupportHref: '/support/quietest-times-to-visit',
     relatedSupportLabel: 'Quietest Times to Visit',
   },
   {
-    href: '/skip-the-line-explained',
+    href: '/money/skip-the-line-explained',
     navTitle: 'Skip-the-Line Explained',
     h1: 'Vatican Skip-the-Line Tickets, Explained',
     keyword: 'vatican skip the line',
@@ -356,14 +356,14 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'No — skip-the-line and early-access slots must be booked online in advance; the on-site ticket office only sells same-day standard admission when available, which can mean hours of wait in peak season.',
       },
     ],
-    relatedSupportHref: '/dress-code-security',
+    relatedSupportHref: '/support/dress-code-security',
     relatedSupportLabel: 'Dress Code & Security',
   },
 ];
 
 export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
   {
-    href: '/how-early-access-works',
+    href: '/support/how-early-access-works',
     navTitle: 'How Early Access Really Works',
     h1: 'How Vatican Early Access Really Works',
     keyword: 'how vatican early access works',
@@ -414,11 +414,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           "Groups move on a fixed schedule tied to the museum's public opening time — arriving late can mean losing the slot entirely and being redirected to the standard queue.",
       },
     ],
-    relatedMoneyHref: '/early-entry-vatican-sistine',
+    relatedMoneyHref: '/money/early-entry-vatican-sistine',
     relatedMoneyLabel: 'Compare Early-Entry Vatican & Sistine Tours',
   },
   {
-    href: '/dress-code-security',
+    href: '/support/dress-code-security',
     navTitle: 'Dress Code & Security',
     h1: "Vatican Dress Code & Security: What's Actually Enforced",
     keyword: 'vatican dress code',
@@ -463,11 +463,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Yes, without flash, in most galleries — except the Sistine Chapel, where all photography and video are banned entirely.',
       },
     ],
-    relatedMoneyHref: '/skip-the-line-explained',
+    relatedMoneyHref: '/money/skip-the-line-explained',
     relatedMoneyLabel: 'See Skip-the-Line Ticket Options',
   },
   {
-    href: '/what-to-see-in-3-hours',
+    href: '/support/what-to-see-in-3-hours',
     navTitle: 'What to See in 3 Hours',
     h1: 'The Vatican in 3 Hours: What to Actually Prioritize',
     keyword: 'vatican in 3 hours',
@@ -512,11 +512,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Most fixed museum routes place it near the end regardless of ticket type; early-access and private guides are the main way to reverse that order and reach it first.',
       },
     ],
-    relatedMoneyHref: '/vatican-st-peter-s-dome',
+    relatedMoneyHref: '/money/vatican-st-peter-s-dome',
     relatedMoneyLabel: 'Compare Vatican + Dome Tours',
   },
   {
-    href: '/quietest-times-to-visit',
+    href: '/support/quietest-times-to-visit',
     navTitle: 'Quietest Times to Visit',
     h1: 'The Quietest Times to Visit the Vatican Museums',
     keyword: 'quietest time to visit vatican',
@@ -561,11 +561,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Indirectly — it draws extra visitor traffic into the wider Vatican area mid-morning, which can spill over into museum queues; early-access or late-afternoon slots avoid the overlap.',
       },
     ],
-    relatedMoneyHref: '/vatican-with-kids-family',
+    relatedMoneyHref: '/money/vatican-with-kids-family',
     relatedMoneyLabel: 'Find Family-Paced Vatican Tours',
   },
   {
-    href: '/sistine-chapel-etiquette',
+    href: '/support/sistine-chapel-etiquette',
     navTitle: 'Sistine Chapel Etiquette',
     h1: "Sistine Chapel Etiquette: The Rules That Are Actually Enforced",
     keyword: 'sistine chapel etiquette',
@@ -610,7 +610,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           "Yes — even visitors who passed the main entrance screening can still be stopped at the chapel's own checkpoint if shoulders or knees aren't covered.",
       },
     ],
-    relatedMoneyHref: '/private-vatican-guide',
+    relatedMoneyHref: '/money/private-vatican-guide',
     relatedMoneyLabel: 'Compare Private Vatican Guides',
   },
 ];
@@ -622,3 +622,6 @@ export function getMoneyPageContent(href: string): MoneyPageContent | undefined 
 export function getSupportPageContent(href: string): SupportPageContent | undefined {
   return SUPPORT_PAGE_CONTENT.find((p) => p.href === href);
 }
+
+
+

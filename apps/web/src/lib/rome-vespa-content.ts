@@ -56,7 +56,7 @@ export interface SupportPageContent {
 
 export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
-    href: '/vespa-tour-of-rome',
+    href: '/money/vespa-tour-of-rome',
     navTitle: 'Vespa Tour of Rome',
     h1: "Vespa Tour of Rome: Routes, Photo Stops & What's Included",
     keyword: 'vespa tour rome',
@@ -121,7 +121,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'What a Vespa Tour Covers',
   },
   {
-    href: '/sidecar-tour-of-rome',
+    href: '/money/sidecar-tour-of-rome',
     navTitle: 'Sidecar Tour of Rome',
     h1: 'Sidecar Tour of Rome: Who It Actually Suits',
     keyword: 'rome sidecar tour',
@@ -184,7 +184,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'What a Vespa Tour Covers',
   },
   {
-    href: '/self-drive-vs-guided-vespa',
+    href: '/money/self-drive-vs-guided-vespa',
     navTitle: 'Self-Drive vs Guided Vespa',
     h1: 'Self-Drive vs Guided Vespa in Rome: Which Fits You',
     keyword: 'self drive vespa rome',
@@ -254,7 +254,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Is It Safe in Rome Traffic',
   },
   {
-    href: '/vespa-at-sunset',
+    href: '/money/vespa-at-sunset',
     navTitle: 'Vespa at Sunset',
     h1: "Vespa at Sunset: Rome's Golden-Hour Scooter Tour",
     keyword: 'vespa sunset tour rome',
@@ -317,7 +317,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'What to Wear & Bring',
   },
   {
-    href: '/private-vespa-tour',
+    href: '/money/private-vespa-tour',
     navTitle: 'Private Vespa Tour',
     h1: 'Private Vespa Tour: Is the Price Premium Worth It?',
     keyword: 'private vespa tour rome',
@@ -428,7 +428,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Yes, on virtually every guided, sidecar, and private listing — fuel is bundled into the tour price, not billed separately.',
       },
     ],
-    relatedMoneyHref: '/vespa-tour-of-rome',
+    relatedMoneyHref: '/money/vespa-tour-of-rome',
     relatedMoneyLabel: 'Compare Guided Vespa Tours',
   },
   {
@@ -477,7 +477,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'For a first-time visitor, generally yes — a licensed local driver handles all the traffic judgment, removing the single biggest risk factor of unfamiliar streets and unfamiliar traffic norms.',
       },
     ],
-    relatedMoneyHref: '/self-drive-vs-guided-vespa',
+    relatedMoneyHref: '/money/self-drive-vs-guided-vespa',
     relatedMoneyLabel: 'Compare Self-Drive vs Guided',
   },
   {
@@ -526,7 +526,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Most operators reschedule or offer a full refund for genuine rain rather than riding a group through a downpour — check the specific listing’s weather policy before booking.',
       },
     ],
-    relatedMoneyHref: '/vespa-at-sunset',
+    relatedMoneyHref: '/money/vespa-at-sunset',
     relatedMoneyLabel: 'See Sunset Tour Timing',
   },
   {
@@ -575,7 +575,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'No — licence requirements apply only to whoever is actually riding; passengers on a guided tandem seat or a sidecar tour need no licence or riding experience at all.',
       },
     ],
-    relatedMoneyHref: '/self-drive-vs-guided-vespa',
+    relatedMoneyHref: '/money/self-drive-vs-guided-vespa',
     relatedMoneyLabel: 'Compare Self-Drive vs Guided',
   },
   {
@@ -624,7 +624,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Generally yes — seated, slower-paced, and built around comfort and accessibility from the ground up; see our sibling site Golf Cart Rome for that format specifically.',
       },
     ],
-    relatedMoneyHref: '/private-vespa-tour',
+    relatedMoneyHref: '/money/private-vespa-tour',
     relatedMoneyLabel: 'Compare Private Vespa Tours',
   },
 ];
@@ -636,3 +636,6 @@ export function getMoneyPageContent(href: string): MoneyPageContent | undefined 
 export function getSupportPageContent(href: string): SupportPageContent | undefined {
   return SUPPORT_PAGE_CONTENT.find((p) => p.href === href);
 }
+
+
+

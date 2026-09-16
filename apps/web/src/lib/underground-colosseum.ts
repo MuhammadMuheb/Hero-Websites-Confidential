@@ -26,16 +26,16 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Underground & Arena Floor Tour',
-    href: '/underground-arena-floor-tour',
+    href: '/money/underground-arena-floor-tour',
     blurb: 'Flagship comparison of every underground/arena-access tour.',
     keyword: 'colosseum underground tour',
     cta: 'See tours',
     badge: 'Most Popular' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1580502255216-32c910c0840c', alt: 'Close-up of the Colosseum’s arched tiers glowing gold at sunset' },
+    image: { src: 'https://images.unsplash.com/photo-1580502255216-32c910c0840c', alt: 'Close-up of the Colosseum\'s arched tiers glowing gold at sunset' },
   },
   {
     title: 'Skip-the-Line Tickets',
-    href: '/skip-the-line-colosseum-tickets',
+    href: '/money/skip-the-line-colosseum-tickets',
     blurb: 'Ticket types explained — which tour includes what.',
     keyword: 'skip the line colosseum',
     cta: 'See tickets',
@@ -44,16 +44,16 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Private vs. Group Tour',
-    href: '/private-vs-group-colosseum-tour',
+    href: '/money/private-vs-group-colosseum-tour',
     blurb: 'Who each format suits; price/value breakdown.',
     keyword: 'private colosseum tour',
     cta: 'Compare',
     badge: null as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1567613747183-fcc1e30a18eb', alt: 'The Colosseum’s curved travertine facade seen up close' },
+    image: { src: 'https://images.unsplash.com/photo-1567613747183-fcc1e30a18eb', alt: 'The Colosseum\'s curved travertine facade seen up close' },
   },
   {
     title: 'With Kids / Family Guide',
-    href: '/colosseum-with-kids-family-guide',
+    href: '/money/colosseum-with-kids-family-guide',
     blurb: 'Family-friendly tour options and practical tips.',
     keyword: 'colosseum with kids',
     cta: 'See options',
@@ -62,7 +62,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Best Tour by Visitor Type',
-    href: '/best-colosseum-tour-by-visitor-type',
+    href: '/money/best-colosseum-tour-by-visitor-type',
     blurb: 'First-timers, history buffs, short-on-time.',
     keyword: 'best colosseum tour',
     cta: 'Find mine',
@@ -107,7 +107,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     meta: '2h 30m · small group',
     priceFrom: 89,
     badge: 'Best Seller' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1460722665083-c2599113f7e0', alt: 'Dramatic low-angle view of the Colosseum’s upper arches' },
+    image: { src: 'https://images.unsplash.com/photo-1460722665083-c2599113f7e0', alt: 'Dramatic low-angle view of the Colosseum\'s upper arches' },
     arenaFloor: true,
     tags: ['underground', 'arena-floor', 'first-timer'],
   },
@@ -129,7 +129,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     meta: 'Self-paced · audio guide',
     priceFrom: 50,
     badge: 'Best Value' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1511163262182-1b04e5fa4caa', alt: 'The Colosseum’s arches against a bright blue sky' },
+    image: { src: 'https://images.unsplash.com/photo-1511163262182-1b04e5fa4caa', alt: 'The Colosseum\'s arches against a bright blue sky' },
     arenaFloor: true,
     tags: ['skip-the-line', 'self-paced', 'budget', 'arena-floor'],
   },
@@ -184,7 +184,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     meta: '4h · small group',
     priceFrom: 99,
     badge: null as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1634196243663-71cc3a1c639a', alt: 'Close-up low-angle view of the Colosseum’s arches framed by trees' },
+    image: { src: 'https://images.unsplash.com/photo-1634196243663-71cc3a1c639a', alt: 'Close-up low-angle view of the Colosseum\'s arches framed by trees' },
     arenaFloor: false,
     tags: ['underground', 'combo'],
   },
@@ -243,34 +243,34 @@ export const QUICK_FACTS = [
  * next.config.js) rather than introducing new, unchecked URLs.
  */
 export const ARENA_FLOOR_GALLERY = [
-  { src: 'https://images.unsplash.com/photo-1460722665083-c2599113f7e0', alt: 'Looking straight up at the Colosseum’s tiered arches from arena level' },
+  { src: 'https://images.unsplash.com/photo-1460722665083-c2599113f7e0', alt: 'Looking straight up at the Colosseum\'s tiered arches from arena level' },
   { src: 'https://images.unsplash.com/photo-1603199766980-fdd4ac568a11', alt: 'The Colosseum glowing gold at sunset, seen from below' },
-  { src: 'https://images.unsplash.com/photo-1634196243663-71cc3a1c639a', alt: 'Close-up low-angle view of the Colosseum’s arches framed by trees' },
+  { src: 'https://images.unsplash.com/photo-1634196243663-71cc3a1c639a', alt: 'Close-up low-angle view of the Colosseum\'s arches framed by trees' },
   { src: 'https://images.unsplash.com/photo-1725623903410-296fdc9e2ea8', alt: 'The Colosseum illuminated at night, arches glowing from within' },
 ];
 
 export const SUPPORT_PAGES = [
   {
     title: 'How Underground Access Really Works',
-    href: '/how-underground-access-really-works',
+    href: '/support/how-underground-access-really-works',
     keyword: 'colosseum underground access',
     image: { src: 'https://images.unsplash.com/photo-1632851853187-dae5c83372dc', alt: 'The Colosseum seen through greenery on a sunny day' },
   },
   {
     title: 'Opening Hours & Beating the Crowds',
-    href: '/opening-hours-beating-the-crowds',
+    href: '/support/opening-hours-beating-the-crowds',
     keyword: 'colosseum opening hours',
     image: { src: 'https://images.unsplash.com/photo-1552432552-06c0b0a94dda', alt: 'Wide view of the Colosseum under a sweeping cloudy sky' },
   },
   {
     title: 'Getting There: Metro & Meeting Points',
-    href: '/getting-there-metro-meeting-points',
+    href: '/support/getting-there-metro-meeting-points',
     keyword: 'how to get to colosseum',
-    image: { src: 'https://images.unsplash.com/photo-1567613747183-fcc1e30a18eb', alt: 'The Colosseum’s curved travertine facade seen up close' },
+    image: { src: 'https://images.unsplash.com/photo-1567613747183-fcc1e30a18eb', alt: 'The Colosseum\'s curved travertine facade seen up close' },
   },
   {
     title: 'Colosseum + Forum + Palatine Itinerary',
-    href: '/colosseum-forum-palatine-itinerary',
+    href: '/support/colosseum-forum-palatine-itinerary',
     keyword: 'colosseum forum palatine itinerary',
     image: { src: 'https://images.unsplash.com/photo-1663143050642-69240b347b2b', alt: 'Full daytime view of the Colosseum exterior' },
   },
@@ -279,14 +279,14 @@ export const SUPPORT_PAGES = [
 /** The 2 support pages that get a dedicated homepage teaser card instead of only the grid below. */
 export const ARENA_FLOOR_PAGE = {
   title: 'Arena Floor Walkthrough (Photos)',
-  href: '/arena-floor-walkthrough-photos',
+  href: '/support/arena-floor-walkthrough-photos',
   keyword: 'colosseum arena floor',
   image: { src: 'https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8', alt: 'The Colosseum at dusk seen from the cobblestone approach' },
 };
 
 export const WORTH_IT_PAGE = {
   title: 'Is the Underground Worth It?',
-  href: '/is-the-underground-worth-it',
+  href: '/support/is-the-underground-worth-it',
   keyword: 'is colosseum underground worth it',
   image: { src: 'https://images.unsplash.com/photo-1704915332184-68202025c9ba', alt: 'Wide daytime view of the full Colosseum exterior' },
 };
@@ -305,7 +305,7 @@ export const FAQS = [
     answer: 'Most operators set a minimum age around 6–8 for underground routes; our family guide covers kid-paced alternatives.',
   },
   {
-    question: "What's the difference between skip-the-line and arena-floor access?",
+    question: 'What\'s the difference between skip-the-line and arena-floor access?',
     answer: 'Skip-the-line only shortens entry queues; arena-floor access is a separate, timed add-on that lets you walk the reconstructed floor itself.',
   },
 ];
@@ -345,5 +345,5 @@ export const AUTHOR = {
   initials: 'LM',
   title: 'Rome-based guide',
   domain: 'undergroundcolosseum.com',
-  bio: "Every tour on this site has been walked in person; every photo is our own. We're not paid by any operator we compare.",
+  bio: 'Every tour on this site has been walked in person; every photo is our own. We\'re not paid by any operator we compare.',
 };

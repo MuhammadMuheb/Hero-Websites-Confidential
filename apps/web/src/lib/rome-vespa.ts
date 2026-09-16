@@ -40,7 +40,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Vespa Tour of Rome',
-    href: '/vespa-tour-of-rome',
+    href: '/money/vespa-tour-of-rome',
     blurb: 'The classic guided convoy format — a lead rider, a set route, zero navigation stress.',
     keyword: 'vespa tour rome',
     cta: 'See tours',
@@ -49,7 +49,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Sidecar Tour of Rome',
-    href: '/sidecar-tour-of-rome',
+    href: '/money/sidecar-tour-of-rome',
     blurb: 'No licence, no driving — someone else does the riding while you take the photos.',
     keyword: 'rome sidecar tour',
     cta: 'Compare sidecar tours',
@@ -58,7 +58,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Self-Drive vs Guided Vespa',
-    href: '/self-drive-vs-guided-vespa',
+    href: '/money/self-drive-vs-guided-vespa',
     blurb: 'Licence class, traffic difficulty, and insurance basics — the honest decision guide.',
     keyword: 'self drive vespa rome',
     cta: 'Which one am I?',
@@ -67,7 +67,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Vespa at Sunset',
-    href: '/vespa-at-sunset',
+    href: '/money/vespa-at-sunset',
     blurb: 'The premium golden-hour slot — what the light actually does to Rome from the seat.',
     keyword: 'vespa sunset tour rome',
     cta: 'See sunset routes',
@@ -76,7 +76,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Private Vespa Tour',
-    href: '/private-vespa-tour',
+    href: '/money/private-vespa-tour',
     blurb: 'Your own pace, your own stops, no waiting on a group’s slowest rider.',
     keyword: 'private vespa tour rome',
     cta: 'Compare private tours',
@@ -211,11 +211,11 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  * cards in the same order on all 5 pages.
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
-  '/vespa-tour-of-rome': ['guided', 'first-timer'],
-  '/sidecar-tour-of-rome': ['sidecar'],
-  '/self-drive-vs-guided-vespa': ['self-drive', 'guided'],
-  '/vespa-at-sunset': ['sunset'],
-  '/private-vespa-tour': ['private'],
+  '/money/vespa-tour-of-rome': ['guided', 'first-timer'],
+  '/money/sidecar-tour-of-rome': ['sidecar'],
+  '/money/self-drive-vs-guided-vespa': ['self-drive', 'guided'],
+  '/money/vespa-at-sunset': ['sunset'],
+  '/money/private-vespa-tour': ['private'],
 };
 
 /**
@@ -322,11 +322,11 @@ export const FAQS = [
 ];
 
 export const QUICK_LINKS = [
-  { label: 'Guided Tour', href: '/vespa-tour-of-rome' },
-  { label: 'Sidecar Tour', href: '/sidecar-tour-of-rome' },
-  { label: 'Self-Drive vs Guided', href: '/self-drive-vs-guided-vespa' },
-  { label: 'Sunset Tour', href: '/vespa-at-sunset' },
-  { label: 'Private Tour', href: '/private-vespa-tour' },
+  { label: 'Guided Tour', href: '/money/vespa-tour-of-rome' },
+  { label: 'Sidecar Tour', href: '/money/sidecar-tour-of-rome' },
+  { label: 'Self-Drive vs Guided', href: '/money/self-drive-vs-guided-vespa' },
+  { label: 'Sunset Tour', href: '/money/vespa-at-sunset' },
+  { label: 'Private Tour', href: '/money/private-vespa-tour' },
   { label: 'Is It Safe?', href: '/is-it-safe-in-rome-traffic' },
   { label: 'Licence Questions', href: '/licence-questions' },
 ];
@@ -355,3 +355,4 @@ export const AUTHOR = {
   domain: 'romevespa.com',
   bio: 'Every route on this site has been ridden in real Rome traffic on an actual scooter, not plotted on a map from a desk. Independent — not affiliated with Piaggio, any Vespa dealer, or any tour operator we compare.',
 };
+

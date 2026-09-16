@@ -354,3 +354,4 @@ export const AUTHOR = {
   domain: 'tiramisuclass.com',
   bio: "Every class this site compares has been taken in person — mascarpone technique, coffee-soak timing, and whether you taste a chilled sample in class or take a still-setting tiramisù home. Independent — not affiliated with any single pastry school, restaurant, GetYourGuide, or Viator.",
 };
+
