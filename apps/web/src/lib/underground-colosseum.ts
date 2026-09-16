@@ -198,11 +198,11 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  * finding).
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
-  '/underground-arena-floor-tour': ['arena-floor', 'underground'],
-  '/skip-the-line-colosseum-tickets': ['skip-the-line', 'self-paced', 'budget'],
-  '/private-vs-group-colosseum-tour': ['private', 'underground'],
-  '/colosseum-with-kids-family-guide': ['family'],
-  '/best-colosseum-tour-by-visitor-type': ['first-timer', 'budget', 'self-paced', 'evening', 'family'],
+  '/money/underground-arena-floor-tour': ['arena-floor', 'underground'],
+  '/money/skip-the-line-colosseum-tickets': ['skip-the-line', 'self-paced', 'budget'],
+  '/money/private-vs-group-colosseum-tour': ['private', 'underground'],
+  '/money/colosseum-with-kids-family-guide': ['family'],
+  '/money/best-colosseum-tour-by-visitor-type': ['first-timer', 'budget', 'self-paced', 'evening', 'family'],
 };
 
 /**
@@ -311,13 +311,13 @@ export const FAQS = [
 ];
 
 export const QUICK_LINKS = [
-  { label: 'Underground & Arena Floor', href: '/underground-arena-floor-tour' },
-  { label: 'Skip the Line', href: '/skip-the-line-colosseum-tickets' },
-  { label: 'Private Tours', href: '/private-vs-group-colosseum-tour' },
-  { label: 'With Kids', href: '/colosseum-with-kids-family-guide' },
-  { label: 'Opening Hours', href: '/opening-hours-beating-the-crowds' },
-  { label: 'Getting There', href: '/getting-there-metro-meeting-points' },
-  { label: 'Is It Worth It?', href: '/is-the-underground-worth-it' },
+  { label: 'Underground & Arena Floor', href: '/money/underground-arena-floor-tour' },
+  { label: 'Skip the Line', href: '/money/skip-the-line-colosseum-tickets' },
+  { label: 'Private Tours', href: '/money/private-vs-group-colosseum-tour' },
+  { label: 'With Kids', href: '/money/colosseum-with-kids-family-guide' },
+  { label: 'Opening Hours', href: '/support/opening-hours-beating-the-crowds' },
+  { label: 'Getting There', href: '/support/getting-there-metro-meeting-points' },
+  { label: 'Is It Worth It?', href: '/support/is-the-underground-worth-it' },
 ];
 
 export const EXPLORE_LINKS = MONEY_PAGES.map((p) => ({ label: p.title, href: p.href }));

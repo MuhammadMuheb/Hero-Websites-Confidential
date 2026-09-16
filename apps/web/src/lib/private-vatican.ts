@@ -345,3 +345,4 @@ export const AUTHOR = {
   domain: 'privatevatican.com',
   bio: 'Every early-access slot and private route on this site has been taken in person, ticket in hand, before it\'s recommended. Independent — not affiliated with the Vatican Museums, and not paid by any operator we compare.',
 };
+
