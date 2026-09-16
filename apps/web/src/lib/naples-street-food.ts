@@ -4,7 +4,7 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1555939594-58d7cb561021',
+  src: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca',
   alt: 'Freshly cooked Neapolitan pizza with bubbling char emerging from a wood-fired oven',
 };
 
@@ -22,7 +22,7 @@ export const MONEY_PAGES = [
     keyword: "naples street food tour",
     cta: "Compare food tours",
     badge: "Most Popular" as string | null,
-    image: { src: "https://images.unsplash.com/photo-1565062745839-37fff61d6b82", alt: "Vibrant Neapolitan street market stall bursting with fresh produce and colorful displays" },
+    image: { src: "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f", alt: "Vibrant Neapolitan street market stall bursting with fresh produce and colorful displays" },
   },
   {
     title: "Pizza-Focused Food Tour",
@@ -31,7 +31,7 @@ export const MONEY_PAGES = [
     keyword: "naples pizza tour",
     cta: "Compare pizza tours",
     badge: "Birthplace Tour" as string | null,
-    image: { src: "https://images.unsplash.com/photo-1555939594-58d7cb561021", alt: "A perfectly charred Neapolitan pizza slice ready to eat with steam rising from the cheese" },
+    image: { src: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca", alt: "A perfectly charred Neapolitan pizza slice ready to eat with steam rising from the cheese" },
   },
   {
     title: "Naples Market Tour",
@@ -40,7 +40,7 @@ export const MONEY_PAGES = [
     keyword: "naples market tour",
     cta: "Explore market tours",
     badge: null,
-    image: { src: "https://images.unsplash.com/photo-1584147204876-e67f9825e7f0", alt: "Crowded Naples market corridor with vendors selling fresh vegetables, cheese, and local specialties" },
+    image: { src: "https://images.unsplash.com/photo-1488909122026-b8f4ff7d7370", alt: "Crowded Naples market corridor with vendors selling fresh vegetables, cheese, and local specialties" },
   },
   {
     title: "Spaccanapoli Food Walk",
@@ -49,7 +49,7 @@ export const MONEY_PAGES = [
     keyword: "spaccanapoli food tour",
     cta: "Book Spaccanapoli walk",
     badge: null,
-    image: { src: "https://images.unsplash.com/photo-1509715332983-b77d234b7c3e", alt: "Narrow Spaccanapoli street in Naples with laundry hanging above, shops lining both sides, golden afternoon light" },
+    image: { src: "https://images.unsplash.com/photo-1599599810694-b5ac4dd33c1f", alt: "Narrow Spaccanapoli street in Naples with laundry hanging above, shops lining both sides, golden afternoon light" },
   },
 ];
 
@@ -83,7 +83,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 45,
     badge: 'Food Focus',
     href: '/go/neapolitan-pizza-food-tour',
-    image: { src: 'https://images.unsplash.com/photo-1555939594-58d7cb561021', alt: 'Perfectly cooked Neapolitan pizza with bubbling mozzarella and San Marzano tomato sauce' },
+    image: { src: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca', alt: 'Perfectly cooked Neapolitan pizza with bubbling mozzarella and San Marzano tomato sauce' },
   },
   {
     partner: 'Civitatis',
@@ -112,19 +112,19 @@ export const SUPPORT_PAGES = [
     title: 'Real Neapolitan Pizza Guide',
     href: '/real-neapolitan-pizza-guide',
     keyword: 'real neapolitan pizza',
-    image: { src: 'https://images.unsplash.com/photo-1555939594-58d7cb561021', alt: 'Perfectly charred Neapolitan pizza straight from a wood-fired oven' },
+    image: { src: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca', alt: 'Perfectly charred Neapolitan pizza straight from a wood-fired oven' },
   },
   {
     title: 'Fried Food Specialities',
     href: '/fried-food-specialities',
     keyword: 'naples fried food',
-    image: { src: 'https://images.unsplash.com/photo-1608039755401-742245ab62f4', alt: 'Golden fried cuoppo cone filled with fresh fried seafood and vegetables' },
+    image: { src: 'https://images.unsplash.com/photo-1599599810694-b5ac4dd33c1f', alt: 'Golden fried cuoppo cone filled with fresh fried seafood and vegetables' },
   },
   {
     title: 'Where Locals Eat',
     href: '/where-locals-eat',
     keyword: 'where locals eat naples',
-    image: { src: 'https://images.unsplash.com/photo-1565062745839-37fff61d6b82', alt: 'Bustling neighborhood trattoria filled with locals eating at communal tables' },
+    image: { src: 'https://images.unsplash.com/photo-1537457984697-6e4fd6b523c4', alt: 'Bustling neighborhood trattoria filled with locals eating at communal tables' },
   },
 ];
 

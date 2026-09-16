@@ -119,6 +119,7 @@ export interface MoneyPageContent {
   navTitle: string;
   metaTitle: string;
   metaDescription: string;
+  heroImage: { src: string; alt: string };
   hook: string;
   highlights: string[];
   faqs: Array<{ question: string; answer: string }>;
@@ -129,6 +130,7 @@ export interface SupportPageContent {
   navTitle: string;
   metaTitle: string;
   metaDescription: string;
+  heroImage: { src: string; alt: string };
   body: string;
 }
 
@@ -139,6 +141,7 @@ export function getMoneyPageContent(href: string): MoneyPageContent | null {
       navTitle: "Naples Street-Food Tour",
       metaTitle: "Naples Street Food Tour: Historic Center Routing",
       metaDescription: "Naples street food tour through the historic center — pizza, fried snacks, market stalls.",
+      heroImage: { src: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f', alt: 'Vibrant Neapolitan street market stall bursting with fresh produce and colorful displays' },
       hook: MONEY_PAGE_COPY.naplesStreetFoodTour.hook,
       highlights: MONEY_PAGE_COPY.naplesStreetFoodTour.highlights,
       faqs: FAQS,
@@ -148,6 +151,7 @@ export function getMoneyPageContent(href: string): MoneyPageContent | null {
       navTitle: "Pizza-Focused Food Tour",
       metaTitle: "Naples Pizza Tour: Tasting Pizza at Its Actual Birthplace",
       metaDescription: "Naples pizza tour comparing classic and modern pizzerie — where pizza was actually invented.",
+      heroImage: { src: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca', alt: 'A perfectly charred Neapolitan pizza slice ready to eat with steam rising from the cheese' },
       hook: MONEY_PAGE_COPY.pizzaFocusedFoodTour.hook,
       highlights: MONEY_PAGE_COPY.pizzaFocusedFoodTour.highlights,
       faqs: FAQS,
@@ -157,6 +161,7 @@ export function getMoneyPageContent(href: string): MoneyPageContent | null {
       navTitle: "Naples Market Tour",
       metaTitle: "Naples Food Market Tour: Tasting Counter for Local Specialities",
       metaDescription: "Naples market tour tasting fried-food specialities directly from market stalls.",
+      heroImage: { src: 'https://images.unsplash.com/photo-1488909122026-b8f4ff7d7370', alt: 'Crowded Naples market corridor with vendors selling fresh vegetables, cheese, and local specialties' },
       hook: MONEY_PAGE_COPY.naplesMarketTour.hook,
       highlights: MONEY_PAGE_COPY.naplesMarketTour.highlights,
       faqs: FAQS,
@@ -166,6 +171,7 @@ export function getMoneyPageContent(href: string): MoneyPageContent | null {
       navTitle: "Spaccanapoli Food Walk",
       metaTitle: "Spaccanapoli Food Tour: Historic Center Street Alley Walk",
       metaDescription: "Spaccanapoli street food walk through Naples historic center with food stops along the way.",
+      heroImage: { src: 'https://images.unsplash.com/photo-1599599810694-b5ac4dd33c1f', alt: 'Narrow Spaccanapoli street in Naples with laundry hanging above, shops lining both sides, golden afternoon light' },
       hook: MONEY_PAGE_COPY.spaccanapoli.hook,
       highlights: MONEY_PAGE_COPY.spaccanapoli.highlights,
       faqs: FAQS,
@@ -181,6 +187,7 @@ export function getSupportPageContent(href: string): SupportPageContent | null {
       navTitle: "Real Neapolitan Pizza Guide",
       metaTitle: "Real Neapolitan Pizza Guide: Authentic Techniques & Where to Try",
       metaDescription: "Guide to authentic Neapolitan pizza — techniques, history, and best places to try the real thing.",
+      heroImage: { src: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca', alt: 'Perfectly charred Neapolitan pizza straight from a wood-fired oven' },
       body: "A comprehensive guide to authentic Neapolitan pizza, from dough techniques to the best pizzerie.",
     },
     "/fried-food-specialities": {
@@ -188,6 +195,7 @@ export function getSupportPageContent(href: string): SupportPageContent | null {
       navTitle: "Fried Food Specialities",
       metaTitle: "Naples Fried Food: Cuoppo, Frittatine & Local Specialities",
       metaDescription: "Guide to Naples fried-food specialities — what cuoppo and frittatine are and where to find them.",
+      heroImage: { src: 'https://images.unsplash.com/photo-1599599810694-b5ac4dd33c1f', alt: 'Golden fried cuoppo cone filled with fresh fried seafood and vegetables' },
       body: "Naples street food is defined by fried specialities like cuoppo and frittatine — here's what they are.",
     },
     "/where-locals-eat": {
@@ -195,6 +203,7 @@ export function getSupportPageContent(href: string): SupportPageContent | null {
       navTitle: "Where Locals Eat",
       metaTitle: "Where Locals Actually Eat in Naples: Honest Recommendations",
       metaDescription: "Guide to where actual Neapolitans eat — beyond tourist areas, into neighborhood spots.",
+      heroImage: { src: 'https://images.unsplash.com/photo-1537457984697-6e4fd6b523c4', alt: 'Bustling neighborhood trattoria filled with locals eating at communal tables' },
       body: "The best food in Naples isn't in the guidebooks — it's where locals actually eat.",
     },
   };

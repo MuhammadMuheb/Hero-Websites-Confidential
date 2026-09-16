@@ -134,7 +134,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     metaTitle: 'Pizza and Gelato Class Rome: Combo Timing, Compared',
     metaDescription:
       'A two-dish pizza and gelato combo class in Rome — combined-session timing, which comes first and why, and price vs booking separately.',
-    heroImage: { src: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b', alt: 'A round of pizza dough being tossed and stretched in mid-air' },
+    heroImage: { src: 'https://images.unsplash.com/photo-1585921122519-c21107fb054b', alt: 'A round of pizza dough being tossed and stretched in mid-air' },
     intro: [
       'A two-dish combo for anyone who wants the full afternoon — pizza first, gelato-making after, in one booking.',
       "The two techniques share a kitchen well because pizza dough needs real proving and baking time, and most operators use that dead time productively by starting the gelato base during the pizza's rest or bake stage rather than making guests wait around doing nothing.",
