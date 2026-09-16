@@ -6,8 +6,8 @@
 export { AUTHOR, FAQS, QUICK_FACTS, QUICK_LINKS } from './amalfi-day-trip-content';
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1592864506206-52c4fb4ab5a5',
-  alt: 'Pastel-colored houses clinging to the cliffsides of Positano, overlooking the turquoise Tyrrhenian Sea',
+  src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+  alt: 'Colorful houses stacked on the cliffs of Positano overlooking the Mediterranean',
 };
 
 export interface NavItem {
@@ -24,7 +24,7 @@ export const MONEY_PAGES = [
     keyword: 'amalfi coast from rome',
     cta: 'Compare Rome day trips',
     badge: 'Long-Day Trip' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1599050642881-cdeae5abac2e', alt: 'A yacht sailing along the dramatic cliffside towns of the Amalfi Coast' },
+    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4', alt: 'A sunset view over the Amalfi Coast with sailboats dotting the calm summer sea' },
   },
   {
     title: 'Amalfi from Naples/Sorrento',
@@ -33,7 +33,7 @@ export const MONEY_PAGES = [
     keyword: 'amalfi from sorrento',
     cta: 'Compare coastal day trips',
     badge: 'Shorter Transit' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1580077614312-94b1b0e6fe78', alt: 'Winding coastal roads with switchback turns overlooking pastel villages and the Mediterranean' },
+    image: { src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34', alt: 'Clifftop view of Ravello with terraced gardens and Mediterranean landscape stretching to the horizon' },
   },
   {
     title: "Positano + Amalfi + Ravello",
@@ -42,7 +42,7 @@ export const MONEY_PAGES = [
     keyword: "positano amalfi ravello tour",
     cta: "Compare three-town tours",
     badge: "Classic Trio" as string | null,
-    image: { src: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34", alt: "Clifftop view of Ravello with terraced gardens and Mediterranean landscape stretching to the horizon" },
+    image: { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", alt: "Colorful houses stacked on the cliffs of Positano overlooking the Mediterranean" },
   },
   {
     title: "Amalfi Boat Day Trip",
@@ -51,7 +51,7 @@ export const MONEY_PAGES = [
     keyword: "amalfi boat tour",
     cta: "Compare boat tours",
     badge: "Scenic Alternative" as string | null,
-    image: { src: "https://images.unsplash.com/photo-1612080626919-c3400ca199e7", alt: "Crystal-clear Mediterranean waters lapping against lemon-colored cliffs in full summer sun" },
+    image: { src: "https://images.unsplash.com/photo-1573070917719-cb3768c42634", alt: "Crystal-clear Mediterranean waters and coastal beauty" },
   },
 ];
 
@@ -76,7 +76,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 65,
     badge: 'Most Popular',
     href: '/go/amalfi-coast-full-day-tour-naples',
-    image: { src: 'https://images.unsplash.com/photo-1599050642881-cdeae5abac2e', alt: 'A yacht sailing along the dramatic cliffside towns of the Amalfi Coast' },
+    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4', alt: 'A sunset view over the Amalfi Coast with sailboats dotting the calm summer sea' },
     coastaltastingIncluded: false,
   },
   {
@@ -87,7 +87,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 75,
     badge: null,
     href: '/go/amalfi-coast-boat-cruise-from-naples',
-    image: { src: 'https://images.unsplash.com/photo-1580077614312-94b1b0e6fe78', alt: 'Winding coastal roads with switchback turns overlooking pastel villages and the Mediterranean' },
+    image: { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', alt: 'Colorful houses stacked on the cliffs of Positano overlooking the Mediterranean' },
     coastaltastingIncluded: true,
   },
   {
@@ -118,7 +118,7 @@ export const SUPPORT_PAGES = [
     title: 'Boat vs Road',
     href: '/boat-vs-road',
     keyword: 'amalfi boat vs road',
-    image: { src: 'https://images.unsplash.com/photo-1581973947576-a01b71b8a3eb', alt: 'Aerial view of a luxury yacht anchored near the turquoise waters off the Amalfi Coast' },
+    image: { src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34', alt: 'Clifftop view of Ravello with terraced gardens and Mediterranean landscape stretching to the horizon' },
   },
   {
     title: 'Best Towns',
@@ -142,10 +142,10 @@ export const TOURS_NAV_ITEMS: NavItem[] = MONEY_PAGES.map((p) => ({ title: p.tit
 export const PLAN_NAV_ITEMS: NavItem[] = SUPPORT_PAGES.map((p) => ({ title: p.title, href: p.href, keyword: p.keyword }));
 
 export const Amalfi_DAY_TRIP_GALLERY = [
-  { src: 'https://images.unsplash.com/photo-1599050642881-cdeae5abac2e', alt: 'A yacht sailing along the dramatic cliffside towns of the Amalfi Coast' },
+  { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4', alt: 'A sunset view over the Amalfi Coast with sailboats dotting the calm summer sea' },
   { src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34', alt: 'Clifftop view of Ravello with terraced gardens and Mediterranean landscape stretching to the horizon' },
   { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', alt: 'Colorful houses stacked on the cliffs of Positano overlooking the Mediterranean' },
-  { src: 'https://images.unsplash.com/photo-1612080626919-c3400ca199e7', alt: 'Crystal-clear Mediterranean waters lapping against lemon-colored cliffs in full summer sun' },
+  { src: 'https://images.unsplash.com/photo-1573070917719-cb3768c42634', alt: 'Visitors gathered around a fountain in an open Rome piazza' },
 ];
 
 export function getFeaturedToursForPage(href: string, max = 4): FeaturedTour[] {

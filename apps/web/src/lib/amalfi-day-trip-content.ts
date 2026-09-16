@@ -172,7 +172,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     metaTitle: "Amalfi Coast Day Trip From Rome: Is It Worth the Travel Time?",
     metaDescription:
       "Over 4 hours of one-way travel from Rome to the Amalfi Coast — here's whether a day trip makes sense, and which towns fit in one day.",
-    heroImage: { src: 'https://images.unsplash.com/photo-1599050642881-cdeae5abac2e', alt: 'A yacht sailing along the dramatic cliffside towns of the Amalfi Coast' },
+    heroImage: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4', alt: 'A sunset view over the Amalfi Coast with sailboats dotting the calm summer sea' },
     intro: [],
     atAGlance: [],
     sections: [],
@@ -187,7 +187,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     metaTitle: "Amalfi Coast Day Trip From Sorrento: Timing and Town Selection",
     metaDescription:
       "From Sorrento or Naples, a proper Amalfi day is genuinely realistic — here's the routing, timing, and which towns to prioritize.",
-    heroImage: { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', alt: "Colorful houses stacked on the cliffs of Positano overlooking the Mediterranean" },
+    heroImage: { src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34', alt: "Clifftop view of Ravello with terraced gardens and Mediterranean landscape stretching to the horizon" },
     intro: [],
     atAGlance: [],
     sections: [],
@@ -202,7 +202,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     metaTitle: "Positano, Amalfi, and Ravello: Routing That Actually Works",
     metaDescription:
       "The three-town classic — but the order and time budget per town make or break the day. Here's the routing that works in one day.",
-    heroImage: { src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34', alt: 'Clifftop view of Ravello with terraced gardens and Mediterranean landscape stretching to the horizon' },
+    heroImage: { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', alt: 'Colorful houses stacked on the cliffs of Positano overlooking the Mediterranean' },
     intro: [],
     atAGlance: [],
     sections: [],
@@ -217,7 +217,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     metaTitle: "Amalfi Boat Day Trip: Avoiding the Coast Road's Traffic",
     metaDescription:
       "Why a boat day trip along the Amalfi Coast beats the coast road in summer — sea-route stops, timing, and what to expect.",
-    heroImage: { src: 'https://images.unsplash.com/photo-1612080626919-c3400ca199e7', alt: 'Crystal-clear Mediterranean waters lapping against lemon-colored cliffs in full summer sun' },
+    heroImage: { src: 'https://images.unsplash.com/photo-1573070917719-cb3768c42634', alt: 'Mediterranean coastal beauty with crystal waters' },
     intro: [],
     atAGlance: [],
     sections: [],
