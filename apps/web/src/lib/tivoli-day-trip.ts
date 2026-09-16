@@ -6,7 +6,7 @@
 export { AUTHOR, FAQS, QUICK_FACTS, QUICK_LINKS } from './tivoli-day-trip-content';
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
+  src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34',
   alt: 'Cascading fountains of Villa d\'Este at Tivoli, with terraced Renaissance gardens and tall cypress trees framing the water features',
 };
 
@@ -24,7 +24,7 @@ export const MONEY_PAGES = [
     keyword: 'tivoli day trip from rome',
     cta: 'Compare Tivoli tours',
     badge: 'Half or Full-Day' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
+    image: { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
   },
   {
     title: 'Villa d\'Este + Hadrian\'s Villa',
@@ -33,7 +33,7 @@ export const MONEY_PAGES = [
     keyword: 'villa d\'este hadrian\'s villa tour',
     cta: 'Compare two-villa tours',
     badge: 'Full-Day Classic' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
+    image: { src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
   },
   {
     title: 'Private Tivoli Tour',
@@ -42,7 +42,7 @@ export const MONEY_PAGES = [
     keyword: 'private tivoli tour',
     cta: 'Compare private tours',
     badge: 'Private' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828', alt: 'Intimate garden pathway lined with Mediterranean vegetation and stone walls' },
+    image: { src: 'https://images.unsplash.com/photo-1544551763-92ab472cad5d', alt: 'Intimate garden pathway lined with Mediterranean vegetation and stone walls' },
   },
   {
     title: 'Half-Day Tivoli',
@@ -51,7 +51,7 @@ export const MONEY_PAGES = [
     keyword: 'half day tivoli tour',
     cta: 'Compare half-day tours',
     badge: 'Quick Option' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1507803190414-c3da1a266223', alt: 'Sunset light over Villa d\'Este fountains with golden-hour glow on the water features' },
+    image: { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: 'Sunset light over Villa d\'Este fountains with golden-hour glow on the water features' },
   },
 ];
 
@@ -76,7 +76,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 65,
     badge: 'Most Popular',
     href: '/go/tivoli-villa-d-este-hadrian-s-villa-full-day',
-    image: { src: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
+    image: { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
   },
   {
     partner: 'Viator',
@@ -86,7 +86,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 50,
     badge: null,
     href: '/go/tivoli-villa-d-este-half-day-tour',
-    image: { src: 'https://images.unsplash.com/photo-1507803190414-c3da1a266223', alt: 'Cascading fountains of Villa d\'Este at Tivoli, with terraced Renaissance gardens and tall cypress trees' },
+    image: { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: 'Cascading fountains of Villa d\'Este at Tivoli, with terraced Renaissance gardens and tall cypress trees' },
   },
   {
     partner: 'Tiqets',
@@ -96,7 +96,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 180,
     badge: 'Private',
     href: '/go/private-tivoli-tour-with-driver',
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
+    image: { src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
   },
 ];
 
@@ -116,25 +116,25 @@ export const SUPPORT_PAGES = [
     title: 'Getting to Tivoli',
     href: '/getting-to-tivoli-train-vs-tour',
     keyword: 'how to get to tivoli from rome',
-    image: { src: 'https://images.unsplash.com/photo-1570829460005-c840387bb1ca', alt: 'Italian regional train window view of countryside heading toward Tivoli' },
+    image: { src: 'https://images.unsplash.com/photo-1567581935884-eadf19dd995a', alt: 'Italian regional train window view of countryside heading toward Tivoli' },
   },
   {
     title: 'Which Villa',
     href: '/which-villa-to-prioritise',
     keyword: 'villa d\'este or hadrian\'s villa',
-    image: { src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34', alt: 'Aerial view of Villa d\'Este\'s terraced gardens with fountains and symmetrical landscaping' },
+    image: { src: 'https://images.unsplash.com/photo-1549144611-11a278e1e57a', alt: 'Aerial view of Villa d\'Este\'s terraced gardens with fountains and symmetrical landscaping' },
   },
   {
     title: 'Best Season',
     href: '/gardens-best-season',
     keyword: 'best time to visit villa d\'este',
-    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4', alt: 'Late spring gardens of Villa d\'Este in full bloom with fresh green foliage' },
+    image: { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d', alt: 'Late spring gardens of Villa d\'Este in full bloom with fresh green foliage' },
   },
   {
     title: 'With Kids',
     href: '/money/tivoli-with-kids',
     keyword: 'tivoli day trip with children',
-    image: { src: 'https://images.unsplash.com/photo-1507803190414-c3da1a266223', alt: 'Family-friendly fountain pathway at Villa d\'Este, safe and accessible for all ages' },
+    image: { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: 'Family-friendly fountain pathway at Villa d\'Este, safe and accessible for all ages' },
   },
 ];
 
@@ -146,10 +146,10 @@ export const TOURS_NAV_ITEMS: NavItem[] = MONEY_PAGES.map((p) => ({ title: p.tit
 export const PLAN_NAV_ITEMS: NavItem[] = SUPPORT_PAGES.map((p) => ({ title: p.title, href: p.href, keyword: p.keyword }));
 
 export const Tivoli_DAY_TRIP_GALLERY = [
-  { src: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
-  { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
-  { src: 'https://images.unsplash.com/photo-1507803190414-c3da1a266223', alt: 'Sunset light over Villa d\'Este fountains with golden-hour glow on the water features' },
-  { src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34', alt: 'Aerial view of Villa d\'Este\'s terraced gardens with fountains and symmetrical landscaping' },
+  { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
+  { src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
+  { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: 'Sunset light over Villa d\'Este fountains with golden-hour glow on the water features' },
+  { src: 'https://images.unsplash.com/photo-1549144611-11a278e1e57a', alt: 'Aerial view of Villa d\'Este\'s terraced gardens with fountains and symmetrical landscaping' },
 ];
 
 export function getFeaturedToursForPage(href: string, max = 4): FeaturedTour[] {
