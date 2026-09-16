@@ -56,7 +56,7 @@ export interface SupportPageContent {
 
 export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
-    href: '/golf-cart-tour-of-rome',
+    href: '/money/golf-cart-tour-of-rome',
     navTitle: 'Golf-Cart Tour of Rome',
     h1: 'Golf-Cart Tour of Rome: Route, Group Size & What It Covers',
     keyword: 'golf cart tour rome',
@@ -121,7 +121,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'What the Route Covers',
   },
   {
-    href: '/private-cart-tour',
+    href: '/money/private-cart-tour',
     navTitle: 'Private Cart Tour',
     h1: 'Private Golf Cart Tour of Rome: Is the Price Premium Worth It?',
     keyword: 'private golf cart tour rome',
@@ -184,7 +184,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Who a Cart Tour Is Best For',
   },
   {
-    href: '/cart-tour-for-families-seniors',
+    href: '/money/cart-tour-for-families-seniors',
     navTitle: 'Cart Tour for Families & Seniors',
     h1: 'Golf Cart Tour for Families & Seniors: Comfort & Accessibility',
     keyword: 'rome tour for seniors',
@@ -247,7 +247,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Accessibility & Limited Mobility',
   },
   {
-    href: '/night-cart-tour',
+    href: '/money/night-cart-tour',
     navTitle: 'Night Cart Tour',
     h1: "Night Cart Tour: Rome's Illuminated Monuments After Dark",
     keyword: 'rome night tour cart',
@@ -310,7 +310,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'How Long a Cart Tour Takes',
   },
   {
-    href: '/cart-vs-walking-tour',
+    href: '/money/cart-vs-walking-tour',
     navTitle: 'Cart vs Walking Tour',
     h1: 'Golf Cart vs Walking Tour of Rome: The Honest Comparison',
     keyword: 'golf cart vs walking rome',
@@ -376,7 +376,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
 
 export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
   {
-    href: '/why-a-cart-heat-mobility-distance',
+    href: '/support/why-a-cart-heat-mobility-distance',
     navTitle: 'Why a Cart at All',
     h1: 'Why Take a Golf Cart Tour of Rome: Heat, Mobility & Distance',
     keyword: 'why take a golf cart tour rome',
@@ -421,11 +421,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Often yes, given the minimal walking required, but confirm the specific boarding step height and seat configuration with the operator if a recent injury affects your mobility.',
       },
     ],
-    relatedMoneyHref: '/golf-cart-tour-of-rome',
+    relatedMoneyHref: '/money/golf-cart-tour-of-rome',
     relatedMoneyLabel: 'See the Flagship Golf-Cart Tour',
   },
   {
-    href: '/what-the-route-covers',
+    href: '/support/what-the-route-covers',
     navTitle: 'What the Route Covers',
     h1: "What a Golf Cart Tour of Rome's Route Actually Covers",
     keyword: 'golf cart tour rome route',
@@ -470,11 +470,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Five to six stops is typical for the 2.5-3 hour flagship route, each getting roughly 10 minutes before moving on.',
       },
     ],
-    relatedMoneyHref: '/golf-cart-tour-of-rome',
+    relatedMoneyHref: '/money/golf-cart-tour-of-rome',
     relatedMoneyLabel: 'See the Flagship Golf-Cart Tour',
   },
   {
-    href: '/accessibility-limited-mobility',
+    href: '/support/accessibility-limited-mobility',
     navTitle: 'Accessibility & Limited Mobility',
     h1: 'Golf Cart Tour Accessibility in Rome: What to Know Before Booking',
     keyword: 'wheelchair accessible tour rome',
@@ -523,7 +523,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     relatedMoneyLabel: 'See Families & Seniors Tours',
   },
   {
-    href: '/how-long-it-takes',
+    href: '/support/how-long-it-takes',
     navTitle: 'How Long It Takes',
     h1: 'How Long a Golf Cart Tour of Rome Actually Takes',
     keyword: 'how long is a golf cart tour rome',
@@ -572,7 +572,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     relatedMoneyLabel: 'See the Night Cart Tour',
   },
   {
-    href: '/best-for-whom',
+    href: '/support/best-for-whom',
     navTitle: 'Best For Whom',
     h1: 'Who a Golf Cart Tour of Rome Is Actually Best For',
     keyword: 'who is a golf cart tour rome for',

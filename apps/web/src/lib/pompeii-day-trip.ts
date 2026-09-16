@@ -29,7 +29,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Pompeii from Rome',
-    href: '/pompeii-from-rome',
+    href: '/money/pompeii-from-rome',
     blurb: 'The train-vs-tour math for a Rome-based day at Pompeii, honestly done.',
     keyword: 'pompeii day trip from rome',
     cta: 'See tours',
@@ -38,7 +38,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Pompeii from Naples',
-    href: '/pompeii-from-naples',
+    href: '/money/pompeii-from-naples',
     blurb: 'The closest base to Pompeii by a wide margin — what a half-day trip really looks like.',
     keyword: 'pompeii from naples',
     cta: 'See tours',
@@ -47,7 +47,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Pompeii from Sorrento/Amalfi',
-    href: '/pompeii-from-sorrento-amalfi',
+    href: '/money/pompeii-from-sorrento-amalfi',
     blurb: 'An easy Circumvesuviana run most coast-based itineraries skip in favor of Capri.',
     keyword: 'pompeii from sorrento',
     cta: 'See tours',
@@ -56,7 +56,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Pompeii + Vesuvius Combo',
-    href: '/pompeii-vesuvius-combo',
+    href: '/money/pompeii-vesuvius-combo',
     blurb: 'The single most-asked-about pairing, and the single easiest to get the timing wrong on.',
     keyword: 'pompeii and vesuvius tour',
     cta: 'Compare',
@@ -65,7 +65,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Pompeii + Herculaneum',
-    href: '/pompeii-herculaneum',
+    href: '/money/pompeii-herculaneum',
     blurb: 'Smaller, denser, and better-preserved in places — worth pairing, not skipping.',
     keyword: 'pompeii and herculaneum',
     cta: 'See options',
@@ -74,7 +74,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Private Pompeii Guide',
-    href: '/private-pompeii-guide',
+    href: '/money/private-pompeii-guide',
     blurb: 'What a licensed private guide actually changes about the visit.',
     keyword: 'private pompeii tour',
     cta: 'Compare guides',
@@ -212,12 +212,12 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  * cards in the same order on all 6 pages.
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
-  '/pompeii-from-rome': ['from-rome', 'first-timer'],
-  '/pompeii-from-naples': ['from-naples', 'budget', 'self-paced'],
-  '/pompeii-from-sorrento-amalfi': ['from-sorrento'],
-  '/pompeii-vesuvius-combo': ['vesuvius', 'combo'],
-  '/pompeii-herculaneum': ['herculaneum', 'combo'],
-  '/private-pompeii-guide': ['private'],
+  '/money/pompeii-from-rome': ['from-rome', 'first-timer'],
+  '/money/pompeii-from-naples': ['from-naples', 'budget', 'self-paced'],
+  '/money/pompeii-from-sorrento-amalfi': ['from-sorrento'],
+  '/money/pompeii-vesuvius-combo': ['vesuvius', 'combo'],
+  '/money/pompeii-herculaneum': ['herculaneum', 'combo'],
+  '/money/private-pompeii-guide': ['private'],
 };
 
 /**
@@ -267,37 +267,37 @@ export const POMPEII_GALLERY = [
 export const SUPPORT_PAGES = [
   {
     title: 'Getting There: Train vs. Tour',
-    href: '/getting-there-train-vs-tour',
+    href: '/support/getting-there-train-vs-tour',
     keyword: 'pompeii train vs tour',
     image: { src: 'https://images.unsplash.com/photo-1639989800195-d3f77086c8b6', alt: 'A view along the Circumvesuviana rail corridor toward Mount Vesuvius in the distance' },
   },
   {
     title: 'How Much Time You Need',
-    href: '/how-much-time-you-need',
+    href: '/support/how-much-time-you-need',
     keyword: 'how long to spend at pompeii',
     image: { src: 'https://images.unsplash.com/photo-1531220238712-18cea1d53e59', alt: 'A brown stone archway inside Pompeii, one of the many stops that add up across a full visit' },
   },
   {
     title: 'Best-Preserved Houses to Prioritise',
-    href: '/best-preserved-houses-to-prioritise',
+    href: '/support/best-preserved-houses-to-prioritise',
     keyword: 'best pompeii houses to see',
     image: { src: 'https://images.unsplash.com/photo-1579285014910-be9df495fb26', alt: "A restored Pompeii house facade with Vesuvius visible above the roofline" },
   },
   {
     title: 'Pompeii with Kids',
-    href: '/pompeii-with-kids',
+    href: '/support/pompeii-with-kids',
     keyword: 'pompeii with kids',
     image: { src: 'https://images.unsplash.com/photo-1720303628885-6cc809f7c435', alt: 'A garden viewpoint overlooking the Bay of Naples, the kind of open-air break point that works well for families' },
   },
   {
     title: 'Summer Heat Logistics',
-    href: '/summer-heat-logistics',
+    href: '/support/summer-heat-logistics',
     keyword: 'pompeii in summer heat',
     image: { src: 'https://images.unsplash.com/photo-1653590933006-e4abe965b031', alt: 'A shaded hillside path near Vesuvius, the kind of shade that is scarce across most of open-air Pompeii' },
   },
   {
     title: 'Skip-the-Line Reality',
-    href: '/skip-the-line-reality',
+    href: '/support/skip-the-line-reality',
     keyword: 'pompeii skip the line',
     image: { src: 'https://images.unsplash.com/photo-1686252184251-80c0e71a6cde', alt: "Pompeii's Porta Marina entrance, with its columned gate and clock tower" },
   },
@@ -332,13 +332,13 @@ export const FAQS = [
 ];
 
 export const QUICK_LINKS = [
-  { label: 'From Rome', href: '/pompeii-from-rome' },
-  { label: 'From Naples', href: '/pompeii-from-naples' },
-  { label: 'From Sorrento/Amalfi', href: '/pompeii-from-sorrento-amalfi' },
-  { label: '+ Vesuvius Combo', href: '/pompeii-vesuvius-combo' },
-  { label: '+ Herculaneum', href: '/pompeii-herculaneum' },
-  { label: 'Private Guide', href: '/private-pompeii-guide' },
-  { label: 'How Much Time You Need', href: '/how-much-time-you-need' },
+  { label: 'From Rome', href: '/money/pompeii-from-rome' },
+  { label: 'From Naples', href: '/money/pompeii-from-naples' },
+  { label: 'From Sorrento/Amalfi', href: '/money/pompeii-from-sorrento-amalfi' },
+  { label: '+ Vesuvius Combo', href: '/money/pompeii-vesuvius-combo' },
+  { label: '+ Herculaneum', href: '/money/pompeii-herculaneum' },
+  { label: 'Private Guide', href: '/money/private-pompeii-guide' },
+  { label: 'How Much Time You Need', href: '/support/how-much-time-you-need' },
 ];
 
 export const EXPLORE_LINKS = MONEY_PAGES.map((p) => ({ label: p.title, href: p.href }));

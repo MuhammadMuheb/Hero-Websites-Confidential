@@ -120,9 +120,9 @@ export interface QuickLink {
 }
 
 export const QUICK_LINKS: QuickLink[] = [
-  { label: 'From Rome', href: '/tivoli-from-rome' },
+  { label: 'From Rome', href: '/money/tivoli-from-rome' },
   { label: 'Both Villas', href: '/villa-d-este-hadrian-s-villa' },
-  { label: 'Getting There', href: '/getting-to-tivoli-train-vs-tour' },
+  { label: 'Getting There', href: '/support/getting-to-tivoli-train-vs-tour' },
   { label: 'Which Villa', href: '/which-villa-to-prioritise' },
   { label: 'Best Season', href: '/gardens-best-season' },
 ];
@@ -166,7 +166,7 @@ export interface SupportPageContent {
 
 const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
-    href: '/tivoli-from-rome',
+    href: '/money/tivoli-from-rome',
     heroImage: { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e', alt: "Cascading water fountains in the elaborate garden of Villa d'Este" },
     h1: 'Tivoli Day Trip from Rome: Half-Day vs Full-Day',
     keyword: 'tivoli day trip from rome',
@@ -229,7 +229,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
 
 const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
   {
-    href: '/getting-to-tivoli-train-vs-tour',
+    href: '/support/getting-to-tivoli-train-vs-tour',
     metaTitle: 'Getting to Tivoli from Rome: Train, Bus & Tour Options',
     metaDescription:
       'Independent train-and-bus routing with exact timing, or tour convenience — here\'s what actually works for a Tivoli day trip.',

@@ -61,7 +61,7 @@ export interface SupportPageContent {
 
 export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
-    href: '/tuscany-from-florence',
+    href: '/money/tuscany-from-florence',
     navTitle: 'Tuscany from Florence',
     h1: 'Tuscany Day Trip from Florence: What Fits in a Single Day',
     keyword: 'tuscany day trip from florence',
@@ -126,7 +126,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Which Tuscany Trip to Pick',
   },
   {
-    href: '/tuscany-wine-day-trip',
+    href: '/money/tuscany-wine-day-trip',
     navTitle: 'Tuscany Wine Day Trip',
     h1: 'Tuscany Wine Day Trip: Chianti Tasting Done Right',
     keyword: 'tuscany wine tour',
@@ -191,7 +191,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Wine Tour Logistics',
   },
   {
-    href: '/siena-san-gimignano-chianti',
+    href: '/money/siena-san-gimignano-chianti',
     navTitle: 'Siena + San Gimignano + Chianti',
     h1: 'Siena, San Gimignano & Chianti: The Routing That Actually Works',
     keyword: 'siena san gimignano chianti tour',
@@ -255,7 +255,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Best Season for Tuscany',
   },
   {
-    href: '/florence-base-day-trips',
+    href: '/money/florence-base-day-trips',
     navTitle: 'Florence-Base Day Trips',
     h1: 'Every Realistic Day Trip from a Florence Base',
     keyword: 'day trips from florence',
@@ -322,7 +322,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
 
 export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
   {
-    href: '/which-tuscany-trip-to-pick',
+    href: '/support/which-tuscany-trip-to-pick',
     navTitle: 'Which Tuscany Trip to Pick',
     h1: 'Which Tuscany Day Trip Should You Actually Book?',
     keyword: 'which tuscany day trip to pick',
@@ -367,11 +367,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'A private driver-guide booking is the only format built for that — shared group tours run a fixed route with no substitutions.',
       },
     ],
-    relatedMoneyHref: '/tuscany-from-florence',
+    relatedMoneyHref: '/money/tuscany-from-florence',
     relatedMoneyLabel: 'See Tuscany from Florence',
   },
   {
-    href: '/wine-tour-logistics',
+    href: '/support/wine-tour-logistics',
     navTitle: 'Wine Tour Logistics',
     h1: 'Tuscany Wine Tour Logistics, Honestly Explained',
     keyword: 'tuscany wine tour logistics',
@@ -416,11 +416,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'A half-day usually fits one winery properly; a full day (6–8 hours) is what allows the 2–3 winery pacing that gives the best overall experience.',
       },
     ],
-    relatedMoneyHref: '/tuscany-wine-day-trip',
+    relatedMoneyHref: '/money/tuscany-wine-day-trip',
     relatedMoneyLabel: 'See the Tuscany Wine Day Trip',
   },
   {
-    href: '/with-or-without-a-car',
+    href: '/support/with-or-without-a-car',
     navTitle: 'With or Without a Car',
     h1: 'Tuscany Day Trip: With or Without a Car?',
     keyword: 'tuscany day trip with or without a car',
@@ -469,7 +469,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     relatedMoneyLabel: 'See Florence-Base Day Trips',
   },
   {
-    href: '/best-season-for-tuscany',
+    href: '/support/best-season-for-tuscany',
     navTitle: 'Best Season for Tuscany',
     h1: 'The Best Season for a Tuscany Day Trip',
     keyword: 'best season for tuscany day trip',
@@ -518,7 +518,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     relatedMoneyLabel: 'See Siena + San Gimignano + Chianti',
   },
   {
-    href: '/what-s-included',
+    href: '/support/what-s-included',
     navTitle: "What's Included",
     h1: "What's Actually Included in a Tuscany Day Trip",
     keyword: 'what is included in a tuscany day trip',
@@ -563,7 +563,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Sometimes — a handful of paid sights (like Siena’s Duomo interior) aren’t always pre-booked as part of a group tour, so check in advance if a specific interior visit matters to you.',
       },
     ],
-    relatedMoneyHref: '/tuscany-wine-day-trip',
+    relatedMoneyHref: '/money/tuscany-wine-day-trip',
     relatedMoneyLabel: 'See the Tuscany Wine Day Trip',
   },
 ];

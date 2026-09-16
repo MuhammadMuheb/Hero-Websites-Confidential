@@ -41,7 +41,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Best Rome Cooking Classes',
-    href: '/best-rome-cooking-classes',
+    href: '/money/best-rome-cooking-classes',
     blurb: "The broad hub roundup — every class type in one place, sorted by what you actually want to learn, not just price.",
     keyword: 'rome cooking class',
     cta: 'See all classes',
@@ -50,7 +50,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Pasta-Making Class',
-    href: '/pasta-making-class',
+    href: '/money/pasta-making-class',
     blurb: "Hands-on pasta from scratch — the difference between a class that teaches you to actually shape tagliatelle and one that just watches a chef do it.",
     keyword: 'pasta making class rome',
     cta: 'Compare pasta classes',
@@ -59,7 +59,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Pizza + Gelato Class',
-    href: '/pizza-gelato-class',
+    href: '/money/pizza-gelato-class',
     blurb: "A combo class that pairs the hands-on pizza-dough technique with a gelato-making session — a full afternoon, not a rushed hour.",
     keyword: 'pizza gelato class rome',
     cta: 'Compare combo classes',
@@ -68,7 +68,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Market-to-Table Class',
-    href: '/market-to-table-class',
+    href: '/money/market-to-table-class',
     blurb: "Starts at a real produce market picking ingredients, then cooks what you bought — the most first-hand version of \"cooking like a local\" this hub offers.",
     keyword: 'market to table cooking rome',
     cta: 'Compare market classes',
@@ -77,7 +77,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Private / Small-Group Class',
-    href: '/private-small-group-class',
+    href: '/money/private-small-group-class',
     blurb: "An intimate setting for couples, families, or small groups who'd rather not share a kitchen island with strangers.",
     keyword: 'private cooking class rome',
     cta: 'Compare private classes',
@@ -213,11 +213,11 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  * 8 cards in the same order on all 5 pages.
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
-  '/best-rome-cooking-classes': ['pasta', 'pizza', 'market', 'private'],
-  '/pasta-making-class': ['pasta', 'beginner'],
-  '/pizza-gelato-class': ['pizza', 'gelato', 'combo'],
-  '/market-to-table-class': ['market'],
-  '/private-small-group-class': ['private', 'small-group'],
+  '/money/best-rome-cooking-classes': ['pasta', 'pizza', 'market', 'private'],
+  '/money/pasta-making-class': ['pasta', 'beginner'],
+  '/money/pizza-gelato-class': ['pizza', 'gelato', 'combo'],
+  '/money/market-to-table-class': ['market'],
+  '/money/private-small-group-class': ['private', 'small-group'],
 };
 
 /**

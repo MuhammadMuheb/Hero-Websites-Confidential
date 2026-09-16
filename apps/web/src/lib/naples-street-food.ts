@@ -98,9 +98,9 @@ export const FEATURED_TOURS: FeaturedTour[] = [
 ];
 
 export const NAV_ITEMS: NavItem[] = [
-  { title: 'Street Food Tours', href: '/naples-street-food-tour', keyword: 'naples street food tour' },
-  { title: 'Pizza Focus', href: '/pizza-focused-food-tour', keyword: 'naples pizza tour' },
-  { title: 'Market Tours', href: '/naples-market-tour', keyword: 'naples market tour' },
+  { title: 'Street Food Tours', href: '/money/naples-street-food-tour', keyword: 'naples street food tour' },
+  { title: 'Pizza Focus', href: '/money/pizza-focused-food-tour', keyword: 'naples pizza tour' },
+  { title: 'Market Tours', href: '/money/naples-market-tour', keyword: 'naples market tour' },
   { title: 'Spaccanapoli', href: '/spaccanapoli-food-walk', keyword: 'spaccanapoli food tour' },
   { title: 'Real Neapolitan Pizza', href: '/real-neapolitan-pizza-guide', keyword: 'real neapolitan pizza' },
   { title: 'Fried Food Guide', href: '/fried-food-specialities', keyword: 'naples fried food' },

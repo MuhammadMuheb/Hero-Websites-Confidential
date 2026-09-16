@@ -38,7 +38,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Golf-Cart Tour of Rome',
-    href: '/golf-cart-tour-of-rome',
+    href: '/money/golf-cart-tour-of-rome',
     blurb: "The flagship guided cart tour — Rome's major sights covered seated, shaded, and at a pace that doesn't leave anyone behind.",
     keyword: 'golf cart tour rome',
     cta: 'See tours',
@@ -211,7 +211,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  * cards in the same order on all 5 pages.
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
-  '/golf-cart-tour-of-rome': ['guided', 'shared', 'first-timer'],
+  '/money/golf-cart-tour-of-rome': ['guided', 'shared', 'first-timer'],
   '/private-cart-tour': ['private'],
   '/cart-tour-for-families-seniors': ['family', 'seniors', 'accessible'],
   '/night-cart-tour': ['night', 'sunset', 'guided'],
@@ -322,7 +322,7 @@ export const FAQS = [
 ];
 
 export const QUICK_LINKS = [
-  { label: 'Golf-Cart Tour', href: '/golf-cart-tour-of-rome' },
+  { label: 'Golf-Cart Tour', href: '/money/golf-cart-tour-of-rome' },
   { label: 'Private Cart Tour', href: '/private-cart-tour' },
   { label: 'Families & Seniors', href: '/cart-tour-for-families-seniors' },
   { label: 'Night Tour', href: '/night-cart-tour' },

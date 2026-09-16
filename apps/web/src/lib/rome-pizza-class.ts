@@ -53,7 +53,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Pizza + Gelato Combo',
-    href: '/pizza-gelato-combo',
+    href: '/money/pizza-gelato-combo',
     blurb: 'A two-dish combo for anyone who wants the full afternoon — pizza first, gelato-making after, in one booking.',
     keyword: 'pizza and gelato class rome',
     cta: 'Compare combo classes',
@@ -208,7 +208,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
   '/rome-pizza-making-class': ['classic', 'beginner'],
-  '/pizza-gelato-combo': ['combo', 'gelato'],
+  '/money/pizza-gelato-combo': ['combo', 'gelato'],
   '/family-pizza-class': ['family', 'kids'],
   '/private-pizza-class': ['private', 'small-group'],
 };
@@ -270,7 +270,7 @@ export const SUPPORT_PAGES = [
   },
   {
     title: 'Pizza vs Pasta Class',
-    href: '/pizza-vs-pasta-class',
+    href: '/money/pizza-vs-pasta-class',
     keyword: 'pizza vs pasta class rome',
     image: { src: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234', alt: 'A hand lifting a cheese-topped pizza slice from a whole pie' },
   },
@@ -312,11 +312,11 @@ export const FAQS = [
 
 export const QUICK_LINKS = [
   { label: 'Rome Pizza-Making Class', href: '/rome-pizza-making-class' },
-  { label: 'Pizza + Gelato Combo', href: '/pizza-gelato-combo' },
+  { label: 'Pizza + Gelato Combo', href: '/money/pizza-gelato-combo' },
   { label: 'Family Pizza Class', href: '/family-pizza-class' },
   { label: 'Private Pizza Class', href: '/private-pizza-class' },
   { label: 'Kids Pizza Classes', href: '/kids-pizza-classes' },
-  { label: 'Pizza vs Pasta Class', href: '/pizza-vs-pasta-class' },
+  { label: 'Pizza vs Pasta Class', href: '/money/pizza-vs-pasta-class' },
   { label: 'Wine Pairing', href: '/wine-pairing' },
 ];
 

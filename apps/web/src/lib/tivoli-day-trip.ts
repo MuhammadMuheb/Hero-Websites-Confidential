@@ -19,7 +19,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Tivoli from Rome',
-    href: '/tivoli-from-rome',
+    href: '/money/tivoli-from-rome',
     blurb: 'The flagship half/full-day trip — close enough to Rome that a half-day is genuinely realistic, but full-day lets you properly see both villas without rushing.',
     keyword: 'tivoli day trip from rome',
     cta: 'Compare Tivoli tours',
@@ -101,14 +101,14 @@ export const FEATURED_TOURS: FeaturedTour[] = [
 ];
 
 export const NAV_ITEMS: NavItem[] = [
-  { title: 'From Rome', href: '/tivoli-from-rome', keyword: 'tivoli day trip from rome' },
+  { title: 'From Rome', href: '/money/tivoli-from-rome', keyword: 'tivoli day trip from rome' },
   { title: 'Both Villas', href: '/villa-d-este-hadrian-s-villa', keyword: 'villa d\'este hadrian\'s villa tour' },
   { title: 'Private Tours', href: '/private-tivoli-tour', keyword: 'private tivoli tour' },
   { title: 'Half-Day', href: '/half-day-tivoli', keyword: 'half day tivoli tour' },
   { title: 'Getting There', href: '/getting-to-tivoli-train-vs-tour', keyword: 'how to get to tivoli' },
   { title: 'Which Villa', href: '/which-villa-to-prioritise', keyword: 'villa d\'este or hadrian\'s villa' },
   { title: 'Best Season', href: '/gardens-best-season', keyword: 'best time to visit tivoli' },
-  { title: 'With Kids', href: '/tivoli-with-kids', keyword: 'tivoli day trip with children' },
+  { title: 'With Kids', href: '/money/tivoli-with-kids', keyword: 'tivoli day trip with children' },
 ];
 
 export const SUPPORT_PAGES = [
@@ -132,7 +132,7 @@ export const SUPPORT_PAGES = [
   },
   {
     title: 'With Kids',
-    href: '/tivoli-with-kids',
+    href: '/money/tivoli-with-kids',
     keyword: 'tivoli day trip with children',
     image: { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: 'Family-friendly fountain pathway at Villa d\'Este, safe and accessible for all ages' },
   },

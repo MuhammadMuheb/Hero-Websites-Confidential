@@ -35,7 +35,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Tuscany from Florence',
-    href: '/tuscany-from-florence',
+    href: '/money/tuscany-from-florence',
     blurb: 'The flagship full-day trip from Florence — what’s realistic to see, and what gets cut when the day runs long.',
     keyword: 'tuscany day trip from florence',
     cta: 'Compare Florence day trips',
@@ -44,7 +44,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Tuscany Wine Day Trip',
-    href: '/tuscany-wine-day-trip',
+    href: '/money/tuscany-wine-day-trip',
     blurb: 'A Chianti tasting day done properly means 2–3 wineries, not a rushed five-stop marathon.',
     keyword: 'tuscany wine tour',
     cta: 'Compare wine day trips',
@@ -199,8 +199,8 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  * repeating the same 8 cards in the same order on all 4 pages.
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
-  '/tuscany-from-florence': ['from-florence', 'first-timer'],
-  '/tuscany-wine-day-trip': ['wine', 'tasting'],
+  '/money/tuscany-from-florence': ['from-florence', 'first-timer'],
+  '/money/tuscany-wine-day-trip': ['wine', 'tasting'],
   '/siena-san-gimignano-chianti': ['siena-sg'],
   '/florence-base-day-trips': ['from-florence', 'multi-destination'],
 };
@@ -309,8 +309,8 @@ export const FAQS = [
 ];
 
 export const QUICK_LINKS = [
-  { label: 'Tuscany from Florence', href: '/tuscany-from-florence' },
-  { label: 'Tuscany Wine Day Trip', href: '/tuscany-wine-day-trip' },
+  { label: 'Tuscany from Florence', href: '/money/tuscany-from-florence' },
+  { label: 'Tuscany Wine Day Trip', href: '/money/tuscany-wine-day-trip' },
   { label: 'Siena + San Gimignano + Chianti', href: '/siena-san-gimignano-chianti' },
   { label: 'Florence-Base Day Trips', href: '/florence-base-day-trips' },
   { label: 'Which Tuscany Trip to Pick', href: '/which-tuscany-trip-to-pick' },

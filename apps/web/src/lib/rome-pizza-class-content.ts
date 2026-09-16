@@ -63,7 +63,7 @@ export interface SupportPageContent {
 
 export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   {
-    href: '/rome-pizza-making-class',
+    href: '/money/rome-pizza-making-class',
     navTitle: 'Rome Pizza-Making Class',
     h1: 'Rome Pizza-Making Class: Dough Technique & Oven Comparison',
     keyword: 'pizza making class rome',
@@ -127,7 +127,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'What You Make and Eat',
   },
   {
-    href: '/pizza-gelato-combo',
+    href: '/money/pizza-gelato-combo',
     navTitle: 'Pizza + Gelato Combo',
     h1: 'Pizza + Gelato Combo Class in Rome: Timing & Honest Pricing',
     keyword: 'pizza and gelato class rome',
@@ -190,7 +190,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Pizza vs Pasta Class',
   },
   {
-    href: '/family-pizza-class',
+    href: '/money/family-pizza-class',
     navTitle: 'Family Pizza Class',
     h1: 'Family Pizza Class in Rome: Built for Smaller Hands',
     keyword: 'family pizza class rome',
@@ -253,7 +253,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportLabel: 'Kids Pizza Classes',
   },
   {
-    href: '/private-pizza-class',
+    href: '/money/private-pizza-class',
     navTitle: 'Private Pizza Class',
     h1: 'Private Pizza Class in Rome: Is the Price Premium Worth It?',
     keyword: 'private pizza class rome',
@@ -319,7 +319,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
 
 export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
   {
-    href: '/what-you-make-and-eat',
+    href: '/support/what-you-make-and-eat',
     navTitle: 'What You Make and Eat',
     h1: 'What You Actually Make and Eat in a Rome Pizza Class',
     keyword: 'what do you make in a pizza class rome',
@@ -368,7 +368,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     relatedMoneyLabel: 'See the Rome Pizza-Making Class',
   },
   {
-    href: '/kids-pizza-classes',
+    href: '/support/kids-pizza-classes',
     navTitle: 'Kids Pizza Classes',
     h1: 'Kids Pizza Classes in Rome: What to Check Before Booking',
     keyword: 'kids pizza class rome',
@@ -417,7 +417,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     relatedMoneyLabel: 'See the Family Pizza Class',
   },
   {
-    href: '/pizza-vs-pasta-class',
+    href: '/support/pizza-vs-pasta-class',
     navTitle: 'Pizza vs Pasta Class',
     h1: 'Pizza Class vs Pasta Class in Rome: Which Should You Book?',
     keyword: 'pizza vs pasta class rome',
@@ -462,11 +462,11 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           "Different, not necessarily harder — pizza dough demands patience with proving time and hydration ratios, while pasta dough demands more hands-on kneading and shaping precision in a shorter window.",
       },
     ],
-    relatedMoneyHref: '/pizza-gelato-combo',
+    relatedMoneyHref: '/money/pizza-gelato-combo',
     relatedMoneyLabel: 'See the Pizza + Gelato Combo',
   },
   {
-    href: '/wine-pairing',
+    href: '/support/wine-pairing',
     navTitle: 'Wine Pairing',
     h1: 'Wine Pairing with a Rome Pizza-Making Class',
     keyword: 'pizza class wine pairing rome',

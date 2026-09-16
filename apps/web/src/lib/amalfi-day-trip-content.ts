@@ -177,7 +177,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     atAGlance: [],
     sections: [],
     faqs: [],
-    relatedSupportHref: "/boat-vs-road",
+    relatedSupportHref: "/support/boat-vs-road",
     relatedSupportLabel: "Boat vs Road",
   },
   {
@@ -192,7 +192,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     atAGlance: [],
     sections: [],
     faqs: [],
-    relatedSupportHref: "/best-towns-for-a-day",
+    relatedSupportHref: "/support/best-towns-for-a-day",
     relatedSupportLabel: "Best Towns",
   },
   {
@@ -207,7 +207,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     atAGlance: [],
     sections: [],
     faqs: [],
-    relatedSupportHref: "/summer-crowds-timing",
+    relatedSupportHref: "/support/summer-crowds-timing",
     relatedSupportLabel: "Summer Crowds",
   },
   {
@@ -222,7 +222,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     atAGlance: [],
     sections: [],
     faqs: [],
-    relatedSupportHref: "/boat-vs-road",
+    relatedSupportHref: "/support/boat-vs-road",
     relatedSupportLabel: "Boat vs Road",
   },
 ];
