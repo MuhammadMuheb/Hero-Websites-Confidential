@@ -49,9 +49,9 @@
  * actually differs, so this is the first scoped override introduced.
  */
 .pv-scope {
-  --accent: 255 0 34;
-  --accent-hover: 224 0 29;
-  --accent-soft: 255 236 238;
+  --accent: 184 134 46;
+  --accent-hover: 156 111 34;
+  --accent-soft: 250 243 228;
 }
 
 /**
@@ -64,9 +64,9 @@
  * Vatican's own scoped tokens untouched.
  */
 .pdt-scope {
-  --accent: 255 0 34;
-  --accent-hover: 224 0 29;
-  --accent-soft: 255 236 238;
+  --accent: 193 68 14;
+  --accent-hover: 168 58 12;
+  --accent-soft: 253 236 227;
 }
 
 /**
@@ -79,9 +79,9 @@
  * untouched.
  */
 .rv-scope {
-  --accent: 255 0 34;
-  --accent-hover: 224 0 29;
-  --accent-soft: 255 236 238;
+  --accent: 31 156 138;
+  --accent-hover: 24 125 110;
+  --accent-soft: 231 246 243;
 }
 
 /**
@@ -94,9 +94,9 @@
  * scoped tokens untouched.
  */
 .gcr-scope {
-  --accent: 255 0 34;
-  --accent-hover: 224 0 29;
-  --accent-soft: 255 236 238;
+  --accent: 242 163 15;
+  --accent-hover: 214 140 9;
+  --accent-soft: 254 243 224;
 }
 
 /**
@@ -109,9 +109,9 @@
  * property's own scoped tokens untouched.
  */
 .cir-scope {
-  --accent: 255 0 34;
-  --accent-hover: 224 0 29;
-  --accent-soft: 255 236 238;
+  --accent: 63 125 74;
+  --accent-hover: 51 102 64;
+  --accent-soft: 234 244 236;
 }
 
 /**
@@ -124,9 +124,9 @@
  * system, and leaving every other property's own scoped tokens untouched.
  */
 .rpc-scope {
-  --accent: 255 0 34;
-  --accent-hover: 224 0 29;
-  --accent-soft: 255 236 238;
+  --accent: 226 67 43;
+  --accent-hover: 194 54 31;
+  --accent-soft: 253 236 233;
 }
 
 /**
@@ -142,9 +142,9 @@
  * section backgrounds.
  */
 .tc-scope {
-  --accent: 255 0 34;
-  --accent-hover: 224 0 29;
-  --accent-soft: 255 236 238;
+  --accent: 107 66 38;
+  --accent-hover: 90 54 32;
+  --accent-soft: 244 234 214;
 }
 
 /**
@@ -159,9 +159,9 @@
  * shadow/spacing/typography).
  */
 .tdt-scope {
-  --accent: 255 0 34;
-  --accent-hover: 224 0 29;
-  --accent-soft: 255 236 238;
+  --accent: 122 35 49;
+  --accent-hover: 99 33 41;
+  --accent-soft: 244 232 236;
 }
 
 .adt-scope {
