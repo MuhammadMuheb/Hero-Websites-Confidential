@@ -11,6 +11,7 @@ interface NavItem {
 }
 
 const PAGES: NavItem[] = [
+  { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Contact Us', href: '/contact' },
   { label: 'FAQ', href: '/faq' },
