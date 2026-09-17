@@ -310,7 +310,7 @@ export function TVDTFooter() {
     <footer className="bg-ink text-white/70">
       <div className="mx-auto max-w-[1440px] px-6 py-16 sm:px-14">
         <div className="rounded-panel border border-white/15 bg-white/5 px-5 py-4 text-center text-[13px] font-semibold text-white/85 sm:text-left">
-          Independent guide &mdash; not affiliated with any coastalry, tour operator, GetYourGuide, Viator, or Civitatis.
+          Independent guide &mdash; not affiliated with any government body, villa, tour operator, GetYourGuide, Viator, or Civitatis.
         </div>
 
         <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
@@ -320,7 +320,7 @@ export function TVDTFooter() {
               <span className="font-display text-lg font-bold tracking-tight text-white">Tivoli Day Trip</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">
-              Independent, first-hand guide to Tivoli Day Trips from Florence &mdash; part of the Italy Tours network
+              Independent, first-hand guide to Tivoli Day Trips from Rome &mdash; part of the Italy Tours network
               of Rome and Italy travel guides.
             </p>
             <p className="mt-4 text-xs font-semibold uppercase tracking-[0.1em] text-white/35">
@@ -461,11 +461,8 @@ export function CarouselArrows({ onPrev, onNext, label }: { onPrev: () => void; 
 }
 
 /**
- * A real side-by-side comparison table, matching the pattern shipped on
- * every other bespoke property. Whether a listing includes a proper
- * coastal-tasting stop is this property's equivalent of Tiramisù Class's
- * eatInClass flag and Pompeii Day Trip's skipLineEntry flag — the single
- * biggest factor visitors ask about first.
+ * A real side-by-side comparison table for Tivoli tours, matching the pattern
+ * shipped on every other bespoke property. Shows partner, duration, price and link.
  */
 export function TourComparisonTable({ tours, caption }: { tours: FeaturedTour[]; caption?: string }) {
   return (
@@ -477,7 +474,6 @@ export function TourComparisonTable({ tours, caption }: { tours: FeaturedTour[];
             <th scope="col" className="px-4 py-3 font-bold text-ink">Day Trip</th>
             <th scope="col" className="px-4 py-3 font-bold text-ink">Partner</th>
             <th scope="col" className="px-4 py-3 font-bold text-ink">Duration</th>
-            <th scope="col" className="px-4 py-3 font-bold text-ink">coastal Tasting</th>
             <th scope="col" className="px-4 py-3 text-right font-bold text-ink">From</th>
             <th scope="col" className="px-4 py-3" aria-label="Link" />
           </tr>
@@ -488,18 +484,6 @@ export function TourComparisonTable({ tours, caption }: { tours: FeaturedTour[];
               <td className="px-4 py-3 font-semibold text-ink">{tour.title}</td>
               <td className="px-4 py-3 text-ink-muted">{tour.partner}</td>
               <td className="px-4 py-3 text-ink-muted">{(tour.meta.split('·')[0] ?? '').trim()}</td>
-              <td className="px-4 py-3">
-                {tour.coastaltastingIncluded ? (
-                  <span className="inline-flex items-center gap-1 font-semibold text-success">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="m5 12.5 4.5 4.5L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    coastal tasting included
-                  </span>
-                ) : (
-                  <span className="text-faint">Sightseeing only</span>
-                )}
-              </td>
               <td className="px-4 py-3 text-right font-bold tabular-nums text-ink">&euro;{tour.priceFrom}</td>
               <td className="px-4 py-3 text-right">
                 <Link href={`/go/${tour.slug}`} className="text-sm font-bold text-accent hover:underline">
@@ -516,8 +500,7 @@ export function TourComparisonTable({ tours, caption }: { tours: FeaturedTour[];
 
 /**
  * "Before You Book" stat strip — verifiable historical/geographic facts
- * about Tivoli and coastal itself (see QUICK_FACTS in
- * lib/tivoli-day-trip.ts), not business metrics.
+ * about Tivoli itself (see QUICK_FACTS in lib/tivoli-day-trip.ts), not business metrics.
  */
 export function QuickFactsStrip({ facts }: { facts: { value: string; label: string; detail: string }[] }) {
   return (

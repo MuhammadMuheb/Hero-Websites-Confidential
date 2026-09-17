@@ -2,6 +2,7 @@
 
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
+import { NetworkPropertyHero } from '@/components/NetworkPropertyHero';
 import {
   ARENA_FLOOR_PAGE,
   FAQS,
@@ -235,76 +236,14 @@ export function UndergroundColosseumHome() {
 
       <UCHeader />
 
-      {/* ---------- hero ---------- */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 sm:px-14 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-20">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-faint">
-              Colosseum underground tour
-            </p>
-            <h1 className="mt-4 font-sans text-[38px] font-extrabold leading-[1.08] tracking-tight text-ink sm:text-[54px]">
-              Underground &amp; Arena Floor Colosseum Tours
-            </h1>
-            <p className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-ink-muted">
-              Written and photographed on-site by a Rome-based guide who has walked every underground circuit in
-              person — so you know exactly what each tour actually includes before you book.
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                href="/underground-arena-floor-tour"
-                className="flex h-11 items-center justify-center rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
-              >
-                Compare Underground Tours
-              </Link>
-              <Link
-                href="/is-the-underground-worth-it"
-                className="flex h-11 items-center justify-center rounded-control border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent-soft"
-              >
-                Is it worth it?
-              </Link>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-2.5 text-sm text-ink-muted sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
-              {['Own arena-floor photography', 'Independent — no operator affiliation', 'Compares GetYourGuide · Viator · Tiqets'].map((label) => (
-                <span key={label} className="flex items-center gap-1.5">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0 text-success">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
-                    <path d="m8 12.5 2.5 2.5L16 9.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media shadow-card">
-            <SafeImage
-              src={HERO_IMAGE.src}
-              alt={HERO_IMAGE.alt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 560px, 100vw"
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- quick-jump topic chips ---------- */}
-      <div className="border-b border-line bg-white">
-        <div className="mx-auto flex max-w-[1200px] items-center gap-2 overflow-x-auto px-6 py-4 [scrollbar-width:none] sm:px-14 [&::-webkit-scrollbar]:hidden">
-          {QUICK_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="flex h-9 shrink-0 items-center whitespace-nowrap rounded-full border border-line px-3.5 text-sm font-semibold text-ink-muted transition-all duration-200 ease-out hover:border-accent hover:bg-accent-soft hover:text-accent"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
+      <NetworkPropertyHero
+        propertyName="Underground Colosseum"
+        heroImageUrl={HERO_IMAGE.src}
+        heroImageAlt={HERO_IMAGE.alt}
+        heroHeadline="Underground & Arena Floor Colosseum Tours"
+        navigationLinks={QUICK_LINKS}
+        searchPlaceholder="Underground tours, Arena floor, Colosseum access…"
+      />
 
       {/* ---------- Colosseum by the numbers ---------- */}
       <section className="border-b border-line bg-paper-tint py-14 sm:py-16">

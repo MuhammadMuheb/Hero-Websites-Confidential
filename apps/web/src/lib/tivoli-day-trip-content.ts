@@ -110,8 +110,8 @@ export const QUICK_FACTS = [
   { label: 'Travel time (from Rome)', value: '45 min – 1 hour by train + bus', detail: 'Regional train plus local bus to both villas' },
   { label: 'Villa d\'Este visit time', value: '1.5–2.5 hours', detail: 'Fountains and garden tour duration' },
   { label: "Hadrian's Villa visit time", value: '2–3 hours', detail: 'Ruins and archaeological site tour duration' },
-  { label: 'Best months', value: 'May–June, Sept–Oct', detail: 'Shoulder season for crowds and weather' },
-  { label: 'Peak crowds', value: 'July–August', detail: 'Summer vacation season brings large crowds' },
+  { label: 'Best months', value: 'May–June, Sept–Oct', detail: 'Mild weather and lower crowds' },
+  { label: 'Peak season', value: 'July–August', detail: 'Summer brings larger crowds and heat' },
 ];
 
 export interface QuickLink {

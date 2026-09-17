@@ -2,6 +2,7 @@
 
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
+import { NetworkPropertyHero } from '@/components/NetworkPropertyHero';
 import {
   FAQS,
   FEATURED_TOURS,
@@ -47,8 +48,7 @@ function MoneyPagesCarousel() {
           <CarouselArrows label="day trip page" onPrev={() => scrollByOneCard(-1)} onNext={() => scrollByOneCard(1)} />
         </div>
         <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
-          Every card below is its own page with its own primary keyword — no two share intent, so each can rank on
-          its own.
+          Compare 4 distinct day trip options — each with different timing, transport, and price points, so you can find the one that fits your schedule and budget.
         </p>
 
         <div
@@ -115,7 +115,7 @@ function FeaturedToursCarousel() {
           </div>
         </div>
         <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
-          Every card pulls partner, price band, and duration live from the Tour collection.
+          Hand-picked tours from top operators — all rated, verified, and bookable through trusted partner sites.
         </p>
         <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-gold">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
@@ -168,18 +168,22 @@ function FeaturedToursCarousel() {
 }
 
 export function TivoliDayTripHome() {
+  const baseUrl = 'https://street-food-rome-web.vercel.app';
+
   const websiteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Tivoli Day Trip',
-    url: 'https://TivoliDayTrip.com/',
+    url: `${baseUrl}/`,
+    description: "First-hand Tivoli day-trip guide from Rome. Villa d'Este vs Hadrian's Villa, half-day vs full-day, and honest transit logistics.",
   };
 
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Tivoli Day Trip',
-    url: 'https://TivoliDayTrip.com/',
+    url: `${baseUrl}/`,
+    sameAs: ['https://tivolivillas.com'],
   };
 
   const faqJsonLd = {
@@ -199,18 +203,22 @@ export function TivoliDayTripHome() {
       '@type': 'ListItem',
       position: index + 1,
       name: page.title,
-      url: `https://TivoliDayTrip.com${page.href}`,
+      url: `${baseUrl}${page.href}`,
     })),
   };
 
   const touristTripJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TouristTrip',
-    name: 'Tivoli Coast Day Trips',
+    name: 'Tivoli Day Trips from Rome',
     description:
-      'Independent guide to Tivoli Coast day trips by road and boat — Positano, Ravello, and Tivoli routing with honest boat-vs-road comparisons.',
+      'Independent guide to Tivoli day trips from Rome — Villa d\'Este fountains and Hadrian\'s Villa ruins, half-day and full-day options, with honest transit logistics and tour comparisons.',
+    itinerary: [
+      { '@type': 'Place', name: 'Villa d\'Este', description: 'Renaissance fountains and terraced gardens' },
+      { '@type': 'Place', name: 'Hadrian\'s Villa', description: 'Ancient Roman ruins and archaeological site' },
+    ],
     provider: { '@type': 'Organization', name: 'Tivoli Day Trip' },
-    url: 'https://TivoliDayTrip.com/',
+    url: `${baseUrl}/`,
   };
 
   return (
@@ -223,85 +231,24 @@ export function TivoliDayTripHome() {
 
       <TVDTHeader />
 
-      {/* ---------- hero ---------- */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 sm:px-14 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-20">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-faint">
-              {HERO.eyebrow || 'Tivoli Coast day trips'}
-            </p>
-            <h1 className="mt-4 font-display text-[34px] font-bold leading-[1.12] tracking-tight text-ink sm:text-[48px]">
-              {HERO.headline}
-            </h1>
-            <p className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-ink-muted">
-              {HERO.subheadline}
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                href={HERO.primaryCta.href}
-                className="flex h-11 items-center justify-center rounded-control bg-accent-gradient px-6 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
-              >
-                {HERO.primaryCta.label}
-              </Link>
-              <Link
-                href={HERO.secondaryCta.href}
-                className="flex h-11 items-center justify-center rounded-control border border-accent px-6 text-sm font-medium text-accent transition-colors hover:bg-accent-soft"
-              >
-                {HERO.secondaryCta.label}
-              </Link>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-2.5 text-sm text-ink-muted sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
-              {HERO.trustBullets.map((label) => (
-                <span key={label} className="flex items-center gap-1.5">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0 text-success">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6" />
-                    <path d="m8 12.5 2.5 2.5L16 9.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media shadow-card">
-            <SafeImage
-              src={HERO_IMAGE.src}
-              alt={HERO_IMAGE.alt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 560px, 100vw"
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- quick-jump topic chips ---------- */}
-      <div className="border-b border-line bg-white">
-        <div className="mx-auto flex max-w-[1200px] items-center gap-2 overflow-x-auto px-6 py-4 [scrollbar-width:none] sm:px-14 [&::-webkit-scrollbar]:hidden">
-          {QUICK_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="flex h-9 shrink-0 items-center whitespace-nowrap rounded-full border border-line px-3.5 text-sm font-semibold text-ink-muted transition-all duration-200 ease-out hover:border-accent hover:bg-accent-soft hover:text-accent"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
+      <NetworkPropertyHero
+        propertyName="Tivoli Day Trip"
+        heroImageUrl={HERO_IMAGE.src}
+        heroImageAlt={HERO_IMAGE.alt}
+        heroHeadline={HERO.headline}
+        navigationLinks={QUICK_LINKS}
+        searchPlaceholder="Tivoli tours, Villa d'Este, Hadrian's Villa…"
+      />
 
       {/* ---------- before you book: Tivoli facts ---------- */}
       <section className="border-b border-line bg-paper-tint py-14 sm:py-16">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Before you book</p>
           <h2 className="mt-2 font-display text-[24px] font-bold leading-snug tracking-tight text-ink sm:text-[28px]">
-            Tivoli Coast, by the Numbers
+            Tivoli, by the Numbers
           </h2>
           <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
-            A little geography and timing before you book — the region&apos;s logistics and when the coast road is open.
+            Essential facts about Tivoli — distance from Rome, travel time by train and bus, visit duration for each villa, and best times to visit.
           </p>
           <div className="mt-8">
             <QuickFactsStrip facts={QUICK_FACTS} />
@@ -320,8 +267,7 @@ export function TivoliDayTripHome() {
             Compare All Tivoli Day Trips at a Glance
           </h2>
           <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
-            The same listings as the carousel above, laid out as a straight spec comparison — duration, whether
-            boat tours are included, and price.
+            Side-by-side comparison of all featured tours — partner, duration, and price at a glance.
           </p>
           <div className="mt-8">
             <TourComparisonTable tours={FEATURED_TOURS} caption="Comparison of every featured Tivoli Day Trip listing by partner, duration, boat-tour option and price" />
@@ -337,8 +283,7 @@ export function TivoliDayTripHome() {
             Before You Book
           </h2>
           <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
-            Each page below feeds trust into one of the money pages above — every link here lands on a page that
-            converts.
+            In-depth guides to help you decide: which villa to prioritize, best season to visit, how to get there, and family-friendly planning.
           </p>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
