@@ -2,9 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link from '@/components/NetworkLink';
-import { ACTIVE_NETWORK_SLUG, NETWORK_SITES, isUnbuiltNetworkRoute } from '@/lib/tours';
-
-const SIBLING_SITES = NETWORK_SITES.filter((site) => site.slug !== ACTIVE_NETWORK_SLUG);
+import { NETWORK_SITES } from '@/lib/tours';
 
 const COMPANY_LINKS = [
   { label: 'Home', href: '/' },
@@ -62,14 +60,18 @@ export function Footer() {
   const year = new Date().getFullYear();
   const pathname = usePathname();
 
-  if (isUnbuiltNetworkRoute(pathname)) return null;
+  const segments = pathname.split('/').filter(Boolean);
+  const networkSite = NETWORK_SITES.find((s) => s.slug === segments[0]);
+  const currentSiteSlug = networkSite ? networkSite.slug : 'street-food-rome';
+  const brandName = networkSite ? networkSite.name : 'Street Food Rome';
+  const siblingSites = NETWORK_SITES.filter((site) => site.slug !== currentSiteSlug);
 
   return (
     <footer className="bg-ink text-white/70">
       <div className="mx-auto max-w-[1440px] px-6 py-16 sm:px-14">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
+            <Link href={networkSite ? `/${networkSite.slug}` : '/'} className="flex items-center gap-2.5">
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-gradient text-white shadow-glow">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
@@ -81,11 +83,11 @@ export function Footer() {
                   />
                 </svg>
               </span>
-              <span className="text-lg font-bold tracking-tight text-white">street food rome</span>
+              <span className="text-lg font-bold tracking-tight text-white">{brandName.toLowerCase()}</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/55">
-              A first-hand guide to Rome&rsquo;s street food, written by a 12-year resident — honest
-              neighbourhood, market, and tour recommendations, no tourist traps.
+              A first-hand guide to unforgettable experiences, written by a local insider — honest
+              recommendations, expert comparisons, no tourist traps.
             </p>
           </div>
 
@@ -122,7 +124,7 @@ export function Footer() {
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Our Network</h3>
             <ul className="mt-4 space-y-3">
-              {SIBLING_SITES.map((site) => (
+              {siblingSites.map((site) => (
                 <li key={site.number}>
                   <Link
                     href={`/${site.slug}`}

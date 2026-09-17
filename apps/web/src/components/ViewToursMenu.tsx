@@ -1,10 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from '@/components/NetworkLink';
-import { ACTIVE_NETWORK_SLUG, CATEGORIES, NETWORK_SITES } from '@/lib/tours';
-
-const SIBLING_SITES = NETWORK_SITES.filter((site) => site.slug !== ACTIVE_NETWORK_SLUG);
+import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
 
 interface NavItem {
   label: string;
@@ -34,6 +33,12 @@ const linkClass = 'text-sm text-ink-muted transition-colors hover:text-accent';
 export function ViewToursMenu() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  const segments = pathname.split('/').filter(Boolean);
+  const networkSite = NETWORK_SITES.find((s) => s.slug === segments[0]);
+  const currentSiteSlug = networkSite ? networkSite.slug : 'street-food-rome';
+  const siblingSites = NETWORK_SITES.filter((site) => site.slug !== currentSiteSlug);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
@@ -99,7 +104,7 @@ export function ViewToursMenu() {
             <div className="col-span-2 sm:col-span-1">
               <ColumnHeading>Our Network</ColumnHeading>
               <ul className="mt-3 space-y-2.5">
-                {SIBLING_SITES.map((site) => (
+                {siblingSites.map((site) => (
                   <li key={site.number}>
                     <Link href={`/${site.slug}`} onClick={() => setOpen(false)} className={linkClass}>
                       {site.name}

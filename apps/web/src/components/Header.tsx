@@ -5,13 +5,12 @@ import Link from '@/components/NetworkLink';
 import { usePathname } from 'next/navigation';
 import { AccountMenu } from './AccountMenu';
 import { ViewToursMenu } from './ViewToursMenu';
-import { NETWORK_SITES, isUnbuiltNetworkRoute } from '@/lib/tours';
+import { NETWORK_SITES } from '@/lib/tours';
 
 export function Header() {
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
-  const isUnbuilt = isUnbuiltNetworkRoute(pathname);
   // Each network property's page ('/{slug}') and all its sub-pages
   // ('/{slug}/about', '/{slug}/tours', ...) render the same site, rebranded
   // with that property's own name in place of "street food rome" — the brand
@@ -44,8 +43,6 @@ export function Header() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  if (isUnbuilt) return null;
 
   return (
     <header
