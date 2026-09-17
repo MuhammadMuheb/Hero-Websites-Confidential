@@ -10,20 +10,26 @@ interface NavItem {
   href: string;
 }
 
-const PAGES: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Contact Us', href: '/contact' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Terms of Service', href: '/terms' },
-];
+function buildNavItems(basePrefix: string): { PAGES: NavItem[]; TOURS_AND_BLOG: NavItem[] } {
+  const homeHref = basePrefix || '/';
 
-const TOURS_AND_BLOG: NavItem[] = [
-  { label: 'All Tours', href: '/tours' },
-  ...CATEGORIES.map((c) => ({ label: `${c.name} Tours`, href: `/tours/category/${c.slug}` })),
-  { label: 'Blog', href: '/blog' },
-];
+  const PAGES: NavItem[] = [
+    { label: 'Home', href: homeHref },
+    { label: 'About Us', href: `${basePrefix}/about` },
+    { label: 'Contact Us', href: `${basePrefix}/contact` },
+    { label: 'FAQ', href: `${basePrefix}/faq` },
+    { label: 'Privacy Policy', href: `${basePrefix}/privacy` },
+    { label: 'Terms of Service', href: `${basePrefix}/terms` },
+  ];
+
+  const TOURS_AND_BLOG: NavItem[] = [
+    { label: 'All Tours', href: `${basePrefix}/tours` },
+    ...CATEGORIES.map((c) => ({ label: `${c.name} Tours`, href: `${basePrefix}/tours/category/${c.slug}` })),
+    { label: 'Blog', href: `${basePrefix}/blog` },
+  ];
+
+  return { PAGES, TOURS_AND_BLOG };
+}
 
 function ColumnHeading({ children }: { children: React.ReactNode }) {
   return <p className="text-xs font-semibold uppercase tracking-[0.1em] text-faint">{children}</p>;
@@ -40,6 +46,9 @@ export function ViewToursMenu() {
   const networkSite = NETWORK_SITES.find((s) => s.slug === segments[0]);
   const currentSiteSlug = networkSite ? networkSite.slug : 'street-food-rome';
   const siblingSites = NETWORK_SITES.filter((site) => site.slug !== currentSiteSlug);
+
+  const basePrefix = networkSite ? `/${networkSite.slug}` : '';
+  const { PAGES, TOURS_AND_BLOG } = buildNavItems(basePrefix);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
