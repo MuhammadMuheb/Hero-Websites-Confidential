@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { TCAuthorBox, TCFooter, TCHeader } from './TCShared';
+import { TCAuthorBox, TCFooter } from './TCShared';
 import type { SupportPageContent } from '@/lib/tiramisu-class-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <TCHeader toursHref="/#tours" planHref="/#dessert-prep" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#class-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

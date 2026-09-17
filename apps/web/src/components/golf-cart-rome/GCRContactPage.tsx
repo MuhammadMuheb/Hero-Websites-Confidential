@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { GCRFooter, GCRHeader } from './GCRShared';
+import { GCRFooter } from './GCRShared';
 import { HERO_IMAGE } from '@/lib/golf-cart-rome';
 
 /**
@@ -64,7 +64,6 @@ function mailtoWithSubject(subject: string) {
 export function GCRContactPage() {
   return (
     <div className="gcr-scope bg-white">
-      <GCRHeader toursHref="/#tours" planHref="/#ride-prep" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { AtAGlanceBox, TourComparisonTable, CIRAuthorBox, CIRFooter, CIRHeader } from './CIRShared';
+import { AtAGlanceBox, TourComparisonTable, CIRAuthorBox, CIRFooter } from './CIRShared';
 import { getFeaturedToursForPage } from '@/lib/cooking-in-rome';
 import type { MoneyPageContent } from '@/lib/cooking-in-rome-content';
 
@@ -76,7 +76,6 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
 
-      <CIRHeader toursHref="/#classes" planHref="/#before-you-book" faqHref="#faq" ctaHref="#class-options" />
 
       {/* ---------- mobile sticky CTA ---------- */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 px-4 py-3 shadow-bar-up backdrop-blur-sm lg:hidden">

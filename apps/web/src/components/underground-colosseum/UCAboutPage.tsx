@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, UCFooter, UCHeader } from './UCShared';
+import { PhotoGallery, UCFooter } from './UCShared';
 import { ARENA_FLOOR_GALLERY, AUTHOR, HERO_IMAGE, MONEY_PAGES, SUPPORT_PAGES } from '@/lib/underground-colosseum';
 
 /**
@@ -41,8 +41,6 @@ const CREDENTIALS = [
 export function UCAboutPage() {
   return (
     <div className="bg-white">
-      <UCHeader toursHref="/#tours" planHref="/#plan-your-visit" faqHref="/#faq" ctaHref="/#featured-tours" />
-
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">
           <nav aria-label="Breadcrumb" className="text-sm text-faint">

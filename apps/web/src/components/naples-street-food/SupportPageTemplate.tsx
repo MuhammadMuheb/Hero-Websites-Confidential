@@ -1,10 +1,9 @@
-import { NSFAuthorBox, NSFFooter, NSFHeader } from './NSFShared';
+import { NSFAuthorBox, NSFFooter } from './NSFShared';
 import type { SupportPageContent } from '@/lib/naples-street-food-content';
 
 export function SupportPageTemplate({ content }: { content: SupportPageContent }) {
   return (
     <div className="nsf-scope">
-      <NSFHeader toursHref="/#tours" faqHref="/#faq" />
       <section className="border-b border-line py-14 sm:py-20">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Naples Guide</p>

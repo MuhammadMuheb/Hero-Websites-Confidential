@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { RPCAuthorBox, RPCFooter, RPCHeader } from './RPCShared';
+import { RPCAuthorBox, RPCFooter } from './RPCShared';
 import type { SupportPageContent } from '@/lib/rome-pizza-class-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <RPCHeader toursHref="/#tours" planHref="/#pizza-prep" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#class-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

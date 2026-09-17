@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PVAuthorBox, PVFooter, PVHeader } from './PVShared';
+import { PVAuthorBox, PVFooter } from './PVShared';
 import type { SupportPageContent } from '@/lib/private-vatican-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <PVHeader toursHref="/#tours" planHref="/#plan-your-visit" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#tour-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

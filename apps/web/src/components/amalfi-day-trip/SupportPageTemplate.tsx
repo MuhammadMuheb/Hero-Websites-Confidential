@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { ADTAuthorBox, ADTFooter, ADTHeader } from './ADTShared';
+import { ADTAuthorBox, ADTFooter } from './ADTShared';
 import type { SupportPageContent } from '@/lib/amalfi-day-trip-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <ADTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="#faq" ctaHref={`${content.relatedMoneyHref || '/'}#trip-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, RVFooter, RVHeader } from './RVShared';
+import { PhotoGallery, RVFooter } from './RVShared';
 import { AUTHOR, HERO_IMAGE, MONEY_PAGES, ROME_VESPA_GALLERY, SUPPORT_PAGES } from '@/lib/rome-vespa';
 
 /**
@@ -30,7 +30,6 @@ const CREDENTIALS = [
 export function RVAboutPage() {
   return (
     <div className="rv-scope bg-white">
-      <RVHeader toursHref="/#tours" planHref="/#ride-prep" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

@@ -1,9 +1,8 @@
-import { NSFAuthorBox, NSFFooter, NSFHeader } from './NSFShared';
+import { NSFAuthorBox, NSFFooter } from './NSFShared';
 
 export function NSFAboutPage() {
   return (
     <div className="nsf-scope">
-      <NSFHeader />
       <section className="border-b border-line py-14 sm:py-20">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           <h1 className="font-display text-[34px] font-bold leading-[1.12] tracking-tight text-ink sm:text-[48px]">

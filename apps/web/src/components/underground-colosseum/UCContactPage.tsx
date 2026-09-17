@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { UCFooter, UCHeader } from './UCShared';
+import { UCFooter } from './UCShared';
 import { HERO_IMAGE } from '@/lib/underground-colosseum';
 
 /**
@@ -72,8 +72,6 @@ function mailtoWithSubject(subject: string) {
 export function UCContactPage() {
   return (
     <div className="bg-white">
-      <UCHeader toursHref="/#tours" planHref="/#plan-your-visit" faqHref="/#faq" ctaHref="/#featured-tours" />
-
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">
           <nav aria-label="Breadcrumb" className="text-sm text-faint">

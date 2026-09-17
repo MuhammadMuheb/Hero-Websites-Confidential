@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { TVDTAuthorBox, TVDTFooter, TVDTHeader } from './TVDTShared';
+import { TVDTAuthorBox, TVDTFooter } from './TVDTShared';
 import type { SupportPageContent } from '@/lib/tivoli-day-trip-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <TVDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="#faq" ctaHref={`${content.relatedMoneyHref || '/'}#trip-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

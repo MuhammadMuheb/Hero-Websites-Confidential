@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { TCFooter, TCHeader } from './TCShared';
+import { TCFooter } from './TCShared';
 import { HERO_IMAGE } from '@/lib/tiramisu-class';
 
 /**
@@ -64,7 +64,6 @@ function mailtoWithSubject(subject: string) {
 export function TCContactPage() {
   return (
     <div className="tc-scope bg-white">
-      <TCHeader toursHref="/#tours" planHref="/#dessert-prep" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

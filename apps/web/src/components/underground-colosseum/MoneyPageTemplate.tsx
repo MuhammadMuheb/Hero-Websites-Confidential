@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { AtAGlanceBox, TourComparisonTable, UCAuthorBox, UCFooter, UCHeader } from './UCShared';
+import { AtAGlanceBox, TourComparisonTable, UCAuthorBox, UCFooter } from './UCShared';
 import { getFeaturedToursForPage } from '@/lib/underground-colosseum';
 import type { MoneyPageContent } from '@/lib/underground-colosseum-content';
 
@@ -69,16 +69,14 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(attractionJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
 
-      <UCHeader toursHref="/#tours" planHref="/#plan-your-visit" faqHref="#faq" ctaHref="#tour-options" />
-
       {/* ---------- mobile sticky CTA ----------
           Money pages are the highest-intent pages on the site, but the
-          header's CTA scrolls out of view the moment UCHeader's scroll-hide
-          kicks in — so on mobile (where that matters most: no persistent
-          sidebar CTA the way desktop effectively has via the visible header)
-          a fixed bar keeps "book this" one thumb-tap away regardless of
-          scroll position or header state. Desktop keeps just the header CTA
-          since the header there is reachable in one small scroll-up. */}
+          header's CTA scrolls out of view as users scroll — so on mobile
+          (where that matters most: no persistent sidebar CTA the way desktop
+          effectively has via the visible header) a fixed bar keeps "book this"
+          one thumb-tap away regardless of scroll position or header state.
+          Desktop keeps just the header CTA since the header there is reachable
+          in one small scroll-up. */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 px-4 py-3 shadow-bar-up backdrop-blur-sm lg:hidden">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <div className="min-w-0">

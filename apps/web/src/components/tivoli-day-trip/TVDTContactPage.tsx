@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { TVDTFooter, TVDTHeader } from './TVDTShared';
+import { TVDTFooter } from './TVDTShared';
 import { HERO_IMAGE } from '@/lib/tivoli-day-trip';
 
 /**
@@ -64,7 +64,6 @@ function mailtoWithSubject(subject: string) {
 export function TVDTContactPage() {
   return (
     <div className="ADT-scope bg-white">
-      <TVDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

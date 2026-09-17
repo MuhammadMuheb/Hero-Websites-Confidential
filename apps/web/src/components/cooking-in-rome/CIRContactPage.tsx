@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { CIRFooter, CIRHeader } from './CIRShared';
+import { CIRFooter } from './CIRShared';
 import { HERO_IMAGE } from '@/lib/cooking-in-rome';
 
 /**
@@ -64,7 +64,6 @@ function mailtoWithSubject(subject: string) {
 export function CIRContactPage() {
   return (
     <div className="cir-scope bg-white">
-      <CIRHeader toursHref="/#classes" planHref="/#before-you-book" faqHref="/#faq" ctaHref="/#featured-classes" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

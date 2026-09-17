@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, CIRFooter, CIRHeader } from './CIRShared';
+import { PhotoGallery, CIRFooter } from './CIRShared';
 import { AUTHOR, COOKING_IN_ROME_GALLERY, HERO_IMAGE, MONEY_PAGES, SUPPORT_PAGES } from '@/lib/cooking-in-rome';
 
 /**
@@ -30,7 +30,6 @@ const CREDENTIALS = [
 export function CIRAboutPage() {
   return (
     <div className="cir-scope bg-white">
-      <CIRHeader toursHref="/#classes" planHref="/#before-you-book" faqHref="/#faq" ctaHref="/#featured-classes" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

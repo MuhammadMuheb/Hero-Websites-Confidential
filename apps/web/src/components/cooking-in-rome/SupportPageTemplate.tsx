@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { CIRAuthorBox, CIRFooter, CIRHeader } from './CIRShared';
+import { CIRAuthorBox, CIRFooter } from './CIRShared';
 import type { SupportPageContent } from '@/lib/cooking-in-rome-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <CIRHeader toursHref="/#classes" planHref="/#before-you-book" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#class-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PDTAuthorBox, PDTFooter, PDTHeader } from './PDTShared';
+import { PDTAuthorBox, PDTFooter } from './PDTShared';
 import type { SupportPageContent } from '@/lib/pompeii-day-trip-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <PDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#tour-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

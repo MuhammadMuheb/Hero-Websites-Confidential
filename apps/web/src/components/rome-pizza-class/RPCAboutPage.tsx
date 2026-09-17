@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, RPCFooter, RPCHeader } from './RPCShared';
+import { PhotoGallery, RPCFooter } from './RPCShared';
 import { AUTHOR, HERO_IMAGE, MONEY_PAGES, ROME_PIZZA_CLASS_GALLERY, SUPPORT_PAGES } from '@/lib/rome-pizza-class';
 
 /**
@@ -31,7 +31,6 @@ const CREDENTIALS = [
 export function RPCAboutPage() {
   return (
     <div className="rpc-scope bg-white">
-      <RPCHeader toursHref="/#tours" planHref="/#pizza-prep" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

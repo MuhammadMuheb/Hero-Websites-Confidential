@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, ADTFooter, ADTHeader } from './ADTShared';
+import { PhotoGallery, ADTFooter } from './ADTShared';
 import { AUTHOR, HERO_IMAGE, MONEY_PAGES, SUPPORT_PAGES, Amalfi_DAY_TRIP_GALLERY } from '@/lib/amalfi-day-trip';
 
 /**
@@ -30,7 +30,6 @@ const CREDENTIALS = [
 export function ADTAboutPage() {
   return (
     <div className="ADT-scope bg-white">
-      <ADTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

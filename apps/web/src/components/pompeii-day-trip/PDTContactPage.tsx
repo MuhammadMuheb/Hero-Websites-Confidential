@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PDTFooter, PDTHeader } from './PDTShared';
+import { PDTFooter } from './PDTShared';
 import { HERO_IMAGE } from '@/lib/pompeii-day-trip';
 
 /**
@@ -64,7 +64,6 @@ function mailtoWithSubject(subject: string) {
 export function PDTContactPage() {
   return (
     <div className="pdt-scope bg-white">
-      <PDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

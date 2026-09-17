@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, GCRFooter, GCRHeader } from './GCRShared';
+import { PhotoGallery, GCRFooter } from './GCRShared';
 import { AUTHOR, GOLF_CART_ROME_GALLERY, HERO_IMAGE, MONEY_PAGES, SUPPORT_PAGES } from '@/lib/golf-cart-rome';
 
 /**
@@ -30,7 +30,6 @@ const CREDENTIALS = [
 export function GCRAboutPage() {
   return (
     <div className="gcr-scope bg-white">
-      <GCRHeader toursHref="/#tours" planHref="/#ride-prep" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { GCRAuthorBox, GCRFooter, GCRHeader } from './GCRShared';
+import { GCRAuthorBox, GCRFooter } from './GCRShared';
 import type { SupportPageContent } from '@/lib/golf-cart-rome-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <GCRHeader toursHref="/#tours" planHref="/#ride-prep" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#tour-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

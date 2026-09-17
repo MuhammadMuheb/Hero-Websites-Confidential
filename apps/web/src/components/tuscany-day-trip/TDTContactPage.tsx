@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { TDTFooter, TDTHeader } from './TDTShared';
+import { TDTFooter } from './TDTShared';
 import { HERO_IMAGE } from '@/lib/tuscany-day-trip';
 
 /**
@@ -64,7 +64,6 @@ function mailtoWithSubject(subject: string) {
 export function TDTContactPage() {
   return (
     <div className="tdt-scope bg-white">
-      <TDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

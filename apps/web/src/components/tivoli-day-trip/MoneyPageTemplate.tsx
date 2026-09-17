@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { AtAGlanceBox, TourComparisonTable, TVDTAuthorBox, TVDTFooter, TVDTHeader } from './TVDTShared';
+import { AtAGlanceBox, TourComparisonTable, TVDTAuthorBox, TVDTFooter } from './TVDTShared';
 import { getFeaturedToursForPage } from '@/lib/tivoli-day-trip';
 import type { MoneyPageContent } from '@/lib/tivoli-day-trip-content';
 
@@ -72,7 +72,6 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
 
-      <TVDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="#faq" ctaHref="#trip-options" />
 
       {/* ---------- mobile sticky CTA ---------- */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 px-4 py-3 shadow-bar-up backdrop-blur-sm lg:hidden">

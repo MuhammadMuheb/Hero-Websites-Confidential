@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { RVAuthorBox, RVFooter, RVHeader } from './RVShared';
+import { RVAuthorBox, RVFooter } from './RVShared';
 import type { SupportPageContent } from '@/lib/rome-vespa-content';
 
 /**
@@ -35,7 +35,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <RVHeader toursHref="/#tours" planHref="/#ride-prep" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#tour-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

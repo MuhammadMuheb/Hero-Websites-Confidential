@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { AtAGlanceBox, TourComparisonTable, RVAuthorBox, RVFooter, RVHeader } from './RVShared';
+import { AtAGlanceBox, TourComparisonTable, RVAuthorBox, RVFooter } from './RVShared';
 import { getFeaturedToursForPage } from '@/lib/rome-vespa';
 import type { MoneyPageContent } from '@/lib/rome-vespa-content';
 
@@ -70,7 +70,6 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
 
-      <RVHeader toursHref="/#tours" planHref="/#ride-prep" faqHref="#faq" ctaHref="#tour-options" />
 
       {/* ---------- mobile sticky CTA ---------- */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 px-4 py-3 shadow-bar-up backdrop-blur-sm lg:hidden">

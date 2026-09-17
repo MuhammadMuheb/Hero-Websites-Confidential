@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, TDTFooter, TDTHeader } from './TDTShared';
+import { PhotoGallery, TDTFooter } from './TDTShared';
 import { AUTHOR, HERO_IMAGE, MONEY_PAGES, SUPPORT_PAGES, TUSCANY_DAY_TRIP_GALLERY } from '@/lib/tuscany-day-trip';
 
 /**
@@ -30,7 +30,6 @@ const CREDENTIALS = [
 export function TDTAboutPage() {
   return (
     <div className="tdt-scope bg-white">
-      <TDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PVFooter, PVHeader } from './PVShared';
+import { PVFooter } from './PVShared';
 import { HERO_IMAGE } from '@/lib/private-vatican';
 
 /**
@@ -67,7 +67,6 @@ function mailtoWithSubject(subject: string) {
 export function PVContactPage() {
   return (
     <div className="pv-scope bg-white">
-      <PVHeader toursHref="/#tours" planHref="/#plan-your-visit" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

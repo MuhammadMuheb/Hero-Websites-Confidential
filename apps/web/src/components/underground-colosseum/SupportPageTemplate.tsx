@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, UCAuthorBox, UCFooter, UCHeader } from './UCShared';
+import { PhotoGallery, UCAuthorBox, UCFooter } from './UCShared';
 import { ARENA_FLOOR_GALLERY } from '@/lib/underground-colosseum';
 import type { SupportPageContent } from '@/lib/underground-colosseum-content';
 
@@ -37,8 +37,6 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-
-      <UCHeader toursHref="/#tours" planHref="/#plan-your-visit" faqHref="#faq" ctaHref={`${content.relatedMoneyHref}#tour-options`} />
 
       {/* ---------- hero ---------- */}
       <section className="border-b border-line">

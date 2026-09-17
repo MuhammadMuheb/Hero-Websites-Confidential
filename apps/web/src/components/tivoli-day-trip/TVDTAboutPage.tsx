@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, TVDTFooter, TVDTHeader } from './TVDTShared';
+import { PhotoGallery, TVDTFooter } from './TVDTShared';
 import { AUTHOR, HERO_IMAGE, MONEY_PAGES, SUPPORT_PAGES, Tivoli_DAY_TRIP_GALLERY } from '@/lib/tivoli-day-trip';
 
 /**
@@ -30,7 +30,6 @@ const CREDENTIALS = [
 export function TVDTAboutPage() {
   return (
     <div className="ADT-scope bg-white">
-      <TVDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

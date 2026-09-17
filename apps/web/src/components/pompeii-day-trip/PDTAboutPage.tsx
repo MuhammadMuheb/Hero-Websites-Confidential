@@ -1,6 +1,6 @@
 import Link from '@/components/NetworkLink';
 import { SafeImage } from '@/components/SafeImage';
-import { PhotoGallery, PDTFooter, PDTHeader } from './PDTShared';
+import { PhotoGallery, PDTFooter } from './PDTShared';
 import { AUTHOR, HERO_IMAGE, MONEY_PAGES, POMPEII_GALLERY, SUPPORT_PAGES } from '@/lib/pompeii-day-trip';
 
 /**
@@ -29,7 +29,6 @@ const CREDENTIALS = [
 export function PDTAboutPage() {
   return (
     <div className="pdt-scope bg-white">
-      <PDTHeader toursHref="/#tours" planHref="/#plan-your-trip" faqHref="/#faq" ctaHref="/#featured-tours" />
 
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1200px] px-6 pt-6 sm:px-14">

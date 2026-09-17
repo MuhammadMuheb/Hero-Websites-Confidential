@@ -1,5 +1,5 @@
 import Link from '@/components/NetworkLink';
-import { TourComparisonTable, NSFAuthorBox, NSFFooter, NSFHeader } from './NSFShared';
+import { TourComparisonTable, NSFAuthorBox, NSFFooter } from './NSFShared';
 import { FEATURED_TOURS } from '@/lib/naples-street-food';
 import type { MoneyPageContent } from '@/lib/naples-street-food-content';
 
@@ -9,7 +9,6 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
 
   return (
     <div className="nsf-scope">
-      <NSFHeader toursHref="/#tours" faqHref="/#faq" />
       <section className="border-b border-line py-14 sm:py-20">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Naples Street Food</p>
