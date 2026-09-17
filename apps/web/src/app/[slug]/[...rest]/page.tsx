@@ -13,6 +13,14 @@ import { MoneyPageTemplate as PDTMoneyPageTemplate } from '@/components/pompeii-
 import { SupportPageTemplate as PDTSupportPageTemplate } from '@/components/pompeii-day-trip/SupportPageTemplate';
 import { PDTAboutPage } from '@/components/pompeii-day-trip/PDTAboutPage';
 import { PDTContactPage } from '@/components/pompeii-day-trip/PDTContactPage';
+import { PDTFAQPage } from '@/components/pompeii-day-trip/PDTFAQPage';
+import { PDTPrivacyPolicyPage } from '@/components/pompeii-day-trip/PDTPrivacyPolicyPage';
+import { PDTTermsOfServicePage } from '@/components/pompeii-day-trip/PDTTermsOfServicePage';
+import { PDTCookiePolicyPage } from '@/components/pompeii-day-trip/PDTCookiePolicyPage';
+import { PDTAffiliateDisclosurePage } from '@/components/pompeii-day-trip/PDTAffiliateDisclosurePage';
+import { PDTToursPage } from '@/components/pompeii-day-trip/PDTToursPage';
+import { PDTBlogPage } from '@/components/pompeii-day-trip/PDTBlogPage';
+import { PDTNeighborhoodsPage } from '@/components/pompeii-day-trip/PDTNeighborhoodsPage';
 import { MoneyPageTemplate as RVMoneyPageTemplate } from '@/components/rome-vespa/MoneyPageTemplate';
 import { SupportPageTemplate as RVSupportPageTemplate } from '@/components/rome-vespa/SupportPageTemplate';
 import { RVAboutPage } from '@/components/rome-vespa/RVAboutPage';
@@ -205,6 +213,14 @@ function resolvePompeiiDayTripPage(path: string) {
 
   if (path === '/about') return { type: 'about' as const };
   if (path === '/contact') return { type: 'contact' as const };
+  if (path === '/faq') return { type: 'faq' as const };
+  if (path === '/privacy') return { type: 'privacy' as const };
+  if (path === '/terms') return { type: 'terms' as const };
+  if (path === '/cookie-policy') return { type: 'cookie-policy' as const };
+  if (path === '/affiliate-disclosure') return { type: 'affiliate-disclosure' as const };
+  if (path === '/tours') return { type: 'tours' as const };
+  if (path === '/blog') return { type: 'blog' as const };
+  if (path === '/neighborhoods') return { type: 'neighborhoods' as const };
 
   return null;
 }
@@ -444,6 +460,62 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       return {
         title: { absolute: 'Contact | Pompeii Day Trip' },
         description: 'Get in touch with Pompeii Day Trip, plus our full affiliate disclosure.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'faq') {
+      return {
+        title: { absolute: 'FAQ | Pompeii Day Trip' },
+        description: 'Frequently asked questions about Pompeii day trips — planning, timing, and logistics.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'privacy') {
+      return {
+        title: { absolute: 'Privacy Policy | Pompeii Day Trip' },
+        description: 'How Pompeii Day Trip handles your data and privacy.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'terms') {
+      return {
+        title: { absolute: 'Terms of Service | Pompeii Day Trip' },
+        description: 'Terms of service and conditions for using Pompeii Day Trip.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'cookie-policy') {
+      return {
+        title: { absolute: 'Cookie Policy | Pompeii Day Trip' },
+        description: 'How Pompeii Day Trip uses cookies and similar technologies.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'affiliate-disclosure') {
+      return {
+        title: { absolute: 'Affiliate Disclosure | Pompeii Day Trip' },
+        description: 'Full transparency about how Pompeii Day Trip works and earns money.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'tours') {
+      return {
+        title: { absolute: 'Featured Pompeii Tours | Pompeii Day Trip' },
+        description: 'Curated Pompeii day trips from Rome, Naples, Sorrento, and the Amalfi Coast',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'blog') {
+      return {
+        title: { absolute: 'Pompeii Day Trip Blog' },
+        description: 'Travel tips, history, and planning guides for Pompeii',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'neighborhoods') {
+      return {
+        title: { absolute: 'Explore Pompeii by Area | Pompeii Day Trip' },
+        description: 'Guide to different zones and landmarks within the Pompeii archaeological site',
         alternates: { canonical },
       };
     }
@@ -852,6 +924,14 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <PDTSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <PDTAboutPage />;
     if (resolved?.type === 'contact') return <PDTContactPage />;
+    if (resolved?.type === 'faq') return <PDTFAQPage />;
+    if (resolved?.type === 'privacy') return <PDTPrivacyPolicyPage />;
+    if (resolved?.type === 'terms') return <PDTTermsOfServicePage />;
+    if (resolved?.type === 'cookie-policy') return <PDTCookiePolicyPage />;
+    if (resolved?.type === 'affiliate-disclosure') return <PDTAffiliateDisclosurePage />;
+    if (resolved?.type === 'tours') return <PDTToursPage />;
+    if (resolved?.type === 'blog') return <PDTBlogPage />;
+    if (resolved?.type === 'neighborhoods') return <PDTNeighborhoodsPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }
