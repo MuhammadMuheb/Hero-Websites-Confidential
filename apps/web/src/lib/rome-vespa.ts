@@ -376,4 +376,78 @@ export const PRIVACY_POLICY = {
   contactEmail: 'hello@romevespa.com',
 };
 
+export const TERMS_OF_SERVICE = {
+  title: 'Terms of Service',
+  intro: 'By accessing Rome Scooter Tours, you agree to these terms and conditions.',
+  sections: [
+    {
+      heading: 'Use of the Site',
+      content: 'Rome Scooter Tours provides independent tour guides and comparisons for informational purposes only. We are not affiliated with Piaggio, any Vespa dealer, or any booking partners. The information on this site is believed to be accurate but is provided "as is" without warranties of any kind.',
+    },
+    {
+      heading: 'Affiliate Links',
+      content: 'This site includes links to GetYourGuide and Viator, where we receive a commission if you book through our links. These commissions help support the independent research behind our guides and don\'t affect the price you pay.',
+    },
+    {
+      heading: 'Safety Disclaimer',
+      content: 'Riding a scooter in Rome traffic carries inherent risks. We provide safety guidance based on direct experience, but riding in Rome is ultimately your own decision. Always follow local traffic laws and your tour operator\'s safety instructions.',
+    },
+    {
+      heading: 'Limitation of Liability',
+      content: 'To the extent permitted by law, Rome Scooter Tours, its authors, and affiliates are not liable for any direct, indirect, incidental, special, or consequential damages arising out of or related to your use of this site or any linked third-party sites.',
+    },
+    {
+      heading: 'Changes to These Terms',
+      content: 'We may update these terms at any time by posting the revised version on this page. Your continued use of the site constitutes your acceptance of the revised terms.',
+    },
+    {
+      heading: 'Governing Law',
+      content: 'These terms are governed by and construed in accordance with the laws of Italy, and you irrevocably submit to the exclusive jurisdiction of the courts in Rome.',
+    },
+  ],
+  contactEmail: 'hello@romevespa.com',
+};
+
+export const COOKIE_POLICY = {
+  title: 'Cookie Policy',
+  intro: 'This Cookie Policy explains how Rome Scooter Tours uses cookies and similar technologies.',
+  fallbackHtml: `
+    <p>This Cookie Policy explains how Rome Scooter Tours ("we," "us") uses cookies and similar technologies on romevespa.com.</p>
+    <h2>What cookies we use</h2>
+    <p>We use a small number of strictly necessary cookies to keep the site functioning — for example, remembering your cookie-consent choice. We also use standard analytics cookies to understand which pages and tours are useful to visitors, so we can improve the site over time.</p>
+    <h2>Third-party cookies</h2>
+    <p>When you click through to book a tour, you leave romevespa.com and land on GetYourGuide or Viator, our booking partners. Those platforms set their own cookies under their own privacy and cookie policies, which we don't control. We recommend reviewing their policies directly if you have questions about their tracking.</p>
+    <h2>Managing cookies</h2>
+    <p>Most browsers let you block or delete cookies through their settings. Blocking cookies may affect how parts of this site work, but it won't prevent you from reading tour information or content.</p>
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy occasionally to reflect changes in the tools we use. Check back here periodically for the current version.</p>
+    <h2>Contact</h2>
+    <p>Questions about this policy can be sent to <a href="mailto:hello@romevespa.com">hello@romevespa.com</a>.</p>
+  `,
+};
+
+export const AFFILIATE_DISCLOSURE = {
+  title: 'Affiliate Disclosure',
+  intro: 'Full transparency on how Rome Scooter Tours works and makes money.',
+  sections: [
+    {
+      heading: 'How we earn money',
+      content: 'Rome Scooter Tours is supported by affiliate commissions from GetYourGuide and Viator — if you book a tour through a link on this site, those platforms pay us a percentage of the booking. The commission doesn\'t affect what you pay; you pay the same price whether you book through us or directly on their site.',
+    },
+    {
+      heading: 'How this affects our recommendations',
+      content: 'We only compare and recommend tour operators available through our affiliate partners — we can\'t compare (and don\'t list) tours only available on other platforms. Within that constraint, our recommendations are based on direct experience: every route mentioned here has been ridden in real Rome traffic, and every operator has been cross-checked in person.',
+    },
+    {
+      heading: 'Who runs this site',
+      content: 'Rome Scooter Tours is written and maintained by Chiara Rinaldi, a licensed motorcycle instructor and Rome native who has ridden every route and tested every tour operator mentioned on this site. Not a travel blog, not an agency — one person\'s direct experience.',
+    },
+    {
+      heading: 'Questions',
+      content: 'Transparency matters. If you have questions about this disclosure or how our affiliate relationships work, email us at hello@romevespa.com — we\'re happy to explain.',
+    },
+  ],
+  contactEmail: 'hello@romevespa.com',
+};
+
 

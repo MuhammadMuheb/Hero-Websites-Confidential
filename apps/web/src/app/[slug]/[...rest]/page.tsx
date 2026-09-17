@@ -25,6 +25,14 @@ import { MoneyPageTemplate as RVMoneyPageTemplate } from '@/components/rome-vesp
 import { SupportPageTemplate as RVSupportPageTemplate } from '@/components/rome-vespa/SupportPageTemplate';
 import { RVAboutPage } from '@/components/rome-vespa/RVAboutPage';
 import { RVContactPage } from '@/components/rome-vespa/RVContactPage';
+import { RVFAQPage } from '@/components/rome-vespa/RVFAQPage';
+import { RVPrivacyPolicyPage } from '@/components/rome-vespa/RVPrivacyPolicyPage';
+import { RVTermsOfServicePage } from '@/components/rome-vespa/RVTermsOfServicePage';
+import { RVCookiePolicyPage } from '@/components/rome-vespa/RVCookiePolicyPage';
+import { RVAffiliateDisclosurePage } from '@/components/rome-vespa/RVAffiliateDisclosurePage';
+import { RVToursPage } from '@/components/rome-vespa/RVToursPage';
+import { RVBlogPage } from '@/components/rome-vespa/RVBlogPage';
+import { RVNeighborhoodsPage } from '@/components/rome-vespa/RVNeighborhoodsPage';
 import { MoneyPageTemplate as GCRMoneyPageTemplate } from '@/components/golf-cart-rome/MoneyPageTemplate';
 import { SupportPageTemplate as GCRSupportPageTemplate } from '@/components/golf-cart-rome/SupportPageTemplate';
 import { GCRAboutPage } from '@/components/golf-cart-rome/GCRAboutPage';
@@ -152,7 +160,7 @@ export async function generateStaticParams() {
   ];
   const pvHrefs = [...PV_MONEY_PAGES.map((p) => p.href), ...PV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const pdtHrefs = [...PDT_MONEY_PAGES.map((p) => p.href), ...PDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
-  const rvHrefs = [...RV_MONEY_PAGES.map((p) => p.href), ...RV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const rvHrefs = [...RV_MONEY_PAGES.map((p) => p.href), ...RV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog', '/neighborhoods'];
   const gcrHrefs = [...GCR_MONEY_PAGES.map((p) => p.href), ...GCR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const cirHrefs = [...CIR_MONEY_PAGES.map((p) => p.href), ...CIR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const rpcHrefs = [...RPC_MONEY_PAGES.map((p) => p.href), ...RPC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
@@ -234,6 +242,14 @@ function resolveRomeVespaPage(path: string) {
 
   if (path === '/about') return { type: 'about' as const };
   if (path === '/contact') return { type: 'contact' as const };
+  if (path === '/faq') return { type: 'faq' as const };
+  if (path === '/privacy') return { type: 'privacy' as const };
+  if (path === '/terms') return { type: 'terms' as const };
+  if (path === '/cookie-policy') return { type: 'cookie-policy' as const };
+  if (path === '/affiliate-disclosure') return { type: 'affiliate-disclosure' as const };
+  if (path === '/tours') return { type: 'tours' as const };
+  if (path === '/blog') return { type: 'blog' as const };
+  if (path === '/neighborhoods') return { type: 'neighborhoods' as const };
 
   return null;
 }
@@ -556,6 +572,62 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       return {
         title: { absolute: 'Contact | Rome Scooter Tours' },
         description: 'Get in touch with Rome Scooter Tours, plus our full affiliate disclosure.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'faq') {
+      return {
+        title: { absolute: 'FAQ | Rome Scooter Tours' },
+        description: 'Frequently asked questions about Vespa tours, licences, and safety in Rome traffic.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'privacy') {
+      return {
+        title: { absolute: 'Privacy Policy | Rome Scooter Tours' },
+        description: 'How Rome Scooter Tours handles your data and privacy.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'terms') {
+      return {
+        title: { absolute: 'Terms of Service | Rome Scooter Tours' },
+        description: 'Terms of service and conditions for using Rome Scooter Tours.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'cookie-policy') {
+      return {
+        title: { absolute: 'Cookie Policy | Rome Scooter Tours' },
+        description: 'How Rome Scooter Tours uses cookies and similar technologies.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'affiliate-disclosure') {
+      return {
+        title: { absolute: 'Affiliate Disclosure | Rome Scooter Tours' },
+        description: 'Full transparency about how Rome Scooter Tours works and earns money.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'tours') {
+      return {
+        title: { absolute: 'Featured Vespa Tours in Rome | Rome Scooter Tours' },
+        description: 'Guided, self-drive, sidecar, and private Vespa tour options in Rome',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'blog') {
+      return {
+        title: { absolute: 'Rome Scooter Tours Blog' },
+        description: 'Travel tips, riding guides, and Vespa tour planning articles',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'neighborhoods') {
+      return {
+        title: { absolute: 'Ride Rome by Neighborhood | Rome Scooter Tours' },
+        description: 'Guide to different neighborhoods where Vespa tours thrive',
         alternates: { canonical },
       };
     }
@@ -944,6 +1016,14 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <RVSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <RVAboutPage />;
     if (resolved?.type === 'contact') return <RVContactPage />;
+    if (resolved?.type === 'faq') return <RVFAQPage />;
+    if (resolved?.type === 'privacy') return <RVPrivacyPolicyPage />;
+    if (resolved?.type === 'terms') return <RVTermsOfServicePage />;
+    if (resolved?.type === 'cookie-policy') return <RVCookiePolicyPage />;
+    if (resolved?.type === 'affiliate-disclosure') return <RVAffiliateDisclosurePage />;
+    if (resolved?.type === 'tours') return <RVToursPage />;
+    if (resolved?.type === 'blog') return <RVBlogPage />;
+    if (resolved?.type === 'neighborhoods') return <RVNeighborhoodsPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }
