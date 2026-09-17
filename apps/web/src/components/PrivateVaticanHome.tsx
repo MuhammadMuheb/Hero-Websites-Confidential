@@ -18,22 +18,16 @@ import {
   RibbonBadge,
   TourComparisonTable,
   PVAuthorBox,
-  PVFooter,
-  PVHeader,
   useCardCarousel,
 } from '@/components/private-vatican/PVShared';
 
 /**
  * Homepage for the Private Vatican hero property (privatevatican.com, served
- * here at /private-vatican). Mirrors UndergroundColosseumHome.tsx's
- * structure exactly: hero -> quick-jump chips -> facts strip -> 5 money-page
- * cards -> featured tours -> full comparison table -> support-page grid ->
- * FAQ -> author box -> footer. Renders with no platform Header/Footer (both
- * self-hide via isUnbuiltNetworkRoute) — it uses its own PVHeader/PVFooter
- * (see components/private-vatican/PVShared.tsx), wrapped in `.pv-scope` (see
- * globals.css) so this property's Papal Gold accent never leaks onto Street
- * Food Rome (ACTIVE_NETWORK_SLUG) or Underground Colosseum, both of which
- * keep the platform's default red.
+ * here at /private-vatican as part of the unified 13-property network).
+ * Uses the platform's unified Header/Footer for consistency across all
+ * properties. Wrapped in `.pv-scope` (see globals.css) so this property's
+ * Papal Gold accent color applies only to this property's content sections,
+ * not the unified navbar/footer.
  */
 
 function MoneyPagesCarousel() {
@@ -225,8 +219,6 @@ export function PrivateVaticanHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(attractionJsonLd) }} />
 
-      <PVHeader />
-
       <NetworkPropertyHero
         propertyName="Private Vatican"
         heroImageUrl={HERO_IMAGE.src}
@@ -343,7 +335,6 @@ export function PrivateVaticanHome() {
       </section>
 
       <PVAuthorBox />
-      <PVFooter />
     </div>
   );
 }

@@ -18,8 +18,6 @@ import {
   RibbonBadge,
   TourComparisonTable,
   RVAuthorBox,
-  RVFooter,
-  RVHeader,
   useCardCarousel,
 } from '@/components/rome-vespa/RVShared';
 
@@ -28,9 +26,8 @@ import {
  * /rome-vespa). Mirrors PrivateVaticanHome.tsx's / PompeiiDayTripHome.tsx's
  * structure exactly: hero -> quick-jump chips -> facts strip -> 5 money-page
  * cards -> featured tours -> full comparison table -> ride-prep support-page
- * grid -> FAQ -> author box -> footer. Renders with no platform
- * Header/Footer (both self-hide via isUnbuiltNetworkRoute) — it uses its own
- * RVHeader/RVFooter (see components/rome-vespa/RVShared.tsx), wrapped in
+ * grid -> FAQ -> author box -> footer. Now uses the unified platform
+ * Header/Footer for consistency across the entire network, wrapped in
  * `.rv-scope` (see globals.css) so this property's Riviera Teal accent never
  * leaks onto any sibling property.
  */
@@ -224,8 +221,6 @@ export function RomeVespaHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
-      <RVHeader />
-
       <NetworkPropertyHero
         propertyName="Rome Vespa Tours"
         heroImageUrl={HERO_IMAGE.src}
@@ -341,7 +336,6 @@ export function RomeVespaHome() {
       </section>
 
       <RVAuthorBox />
-      <RVFooter />
     </div>
   );
 }

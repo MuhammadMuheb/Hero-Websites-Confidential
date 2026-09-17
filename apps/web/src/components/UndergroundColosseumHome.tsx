@@ -20,28 +20,19 @@ import {
   RibbonBadge,
   TourComparisonTable,
   UCAuthorBox,
-  UCFooter,
-  UCHeader,
   useCardCarousel,
 } from '@/components/underground-colosseum/UCShared';
 
 /**
  * Homepage for the Underground Colosseum hero property (undergroundcolosseum.com,
- * served here at /underground-colosseum as the platform's active test route).
- * Renders with no platform Header/Footer (both self-hide via
- * isUnbuiltNetworkRoute) — it uses its own UCHeader/UCFooter (shared with
- * every other page on this property, see components/underground-colosseum/
- * UCShared.tsx) — but every color/type/spacing choice deliberately reuses
- * Street Food Rome's exact design language (see Header.tsx, Hero.tsx,
- * TourCard.tsx, Footer.tsx) rather than a bespoke palette, so the two
- * properties read as the same platform.
- *
- * Built off the site's wireframe: hero -> quick-jump chips -> 5 money-page
- * cards -> featured tours -> validation teasers -> 6 support-page cards ->
- * FAQ -> author box -> footer. The two tour-card grids are client-side
- * carousels (scroll-snap track + looping prev/next arrows), the same
- * pattern as the platform's own TourCarouselSection.tsx — hence 'use client'
- * at the top of an otherwise static page.
+ * served here at /underground-colosseum as part of the unified 13-property
+ * network). Uses the platform's unified Header/Footer for consistency across
+ * all network properties. Built off the site's wireframe: hero -> quick-jump
+ * chips -> 5 money-page cards -> featured tours -> validation teasers -> 6
+ * support-page cards -> FAQ -> author box -> footer. The two tour-card grids
+ * are client-side carousels (scroll-snap track + looping prev/next arrows),
+ * the same pattern as the platform's own TourCarouselSection.tsx — hence 'use
+ * client' at the top of an otherwise static page.
  */
 
 /**
@@ -233,8 +224,6 @@ export function UndergroundColosseumHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
-
-      <UCHeader />
 
       <NetworkPropertyHero
         propertyName="Underground Colosseum"
@@ -450,7 +439,6 @@ export function UndergroundColosseumHome() {
       </section>
 
       <UCAuthorBox />
-      <UCFooter />
     </div>
   );
 }

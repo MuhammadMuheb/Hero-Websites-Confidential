@@ -19,8 +19,6 @@ import {
   RibbonBadge,
   TourComparisonTable,
   TVDTAuthorBox,
-  TVDTFooter,
-  TVDTHeader,
   useCardCarousel,
 } from '@/components/tivoli-day-trip/TVDTShared';
 
@@ -29,7 +27,8 @@ import {
  * served here at /tivoli-day-trip). Mirrors TuscanyDayTripHome structure:
  * hero -> quick-jump chips -> facts strip -> 4 money-page cards -> featured
  * day trips -> comparison table -> support-page grid -> FAQ -> author box -> footer.
- * Wrapped in `.tvdt-scope` for Tivoli accent tokens.
+ * Now uses the unified platform Header/Footer for consistency across the
+ * entire network, wrapped in `.tvdt-scope` for Tivoli accent tokens.
  */
 
 function MoneyPagesCarousel() {
@@ -229,8 +228,6 @@ export function TivoliDayTripHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
-      <TVDTHeader />
-
       <NetworkPropertyHero
         propertyName="Tivoli Day Trip"
         heroImageUrl={HERO_IMAGE.src}
@@ -344,8 +341,6 @@ export function TivoliDayTripHome() {
       </section>
 
       <TVDTAuthorBox />
-      <TVDTFooter />
     </div>
   );
 }
-

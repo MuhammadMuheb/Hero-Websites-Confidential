@@ -19,10 +19,13 @@ import {
   RibbonBadge,
   TourComparisonTable,
   NSFAuthorBox,
-  NSFFooter,
-  NSFHeader,
   useCardCarousel,
 } from '@/components/naples-street-food/NSFShared';
+
+/**
+ * Homepage for the Naples Street Food hero property. Now uses the unified
+ * platform Header/Footer for consistency across the entire network.
+ */
 
 function MoneyPagesCarousel() {
   const { trackRef, scrollByOneCard } = useCardCarousel();
@@ -125,7 +128,6 @@ export function NaplesStreetFoodHome() {
   return (
     <div className="nsf-scope bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <NSFHeader />
 
       <NetworkPropertyHero
         propertyName="Naples Street Food"
@@ -226,7 +228,6 @@ export function NaplesStreetFoodHome() {
       </section>
 
       <NSFAuthorBox />
-      <NSFFooter />
     </div>
   );
 }

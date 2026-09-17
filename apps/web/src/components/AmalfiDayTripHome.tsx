@@ -19,8 +19,6 @@ import {
   RibbonBadge,
   TourComparisonTable,
   ADTAuthorBox,
-  ADTFooter,
-  ADTHeader,
   useCardCarousel,
 } from '@/components/amalfi-day-trip/ADTShared';
 
@@ -29,7 +27,8 @@ import {
  * served here at /amalfi-day-trip). Mirrors TuscanyDayTripHome structure:
  * hero -> quick-jump chips -> facts strip -> 4 money-page cards -> featured
  * day trips -> comparison table -> support-page grid -> FAQ -> author box -> footer.
- * Wrapped in `.adt-scope` for Amalfi accent tokens.
+ * Now uses the unified platform Header/Footer for consistency across the
+ * entire network, wrapped in `.adt-scope` for Amalfi accent tokens.
  */
 
 function MoneyPagesCarousel() {
@@ -222,8 +221,6 @@ export function AmalfiDayTripHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
-      <ADTHeader />
-
       <NetworkPropertyHero
         propertyName="Amalfi Day Trip"
         heroImageUrl={HERO_IMAGE.src}
@@ -339,7 +336,6 @@ export function AmalfiDayTripHome() {
       </section>
 
       <ADTAuthorBox />
-      <ADTFooter />
     </div>
   );
 }

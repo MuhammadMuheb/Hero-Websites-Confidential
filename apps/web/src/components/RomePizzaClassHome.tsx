@@ -18,8 +18,6 @@ import {
   RibbonBadge,
   TourComparisonTable,
   RPCAuthorBox,
-  RPCFooter,
-  RPCHeader,
   useCardCarousel,
 } from '@/components/rome-pizza-class/RPCShared';
 
@@ -29,11 +27,9 @@ import {
  * CookingInRomeHome.tsx's structure exactly: hero -> quick-jump chips ->
  * facts strip -> 4 money-page cards -> featured classes -> full comparison
  * table -> before-you-book support-page grid -> FAQ -> author box -> footer.
- * Renders with no platform Header/Footer (both self-hide via
- * isUnbuiltNetworkRoute) — it uses its own RPCHeader/RPCFooter (see
- * components/rome-pizza-class/RPCShared.tsx), wrapped in `.rpc-scope` (see
- * globals.css) so this property's Tomato Red accent never leaks onto any
- * sibling property.
+ * Now uses the unified platform Header/Footer for consistency across the
+ * entire network, wrapped in `.rpc-scope` (see globals.css) so this
+ * property's Tomato Red accent never leaks onto any sibling property.
  */
 
 function MoneyPagesCarousel() {
@@ -226,8 +222,6 @@ export function RomePizzaClassHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
 
-      <RPCHeader />
-
       <NetworkPropertyHero
         propertyName="Rome Pizza Class"
         heroImageUrl={HERO_IMAGE.src}
@@ -343,7 +337,6 @@ export function RomePizzaClassHome() {
       </section>
 
       <RPCAuthorBox />
-      <RPCFooter />
     </div>
   );
 }

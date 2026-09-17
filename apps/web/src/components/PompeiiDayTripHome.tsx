@@ -18,8 +18,6 @@ import {
   RibbonBadge,
   TourComparisonTable,
   PDTAuthorBox,
-  PDTFooter,
-  PDTHeader,
   useCardCarousel,
 } from '@/components/pompeii-day-trip/PDTShared';
 
@@ -28,11 +26,10 @@ import {
  * served here at /pompeii-day-trip). Mirrors UndergroundColosseumHome.tsx's
  * and PrivateVaticanHome.tsx's structure exactly: hero -> quick-jump chips ->
  * facts strip -> 6 money-page cards -> featured tours -> full comparison
- * table -> support-page grid -> FAQ -> author box -> footer. Renders with no
- * platform Header/Footer (both self-hide via isUnbuiltNetworkRoute) — it
- * uses its own PDTHeader/PDTFooter (see components/pompeii-day-trip/
- * PDTShared.tsx), wrapped in `.pdt-scope` (see globals.css) so this
- * property's Volcanic Ember accent never leaks onto any sibling property.
+ * table -> support-page grid -> FAQ -> author box -> footer. Now uses the
+ * unified platform Header/Footer for consistency across the entire network,
+ * wrapped in `.pdt-scope` (see globals.css) so this property's Volcanic Ember
+ * accent never leaks onto any sibling property.
  */
 
 function MoneyPagesCarousel() {
@@ -224,8 +221,6 @@ export function PompeiiDayTripHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
-      <PDTHeader />
-
       <NetworkPropertyHero
         propertyName="Pompeii Day Trip"
         heroImageUrl={HERO_IMAGE.src}
@@ -342,7 +337,6 @@ export function PompeiiDayTripHome() {
       </section>
 
       <PDTAuthorBox />
-      <PDTFooter />
     </div>
   );
 }

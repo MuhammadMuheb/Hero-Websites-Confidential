@@ -18,8 +18,6 @@ import {
   RibbonBadge,
   TourComparisonTable,
   CIRAuthorBox,
-  CIRFooter,
-  CIRHeader,
   useCardCarousel,
 } from '@/components/cooking-in-rome/CIRShared';
 
@@ -28,11 +26,10 @@ import {
  * here at /cooking-in-rome). Mirrors GolfCartRomeHome.tsx's / RomeVespaHome
  * .tsx's structure exactly: hero -> quick-jump chips -> facts strip -> 5
  * money-page cards -> featured classes -> full comparison table -> before-
- * you-book support-page grid -> FAQ -> author box -> footer. Renders with no
- * platform Header/Footer (both self-hide via isUnbuiltNetworkRoute) — it
- * uses its own CIRHeader/CIRFooter (see components/cooking-in-rome/
- * CIRShared.tsx), wrapped in `.cir-scope` (see globals.css) so this
- * property's Basil Green accent never leaks onto any sibling property.
+ * you-book support-page grid -> FAQ -> author box -> footer. Now uses the
+ * unified platform Header/Footer for consistency across the entire network,
+ * wrapped in `.cir-scope` (see globals.css) so this property's Basil Green
+ * accent never leaks onto any sibling property.
  */
 
 function MoneyPagesCarousel() {
@@ -225,8 +222,6 @@ export function CookingInRomeHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
 
-      <CIRHeader />
-
       <NetworkPropertyHero
         propertyName="Cooking in Rome"
         heroImageUrl={HERO_IMAGE.src}
@@ -342,7 +337,6 @@ export function CookingInRomeHome() {
       </section>
 
       <CIRAuthorBox />
-      <CIRFooter />
     </div>
   );
 }

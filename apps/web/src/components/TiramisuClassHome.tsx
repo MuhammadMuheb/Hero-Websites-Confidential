@@ -18,8 +18,6 @@ import {
   RibbonBadge,
   TourComparisonTable,
   TCAuthorBox,
-  TCFooter,
-  TCHeader,
   useCardCarousel,
 } from '@/components/tiramisu-class/TCShared';
 
@@ -28,9 +26,8 @@ import {
  * here at /tiramisu-class). Mirrors RomePizzaClassHome.tsx's structure
  * exactly: hero -> quick-jump chips -> facts strip -> 4 money-page cards ->
  * featured classes -> full comparison table -> before-you-book support-page
- * grid -> FAQ -> author box -> footer. Renders with no platform
- * Header/Footer (both self-hide via isUnbuiltNetworkRoute) — it uses its own
- * TCHeader/TCFooter (see components/tiramisu-class/TCShared.tsx), wrapped in
+ * grid -> FAQ -> author box -> footer. Now uses the unified platform
+ * Header/Footer for consistency across the entire network, wrapped in
  * `.tc-scope` (see globals.css) so this property's Cocoa Brown accent and
  * warm cream paper-tint never leak onto any sibling property.
  */
@@ -225,8 +222,6 @@ export function TiramisuClassHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
 
-      <TCHeader />
-
       <NetworkPropertyHero
         propertyName="Tiramisu Class"
         heroImageUrl={HERO_IMAGE.src}
@@ -342,7 +337,6 @@ export function TiramisuClassHome() {
       </section>
 
       <TCAuthorBox />
-      <TCFooter />
     </div>
   );
 }

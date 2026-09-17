@@ -18,8 +18,6 @@ import {
   RibbonBadge,
   TourComparisonTable,
   TDTAuthorBox,
-  TDTFooter,
-  TDTHeader,
   useCardCarousel,
 } from '@/components/tuscany-day-trip/TDTShared';
 
@@ -28,11 +26,10 @@ import {
  * served here at /tuscany-day-trip). Mirrors TiramisuClassHome.tsx's
  * structure exactly: hero -> quick-jump chips -> facts strip -> 4 money-page
  * cards -> featured day trips -> full comparison table -> before-you-book
- * support-page grid -> FAQ -> author box -> footer. Renders with no platform
- * Header/Footer (both self-hide via isUnbuiltNetworkRoute) — it uses its own
- * TDTHeader/TDTFooter (see components/tuscany-day-trip/TDTShared.tsx),
- * wrapped in `.tdt-scope` (see globals.css) so this property's accent tokens
- * never leak onto any sibling property.
+ * support-page grid -> FAQ -> author box -> footer. Now uses the unified
+ * platform Header/Footer for consistency across the entire network, wrapped
+ * in `.tdt-scope` (see globals.css) so this property's accent tokens never
+ * leak onto any sibling property.
  */
 
 function MoneyPagesCarousel() {
@@ -225,8 +222,6 @@ export function TuscanyDayTripHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
-      <TDTHeader />
-
       <NetworkPropertyHero
         propertyName="Tuscany Day Trip"
         heroImageUrl={HERO_IMAGE.src}
@@ -342,7 +337,6 @@ export function TuscanyDayTripHome() {
       </section>
 
       <TDTAuthorBox />
-      <TDTFooter />
     </div>
   );
 }
