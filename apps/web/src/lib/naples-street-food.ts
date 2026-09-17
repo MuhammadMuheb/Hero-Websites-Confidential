@@ -3,10 +3,24 @@
  * item lists, and the hero image constant.
  */
 
+export const AUTHOR = {
+  name: 'Marco Giordano',
+  initials: 'MG',
+  title: 'Naples food guide',
+  domain: 'naplesstreetfood.com',
+};
+
 export const HERO_IMAGE = {
   src: 'https://images.unsplash.com/photo-1565911033-e6ce9406cbf4',
   alt: 'Freshly cooked Neapolitan pizza with bubbling char emerging from a wood-fired oven',
 };
+
+export const NAPLES_STREET_FOOD_GALLERY = [
+  { src: 'https://images.unsplash.com/photo-1605379399243-a28079a00e21', alt: 'Golden fried cuoppo of seafood and vegetables wrapped in paper' },
+  { src: 'https://images.unsplash.com/photo-1565911033-e6ce9406cbf4', alt: 'Perfectly cooked Neapolitan pizza straight from wood-fired oven' },
+  { src: 'https://images.unsplash.com/photo-1488909122026-b8f4ff7d7370', alt: 'Naples market corridor filled with fresh produce and local specialties' },
+  { src: 'https://images.unsplash.com/photo-1533458239340-ab2b2281ecc4', alt: 'Narrow Spaccanapoli street with laundry and shops in golden afternoon light' },
+];
 
 export interface NavItem {
   title: string;

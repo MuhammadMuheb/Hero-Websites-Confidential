@@ -196,6 +196,18 @@ export function NSFAuthorBox() {
   );
 }
 
+export function PhotoGallery({ images }: { images: { src: string; alt: string }[] }) {
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {images.map((image) => (
+        <div key={image.src} className="relative aspect-square overflow-hidden rounded-xl bg-media">
+          <SafeImage src={image.src} alt={image.alt} fill sizes="(min-width: 640px) 25vw, 50vw" className="object-cover" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function NSFFooter() {
   return (
     <footer className="bg-ink text-white/70">
