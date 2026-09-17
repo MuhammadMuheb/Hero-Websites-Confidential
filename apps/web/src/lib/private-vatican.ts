@@ -346,3 +346,23 @@ export const AUTHOR = {
   bio: 'Every early-access slot and private route on this site has been taken in person, ticket in hand, before it\'s recommended. Independent — not affiliated with the Vatican Museums, and not paid by any operator we compare.',
 };
 
+export const PRIVACY_POLICY = {
+  title: 'Privacy Policy',
+  intro: 'Last updated: this page is reviewed periodically and updated when our practices change.',
+  sections: [
+    {
+      heading: 'What we collect',
+      content: 'Private Vatican does not currently require an account to browse the site, and account sign-in shown in the header is not yet active. If you email us, we keep that correspondence to answer your question and don\'t add you to any mailing list without asking first.',
+    },
+    {
+      heading: 'Cookies',
+      content: 'The site may use a small number of essential cookies needed for basic functionality. See our Cookie Policy for detail on third-party cookies set when you click through to our booking partner.',
+    },
+    {
+      heading: 'Affiliate links',
+      content: 'Tour booking links on this site go to GetYourGuide, our affiliate partner. Once you leave our site, GetYourGuide\'s own privacy policy governs how your information is handled — we don\'t receive your payment or personal booking details.',
+    },
+  ],
+  contactEmail: 'hello@privatevatican.com',
+};
+
