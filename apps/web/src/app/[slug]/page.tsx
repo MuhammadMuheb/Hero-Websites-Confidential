@@ -49,7 +49,7 @@ import { HERO_IMAGE as NSF_HERO_IMAGE } from '@/lib/naples-street-food';
  * own local checks for the same reason.)
  */
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
   return NETWORK_SITES.map((site) => ({ slug: site.slug }));

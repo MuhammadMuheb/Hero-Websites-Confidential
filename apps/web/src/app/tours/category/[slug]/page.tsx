@@ -6,7 +6,6 @@ import { TourCard } from '@/components/TourCard';
 import Link from '@/components/NetworkLink';
 import { CATEGORIES, getNeighborhood, getTourEntryByRealSlug, tourHref } from '@/lib/tours';
 
-export const revalidate = 3600;
 export const dynamic = 'force-dynamic';
 
 const CATEGORY_COPY: Record<string, string> = {

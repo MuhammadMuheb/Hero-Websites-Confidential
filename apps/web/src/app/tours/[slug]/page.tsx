@@ -4,7 +4,7 @@ import { getAllTours, getTourBySlug, SITE_DOMAIN } from '@/lib/firestore';
 import { TourPageContent } from '@/components/TourPageContent';
 import { TOURS, getCategory, getNeighborhood, getRelatedTours, getTourEntryBySeoSlug } from '@/lib/tours';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
   return TOURS.map((t) => ({ slug: t.seoSlug }));

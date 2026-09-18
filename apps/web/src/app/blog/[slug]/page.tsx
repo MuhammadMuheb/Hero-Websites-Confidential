@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { getAllBlogPosts, getAuthor, getBlogPostBySlug, SITE_DOMAIN } from '@/lib/firestore';
 import { SafeImage } from '@/components/SafeImage';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts();

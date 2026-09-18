@@ -5,7 +5,7 @@ import { InnerHero } from '@/components/InnerHero';
 import { TourCard } from '@/components/TourCard';
 import { CATEGORIES, NEIGHBORHOODS, getTourEntryByRealSlug, tourHref } from '@/lib/tours';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Rome Food Tours — Every Tour, One Place',

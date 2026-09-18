@@ -6,7 +6,6 @@ import { InnerHero } from '@/components/InnerHero';
 import { TourCard } from '@/components/TourCard';
 import { NEIGHBORHOODS, getNeighborhood, getToursForNeighborhood } from '@/lib/tours';
 
-export const revalidate = 3600;
 export const dynamic = 'force-dynamic';
 
 /**

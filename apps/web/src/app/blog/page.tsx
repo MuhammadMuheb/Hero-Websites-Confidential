@@ -5,7 +5,7 @@ import { InnerHero } from '@/components/InnerHero';
 import { SafeImage } from '@/components/SafeImage';
 import { BLOG_CATEGORIES } from '@/lib/blog';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Blog',
