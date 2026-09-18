@@ -66,6 +66,13 @@ import { MoneyPageTemplate as TDTMoneyPageTemplate } from '@/components/tuscany-
 import { SupportPageTemplate as TDTSupportPageTemplate } from '@/components/tuscany-day-trip/SupportPageTemplate';
 import { TDTAboutPage } from '@/components/tuscany-day-trip/TDTAboutPage';
 import { TDTContactPage } from '@/components/tuscany-day-trip/TDTContactPage';
+import { TDTFAQPage } from '@/components/tuscany-day-trip/TDTFAQPage';
+import { TDTPrivacyPolicyPage } from '@/components/tuscany-day-trip/TDTPrivacyPolicyPage';
+import { TDTTermsOfServicePage } from '@/components/tuscany-day-trip/TDTTermsOfServicePage';
+import { TDTCookiePolicyPage } from '@/components/tuscany-day-trip/TDTCookiePolicyPage';
+import { TDTAffiliateDisclosurePage } from '@/components/tuscany-day-trip/TDTAffiliateDisclosurePage';
+import { TDTToursPage } from '@/components/tuscany-day-trip/TDTToursPage';
+import { TDTBlogPage } from '@/components/tuscany-day-trip/TDTBlogPage';
 import { MoneyPageTemplate as ADTMoneyPageTemplate } from '@/components/amalfi-day-trip/MoneyPageTemplate';
 import { SupportPageTemplate as ADTSupportPageTemplate } from '@/components/amalfi-day-trip/SupportPageTemplate';
 import { ADTAboutPage } from '@/components/amalfi-day-trip/ADTAboutPage';
@@ -205,7 +212,7 @@ export async function generateStaticParams() {
   const cirHrefs = [...CIR_MONEY_PAGES.map((p) => p.href), ...CIR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const rpcHrefs = [...RPC_MONEY_PAGES.map((p) => p.href), ...RPC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const tcHrefs = [...TC_MONEY_PAGES.map((p) => p.href), ...TC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
-  const tdtHrefs = [...TDT_MONEY_PAGES.map((p) => p.href), ...TDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const tdtHrefs = [...TDT_MONEY_PAGES.map((p) => p.href), ...TDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog'];
   const adtHrefs = [...ADT_MONEY_PAGES.map((p) => p.href), ...ADT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const tvdtHrefs = [...TVDT_MONEY_PAGES.map((p) => p.href), ...TVDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const nsfHrefs = [...NSF_MONEY_PAGES.map((p) => p.href), ...NSF_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
@@ -363,6 +370,13 @@ function resolveTuscanyDayTripPage(path: string) {
 
   if (path === '/about') return { type: 'about' as const };
   if (path === '/contact') return { type: 'contact' as const };
+  if (path === '/faq') return { type: 'faq' as const };
+  if (path === '/privacy') return { type: 'privacy' as const };
+  if (path === '/terms') return { type: 'terms' as const };
+  if (path === '/cookie-policy') return { type: 'cookie-policy' as const };
+  if (path === '/affiliate-disclosure') return { type: 'affiliate-disclosure' as const };
+  if (path === '/tours') return { type: 'tours' as const };
+  if (path === '/blog') return { type: 'blog' as const };
 
   return null;
 }
@@ -935,6 +949,55 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         alternates: { canonical },
       };
     }
+    if (resolved?.type === 'faq') {
+      return {
+        title: { absolute: 'FAQ | Tuscany Day Trip' },
+        description: 'Frequently asked questions about Tuscany day trips, wine tours, and planning.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'privacy') {
+      return {
+        title: { absolute: 'Privacy Policy | Tuscany Day Trip' },
+        description: 'Our privacy policy and how we handle your data.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'terms') {
+      return {
+        title: { absolute: 'Terms of Service | Tuscany Day Trip' },
+        description: 'Terms and conditions for using Tuscany Day Trip.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'cookie-policy') {
+      return {
+        title: { absolute: 'Cookie Policy | Tuscany Day Trip' },
+        description: 'How Tuscany Day Trip uses cookies and tracking technologies.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'affiliate-disclosure') {
+      return {
+        title: { absolute: 'Affiliate Disclosure | Tuscany Day Trip' },
+        description: 'Full transparency about how this site works and how we make money.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'tours') {
+      return {
+        title: { absolute: 'Featured Tuscany Tours | Tuscany Day Trip' },
+        description: 'Curated Tuscany day trips from Florence — wine tours, hill towns, and countryside routes.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'blog') {
+      return {
+        title: { absolute: 'Blog | Tuscany Day Trip' },
+        description: 'Travel tips, wine guides, and planning advice for Tuscany.',
+        alternates: { canonical },
+      };
+    }
 
     return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
   }
@@ -1263,6 +1326,13 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <TDTSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <TDTAboutPage />;
     if (resolved?.type === 'contact') return <TDTContactPage />;
+    if (resolved?.type === 'faq') return <TDTFAQPage />;
+    if (resolved?.type === 'privacy') return <TDTPrivacyPolicyPage />;
+    if (resolved?.type === 'terms') return <TDTTermsOfServicePage />;
+    if (resolved?.type === 'cookie-policy') return <TDTCookiePolicyPage />;
+    if (resolved?.type === 'affiliate-disclosure') return <TDTAffiliateDisclosurePage />;
+    if (resolved?.type === 'tours') return <TDTToursPage />;
+    if (resolved?.type === 'blog') return <TDTBlogPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }
