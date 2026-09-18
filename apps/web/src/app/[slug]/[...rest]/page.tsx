@@ -101,14 +101,7 @@ import {
   getMoneyPageContent as getPVMoneyPageContent,
   getSupportPageContent as getPVSupportPageContent,
 } from '@/lib/private-vatican-content';
-import {
-  MONEY_PAGES as PV_MONEY_PAGES,
-  SUPPORT_PAGES as PV_SUPPORT_PAGES,
-  PRIVACY_POLICY as PV_PRIVACY_POLICY,
-  TERMS_OF_SERVICE as PV_TERMS_OF_SERVICE,
-  COOKIE_POLICY as PV_COOKIE_POLICY,
-  AFFILIATE_DISCLOSURE as PV_AFFILIATE_DISCLOSURE,
-} from '@/lib/private-vatican';
+import { MONEY_PAGES as PV_MONEY_PAGES, SUPPORT_PAGES as PV_SUPPORT_PAGES } from '@/lib/private-vatican';
 import {
   getMoneyPageContent as getPDTMoneyPageContent,
   getSupportPageContent as getPDTSupportPageContent,
