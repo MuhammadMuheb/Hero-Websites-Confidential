@@ -159,7 +159,7 @@ export async function generateStaticParams() {
     '/contact',
   ];
   const pvHrefs = [...PV_MONEY_PAGES.map((p) => p.href), ...PV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
-  const pdtHrefs = [...PDT_MONEY_PAGES.map((p) => p.href), ...PDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const pdtHrefs = [...PDT_MONEY_PAGES.map((p) => p.href), ...PDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog', '/neighborhoods'];
   const rvHrefs = [...RV_MONEY_PAGES.map((p) => p.href), ...RV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog', '/neighborhoods'];
   const gcrHrefs = [...GCR_MONEY_PAGES.map((p) => p.href), ...GCR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const cirHrefs = [...CIR_MONEY_PAGES.map((p) => p.href), ...CIR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
