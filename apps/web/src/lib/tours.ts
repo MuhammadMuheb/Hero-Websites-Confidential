@@ -407,5 +407,5 @@ export function getToursForNeighborhood(allTours: TourDoc[], neighborhoodSlug: s
  * Each property has its own unique offerings in the Tours & Blog menu.
  */
 export function getPropertyToursAndBlog(networkSiteSlug: string): PropertyTourItem[] {
-  return PROPERTY_TOURS[networkSiteSlug] || PROPERTY_TOURS['street-food-rome'];
+  return PROPERTY_TOURS[networkSiteSlug] ?? PROPERTY_TOURS['street-food-rome']!;
 }
