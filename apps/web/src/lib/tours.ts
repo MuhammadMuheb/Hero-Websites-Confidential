@@ -152,44 +152,44 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
     { label: 'Blog', href: '/blog' },
   ],
   'pompeii-day-trip': [
-    { label: 'All Day Trips', href: '/pompeii-day-trip/tours' },
-    { label: 'Pompeii from Rome', href: '/pompeii-day-trip/money/pompeii-from-rome' },
-    { label: 'Pompeii from Naples', href: '/pompeii-day-trip/money/pompeii-from-naples' },
-    { label: 'Pompeii + Vesuvius Combo', href: '/pompeii-day-trip/money/pompeii-vesuvius-combo' },
-    { label: 'Pompeii + Herculaneum', href: '/pompeii-day-trip/money/pompeii-herculaneum' },
-    { label: 'Blog', href: '/pompeii-day-trip/blog' },
+    { label: 'All Day Trips', href: '/tours' },
+    { label: 'Pompeii from Rome', href: '/money/pompeii-from-rome' },
+    { label: 'Pompeii from Naples', href: '/money/pompeii-from-naples' },
+    { label: 'Pompeii + Vesuvius Combo', href: '/money/pompeii-vesuvius-combo' },
+    { label: 'Pompeii + Herculaneum', href: '/money/pompeii-herculaneum' },
+    { label: 'Blog', href: '/blog' },
   ],
   'rome-vespa': [
-    { label: 'All Tours', href: '/rome-vespa/tours' },
-    { label: 'Blog', href: '/rome-vespa/blog' },
+    { label: 'All Tours', href: '/tours' },
+    { label: 'Blog', href: '/blog' },
   ],
   'tuscany-day-trip': [
-    { label: 'All Day Trips', href: '/tuscany-day-trip/tours' },
-    { label: 'Blog', href: '/tuscany-day-trip/blog' },
+    { label: 'All Day Trips', href: '/tours' },
+    { label: 'Blog', href: '/blog' },
   ],
   'private-vatican': [
-    { label: 'All Tours', href: '/private-vatican/tours' },
+    { label: 'All Tours', href: '/tours' },
   ],
   'golf-cart-rome': [
-    { label: 'All Tours', href: '/golf-cart-rome/tours' },
+    { label: 'All Tours', href: '/tours' },
   ],
   'cooking-in-rome': [
-    { label: 'All Classes', href: '/cooking-in-rome/tours' },
+    { label: 'All Classes', href: '/tours' },
   ],
   'rome-pizza-class': [
-    { label: 'All Classes', href: '/rome-pizza-class/tours' },
+    { label: 'All Classes', href: '/tours' },
   ],
   'tiramisu-class': [
-    { label: 'All Classes', href: '/tiramisu-class/tours' },
+    { label: 'All Classes', href: '/tours' },
   ],
   'naples-street-food': [
-    { label: 'All Tours', href: '/naples-street-food/tours' },
+    { label: 'All Tours', href: '/tours' },
   ],
   'amalfi-day-trip': [
-    { label: 'All Day Trips', href: '/amalfi-day-trip/tours' },
+    { label: 'All Day Trips', href: '/tours' },
   ],
   'tivoli-day-trip': [
-    { label: 'All Day Trips', href: '/tivoli-day-trip/tours' },
+    { label: 'All Day Trips', href: '/tours' },
   ],
 };
 
