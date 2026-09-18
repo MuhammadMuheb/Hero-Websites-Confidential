@@ -57,10 +57,19 @@ export function PDTToursPage() {
       <section className="py-14">
         <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {FEATURED_TOURS.map((tour) => (
+            {FEATURED_TOURS.map((tour) => {
+              // Map tour to relevant money page based on tags
+              let moneyPageHref = '/pompeii-day-trip/money/pompeii-from-rome';
+              if (tour.tags.includes('from-naples')) moneyPageHref = '/pompeii-day-trip/money/pompeii-from-naples';
+              if (tour.tags.includes('from-sorrento')) moneyPageHref = '/pompeii-day-trip/money/pompeii-from-sorrento-amalfi';
+              if (tour.tags.includes('vesuvius')) moneyPageHref = '/pompeii-day-trip/money/pompeii-vesuvius-combo';
+              if (tour.tags.includes('herculaneum')) moneyPageHref = '/pompeii-day-trip/money/pompeii-herculaneum';
+              if (tour.tags.includes('private')) moneyPageHref = '/pompeii-day-trip/money/private-pompeii-guide';
+
+              return (
               <a
                 key={tour.slug}
-                href={tour.slug}
+                href={moneyPageHref}
                 className="group flex flex-col overflow-hidden rounded-media border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-media">
@@ -86,7 +95,8 @@ export function PDTToursPage() {
                   </div>
                 </div>
               </a>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
