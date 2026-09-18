@@ -51,6 +51,33 @@ import { HERO_IMAGE as NSF_HERO_IMAGE } from '@/lib/naples-street-food';
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetPageDoc(slug: string) {
+  try {
+    return await getPageDoc(slug);
+  } catch (error) {
+    console.error(`Error fetching page doc for ${slug}:`, error);
+    return null;
+  }
+}
+
+async function safeGetAllTours() {
+  try {
+    return await getAllTours();
+  } catch (error) {
+    console.error('Error fetching tours:', error);
+    return [];
+  }
+}
+
+async function safeGetAllBlogPosts() {
+  try {
+    return await getAllBlogPosts();
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const site = getNetworkSite(slug);
@@ -285,7 +312,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   // All 13 network properties now render as active sites (multi-tenancy enabled)
-  const page = await getPageDoc('home');
+  const page = await safeGetPageDoc('home');
   const title = page?.metaTitle ? page.metaTitle.replace('Street Food Rome', site.name) : site.name;
   const description = page?.metaDesc ?? "A first-hand guide to Rome's street food — honest recommendations, no tourist traps.";
 
@@ -359,7 +386,11 @@ export default async function NetworkSitePage({ params }: { params: Promise<{ sl
   }
 
   // All 13 network properties render the shared-template home page (multi-tenancy activated)
-  const [page, tours, allBlogPosts] = await Promise.all([getPageDoc('home'), getAllTours(), getAllBlogPosts()]);
+  const [page, tours, allBlogPosts] = await Promise.all([
+    safeGetPageDoc('home'),
+    safeGetAllTours(),
+    safeGetAllBlogPosts(),
+  ]);
 
   return (
     <HomePageBody

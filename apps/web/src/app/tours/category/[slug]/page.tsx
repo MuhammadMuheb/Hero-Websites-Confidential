@@ -8,6 +8,24 @@ import { CATEGORIES, getNeighborhood, getTourEntryByRealSlug, tourHref } from '@
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetPageDoc(slug: string) {
+  try {
+    return await getPageDoc(slug);
+  } catch (error) {
+    console.error(`Error fetching page doc for ${slug}:`, error);
+    return null;
+  }
+}
+
+async function safeGetAllTours() {
+  try {
+    return await getAllTours();
+  } catch (error) {
+    console.error('Error fetching tours:', error);
+    return [];
+  }
+}
+
 const CATEGORY_COPY: Record<string, string> = {
   pizza: `Rome doesn't really have "a" pizza — it has at least two, and neither is the round, wood-fired pie most visitors expect. Pizza al taglio is sold by weight off a rectangular tray, cut with scissors, and eaten standing up or walking down the street; it's built for a thick, airy crust that can hold up under a long, slow bake. Pizza bianca is simpler still — just dough, olive oil, and salt, torn open at a bakery counter and often eaten plain or split for a sandwich. Neither is really "Neapolitan" style, and locals will tell you as much. These tours exist to explain that distinction on the ground: which bakeries have been doing it for decades, why the dough recipe changes by neighbourhood, and which toppings are a Roman specialty rather than a tourist add-on. Expect a lot of walking, a lot of tasting in small amounts rather than one big sit-down meal, and a guide who can tell a good crust from a reheated one at a glance.`,
   pasta: `Roman pasta is a short list done extremely well: cacio e pepe, carbonara, amatriciana, gricia — four dishes built from a handful of ingredients (pecorino, guanciale, black pepper, sometimes tomato) and almost no room to hide a bad one. Because the recipes are so simple, execution is everything, and a Roman will argue for an hour about the correct ratio of cheese to pasta water. These tours and classes get you either behind the technique yourself — the emulsion for cacio e pepe trips up plenty of home cooks — or in front of a few kitchens that have been getting it right for years, so you can taste the difference a good guanciale and real Pecorino Romano actually make. If you've only had carbonara with cream in it, this is where that gets corrected.`,
@@ -20,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const category = CATEGORIES.find((c) => c.slug === slug);
   if (!category) return {};
-  const page = await getPageDoc(`category-${category.slug}`);
+  const page = await safeGetPageDoc(`category-${category.slug}`);
   const title = page?.metaTitle ?? `${category.name} Tours in Rome`;
   const description =
     page?.metaDesc ??
@@ -46,8 +64,8 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ sl
   const category = CATEGORIES.find((c) => c.slug === slug);
   if (!category) notFound();
 
-  const page = await getPageDoc(`category-${category.slug}`);
-  const allTours = await getAllTours();
+  const page = await safeGetPageDoc(`category-${category.slug}`);
+  const allTours = await safeGetAllTours();
   const tours = allTours.filter((t) => getTourEntryByRealSlug(t.slug)?.category === category.slug);
 
   // Distinct neighbourhoods represented among this category's tours, for a

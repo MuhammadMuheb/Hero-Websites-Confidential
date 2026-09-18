@@ -11,8 +11,35 @@ import { AllDestinationsSection } from '@/components/AllDestinationsSection';
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetPageDoc(slug: string) {
+  try {
+    return await getPageDoc(slug);
+  } catch (error) {
+    console.error(`Error fetching page doc for ${slug}:`, error);
+    return null;
+  }
+}
+
+async function safeGetAllTours() {
+  try {
+    return await getAllTours();
+  } catch (error) {
+    console.error('Error fetching tours:', error);
+    return [];
+  }
+}
+
+async function safeGetAllBlogPosts() {
+  try {
+    return await getAllBlogPosts();
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+}
+
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageDoc('about');
+  const page = await safeGetPageDoc('about');
   if (!page) return {};
   return {
     title: page.metaTitle,
@@ -29,7 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const [tours, allBlogPosts] = await Promise.all([getAllTours(), getAllBlogPosts()]);
+  const [tours, allBlogPosts] = await Promise.all([safeGetAllTours(), safeGetAllBlogPosts()]);
 
   return (
     <>

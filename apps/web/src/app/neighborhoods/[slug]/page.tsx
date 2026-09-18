@@ -8,6 +8,24 @@ import { getNeighborhood, getToursForNeighborhood } from '@/lib/tours';
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetPageDoc(slug: string) {
+  try {
+    return await getPageDoc(slug);
+  } catch (error) {
+    console.error(`Error fetching page doc for ${slug}:`, error);
+    return null;
+  }
+}
+
+async function safeGetAllTours() {
+  try {
+    return await getAllTours();
+  } catch (error) {
+    console.error('Error fetching tours:', error);
+    return [];
+  }
+}
+
 /**
  * Genuine, distinct editorial copy per neighbourhood — deliberately short
  * (150-250 words) given there's no CMS content for these yet, but each one
@@ -31,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const neighborhood = getNeighborhood(slug);
   if (!neighborhood) return {};
-  const page = await getPageDoc(`neighborhood-${neighborhood.slug}`);
+  const page = await safeGetPageDoc(`neighborhood-${neighborhood.slug}`);
   const title = page?.metaTitle ?? `Eating in ${neighborhood.name}, Rome`;
   const description =
     page?.metaDesc ?? `What to eat in ${neighborhood.name}, Rome, and when to go — a first-hand neighbourhood food guide.`;
@@ -56,8 +74,8 @@ export default async function NeighborhoodPage({ params }: { params: Promise<{ s
   const neighborhood = getNeighborhood(slug);
   if (!neighborhood) notFound();
 
-  const page = await getPageDoc(`neighborhood-${neighborhood.slug}`);
-  const allTours = await getAllTours();
+  const page = await safeGetPageDoc(`neighborhood-${neighborhood.slug}`);
+  const allTours = await safeGetAllTours();
   const tours = getToursForNeighborhood(allTours, neighborhood.slug);
 
   const jsonLd = {

@@ -6,12 +6,30 @@ import { getCategory, getNeighborhood, getRelatedTours, getTourEntryBySeoSlug } 
 
 export const dynamic = 'force-dynamic';
 
+async function safeTourBySlug(slug: string) {
+  try {
+    return await getTourBySlug(slug);
+  } catch (error) {
+    console.error(`Error fetching tour ${slug}:`, error);
+    return null;
+  }
+}
+
+async function safeGetAllTours() {
+  try {
+    return await getAllTours();
+  } catch (error) {
+    console.error('Error fetching all tours:', error);
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const entry = getTourEntryBySeoSlug(slug);
   if (!entry) return {};
 
-  const tour = await getTourBySlug(entry.realSlug);
+  const tour = await safeTourBySlug(entry.realSlug);
   if (!tour) return {};
 
   const description = tour.firstHandNotes ?? `${tour.title} — a Street Food Rome tour.`;
@@ -37,10 +55,10 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
   const entry = getTourEntryBySeoSlug(slug);
   if (!entry) notFound();
 
-  const tour = await getTourBySlug(entry.realSlug);
+  const tour = await safeTourBySlug(entry.realSlug);
   if (!tour) notFound();
 
-  const allTours = await getAllTours();
+  const allTours = await safeGetAllTours();
   const others = getRelatedTours(allTours, tour);
 
   const category = getCategory(entry.category);

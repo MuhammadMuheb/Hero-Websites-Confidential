@@ -5,8 +5,17 @@ import { InnerHero } from '@/components/InnerHero';
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetPageDoc(slug: string) {
+  try {
+    return await getPageDoc(slug);
+  } catch (error) {
+    console.error(`Error fetching page doc for ${slug}:`, error);
+    return null;
+  }
+}
+
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageDoc('faq');
+  const page = await safeGetPageDoc('faq');
   if (!page) return {};
   return {
     title: page.metaTitle,
@@ -16,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function FaqPage() {
-  const page = await getPageDoc('faq');
+  const page = await safeGetPageDoc('faq');
   if (!page) notFound();
 
   const jsonLd = {

@@ -9,11 +9,29 @@ import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetPageDoc(slug: string) {
+  try {
+    return await getPageDoc(slug);
+  } catch (error) {
+    console.error(`Error fetching page doc for ${slug}:`, error);
+    return null;
+  }
+}
+
+async function safeGetAllBlogPosts() {
+  try {
+    return await getAllBlogPosts();
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const category = getBlogCategory(slug);
   if (!category) return {};
-  const page = await getPageDoc(`blog-category-${category.slug}`);
+  const page = await safeGetPageDoc(`blog-category-${category.slug}`);
   const title = page?.metaTitle ?? `${category.name} — Street Food Rome Blog`;
   const description = page?.metaDesc ?? category.intro;
   return {
@@ -41,8 +59,8 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
   const category = getBlogCategory(slug);
   if (!category) notFound();
 
-  const page = await getPageDoc(`blog-category-${category.slug}`);
-  const allPosts = await getAllBlogPosts();
+  const page = await safeGetPageDoc(`blog-category-${category.slug}`);
+  const allPosts = await safeGetAllBlogPosts();
   const posts = allPosts.filter((p) => p.categorySlug === category.slug);
 
   const jsonLd = {

@@ -4,8 +4,35 @@ import { HomePageBody } from '@/components/HomePageBody';
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetPageDoc(slug: string) {
+  try {
+    return await getPageDoc(slug);
+  } catch (error) {
+    console.error(`Error fetching page doc for ${slug}:`, error);
+    return null;
+  }
+}
+
+async function safeGetAllTours() {
+  try {
+    return await getAllTours();
+  } catch (error) {
+    console.error('Error fetching tours:', error);
+    return [];
+  }
+}
+
+async function safeGetAllBlogPosts() {
+  try {
+    return await getAllBlogPosts();
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+}
+
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageDoc('home');
+  const page = await safeGetPageDoc('home');
   if (!page) return {};
 
   return {
@@ -25,7 +52,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [page, tours, allBlogPosts] = await Promise.all([getPageDoc('home'), getAllTours(), getAllBlogPosts()]);
+  const [page, tours, allBlogPosts] = await Promise.all([
+    safeGetPageDoc('home'),
+    safeGetAllTours(),
+    safeGetAllBlogPosts(),
+  ]);
 
   return (
     <HomePageBody

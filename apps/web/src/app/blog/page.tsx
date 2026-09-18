@@ -7,6 +7,15 @@ import { BLOG_CATEGORIES } from '@/lib/blog';
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetAllBlogPosts() {
+  try {
+    return await getAllBlogPosts();
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+}
+
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Notes on Rome street food — how to order, what to look for, and how the classics actually differ.',
@@ -18,7 +27,7 @@ function formatDate(iso: string): string {
 }
 
 export default async function BlogIndexPage() {
-  const posts = await getAllBlogPosts();
+  const posts = await safeGetAllBlogPosts();
 
   return (
     <>

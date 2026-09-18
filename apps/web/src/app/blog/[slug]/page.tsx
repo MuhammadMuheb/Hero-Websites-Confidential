@@ -6,9 +6,27 @@ import { SafeImage } from '@/components/SafeImage';
 
 export const dynamic = 'force-dynamic';
 
+async function safeBlogPostBySlug(slug: string) {
+  try {
+    return await getBlogPostBySlug(slug);
+  } catch (error) {
+    console.error(`Error fetching blog post ${slug}:`, error);
+    return null;
+  }
+}
+
+async function safeGetAuthor(id: string) {
+  try {
+    return await getAuthor(id);
+  } catch (error) {
+    console.error(`Error fetching author ${id}:`, error);
+    return null;
+  }
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getBlogPostBySlug(slug);
+  const post = await safeBlogPostBySlug(slug);
   if (!post) return {};
 
   return {
@@ -35,10 +53,10 @@ function formatDate(iso: string): string {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getBlogPostBySlug(slug);
+  const post = await safeBlogPostBySlug(slug);
   if (!post) notFound();
 
-  const author = post.authorId ? await getAuthor(post.authorId) : null;
+  const author = post.authorId ? await safeGetAuthor(post.authorId) : null;
 
   const jsonLd = {
     '@context': 'https://schema.org',

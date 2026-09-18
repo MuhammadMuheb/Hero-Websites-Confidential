@@ -7,6 +7,15 @@ import { CATEGORIES, NEIGHBORHOODS, getTourEntryByRealSlug, tourHref } from '@/l
 
 export const dynamic = 'force-dynamic';
 
+async function safeGetAllTours() {
+  try {
+    return await getAllTours();
+  } catch (error) {
+    console.error('Error fetching tours:', error);
+    return [];
+  }
+}
+
 export const metadata: Metadata = {
   title: 'Rome Food Tours — Every Tour, One Place',
   description:
@@ -30,7 +39,7 @@ export default async function ToursIndexPage({
   searchParams: Promise<{ category?: string; neighborhood?: string }>;
 }) {
   const { category, neighborhood } = await searchParams;
-  const allTours = await getAllTours();
+  const allTours = await safeGetAllTours();
 
   let tours = allTours;
   if (category) tours = tours.filter((t) => matchesCategory(t, category));
