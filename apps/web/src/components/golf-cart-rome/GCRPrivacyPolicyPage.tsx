@@ -2,5 +2,9 @@ import { PrivacyPolicyTemplate } from '@/components/PrivacyPolicyTemplate';
 import { PRIVACY_POLICY } from '@/lib/golf-cart-rome';
 
 export function GCRPrivacyPolicyPage() {
-  return <PrivacyPolicyTemplate data={PRIVACY_POLICY} />;
+  return (
+    <div className="gcr-scope bg-white">
+      <PrivacyPolicyTemplate data={PRIVACY_POLICY} />
+    </div>
+  );
 }

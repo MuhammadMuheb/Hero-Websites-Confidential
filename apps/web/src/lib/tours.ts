@@ -187,6 +187,12 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
   ],
   'golf-cart-rome': [
     { label: 'All Tours', href: '/tours' },
+    { label: 'Golf-Cart Tour of Rome', href: '/money/golf-cart-tour-of-rome' },
+    { label: 'Private Cart Tour', href: '/money/private-cart-tour' },
+    { label: 'Cart Tour for Families & Seniors', href: '/money/cart-tour-for-families-seniors' },
+    { label: 'Night Cart Tour', href: '/money/night-cart-tour' },
+    { label: 'Cart vs Walking Tour', href: '/money/cart-vs-walking-tour' },
+    { label: 'Blog', href: '/blog' },
   ],
   'cooking-in-rome': [
     { label: 'All Classes', href: '/tours' },

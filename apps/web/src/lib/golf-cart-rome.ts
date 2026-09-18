@@ -377,3 +377,74 @@ export const PRIVACY_POLICY = {
   ],
   contactEmail: 'hello@golfcartrome.com',
 };
+
+export const TERMS_OF_SERVICE = {
+  title: 'Terms of Service',
+  intro: 'By accessing this site, you agree to these terms.',
+  sections: [
+    {
+      heading: 'About this site',
+      content: 'Golf Cart Rome publishes first-hand comparisons of golf cart tours from multiple Rome-based operators. We are not affiliated with any tour operator, GetYourGuide, Viator, or the city of Rome — we are an independent review guide.',
+    },
+    {
+      heading: 'What we are not liable for',
+      content: 'This site provides information and tour comparisons in good faith. Booking and tour details are always the responsibility of the tour operator — we are not responsible for cancellations, changes to tour content, pricing updates, vehicle availability, or any other matters between you and the tour operator.',
+    },
+    {
+      heading: 'Affiliate links',
+      content: 'Tour booking links on this site are affiliate partnerships with GetYourGuide. When you book through our links, we earn a commission, which supports this site. This does not affect the price you pay.',
+    },
+    {
+      heading: 'No warranties',
+      content: 'This site is provided "as-is" without warranties of any kind. We make no guarantees about availability, accuracy, tour accessibility claims, or fitness for a particular purpose.',
+    },
+  ],
+  contactEmail: 'hello@golfcartrome.com',
+};
+
+export const COOKIE_POLICY = {
+  title: 'Cookie Policy',
+  intro: 'This site uses cookies to enhance your experience and track site performance.',
+  sections: [
+    {
+      heading: 'What cookies we use',
+      content: 'Golf Cart Rome uses essential cookies needed for basic site functionality, such as remembering your preferences and maintaining session security.',
+    },
+    {
+      heading: 'Third-party cookies',
+      content: 'When you click through to GetYourGuide to book a tour, third-party cookies may be set by GetYourGuide and their analytics partners. These are governed by GetYourGuide\'s own cookie and privacy policies, not this site.',
+    },
+    {
+      heading: 'Managing cookies',
+      content: 'Most browsers allow you to control cookies through their settings. Disabling cookies may affect the site\'s functionality.',
+    },
+    {
+      heading: 'Changes to this policy',
+      content: 'We may update this cookie policy at any time. Changes take effect immediately upon posting to this page.',
+    },
+  ],
+};
+
+export const AFFILIATE_DISCLOSURE = {
+  title: 'Affiliate Disclosure',
+  intro: 'This site earns commissions through affiliate partnerships. Here\'s how that works and how it affects you.',
+  sections: [
+    {
+      heading: 'How we earn money',
+      content: 'Golf Cart Rome publishes tour comparisons and links to booking pages on GetYourGuide. When you book through our links, GetYourGuide pays us a commission. This is our primary source of funding for maintaining and updating this site.',
+    },
+    {
+      heading: 'How this affects our recommendations',
+      content: 'We compare tours honestly based on route, comfort, value, and accessibility — the same criteria we\'d use if writing for ourselves. The commission structure doesn\'t change which tours we feature or how we rank them. We recommend tours because we believe they\'re good, not because they pay different commission rates.',
+    },
+    {
+      heading: 'Who runs this site',
+      content: 'Golf Cart Rome is run by Sofia Bellini, an independent licensed Rome tour guide and accessible-travel consultant. Every tour featured here has been personally tested from inside a golf cart, not just researched online.',
+    },
+    {
+      heading: 'Questions',
+      content: 'If you have questions about this disclosure or how our affiliate partnerships work, email us at hello@golfcartrome.com — we\'re happy to explain.',
+    },
+  ],
+  contactEmail: 'hello@golfcartrome.com',
+};

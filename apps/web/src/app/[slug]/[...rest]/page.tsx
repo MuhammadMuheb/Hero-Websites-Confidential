@@ -57,6 +57,13 @@ import { MoneyPageTemplate as GCRMoneyPageTemplate } from '@/components/golf-car
 import { SupportPageTemplate as GCRSupportPageTemplate } from '@/components/golf-cart-rome/SupportPageTemplate';
 import { GCRAboutPage } from '@/components/golf-cart-rome/GCRAboutPage';
 import { GCRContactPage } from '@/components/golf-cart-rome/GCRContactPage';
+import { GCRFAQPage } from '@/components/golf-cart-rome/GCRFAQPage';
+import { GCRPrivacyPolicyPage } from '@/components/golf-cart-rome/GCRPrivacyPolicyPage';
+import { GCRTermsOfServicePage } from '@/components/golf-cart-rome/GCRTermsOfServicePage';
+import { GCRCookiePolicyPage } from '@/components/golf-cart-rome/GCRCookiePolicyPage';
+import { GCRAffiliateDisclosurePage } from '@/components/golf-cart-rome/GCRAffiliateDisclosurePage';
+import { GCRToursPage } from '@/components/golf-cart-rome/GCRToursPage';
+import { GCRBlogPage } from '@/components/golf-cart-rome/GCRBlogPage';
 import { MoneyPageTemplate as CIRMoneyPageTemplate } from '@/components/cooking-in-rome/MoneyPageTemplate';
 import { SupportPageTemplate as CIRSupportPageTemplate } from '@/components/cooking-in-rome/SupportPageTemplate';
 import { CIRAboutPage } from '@/components/cooking-in-rome/CIRAboutPage';
@@ -227,7 +234,7 @@ export async function generateStaticParams() {
     '/neighborhoods',
   ];
   const rvHrefs = [...RV_MONEY_PAGES.map((p) => p.href), ...RV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog', '/neighborhoods'];
-  const gcrHrefs = [...GCR_MONEY_PAGES.map((p) => p.href), ...GCR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const gcrHrefs = [...GCR_MONEY_PAGES.map((p) => p.href), ...GCR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog'];
   const cirHrefs = [...CIR_MONEY_PAGES.map((p) => p.href), ...CIR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const rpcHrefs = [...RPC_MONEY_PAGES.map((p) => p.href), ...RPC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const tcHrefs = [...TC_MONEY_PAGES.map((p) => p.href), ...TC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
@@ -344,6 +351,13 @@ function resolveGolfCartRomePage(path: string) {
 
   if (path === '/about') return { type: 'about' as const };
   if (path === '/contact') return { type: 'contact' as const };
+  if (path === '/faq') return { type: 'faq' as const };
+  if (path === '/privacy') return { type: 'privacy' as const };
+  if (path === '/terms') return { type: 'terms' as const };
+  if (path === '/cookie-policy') return { type: 'cookie-policy' as const };
+  if (path === '/affiliate-disclosure') return { type: 'affiliate-disclosure' as const };
+  if (path === '/tours') return { type: 'tours' as const };
+  if (path === '/blog') return { type: 'blog' as const };
 
   return null;
 }
@@ -1360,6 +1374,13 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <GCRSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <GCRAboutPage />;
     if (resolved?.type === 'contact') return <GCRContactPage />;
+    if (resolved?.type === 'faq') return <GCRFAQPage />;
+    if (resolved?.type === 'privacy') return <GCRPrivacyPolicyPage />;
+    if (resolved?.type === 'terms') return <GCRTermsOfServicePage />;
+    if (resolved?.type === 'cookie-policy') return <GCRCookiePolicyPage />;
+    if (resolved?.type === 'affiliate-disclosure') return <GCRAffiliateDisclosurePage />;
+    if (resolved?.type === 'tours') return <GCRToursPage />;
+    if (resolved?.type === 'blog') return <GCRBlogPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }
