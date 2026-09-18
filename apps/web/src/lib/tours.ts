@@ -213,15 +213,35 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
   ],
   'tiramisu-class': [
     { label: 'All Classes', href: '/tours' },
+    { label: 'Rome Tiramisù Class', href: '/rome-tiramisu-class' },
+    { label: 'Dessert-Making Class', href: '/dessert-making-class' },
+    { label: 'Tiramisù + Gelato Combo', href: '/tiramisu-gelato-combo' },
+    { label: 'Private Dessert Class', href: '/private-dessert-class' },
+    { label: 'Blog', href: '/blog' },
   ],
   'naples-street-food': [
     { label: 'All Tours', href: '/tours' },
+    { label: 'Naples Street-Food Tour', href: '/naples-street-food-tour' },
+    { label: 'Pizza-Focused Food Tour', href: '/pizza-focused-food-tour' },
+    { label: 'Naples Market Tour', href: '/naples-market-tour' },
+    { label: 'Spaccanapoli Food Walk', href: '/spaccanapoli-food-walk' },
+    { label: 'Blog', href: '/blog' },
   ],
   'amalfi-day-trip': [
     { label: 'All Day Trips', href: '/tours' },
+    { label: 'Amalfi from Rome', href: '/amalfi-from-rome' },
+    { label: 'Amalfi from Sorrento', href: '/amalfi-from-naples-sorrento' },
+    { label: 'Positano, Amalfi & Ravello', href: '/positano-amalfi-ravello' },
+    { label: 'Amalfi Boat Day Trip', href: '/amalfi-boat-day-trip' },
+    { label: 'Blog', href: '/blog' },
   ],
   'tivoli-day-trip': [
     { label: 'All Day Trips', href: '/tours' },
+    { label: 'Tivoli from Rome', href: '/money/tivoli-from-rome' },
+    { label: "Villa d'Este & Hadrian's Villa", href: '/villa-d-este-hadrian-s-villa' },
+    { label: 'Private Tivoli Tour', href: '/private-tivoli-tour' },
+    { label: 'Half-Day Tivoli', href: '/half-day-tivoli' },
+    { label: 'Blog', href: '/blog' },
   ],
 };
 
