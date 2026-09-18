@@ -8,6 +8,7 @@ import { BLOG_CATEGORIES, getBlogCategory } from '@/lib/blog';
 import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
 
 export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
   return BLOG_CATEGORIES.map((c) => ({ slug: c.slug }));

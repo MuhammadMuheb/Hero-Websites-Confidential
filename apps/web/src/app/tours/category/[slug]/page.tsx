@@ -7,6 +7,7 @@ import Link from '@/components/NetworkLink';
 import { CATEGORIES, getNeighborhood, getTourEntryByRealSlug, tourHref } from '@/lib/tours';
 
 export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 const CATEGORY_COPY: Record<string, string> = {
   pizza: `Rome doesn't really have "a" pizza — it has at least two, and neither is the round, wood-fired pie most visitors expect. Pizza al taglio is sold by weight off a rectangular tray, cut with scissors, and eaten standing up or walking down the street; it's built for a thick, airy crust that can hold up under a long, slow bake. Pizza bianca is simpler still — just dough, olive oil, and salt, torn open at a bakery counter and often eaten plain or split for a sandwich. Neither is really "Neapolitan" style, and locals will tell you as much. These tours exist to explain that distinction on the ground: which bakeries have been doing it for decades, why the dough recipe changes by neighbourhood, and which toppings are a Roman specialty rather than a tourist add-on. Expect a lot of walking, a lot of tasting in small amounts rather than one big sit-down meal, and a guide who can tell a good crust from a reheated one at a glance.`,
