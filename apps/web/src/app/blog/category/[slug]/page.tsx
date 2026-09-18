@@ -6,6 +6,7 @@ import { InnerHero } from '@/components/InnerHero';
 import { SafeImage } from '@/components/SafeImage';
 import { getBlogCategory } from '@/lib/blog';
 import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
+import { BLOG_CATEGORY_HERO_IMAGES } from '@/lib/blog-category-images';
 
 export const dynamic = 'force-dynamic';
 
@@ -34,19 +35,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const page = await safeGetPageDoc(`blog-category-${category.slug}`);
   const title = page?.metaTitle ?? `${category.name} — Street Food Rome Blog`;
   const description = page?.metaDesc ?? category.intro;
+
+  // Use Firestore image if available, otherwise fall back to hardcoded image
+  const heroImageUrl = page?.heroImageUrl ?? BLOG_CATEGORY_HERO_IMAGES[category.slug]?.src;
+
   return {
     title,
     description,
     alternates: { canonical: `https://${SITE_DOMAIN}/blog/category/${category.slug}` },
-    openGraph: page?.heroImageUrl
+    openGraph: heroImageUrl
       ? {
           title,
           description,
           url: `https://${SITE_DOMAIN}/blog/category/${category.slug}`,
-          images: [{ url: page.heroImageUrl, alt: category.name }],
+          images: [{ url: heroImageUrl, alt: category.name }],
         }
       : undefined,
-    twitter: page?.heroImageUrl ? { card: 'summary_large_image', images: [page.heroImageUrl] } : undefined,
+    twitter: heroImageUrl ? { card: 'summary_large_image', images: [heroImageUrl] } : undefined,
   };
 }
 
@@ -79,8 +84,8 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
         title={category.name}
         subtitle={category.intro}
         breadcrumb={{ label: 'Blog', href: '/blog' }}
-        imageUrl={page?.heroImageUrl}
-        imageAlt={category.name}
+        imageUrl={page?.heroImageUrl ?? BLOG_CATEGORY_HERO_IMAGES[category.slug]?.src ?? null}
+        imageAlt={BLOG_CATEGORY_HERO_IMAGES[category.slug]?.alt ?? category.name}
       />
 
       <section className="py-14">

@@ -5,6 +5,7 @@ import { InnerHero } from '@/components/InnerHero';
 import { TourCard } from '@/components/TourCard';
 import Link from '@/components/NetworkLink';
 import { CATEGORIES, getNeighborhood, getTourEntryByRealSlug, tourHref } from '@/lib/tours';
+import { CATEGORY_HERO_IMAGES } from '@/lib/category-images';
 
 export const dynamic = 'force-dynamic';
 
@@ -43,19 +44,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const description =
     page?.metaDesc ??
     `${category.name} tours in Rome — real, first-hand recommendations for the best ${category.name.toLowerCase()} experiences the city has to offer.`;
+
+  // Use Firestore image if available, otherwise fall back to hardcoded image
+  const heroImageUrl = page?.heroImageUrl ?? CATEGORY_HERO_IMAGES[category.slug]?.src;
+
   return {
     title,
     description,
     alternates: { canonical: `https://${SITE_DOMAIN}/tours/category/${category.slug}` },
-    openGraph: page?.heroImageUrl
+    openGraph: heroImageUrl
       ? {
           title,
           description,
           url: `https://${SITE_DOMAIN}/tours/category/${category.slug}`,
-          images: [{ url: page.heroImageUrl, alt: `${category.name} tours in Rome` }],
+          images: [{ url: heroImageUrl, alt: `${category.name} tours in Rome` }],
         }
       : undefined,
-    twitter: page?.heroImageUrl ? { card: 'summary_large_image', images: [page.heroImageUrl] } : undefined,
+    twitter: heroImageUrl ? { card: 'summary_large_image', images: [heroImageUrl] } : undefined,
   };
 }
 
@@ -105,8 +110,8 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ sl
         eyebrow="Food Category"
         title={`${category.name} Tours in Rome`}
         breadcrumb={{ label: 'Home', href: '/' }}
-        imageUrl={page?.heroImageUrl}
-        imageAlt={`${category.name} tours in Rome`}
+        imageUrl={page?.heroImageUrl ?? CATEGORY_HERO_IMAGES[category.slug]?.src ?? null}
+        imageAlt={CATEGORY_HERO_IMAGES[category.slug]?.alt ?? `${category.name} tours in Rome`}
       />
 
       <section className="py-10">

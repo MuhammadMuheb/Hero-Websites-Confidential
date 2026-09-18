@@ -51,6 +51,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+// Fallback hero image for the homepage if Firestore doc doesn't have one
+const HOME_HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1555939594-58d7cb561552';
+
 export default async function HomePage() {
   const [page, tours, allBlogPosts] = await Promise.all([
     safeGetPageDoc('home'),
@@ -62,7 +65,7 @@ export default async function HomePage() {
     <HomePageBody
       siteName="Street Food Rome"
       canonicalUrl={`https://${SITE_DOMAIN}/`}
-      heroImageUrl={page?.heroImageUrl ?? null}
+      heroImageUrl={page?.heroImageUrl ?? HOME_HERO_IMAGE_URL}
       tours={tours}
       allBlogPosts={allBlogPosts}
     />

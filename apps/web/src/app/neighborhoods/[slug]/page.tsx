@@ -5,6 +5,7 @@ import { getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { InnerHero } from '@/components/InnerHero';
 import { TourCard } from '@/components/TourCard';
 import { getNeighborhood, getToursForNeighborhood } from '@/lib/tours';
+import { NEIGHBORHOOD_HERO_IMAGES } from '@/lib/neighborhood-images';
 
 export const dynamic = 'force-dynamic';
 
@@ -53,19 +54,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const title = page?.metaTitle ?? `Eating in ${neighborhood.name}, Rome`;
   const description =
     page?.metaDesc ?? `What to eat in ${neighborhood.name}, Rome, and when to go — a first-hand neighbourhood food guide.`;
+
+  // Use Firestore image if available, otherwise fall back to hardcoded image
+  const heroImageUrl = page?.heroImageUrl ?? NEIGHBORHOOD_HERO_IMAGES[neighborhood.slug]?.src;
+
   return {
     title,
     description,
     alternates: { canonical: `https://${SITE_DOMAIN}/neighborhoods/${neighborhood.slug}` },
-    openGraph: page?.heroImageUrl
+    openGraph: heroImageUrl
       ? {
           title,
           description,
           url: `https://${SITE_DOMAIN}/neighborhoods/${neighborhood.slug}`,
-          images: [{ url: page.heroImageUrl, alt: `Eating in ${neighborhood.name}, Rome` }],
+          images: [{ url: heroImageUrl, alt: `Eating in ${neighborhood.name}, Rome` }],
         }
       : undefined,
-    twitter: page?.heroImageUrl ? { card: 'summary_large_image', images: [page.heroImageUrl] } : undefined,
+    twitter: heroImageUrl ? { card: 'summary_large_image', images: [heroImageUrl] } : undefined,
   };
 }
 
@@ -94,8 +99,8 @@ export default async function NeighborhoodPage({ params }: { params: Promise<{ s
         eyebrow="Neighbourhood Guide"
         title={`Eating in ${neighborhood.name}, Rome`}
         breadcrumb={{ label: 'Home', href: '/' }}
-        imageUrl={page?.heroImageUrl}
-        imageAlt={`Eating in ${neighborhood.name}, Rome`}
+        imageUrl={page?.heroImageUrl ?? NEIGHBORHOOD_HERO_IMAGES[neighborhood.slug]?.src ?? null}
+        imageAlt={NEIGHBORHOOD_HERO_IMAGES[neighborhood.slug]?.alt ?? `Eating in ${neighborhood.name}, Rome`}
       />
 
       <section className="py-10">
