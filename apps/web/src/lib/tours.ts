@@ -196,6 +196,12 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
   ],
   'cooking-in-rome': [
     { label: 'All Classes', href: '/tours' },
+    { label: 'Best Rome Cooking Classes', href: '/money/best-rome-cooking-classes' },
+    { label: 'Pasta-Making Class', href: '/money/pasta-making-class' },
+    { label: 'Pizza + Gelato Class', href: '/money/pizza-gelato-class' },
+    { label: 'Market-to-Table Class', href: '/money/market-to-table-class' },
+    { label: 'Private / Small-Group Class', href: '/money/private-small-group-class' },
+    { label: 'Blog', href: '/blog' },
   ],
   'rome-pizza-class': [
     { label: 'All Classes', href: '/tours' },

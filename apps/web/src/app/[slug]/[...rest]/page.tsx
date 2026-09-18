@@ -68,6 +68,13 @@ import { MoneyPageTemplate as CIRMoneyPageTemplate } from '@/components/cooking-
 import { SupportPageTemplate as CIRSupportPageTemplate } from '@/components/cooking-in-rome/SupportPageTemplate';
 import { CIRAboutPage } from '@/components/cooking-in-rome/CIRAboutPage';
 import { CIRContactPage } from '@/components/cooking-in-rome/CIRContactPage';
+import { CIRFAQPage } from '@/components/cooking-in-rome/CIRFAQPage';
+import { CIRPrivacyPolicyPage } from '@/components/cooking-in-rome/CIRPrivacyPolicyPage';
+import { CIRTermsOfServicePage } from '@/components/cooking-in-rome/CIRTermsOfServicePage';
+import { CIRCookiePolicyPage } from '@/components/cooking-in-rome/CIRCookiePolicyPage';
+import { CIRAffiliateDisclosurePage } from '@/components/cooking-in-rome/CIRAffiliateDisclosurePage';
+import { CIRToursPage } from '@/components/cooking-in-rome/CIRToursPage';
+import { CIRBlogPage } from '@/components/cooking-in-rome/CIRBlogPage';
 import { MoneyPageTemplate as RPCMoneyPageTemplate } from '@/components/rome-pizza-class/MoneyPageTemplate';
 import { SupportPageTemplate as RPCSupportPageTemplate } from '@/components/rome-pizza-class/SupportPageTemplate';
 import { RPCAboutPage } from '@/components/rome-pizza-class/RPCAboutPage';
@@ -235,7 +242,7 @@ export async function generateStaticParams() {
   ];
   const rvHrefs = [...RV_MONEY_PAGES.map((p) => p.href), ...RV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog', '/neighborhoods'];
   const gcrHrefs = [...GCR_MONEY_PAGES.map((p) => p.href), ...GCR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog'];
-  const cirHrefs = [...CIR_MONEY_PAGES.map((p) => p.href), ...CIR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const cirHrefs = [...CIR_MONEY_PAGES.map((p) => p.href), ...CIR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog'];
   const rpcHrefs = [...RPC_MONEY_PAGES.map((p) => p.href), ...RPC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const tcHrefs = [...TC_MONEY_PAGES.map((p) => p.href), ...TC_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const tdtHrefs = [...TDT_MONEY_PAGES.map((p) => p.href), ...TDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog'];
@@ -371,6 +378,13 @@ function resolveCookingInRomePage(path: string) {
 
   if (path === '/about') return { type: 'about' as const };
   if (path === '/contact') return { type: 'contact' as const };
+  if (path === '/faq') return { type: 'faq' as const };
+  if (path === '/privacy') return { type: 'privacy' as const };
+  if (path === '/terms') return { type: 'terms' as const };
+  if (path === '/cookie-policy') return { type: 'cookie-policy' as const };
+  if (path === '/affiliate-disclosure') return { type: 'affiliate-disclosure' as const };
+  if (path === '/tours') return { type: 'tours' as const };
+  if (path === '/blog') return { type: 'blog' as const };
 
   return null;
 }
@@ -918,6 +932,55 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         alternates: { canonical },
       };
     }
+    if (resolved?.type === 'faq') {
+      return {
+        title: { absolute: 'FAQ | Cooking in Rome' },
+        description: 'Frequently asked questions about cooking classes, bookings, and what this site covers.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'privacy') {
+      return {
+        title: { absolute: 'Privacy Policy | Cooking in Rome' },
+        description: 'How Cooking in Rome handles your information and cookies.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'terms') {
+      return {
+        title: { absolute: 'Terms of Service | Cooking in Rome' },
+        description: 'Terms and conditions for using Cooking in Rome.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'cookie-policy') {
+      return {
+        title: { absolute: 'Cookie Policy | Cooking in Rome' },
+        description: 'How Cooking in Rome uses cookies.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'affiliate-disclosure') {
+      return {
+        title: { absolute: 'Affiliate Disclosure | Cooking in Rome' },
+        description: 'How Cooking in Rome earns money and how it affects our recommendations.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'tours') {
+      return {
+        title: { absolute: 'Cooking Classes in Rome | Cooking in Rome' },
+        description: 'Featured cooking classes in Rome — pasta-making, pizza, gelato, and market-to-table experiences.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'blog') {
+      return {
+        title: { absolute: 'Blog | Cooking in Rome' },
+        description: 'Articles about cooking techniques, Roman ingredients, and local food culture.',
+        alternates: { canonical },
+      };
+    }
 
     return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
   }
@@ -1393,6 +1456,13 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <CIRSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <CIRAboutPage />;
     if (resolved?.type === 'contact') return <CIRContactPage />;
+    if (resolved?.type === 'faq') return <CIRFAQPage />;
+    if (resolved?.type === 'privacy') return <CIRPrivacyPolicyPage />;
+    if (resolved?.type === 'terms') return <CIRTermsOfServicePage />;
+    if (resolved?.type === 'cookie-policy') return <CIRCookiePolicyPage />;
+    if (resolved?.type === 'affiliate-disclosure') return <CIRAffiliateDisclosurePage />;
+    if (resolved?.type === 'tours') return <CIRToursPage />;
+    if (resolved?.type === 'blog') return <CIRBlogPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }

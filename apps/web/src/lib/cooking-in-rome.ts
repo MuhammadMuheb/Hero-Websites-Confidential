@@ -379,3 +379,75 @@ export const PRIVACY_POLICY = {
   ],
   contactEmail: 'hello@cooking-in-rome.com',
 };
+
+export const TERMS_OF_SERVICE = {
+  title: 'Terms of Service',
+  intro: 'By accessing this site, you agree to these terms.',
+  sections: [
+    {
+      heading: 'About this site',
+      content: 'Cooking in Rome publishes first-hand comparisons of cooking classes from multiple Rome-based operators and platforms. We are not affiliated with any cooking school, GetYourGuide, Viator, or Civitatis — we are an independent review guide.',
+    },
+    {
+      heading: 'What we are not liable for',
+      content: 'This site provides information and class comparisons in good faith. Booking and class details are always the responsibility of the operator — we are not responsible for cancellations, changes to class content, pricing updates, instructor availability, or any other matters between you and the operator.',
+    },
+    {
+      heading: 'Affiliate links',
+      content: 'Class booking links on this site are affiliate partnerships with GetYourGuide, Viator, and Civitatis. When you book through our links, we earn a commission, which supports this site. This does not affect the price you pay.',
+    },
+    {
+      heading: 'No warranties',
+      content: 'This site is provided "as-is" without warranties of any kind. We make no guarantees about availability, accuracy, class accessibility claims, dietary accommodation coverage, or fitness for a particular purpose.',
+    },
+  ],
+  contactEmail: 'hello@cooking-in-rome.com',
+};
+
+export const COOKIE_POLICY = {
+  title: 'Cookie Policy',
+  intro: 'This site uses cookies to enhance your experience and track site performance.',
+  sections: [
+    {
+      heading: 'What cookies we use',
+      content: 'Cooking in Rome uses essential cookies needed for basic site functionality, such as remembering your preferences and maintaining session security.',
+    },
+    {
+      heading: 'Third-party cookies',
+      content: 'When you click through to GetYourGuide, Viator, or Civitatis to book a class, third-party cookies may be set by those partners and their analytics vendors. These are governed by their own cookie and privacy policies, not this site.',
+    },
+    {
+      heading: 'Managing cookies',
+      content: 'Most browsers allow you to control cookies through their settings. Disabling cookies may affect the site\'s functionality.',
+    },
+    {
+      heading: 'Changes to this policy',
+      content: 'We may update this cookie policy at any time. Changes take effect immediately upon posting to this page.',
+    },
+  ],
+  contactEmail: 'hello@cooking-in-rome.com',
+};
+
+export const AFFILIATE_DISCLOSURE = {
+  title: 'Affiliate Disclosure',
+  intro: 'This site earns commissions through affiliate partnerships. Here\'s how that works and how it affects you.',
+  sections: [
+    {
+      heading: 'How we earn money',
+      content: 'Cooking in Rome publishes class comparisons and links to booking pages on GetYourGuide, Viator, and Civitatis. When you book through our links, these platforms pay us a commission. This is our primary source of funding for maintaining and updating this site.',
+    },
+    {
+      heading: 'How this affects our recommendations',
+      content: 'We compare classes honestly based on technique depth, group size, market visit inclusion, dietary flexibility, and value — the same criteria we\'d use if writing for ourselves. The commission structure doesn\'t change which classes we feature or how we rank them. We recommend classes because we believe they\'re good, not because they pay different commission rates.',
+    },
+    {
+      heading: 'Who runs this site',
+      content: 'Cooking in Rome is run by Giulia Ferretti, an independent Rome-based culinary instructor and food writer. Every class featured here has been personally taken and cross-checked across operators, not just researched online.',
+    },
+    {
+      heading: 'Questions',
+      content: 'If you have questions about this disclosure or how our affiliate partnerships work, email us at hello@cooking-in-rome.com — we\'re happy to explain.',
+    },
+  ],
+  contactEmail: 'hello@cooking-in-rome.com',
+};
