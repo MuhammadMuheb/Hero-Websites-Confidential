@@ -178,6 +178,12 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
   ],
   'private-vatican': [
     { label: 'All Tours', href: '/tours' },
+    { label: 'Early-Entry Vatican & Sistine', href: '/money/early-entry-vatican-sistine' },
+    { label: 'Private Vatican Guide', href: '/money/private-vatican-guide' },
+    { label: "Vatican + St Peter's Dome", href: '/money/vatican-st-peter-s-dome' },
+    { label: 'Vatican with Kids / Family', href: '/money/vatican-with-kids-family' },
+    { label: 'Skip-the-Line Explained', href: '/money/skip-the-line-explained' },
+    { label: 'Blog', href: '/blog' },
   ],
   'golf-cart-rome': [
     { label: 'All Tours', href: '/tours' },

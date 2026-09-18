@@ -366,3 +366,73 @@ export const PRIVACY_POLICY = {
   contactEmail: 'hello@privatevatican.com',
 };
 
+export const TERMS_OF_SERVICE = {
+  title: 'Terms of Service',
+  intro: 'By accessing Private Vatican, you agree to these terms and conditions.',
+  sections: [
+    {
+      heading: 'Use of the Site',
+      content: 'Private Vatican provides independent Vatican and Sistine Chapel guides and comparisons for informational purposes only. We are not affiliated with the Vatican Museums, the Holy See, or any official Vatican body. The information on this site is believed to be accurate but is provided "as is" without warranties of any kind.',
+    },
+    {
+      heading: 'Affiliate Links',
+      content: 'This site includes links to GetYourGuide, Viator, Tiqets, and Civitatis, where we receive a commission if you book through our links. These commissions help support the independent research behind our guides and don\'t affect the price you pay.',
+    },
+    {
+      heading: 'Limitation of Liability',
+      content: 'To the extent permitted by law, Private Vatican, its authors, and affiliates are not liable for any direct, indirect, incidental, special, or consequential damages arising out of or related to your use of this site or any linked third-party sites.',
+    },
+    {
+      heading: 'Changes to These Terms',
+      content: 'We may update these terms at any time by posting the revised version on this page. Your continued use of the site constitutes your acceptance of the revised terms.',
+    },
+    {
+      heading: 'Governing Law',
+      content: 'These terms are governed by Italian law and the courts of Rome, Italy.',
+    },
+  ],
+  contactEmail: 'hello@privatevatican.com',
+};
+
+export const COOKIE_POLICY = {
+  title: 'Cookie Policy',
+  intro: 'This Cookie Policy explains how Private Vatican uses cookies and similar technologies.',
+  fallbackHtml: `
+    <p>This Cookie Policy explains how Private Vatican ("we," "us") uses cookies and similar technologies on privatevatican.com.</p>
+    <h2>What cookies we use</h2>
+    <p>We use a small number of strictly necessary cookies to keep the site functioning — for example, remembering your cookie-consent choice. We also use standard analytics cookies to understand which pages and tours are useful to visitors, so we can improve the site over time.</p>
+    <h2>Third-party cookies</h2>
+    <p>When you click through to book a tour, you leave privatevatican.com and land on GetYourGuide, Viator, Tiqets, or Civitatis, our booking partners. These platforms set their own cookies under their own privacy and cookie policies, which we don't control. We recommend reviewing their policies directly if you have questions about their tracking.</p>
+    <h2>Managing cookies</h2>
+    <p>Most browsers let you block or delete cookies through their settings. Blocking cookies may affect how parts of this site work, but it won't prevent you from reading Vatican information or content.</p>
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy occasionally to reflect changes in the tools we use. Check back here periodically for the current version.</p>
+    <h2>Contact</h2>
+    <p>Questions about this policy can be sent to <a href="mailto:hello@privatevatican.com">hello@privatevatican.com</a>.</p>
+  `,
+};
+
+export const AFFILIATE_DISCLOSURE = {
+  title: 'Affiliate Disclosure',
+  intro: 'Full transparency about how this site works and how we make money.',
+  sections: [
+    {
+      heading: 'How we earn money',
+      content: 'Private Vatican is an independent guide maintained by a Rome-based licensed regional guide. When you book a tour through our links, we earn a small commission from our affiliate partners (GetYourGuide, Viator, Tiqets, Civitatis). We do not receive any money from the sites themselves for featuring them on this site.',
+    },
+    {
+      heading: 'How this affects our recommendations',
+      content: 'Our partner relationships do not influence which tours we recommend or how honestly we write about them. We compare tours across multiple operators and platforms, recommend the best option for your situation, and have no financial incentive to favor one partner over another — we earn the same commission regardless of which partner you choose.',
+    },
+    {
+      heading: 'Who runs this site',
+      content: 'Elena Bianchi, a Rome-based licensed regional guide specializing in Vatican Museums and St. Peter\'s Basilica tours. Every early-access slot, private route, and timing note on this site reflects her direct, first-hand experience.',
+    },
+    {
+      heading: 'Questions',
+      content: 'For questions about this disclosure or anything else on the site, reach out to hello@privatevatican.com.',
+    },
+  ],
+  contactEmail: 'hello@privatevatican.com',
+};
+

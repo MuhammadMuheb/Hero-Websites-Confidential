@@ -17,6 +17,13 @@ import { MoneyPageTemplate as PVMoneyPageTemplate } from '@/components/private-v
 import { SupportPageTemplate as PVSupportPageTemplate } from '@/components/private-vatican/SupportPageTemplate';
 import { PVAboutPage } from '@/components/private-vatican/PVAboutPage';
 import { PVContactPage } from '@/components/private-vatican/PVContactPage';
+import { PVFAQPage } from '@/components/private-vatican/PVFAQPage';
+import { PVPrivacyPolicyPage } from '@/components/private-vatican/PVPrivacyPolicyPage';
+import { PVTermsOfServicePage } from '@/components/private-vatican/PVTermsOfServicePage';
+import { PVCookiePolicyPage } from '@/components/private-vatican/PVCookiePolicyPage';
+import { PVAffiliateDisclosurePage } from '@/components/private-vatican/PVAffiliateDisclosurePage';
+import { PVToursPage } from '@/components/private-vatican/PVToursPage';
+import { PVBlogPage } from '@/components/private-vatican/PVBlogPage';
 import { MoneyPageTemplate as PDTMoneyPageTemplate } from '@/components/pompeii-day-trip/MoneyPageTemplate';
 import { SupportPageTemplate as PDTSupportPageTemplate } from '@/components/pompeii-day-trip/SupportPageTemplate';
 import { PDTAboutPage } from '@/components/pompeii-day-trip/PDTAboutPage';
@@ -94,7 +101,14 @@ import {
   getMoneyPageContent as getPVMoneyPageContent,
   getSupportPageContent as getPVSupportPageContent,
 } from '@/lib/private-vatican-content';
-import { MONEY_PAGES as PV_MONEY_PAGES, SUPPORT_PAGES as PV_SUPPORT_PAGES } from '@/lib/private-vatican';
+import {
+  MONEY_PAGES as PV_MONEY_PAGES,
+  SUPPORT_PAGES as PV_SUPPORT_PAGES,
+  PRIVACY_POLICY as PV_PRIVACY_POLICY,
+  TERMS_OF_SERVICE as PV_TERMS_OF_SERVICE,
+  COOKIE_POLICY as PV_COOKIE_POLICY,
+  AFFILIATE_DISCLOSURE as PV_AFFILIATE_DISCLOSURE,
+} from '@/lib/private-vatican';
 import {
   getMoneyPageContent as getPDTMoneyPageContent,
   getSupportPageContent as getPDTSupportPageContent,
@@ -188,7 +202,19 @@ export async function generateStaticParams() {
     '/blog',
     '/neighborhoods',
   ];
-  const pvHrefs = [...PV_MONEY_PAGES.map((p) => p.href), ...PV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
+  const pvHrefs = [
+    ...PV_MONEY_PAGES.map((p) => p.href),
+    ...PV_SUPPORT_PAGES.map((p) => p.href),
+    '/about',
+    '/contact',
+    '/faq',
+    '/privacy',
+    '/terms',
+    '/cookie-policy',
+    '/affiliate-disclosure',
+    '/tours',
+    '/blog',
+  ];
   const pdtTourCategories = ['rome', 'naples', 'vesuvius', 'herculaneum'];
   const pdtBlogCategories = BLOG_CATEGORIES.map((c) => `/blog/category/${c.slug}`);
   const pdtHrefs = [
@@ -263,6 +289,13 @@ function resolvePrivateVaticanPage(path: string) {
 
   if (path === '/about') return { type: 'about' as const };
   if (path === '/contact') return { type: 'contact' as const };
+  if (path === '/faq') return { type: 'faq' as const };
+  if (path === '/privacy') return { type: 'privacy' as const };
+  if (path === '/terms') return { type: 'terms' as const };
+  if (path === '/cookie-policy') return { type: 'cookie-policy' as const };
+  if (path === '/affiliate-disclosure') return { type: 'affiliate-disclosure' as const };
+  if (path === '/tours') return { type: 'tours' as const };
+  if (path === '/blog') return { type: 'blog' as const };
 
   return null;
 }
@@ -554,6 +587,55 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       return {
         title: { absolute: 'Contact | Private Vatican' },
         description: 'Get in touch with Private Vatican, plus our full affiliate disclosure and non-affiliation statement.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'faq') {
+      return {
+        title: { absolute: 'FAQ | Private Vatican' },
+        description: 'Frequently asked questions about Vatican tours, early access, and private guides.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'privacy') {
+      return {
+        title: { absolute: 'Privacy Policy | Private Vatican' },
+        description: 'How Private Vatican handles your data and privacy.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'terms') {
+      return {
+        title: { absolute: 'Terms of Service | Private Vatican' },
+        description: 'Terms of service and conditions for using Private Vatican.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'cookie-policy') {
+      return {
+        title: { absolute: 'Cookie Policy | Private Vatican' },
+        description: 'Cookie policy and how Private Vatican uses cookies.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'affiliate-disclosure') {
+      return {
+        title: { absolute: 'Affiliate Disclosure | Private Vatican' },
+        description: 'How we earn money and our affiliate partnerships with tour booking platforms.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'tours') {
+      return {
+        title: { absolute: 'Featured Vatican Tours | Private Vatican' },
+        description: 'Curated Vatican early-access, private, and skip-the-line tours compared.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'blog') {
+      return {
+        title: { absolute: 'Private Vatican Blog' },
+        description: 'Travel tips, Vatican guides, and planning advice.',
         alternates: { canonical },
       };
     }
@@ -1159,6 +1241,13 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <PVSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <PVAboutPage />;
     if (resolved?.type === 'contact') return <PVContactPage />;
+    if (resolved?.type === 'faq') return <PVFAQPage />;
+    if (resolved?.type === 'privacy') return <PVPrivacyPolicyPage />;
+    if (resolved?.type === 'terms') return <PVTermsOfServicePage />;
+    if (resolved?.type === 'cookie-policy') return <PVCookiePolicyPage />;
+    if (resolved?.type === 'affiliate-disclosure') return <PVAffiliateDisclosurePage />;
+    if (resolved?.type === 'tours') return <PVToursPage />;
+    if (resolved?.type === 'blog') return <PVBlogPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }
