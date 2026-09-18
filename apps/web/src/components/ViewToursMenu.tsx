@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from '@/components/NetworkLink';
-import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
+import { NETWORK_SITES, getPropertyToursAndBlog } from '@/lib/tours';
 
 interface NavItem {
   label: string;
   href: string;
 }
 
-function buildNavItems(basePrefix: string): { PAGES: NavItem[]; TOURS_AND_BLOG: NavItem[] } {
+function buildNavItems(basePrefix: string, networkSiteSlug: string): { PAGES: NavItem[]; TOURS_AND_BLOG: NavItem[] } {
   const homeHref = basePrefix || '/';
 
   const PAGES: NavItem[] = [
@@ -22,11 +22,13 @@ function buildNavItems(basePrefix: string): { PAGES: NavItem[]; TOURS_AND_BLOG: 
     { label: 'Terms of Service', href: `${basePrefix}/terms` },
   ];
 
-  const TOURS_AND_BLOG: NavItem[] = [
-    { label: 'All Tours', href: `${basePrefix}/tours` },
-    ...CATEGORIES.map((c) => ({ label: `${c.name} Tours`, href: `${basePrefix}/tours/category/${c.slug}` })),
-    { label: 'Blog', href: `${basePrefix}/blog` },
-  ];
+  // Get property-specific tours and blog items
+  const propertyTours = getPropertyToursAndBlog(networkSiteSlug);
+  // Map the property tours to use the correct base prefix
+  const TOURS_AND_BLOG: NavItem[] = propertyTours.map((item) => ({
+    label: item.label,
+    href: basePrefix ? `${basePrefix}${item.href}` : item.href,
+  }));
 
   return { PAGES, TOURS_AND_BLOG };
 }
@@ -48,7 +50,7 @@ export function ViewToursMenu() {
   const siblingSites = NETWORK_SITES.filter((site) => site.slug !== currentSiteSlug);
 
   const basePrefix = networkSite ? `/${networkSite.slug}` : '';
-  const { PAGES, TOURS_AND_BLOG } = buildNavItems(basePrefix);
+  const { PAGES, TOURS_AND_BLOG } = buildNavItems(basePrefix, currentSiteSlug);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {

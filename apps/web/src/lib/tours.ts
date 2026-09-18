@@ -125,6 +125,123 @@ export const NETWORK_SITES: NetworkSiteDef[] = [
 ];
 
 /**
+ * Property-specific tours and products for each network site. Each property
+ * has its own unique offerings reflected in the Tours & Blog menu section.
+ */
+export interface PropertyTourItem {
+  label: string;
+  href: string;
+}
+
+export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
+  'street-food-rome': [
+    { label: 'All Tours', href: '/tours' },
+    { label: 'Pizza Tours', href: '/tours/category/pizza' },
+    { label: 'Pasta Tours', href: '/tours/category/pasta' },
+    { label: 'Beer & Wine Tours', href: '/tours/category/beer-and-wine' },
+    { label: 'Gelato Tours', href: '/tours/category/gelato' },
+    { label: 'Street Food Classics', href: '/tours/category/street-food-classics' },
+    { label: 'Blog', href: '/blog' },
+  ],
+  'underground-colosseum': [
+    { label: 'All Tours', href: '/underground-colosseum/tours' },
+    { label: 'Underground & Arena Floor Tour', href: '/underground-colosseum/tours/category/underground-arena' },
+    { label: 'Skip-the-Line Tickets', href: '/underground-colosseum/tours/category/skip-line' },
+    { label: 'Private vs. Group Tour', href: '/underground-colosseum/tours/category/private-group' },
+    { label: 'Family Guide', href: '/underground-colosseum/tours/category/family' },
+    { label: 'Blog', href: '/underground-colosseum/blog' },
+  ],
+  'pompeii-day-trip': [
+    { label: 'All Day Trips', href: '/pompeii-day-trip/tours' },
+    { label: 'Pompeii from Rome', href: '/pompeii-day-trip/tours/category/rome' },
+    { label: 'Pompeii from Naples', href: '/pompeii-day-trip/tours/category/naples' },
+    { label: 'Pompeii + Vesuvius Combo', href: '/pompeii-day-trip/tours/category/vesuvius' },
+    { label: 'Pompeii + Herculaneum', href: '/pompeii-day-trip/tours/category/herculaneum' },
+    { label: 'Blog', href: '/pompeii-day-trip/blog' },
+  ],
+  'rome-vespa': [
+    { label: 'All Tours', href: '/rome-vespa/tours' },
+    { label: 'Vespa Tour of Rome', href: '/rome-vespa/tours/category/vespa-tour' },
+    { label: 'Sidecar Tour', href: '/rome-vespa/tours/category/sidecar' },
+    { label: 'Vespa at Sunset', href: '/rome-vespa/tours/category/sunset' },
+    { label: 'Private Tour', href: '/rome-vespa/tours/category/private' },
+    { label: 'Blog', href: '/rome-vespa/blog' },
+  ],
+  'tuscany-day-trip': [
+    { label: 'All Day Trips', href: '/tuscany-day-trip/tours' },
+    { label: 'Tuscany from Florence', href: '/tuscany-day-trip/tours/category/florence' },
+    { label: 'Wine Day Trip', href: '/tuscany-day-trip/tours/category/wine' },
+    { label: 'Siena & San Gimignano', href: '/tuscany-day-trip/tours/category/siena' },
+    { label: 'Which Trip to Pick', href: '/tuscany-day-trip/tours/category/guide' },
+    { label: 'Blog', href: '/tuscany-day-trip/blog' },
+  ],
+  'private-vatican': [
+    { label: 'All Tours', href: '/private-vatican/tours' },
+    { label: 'Early-Entry Vatican & Sistine', href: '/private-vatican/tours/category/early-entry' },
+    { label: 'Private Vatican Guide', href: '/private-vatican/tours/category/private-guide' },
+    { label: 'Vatican + St Peter\'s Dome', href: '/private-vatican/tours/category/dome' },
+    { label: 'Family Vatican Tours', href: '/private-vatican/tours/category/family' },
+    { label: 'Blog', href: '/private-vatican/blog' },
+  ],
+  'golf-cart-rome': [
+    { label: 'All Tours', href: '/golf-cart-rome/tours' },
+    { label: 'Golf Cart Tour of Rome', href: '/golf-cart-rome/tours/category/standard' },
+    { label: 'Private Cart Tour', href: '/golf-cart-rome/tours/category/private' },
+    { label: 'Family & Senior Tours', href: '/golf-cart-rome/tours/category/family' },
+    { label: 'Night Cart Tour', href: '/golf-cart-rome/tours/category/night' },
+    { label: 'Blog', href: '/golf-cart-rome/blog' },
+  ],
+  'cooking-in-rome': [
+    { label: 'All Classes', href: '/cooking-in-rome/tours' },
+    { label: 'Pasta-Making Class', href: '/cooking-in-rome/tours/category/pasta' },
+    { label: 'Market-to-Table Class', href: '/cooking-in-rome/tours/category/market' },
+    { label: 'Pizza + Gelato Class', href: '/cooking-in-rome/tours/category/pizza-gelato' },
+    { label: 'Private Class', href: '/cooking-in-rome/tours/category/private' },
+    { label: 'Blog', href: '/cooking-in-rome/blog' },
+  ],
+  'rome-pizza-class': [
+    { label: 'All Classes', href: '/rome-pizza-class/tours' },
+    { label: 'Pizza-Making Class', href: '/rome-pizza-class/tours/category/pizza' },
+    { label: 'Pizza + Gelato Combo', href: '/rome-pizza-class/tours/category/combo' },
+    { label: 'Family Pizza Class', href: '/rome-pizza-class/tours/category/family' },
+    { label: 'Private Pizza Class', href: '/rome-pizza-class/tours/category/private' },
+    { label: 'Blog', href: '/rome-pizza-class/blog' },
+  ],
+  'tiramisu-class': [
+    { label: 'All Classes', href: '/tiramisu-class/tours' },
+    { label: 'Tiramisù Class', href: '/tiramisu-class/tours/category/tiramisu' },
+    { label: 'Dessert-Making Class', href: '/tiramisu-class/tours/category/dessert' },
+    { label: 'Tiramisù + Gelato Combo', href: '/tiramisu-class/tours/category/combo' },
+    { label: 'Private Dessert Class', href: '/tiramisu-class/tours/category/private' },
+    { label: 'Blog', href: '/tiramisu-class/blog' },
+  ],
+  'naples-street-food': [
+    { label: 'All Tours', href: '/naples-street-food/tours' },
+    { label: 'Naples Street-Food Tour', href: '/naples-street-food/tours/category/street-food' },
+    { label: 'Pizza-Focused Food Tour', href: '/naples-street-food/tours/category/pizza' },
+    { label: 'Naples Market Tour', href: '/naples-street-food/tours/category/market' },
+    { label: 'Spaccanapoli Food Walk', href: '/naples-street-food/tours/category/spaccanapoli' },
+    { label: 'Blog', href: '/naples-street-food/blog' },
+  ],
+  'amalfi-day-trip': [
+    { label: 'All Day Trips', href: '/amalfi-day-trip/tours' },
+    { label: 'Amalfi from Rome', href: '/amalfi-day-trip/tours/category/rome' },
+    { label: 'Amalfi from Naples/Sorrento', href: '/amalfi-day-trip/tours/category/naples' },
+    { label: 'Boat Tours', href: '/amalfi-day-trip/tours/category/boat' },
+    { label: 'Boat vs Road Guide', href: '/amalfi-day-trip/tours/category/guide' },
+    { label: 'Blog', href: '/amalfi-day-trip/blog' },
+  ],
+  'tivoli-day-trip': [
+    { label: 'All Day Trips', href: '/tivoli-day-trip/tours' },
+    { label: 'Tivoli from Rome', href: '/tivoli-day-trip/tours/category/rome' },
+    { label: 'Both Villas Guide', href: '/tivoli-day-trip/tours/category/both-villas' },
+    { label: 'Private Tivoli Tour', href: '/tivoli-day-trip/tours/category/private' },
+    { label: 'Half-Day Tivoli', href: '/tivoli-day-trip/tours/category/half-day' },
+    { label: 'Blog', href: '/tivoli-day-trip/blog' },
+  ],
+};
+
+/**
  * Only this one network property is wired up to actually render the full
  * site — a single live test case while the other 12 are separate, not-yet-
  * built projects. Their routes (root and any sub-path) show a plain
@@ -283,4 +400,12 @@ export function getToursForNeighborhood(allTours: TourDoc[], neighborhoodSlug: s
   });
 
   return matches.slice(0, max);
+}
+
+/**
+ * Get property-specific tours and blog items for a network site.
+ * Each property has its own unique offerings in the Tours & Blog menu.
+ */
+export function getPropertyToursAndBlog(networkSiteSlug: string): PropertyTourItem[] {
+  return PROPERTY_TOURS[networkSiteSlug] || PROPERTY_TOURS['street-food-rome'];
 }
