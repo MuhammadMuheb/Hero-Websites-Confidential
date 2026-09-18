@@ -223,7 +223,6 @@ export function TuscanyDayTripHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Tuscany Day Trip"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="Tuscany Day Trips, Chosen for What You Actually Want From the Day"

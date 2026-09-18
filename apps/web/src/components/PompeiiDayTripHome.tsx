@@ -222,7 +222,6 @@ export function PompeiiDayTripHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Pompeii Day Trip"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="Pompeii Day Trips, Planned From Wherever You're Actually Staying"

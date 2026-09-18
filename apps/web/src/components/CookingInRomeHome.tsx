@@ -223,7 +223,6 @@ export function CookingInRomeHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Cooking in Rome"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="Rome Cooking Classes, Compared by Someone Who's Taken Them"

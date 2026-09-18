@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getAllBlogPosts, listPageDocs, SITE_DOMAIN, type PageDoc } from '@/lib/firestore';
+
+export const dynamic = 'force-dynamic';
 import { CATEGORIES, NEIGHBORHOODS, NETWORK_SITES, TOURS } from '@/lib/tours';
 import {
   ARENA_FLOOR_PAGE as UC_ARENA_FLOOR_PAGE,

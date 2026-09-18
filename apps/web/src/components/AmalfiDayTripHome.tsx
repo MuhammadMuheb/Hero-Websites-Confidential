@@ -222,7 +222,6 @@ export function AmalfiDayTripHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Amalfi Day Trip"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline={HERO.headline}

@@ -14,7 +14,7 @@ import { TuscanyDayTripHome } from '@/components/TuscanyDayTripHome';
 import { AmalfiDayTripHome } from '@/components/AmalfiDayTripHome';
 import { TivoliDayTripHome } from '@/components/TivoliDayTripHome';
 import { NaplesStreetFoodHome } from '@/components/NaplesStreetFoodHome';
-import { NETWORK_SITES, getNetworkSite } from '@/lib/tours';
+import { getNetworkSite } from '@/lib/tours';
 import { HERO_IMAGE as UC_HERO_IMAGE } from '@/lib/underground-colosseum';
 import { HERO_IMAGE as PV_HERO_IMAGE } from '@/lib/private-vatican';
 import { HERO_IMAGE as PDT_HERO_IMAGE } from '@/lib/pompeii-day-trip';

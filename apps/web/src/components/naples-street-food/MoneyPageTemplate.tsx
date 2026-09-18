@@ -1,11 +1,9 @@
-import Link from '@/components/NetworkLink';
 import { TourComparisonTable, NSFAuthorBox, NSFFooter } from './NSFShared';
 import { FEATURED_TOURS } from '@/lib/naples-street-food';
 import type { MoneyPageContent } from '@/lib/naples-street-food-content';
 
 export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
   const relevantTours = FEATURED_TOURS.slice(0, 3);
-  const lowestPrice = Math.min(...relevantTours.map((t) => t.priceFrom));
 
   return (
     <div className="nsf-scope">

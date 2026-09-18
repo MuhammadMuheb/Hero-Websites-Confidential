@@ -10,7 +10,6 @@ export interface NavigationLink {
 }
 
 interface NetworkPropertyHeroProps {
-  propertyName: string;
   heroImageUrl: string;
   heroImageAlt: string;
   heroHeadline: string;
@@ -26,7 +25,6 @@ interface NetworkPropertyHeroProps {
  * layout across the entire network while allowing property-specific content.
  */
 export function NetworkPropertyHero({
-  propertyName,
   heroImageUrl,
   heroImageAlt,
   heroHeadline,

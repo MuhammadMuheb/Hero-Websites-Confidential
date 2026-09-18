@@ -9,7 +9,7 @@ import { HowWeChooseSection } from '@/components/HowWeChooseSection';
 import { ExploreLinksSection } from '@/components/ExploreLinksSection';
 import { AllDestinationsSection } from '@/components/AllDestinationsSection';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageDoc('about');

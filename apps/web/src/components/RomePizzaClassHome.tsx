@@ -223,7 +223,6 @@ export function RomePizzaClassHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Rome Pizza Class"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="Learn to Make Real Roman Pizza, Hands-On"

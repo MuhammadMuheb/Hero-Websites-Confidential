@@ -226,7 +226,6 @@ export function UndergroundColosseumHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Underground Colosseum"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="Underground & Arena Floor Colosseum Tours"

@@ -223,7 +223,6 @@ export function TiramisuClassHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Tiramisu Class"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="Make Real Tiramisù, Layer by Layer"

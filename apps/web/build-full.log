@@ -1,0 +1,85 @@
+
+> @italy-tours/web@0.1.0 build
+> dotenv -e ../../infra/env/.env -- next build
+
+   ▲ Next.js 15.4.11
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 83s
+   Linting and checking validity of types ...
+
+./src/app/blog/category/[slug]/page.tsx
+7:10  Warning: 'BLOG_CATEGORIES' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/blog/[slug]/page.tsx
+4:10  Warning: 'getAllBlogPosts' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/neighborhoods/[slug]/page.tsx
+7:10  Warning: 'NEIGHBORHOODS' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/tours/[slug]/page.tsx
+5:10  Warning: 'TOURS' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/[slug]/page.tsx
+17:10  Warning: 'NETWORK_SITES' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/FAQPageTemplate.tsx
+1:15  Warning: 'ReactNode' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/naples-street-food/MoneyPageTemplate.tsx
+1:8  Warning: 'Link' is defined but never used.  @typescript-eslint/no-unused-vars
+8:9  Warning: 'lowestPrice' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/NetworkPropertyHero.tsx
+29:3  Warning: 'propertyName' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/157) ...
+   Generating static pages (39/157) 
+   Generating static pages (78/157) 
+   Generating static pages (117/157) 
+ ✓ Generating static pages (157/157)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                              Size  First Load JS  Revalidate  Expire
+┌ ○ /                                                                   557 B         116 kB          1h      1y
+├ ○ /_not-found                                                         136 B         101 kB
+├ ƒ /[slug]                                                           10.9 kB         174 kB
+├ ● /[slug]/[...rest]                                                 1.59 kB         161 kB
+├   ├ /underground-colosseum/money%2Funderground-arena-floor-tour
+├   ├ /underground-colosseum/money%2Fskip-the-line-colosseum-tickets
+├   ├ /underground-colosseum/money%2Fprivate-vs-group-colosseum-tour
+├   └ [+139 more paths]
+├ ƒ /[slug]/icon                                                        136 B         101 kB
+├ ○ /about                                                             1.7 kB         113 kB          1h      1y
+├ ○ /affiliate-disclosure                                               558 B         112 kB          1h      1y
+├ ƒ /blog                                                               549 B         112 kB
+├ ƒ /blog/[slug]                                                        558 B         112 kB
+├ ƒ /blog/category/[slug]                                               549 B         112 kB
+├ ○ /contact                                                            558 B         112 kB          1h      1y
+├ ○ /cookie-policy                                                      558 B         112 kB          1h      1y
+├ ○ /faq                                                                558 B         112 kB          1h      1y
+├ ○ /icon                                                               136 B         101 kB
+├ ○ /neighborhoods                                                      538 B         112 kB          1h      1y
+├ ƒ /neighborhoods/[slug]                                               549 B         112 kB
+├ ○ /privacy                                                            558 B         112 kB          1h      1y
+├ ○ /robots.txt                                                         136 B         101 kB
+├ ○ /sitemap.xml                                                        136 B         101 kB
+├ ○ /terms                                                              558 B         112 kB          1h      1y
+├ ƒ /tours                                                              549 B         112 kB
+├ ƒ /tours/[slug]                                                       558 B         112 kB
+└ ƒ /tours/category/[slug]                                              549 B         112 kB
++ First Load JS shared by all                                          100 kB
+  ├ chunks/312-811504381f2a251e.js                                    44.3 kB
+  ├ chunks/aced40fe-808f78d823ae8b53.js                               54.1 kB
+  └ other shared chunks (total)                                       1.99 kB
+
+
+ƒ Middleware                                                          31.5 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

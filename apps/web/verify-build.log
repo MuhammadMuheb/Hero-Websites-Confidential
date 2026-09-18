@@ -1,0 +1,23 @@
+
+> @italy-tours/web@0.1.0 build
+> dotenv -e ../../infra/env/.env -- next build
+
+   ▲ Next.js 15.4.11
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 51s
+   Linting and checking validity of types ...
+Failed to compile.
+
+./src/components/AmalfiDayTripHome.tsx:225:9
+Type error: Type '{ propertyName: string; heroImageUrl: string; heroImageAlt: string; heroHeadline: string; navigationLinks: QuickLink[]; searchPlaceholder: string; }' is not assignable to type 'IntrinsicAttributes & NetworkPropertyHeroProps'.
+  Property 'propertyName' does not exist on type 'IntrinsicAttributes & NetworkPropertyHeroProps'.
+
+[0m [90m 223 |[39m
+ [90m 224 |[39m       [33m<[39m[33mNetworkPropertyHero[39m
+[31m[1m>[22m[39m[90m 225 |[39m         propertyName[33m=[39m[32m"Amalfi Day Trip"[39m
+ [90m     |[39m         [31m[1m^[22m[39m
+ [90m 226 |[39m         heroImageUrl[33m=[39m{[33mHERO_IMAGE[39m[33m.[39msrc}
+ [90m 227 |[39m         heroImageAlt[33m=[39m{[33mHERO_IMAGE[39m[33m.[39malt}
+ [90m 228 |[39m         heroHeadline[33m=[39m{[33mHERO[39m[33m.[39mheadline}[0m
+Next.js build worker exited with code: 1 and signal: null

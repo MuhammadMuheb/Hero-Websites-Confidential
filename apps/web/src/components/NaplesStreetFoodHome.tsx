@@ -130,7 +130,6 @@ export function NaplesStreetFoodHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Naples Street Food"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline={HERO.headline}

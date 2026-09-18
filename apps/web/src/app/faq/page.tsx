@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { InnerHero } from '@/components/InnerHero';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageDoc('faq');

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { getAllBlogPosts, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { InnerHero } from '@/components/InnerHero';
 import { SafeImage } from '@/components/SafeImage';
-import { BLOG_CATEGORIES, getBlogCategory } from '@/lib/blog';
+import { getBlogCategory } from '@/lib/blog';
 import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
 
 export const dynamic = 'force-dynamic';

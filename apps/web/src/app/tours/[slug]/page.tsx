@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllTours, getTourBySlug, SITE_DOMAIN } from '@/lib/firestore';
 import { TourPageContent } from '@/components/TourPageContent';
-import { TOURS, getCategory, getNeighborhood, getRelatedTours, getTourEntryBySeoSlug } from '@/lib/tours';
+import { getCategory, getNeighborhood, getRelatedTours, getTourEntryBySeoSlug } from '@/lib/tours';
 
 export const dynamic = 'force-dynamic';
 

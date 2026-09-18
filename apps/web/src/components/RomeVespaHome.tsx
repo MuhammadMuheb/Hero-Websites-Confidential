@@ -222,7 +222,6 @@ export function RomeVespaHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Rome Vespa Tours"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="See Rome the Way It’s Actually Meant to Be Seen — From a Scooter"

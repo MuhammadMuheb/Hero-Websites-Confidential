@@ -220,7 +220,6 @@ export function PrivateVaticanHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(attractionJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Private Vatican"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="Vatican Early-Access & Private Tours, Before the Crowds Arrive"

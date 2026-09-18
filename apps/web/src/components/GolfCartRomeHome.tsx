@@ -222,7 +222,6 @@ export function GolfCartRomeHome() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripJsonLd) }} />
 
       <NetworkPropertyHero
-        propertyName="Golf Cart Rome"
         heroImageUrl={HERO_IMAGE.src}
         heroImageAlt={HERO_IMAGE.alt}
         heroHeadline="See Rome Without the Blisters — Guided Golf Cart Tours"

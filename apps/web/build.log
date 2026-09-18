@@ -1,0 +1,30 @@
+
+> @italy-tours/web@0.1.0 build
+> dotenv -e ../../infra/env/.env -- next build
+
+   ▲ Next.js 15.4.11
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 44s
+   Linting and checking validity of types ...
+
+./src/components/FAQPageTemplate.tsx
+1:15  Warning: 'ReactNode' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/naples-street-food/MoneyPageTemplate.tsx
+1:8  Warning: 'Link' is defined but never used.  @typescript-eslint/no-unused-vars
+8:9  Warning: 'lowestPrice' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/NetworkPropertyHero.tsx
+29:3  Warning: 'propertyName' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+[Error: 8 RESOURCE_EXHAUSTED: Quota exceeded.] {
+  code: 8,
+  details: 'Quota exceeded.',
+  metadata: [Metadata]
+}
+
+> Build error occurred
+[Error: Failed to collect page data for /blog/[slug]] { type: 'Error' }

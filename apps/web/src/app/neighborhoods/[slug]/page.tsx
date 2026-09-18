@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { InnerHero } from '@/components/InnerHero';
 import { TourCard } from '@/components/TourCard';
-import { NEIGHBORHOODS, getNeighborhood, getToursForNeighborhood } from '@/lib/tours';
+import { getNeighborhood, getToursForNeighborhood } from '@/lib/tours';
 
 export const dynamic = 'force-dynamic';
 
