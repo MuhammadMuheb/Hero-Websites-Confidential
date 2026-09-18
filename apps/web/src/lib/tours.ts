@@ -172,8 +172,8 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
     { label: 'All Day Trips', href: '/tours' },
     { label: 'Tuscany from Florence', href: '/money/tuscany-from-florence' },
     { label: 'Tuscany Wine Day Trip', href: '/money/tuscany-wine-day-trip' },
-    { label: 'Siena + San Gimignano + Chianti', href: '/siena-san-gimignano-chianti' },
-    { label: 'Florence-Base Day Trips', href: '/florence-base-day-trips' },
+    { label: 'Siena + San Gimignano + Chianti', href: '/money/siena-san-gimignano-chianti' },
+    { label: 'Florence-Base Day Trips', href: '/money/florence-base-day-trips' },
     { label: 'Blog', href: '/blog' },
   ],
   'private-vatican': [
