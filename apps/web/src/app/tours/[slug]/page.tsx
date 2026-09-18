@@ -6,10 +6,6 @@ import { TOURS, getCategory, getNeighborhood, getRelatedTours, getTourEntryBySeo
 
 export const dynamic = 'force-dynamic';
 
-export async function generateStaticParams() {
-  return TOURS.map((t) => ({ slug: t.seoSlug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const entry = getTourEntryBySeoSlug(slug);

@@ -6,11 +6,6 @@ import { SafeImage } from '@/components/SafeImage';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateStaticParams() {
-  const posts = await getAllBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);

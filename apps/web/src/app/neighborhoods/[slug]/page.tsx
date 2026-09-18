@@ -27,10 +27,6 @@ const NEIGHBORHOOD_COPY: Record<string, string> = {
   garbatella: `Garbatella was built in the 1920s as a garden-city experiment — low buildings, internal courtyards, and a deliberately village-like layout that still sets it apart from the dense grid of central Rome. It sits south of the historic centre, off most first-time visitors' maps entirely, and that distance has kept its trattorias and neighbourhood bars oriented toward locals rather than tourism. The food here is straightforward, unfussy Roman cooking rather than anything experimental — this is a neighbourhood to visit for an honest, quiet meal away from the crowds rather than for a specific dish you can't get elsewhere. It rewards slowing down: wander the courtyards (the "lotti," numbered residential blocks with their own internal gardens) before or after eating, since the architecture is as much the reason to come as the food.`,
 };
 
-export async function generateStaticParams() {
-  return NEIGHBORHOODS.map((n) => ({ slug: n.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const neighborhood = getNeighborhood(slug);

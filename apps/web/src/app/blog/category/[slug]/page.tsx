@@ -9,10 +9,6 @@ import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateStaticParams() {
-  return BLOG_CATEGORIES.map((c) => ({ slug: c.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const category = getBlogCategory(slug);

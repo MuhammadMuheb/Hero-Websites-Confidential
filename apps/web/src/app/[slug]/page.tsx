@@ -51,10 +51,6 @@ import { HERO_IMAGE as NSF_HERO_IMAGE } from '@/lib/naples-street-food';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateStaticParams() {
-  return NETWORK_SITES.map((site) => ({ slug: site.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const site = getNetworkSite(slug);

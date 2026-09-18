@@ -16,10 +16,6 @@ const CATEGORY_COPY: Record<string, string> = {
   'street-food-classics': `Supplì and trapizzino are Rome's actual fast food — the things a local grabs standing at a counter, not sitting down. Supplì is a fried rice croquette with a molten mozzarella center (the "telephone wire" cheese-pull is the test of a fresh one); trapizzino is a triangle of pizza bianca dough split open and stuffed with a braised filling like trippa or chicken cacciatore, invented in Rome in the last fifteen years but already treated like a classic. These tours are built around eating on the move — several small stops rather than one sit-down meal — at the fry shops, delis, and market stalls that Romans actually queue at, with an explanation of what separates a fresh-fried, correctly seasoned version from the reheated, oversalted one sold to whoever wanders past a landmark.`,
 };
 
-export async function generateStaticParams() {
-  return CATEGORIES.map((c) => ({ slug: c.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const category = CATEGORIES.find((c) => c.slug === slug);
