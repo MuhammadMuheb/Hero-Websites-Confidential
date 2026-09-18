@@ -1,6 +1,7 @@
 import Link from '@/components/NetworkLink';
 import { SITE_DOMAIN, type TourDoc } from '@/lib/firestore';
-import { tourHref } from '@/lib/tours';
+import { tourHref, getTourEntryByRealSlug, getCategory } from '@/lib/tours';
+import { CATEGORY_HERO_IMAGES } from '@/lib/category-images';
 import { SafeImage } from './SafeImage';
 
 interface CategoryCrumb {
@@ -23,6 +24,12 @@ interface TourPageContentProps {
 }
 
 export function TourPageContent({ tour, otherTours, category, neighborhood }: TourPageContentProps) {
+  // Get fallback image from tour's category if tour doesn't have its own imageUrl
+  const tourEntry = getTourEntryByRealSlug(tour.slug);
+  const tourCategory = tourEntry ? getCategory(tourEntry.category) : undefined;
+  const fallbackImageUrl = tourCategory ? CATEGORY_HERO_IMAGES[tourCategory.slug]?.src : undefined;
+  const finalImageUrl = tour.imageUrl ?? fallbackImageUrl;
+
   // TouristTrip rather than Product/AggregateOffer: `priceBand` is a free-text
   // range (e.g. "€30-60"), not a structured min/max, so a numeric Offer would
   // mean fabricating a price we don't actually have. TouristTrip lets us
@@ -33,7 +40,7 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
     '@type': 'TouristTrip',
     name: tour.title,
     ...(tour.firstHandNotes ? { description: tour.firstHandNotes } : {}),
-    ...(tour.imageUrl ? { image: tour.imageUrl } : {}),
+    ...(finalImageUrl ? { image: finalImageUrl } : {}),
     touristType: 'Food and culinary tourists',
     itinerary: { '@type': 'Place', name: `${tour.city}, Italy` },
     url: `https://${SITE_DOMAIN}${tourHref(tour.slug)}`,
@@ -93,9 +100,9 @@ export function TourPageContent({ tour, otherTours, category, neighborhood }: To
         <div className="mx-auto grid max-w-[1100px] gap-10 px-6 sm:px-14 lg:grid-cols-[1.6fr_1fr]">
           <div>
             <div className="relative aspect-[16/10] overflow-hidden rounded-media bg-media">
-              {tour.imageUrl ? (
+              {finalImageUrl ? (
                 <SafeImage
-                  src={tour.imageUrl}
+                  src={finalImageUrl}
                   alt={`${tour.title} — a Street Food Rome tour in ${tour.city}`}
                   fill
                   priority

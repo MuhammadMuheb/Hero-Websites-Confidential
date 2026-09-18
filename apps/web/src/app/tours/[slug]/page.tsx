@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getAllTours, getTourBySlug, SITE_DOMAIN } from '@/lib/firestore';
 import { TourPageContent } from '@/components/TourPageContent';
 import { getCategory, getNeighborhood, getRelatedTours, getTourEntryBySeoSlug } from '@/lib/tours';
+import { CATEGORY_HERO_IMAGES } from '@/lib/category-images';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,20 +34,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!tour) return {};
 
   const description = tour.firstHandNotes ?? `${tour.title} — a Street Food Rome tour.`;
+  const category = getCategory(entry.category);
+  const fallbackImageUrl = category ? CATEGORY_HERO_IMAGES[category.slug]?.src : undefined;
+  const heroImageUrl = tour.imageUrl ?? fallbackImageUrl;
 
   return {
     title: tour.title,
     description,
     alternates: { canonical: `https://${SITE_DOMAIN}/tours/${entry.seoSlug}` },
-    openGraph: tour.imageUrl
+    openGraph: heroImageUrl
       ? {
           title: tour.title,
           description,
           url: `https://${SITE_DOMAIN}/tours/${entry.seoSlug}`,
-          images: [{ url: tour.imageUrl, alt: `${tour.title} — a Street Food Rome tour in ${tour.city}` }],
+          images: [{ url: heroImageUrl, alt: `${tour.title} — a Street Food Rome tour in ${tour.city}` }],
         }
       : undefined,
-    twitter: tour.imageUrl ? { card: 'summary_large_image', images: [tour.imageUrl] } : undefined,
+    twitter: heroImageUrl ? { card: 'summary_large_image', images: [heroImageUrl] } : undefined,
   };
 }
 
