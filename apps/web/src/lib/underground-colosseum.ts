@@ -367,3 +367,75 @@ export const PRIVACY_POLICY = {
   ],
   contactEmail: 'hello@undergroundcolosseum.com',
 };
+
+export const TERMS_OF_SERVICE = {
+  title: 'Terms of Service',
+  intro: 'By accessing this site, you agree to these terms.',
+  sections: [
+    {
+      heading: 'About this site',
+      content: 'Underground Colosseum publishes first-hand comparisons of Colosseum underground and arena-floor tours from multiple operators (GetYourGuide, Viator, Tiqets). We are not affiliated with the Colosseum, the Italian Ministry of Culture, or any tour operator — we are an independent review guide.',
+    },
+    {
+      heading: 'What we are not liable for',
+      content: 'This site provides information and tour comparisons in good faith. Booking and tour details are always the responsibility of the tour operator — we are not responsible for cancellations, changes to tour content, pricing updates, or any other matters between you and the tour operator.',
+    },
+    {
+      heading: 'Affiliate links',
+      content: 'Tour booking links on this site are affiliate partnerships with GetYourGuide. When you book through our links, we earn a commission, which supports this site. This does not affect the price you pay.',
+    },
+    {
+      heading: 'No warranties',
+      content: 'This site is provided "as-is" without warranties of any kind. We make no guarantees about availability, accuracy, or fitness for a particular purpose.',
+    },
+  ],
+  contactEmail: 'hello@undergroundcolosseum.com',
+};
+
+export const COOKIE_POLICY = {
+  title: 'Cookie Policy',
+  intro: 'Underground Colosseum uses cookies to enhance your experience.',
+  sections: [
+    {
+      heading: 'Essential cookies',
+      content: 'We use essential cookies for basic functionality like site navigation and performance tracking. These cannot be disabled.',
+    },
+    {
+      heading: 'Third-party cookies',
+      content: 'When you click through to our booking partners (GetYourGuide, Viator, Tiqets), those sites set their own cookies. Consult their privacy policies for details on how they use cookies.',
+    },
+    {
+      heading: 'Analytics',
+      content: 'We may use analytics tools to understand how visitors use this site, helping us improve content and layout.',
+    },
+    {
+      heading: 'Managing cookies',
+      content: 'You can manage cookie preferences through your browser settings. Disabling essential cookies may affect site functionality.',
+    },
+  ],
+  contactEmail: 'hello@undergroundcolosseum.com',
+};
+
+export const AFFILIATE_DISCLOSURE = {
+  title: 'Affiliate Disclosure',
+  intro: 'Full transparency about how Underground Colosseum works and how we earn money.',
+  sections: [
+    {
+      heading: 'How we earn',
+      content: 'Underground Colosseum earns commission through affiliate partnerships with GetYourGuide (primary), Viator, and Tiqets. When you click a tour link on this site and complete a booking, we earn a percentage of the booking fee. This does not increase the price you pay.',
+    },
+    {
+      heading: 'How this affects our recommendations',
+      content: 'We compare tours from all major operators (GetYourGuide, Viator, Tiqets) fairly, even though we currently earn commission only through GetYourGuide bookings. Our goal is honest, first-person comparisons — not to push the operator we earn from. If we recommend a Viator or Tiqets tour as better for your needs, we say so.',
+    },
+    {
+      heading: 'Who runs this site',
+      content: 'Underground Colosseum is written and maintained by Luca Moretti, a Rome-based guide who has walked every tour and visited every booking partner page in person. Every comparison is first-hand experience, not aggregated from other sites.',
+    },
+    {
+      heading: 'Questions',
+      content: 'If you have questions about our affiliate relationships or our recommendations, please reach out. Transparency is essential to us.',
+    },
+  ],
+  contactEmail: 'hello@undergroundcolosseum.com',
+};

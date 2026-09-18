@@ -144,12 +144,12 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
     { label: 'Blog', href: '/blog' },
   ],
   'underground-colosseum': [
-    { label: 'All Tours', href: '/underground-colosseum/tours' },
-    { label: 'Underground & Arena Floor Tour', href: '/underground-colosseum/tours/category/underground-arena' },
-    { label: 'Skip-the-Line Tickets', href: '/underground-colosseum/tours/category/skip-line' },
-    { label: 'Private vs. Group Tour', href: '/underground-colosseum/tours/category/private-group' },
-    { label: 'Family Guide', href: '/underground-colosseum/tours/category/family' },
-    { label: 'Blog', href: '/underground-colosseum/blog' },
+    { label: 'All Tours', href: '/tours' },
+    { label: 'Underground & Arena Floor Tour', href: '/money/underground-arena-floor-tour' },
+    { label: 'Skip-the-Line Tickets', href: '/money/skip-the-line-colosseum-tickets' },
+    { label: 'Private vs. Group Tour', href: '/money/private-vs-group-colosseum-tour' },
+    { label: 'Family Guide', href: '/money/colosseum-with-kids-family-guide' },
+    { label: 'Blog', href: '/blog' },
   ],
   'pompeii-day-trip': [
     { label: 'All Day Trips', href: '/pompeii-day-trip/tours' },

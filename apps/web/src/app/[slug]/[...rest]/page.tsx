@@ -5,6 +5,14 @@ import { MoneyPageTemplate } from '@/components/underground-colosseum/MoneyPageT
 import { SupportPageTemplate } from '@/components/underground-colosseum/SupportPageTemplate';
 import { UCAboutPage } from '@/components/underground-colosseum/UCAboutPage';
 import { UCContactPage } from '@/components/underground-colosseum/UCContactPage';
+import { UCFAQPage } from '@/components/underground-colosseum/UCFAQPage';
+import { UCPrivacyPolicyPage } from '@/components/underground-colosseum/UCPrivacyPolicyPage';
+import { UCTermsOfServicePage } from '@/components/underground-colosseum/UCTermsOfServicePage';
+import { UCCookiePolicyPage } from '@/components/underground-colosseum/UCCookiePolicyPage';
+import { UCAffiliateDisclosurePage } from '@/components/underground-colosseum/UCAffiliateDisclosurePage';
+import { UCToursPage } from '@/components/underground-colosseum/UCToursPage';
+import { UCBlogPage } from '@/components/underground-colosseum/UCBlogPage';
+import { UCNeighborhoodsPage } from '@/components/underground-colosseum/UCNeighborhoodsPage';
 import { MoneyPageTemplate as PVMoneyPageTemplate } from '@/components/private-vatican/MoneyPageTemplate';
 import { SupportPageTemplate as PVSupportPageTemplate } from '@/components/private-vatican/SupportPageTemplate';
 import { PVAboutPage } from '@/components/private-vatican/PVAboutPage';
@@ -157,6 +165,14 @@ export async function generateStaticParams() {
     WORTH_IT_PAGE.href,
     '/about',
     '/contact',
+    '/faq',
+    '/privacy',
+    '/terms',
+    '/cookie-policy',
+    '/affiliate-disclosure',
+    '/tours',
+    '/blog',
+    '/neighborhoods',
   ];
   const pvHrefs = [...PV_MONEY_PAGES.map((p) => p.href), ...PV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const pdtHrefs = [...PDT_MONEY_PAGES.map((p) => p.href), ...PDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog', '/neighborhoods'];
@@ -195,6 +211,14 @@ function resolveUndergroundColosseumPage(path: string) {
 
   if (path === '/about') return { type: 'about' as const };
   if (path === '/contact') return { type: 'contact' as const };
+  if (path === '/faq') return { type: 'faq' as const };
+  if (path === '/privacy') return { type: 'privacy' as const };
+  if (path === '/terms') return { type: 'terms' as const };
+  if (path === '/cookie-policy') return { type: 'cookie-policy' as const };
+  if (path === '/affiliate-disclosure') return { type: 'affiliate-disclosure' as const };
+  if (path === '/tours') return { type: 'tours' as const };
+  if (path === '/blog') return { type: 'blog' as const };
+  if (path === '/neighborhoods') return { type: 'neighborhoods' as const };
 
   return null;
 }
@@ -396,6 +420,62 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       return {
         title: { absolute: 'Contact | Underground Colosseum' },
         description: 'Get in touch with Underground Colosseum, plus our full affiliate disclosure.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'faq') {
+      return {
+        title: { absolute: 'FAQ | Underground Colosseum' },
+        description: 'Frequently asked questions about Colosseum underground access, booking, and tour planning.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'privacy') {
+      return {
+        title: { absolute: 'Privacy Policy | Underground Colosseum' },
+        description: 'How Underground Colosseum handles your data and privacy.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'terms') {
+      return {
+        title: { absolute: 'Terms of Service | Underground Colosseum' },
+        description: 'Terms of service and conditions for using Underground Colosseum.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'cookie-policy') {
+      return {
+        title: { absolute: 'Cookie Policy | Underground Colosseum' },
+        description: 'How Underground Colosseum uses cookies and similar technologies.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'affiliate-disclosure') {
+      return {
+        title: { absolute: 'Affiliate Disclosure | Underground Colosseum' },
+        description: 'Full transparency about how Underground Colosseum works and earns money.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'tours') {
+      return {
+        title: { absolute: 'Featured Underground & Arena Tours | Underground Colosseum' },
+        description: 'Colosseum underground and arena-floor access options compared',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'blog') {
+      return {
+        title: { absolute: 'Underground Colosseum Blog' },
+        description: 'Travel tips, history, and planning guides for the Colosseum',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'neighborhoods') {
+      return {
+        title: { absolute: 'Explore the Colosseum by Area | Underground Colosseum' },
+        description: 'Guide to different zones and sections within the Colosseum',
         alternates: { canonical },
       };
     }
@@ -972,6 +1052,14 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <SupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <UCAboutPage />;
     if (resolved?.type === 'contact') return <UCContactPage />;
+    if (resolved?.type === 'faq') return <UCFAQPage />;
+    if (resolved?.type === 'privacy') return <UCPrivacyPolicyPage />;
+    if (resolved?.type === 'terms') return <UCTermsOfServicePage />;
+    if (resolved?.type === 'cookie-policy') return <UCCookiePolicyPage />;
+    if (resolved?.type === 'affiliate-disclosure') return <UCAffiliateDisclosurePage />;
+    if (resolved?.type === 'tours') return <UCToursPage />;
+    if (resolved?.type === 'blog') return <UCBlogPage />;
+    if (resolved?.type === 'neighborhoods') return <UCNeighborhoodsPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }
