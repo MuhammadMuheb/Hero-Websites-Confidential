@@ -106,13 +106,17 @@ export function PDTNeighborhoodsPage() {
       {/* Areas Grid */}
       <section className="py-14">
         <div className="mx-auto max-w-[1000px] px-6 sm:px-14">
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {POMPEII_AREAS.map((area) => (
-              <div key={area.slug} className="rounded-card border border-line bg-white p-6 transition-all hover:border-accent hover:shadow-card">
+              <Link
+                key={area.slug}
+                href={`/pompeii-day-trip/neighborhoods/${area.slug}`}
+                className="rounded-card border border-line bg-white p-6 transition-all hover:border-accent hover:shadow-card"
+              >
                 <h2 className="font-display text-xl font-semibold text-ink">{area.name}</h2>
                 <p className="mt-2 text-sm text-ink-muted">{area.description}</p>
-                <button className="mt-4 text-sm font-bold text-accent hover:underline">Learn more →</button>
-              </div>
+                <div className="mt-4 text-sm font-bold text-accent">Learn more →</div>
+              </Link>
             ))}
           </div>
         </div>

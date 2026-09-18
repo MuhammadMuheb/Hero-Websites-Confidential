@@ -27,8 +27,13 @@ import { PDTTermsOfServicePage } from '@/components/pompeii-day-trip/PDTTermsOfS
 import { PDTCookiePolicyPage } from '@/components/pompeii-day-trip/PDTCookiePolicyPage';
 import { PDTAffiliateDisclosurePage } from '@/components/pompeii-day-trip/PDTAffiliateDisclosurePage';
 import { PDTToursPage } from '@/components/pompeii-day-trip/PDTToursPage';
+import { PDTToursCategoryPage } from '@/components/pompeii-day-trip/PDTToursCategoryPage';
 import { PDTBlogPage } from '@/components/pompeii-day-trip/PDTBlogPage';
+import { PDTBlogPageFull } from '@/components/pompeii-day-trip/PDTBlogPageFull';
+import { PDTBlogCategoryPage } from '@/components/pompeii-day-trip/PDTBlogCategoryPage';
+import { PDTBlogPostPage } from '@/components/pompeii-day-trip/PDTBlogPostPage';
 import { PDTNeighborhoodsPage } from '@/components/pompeii-day-trip/PDTNeighborhoodsPage';
+import { PDTNeighborhoodDetailPage } from '@/components/pompeii-day-trip/PDTNeighborhoodDetailPage';
 import { MoneyPageTemplate as RVMoneyPageTemplate } from '@/components/rome-vespa/MoneyPageTemplate';
 import { SupportPageTemplate as RVSupportPageTemplate } from '@/components/rome-vespa/SupportPageTemplate';
 import { RVAboutPage } from '@/components/rome-vespa/RVAboutPage';
@@ -74,6 +79,8 @@ import { SupportPageTemplate as NSFSupportPageTemplate } from '@/components/napl
 import { NSFAboutPage } from '@/components/naples-street-food/NSFAboutPage';
 import { NSFContactPage } from '@/components/naples-street-food/NSFContactPage';
 import { getNetworkSite } from '@/lib/tours';
+import { getAllBlogPosts, getAllTours } from '@/lib/firestore';
+import { BLOG_CATEGORIES } from '@/lib/blog';
 import { getMoneyPageContent, getSupportPageContent } from '@/lib/underground-colosseum-content';
 import { ARENA_FLOOR_PAGE, MONEY_PAGES, SUPPORT_PAGES, WORTH_IT_PAGE } from '@/lib/underground-colosseum';
 import {
@@ -175,7 +182,24 @@ export async function generateStaticParams() {
     '/neighborhoods',
   ];
   const pvHrefs = [...PV_MONEY_PAGES.map((p) => p.href), ...PV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
-  const pdtHrefs = [...PDT_MONEY_PAGES.map((p) => p.href), ...PDT_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog', '/neighborhoods'];
+  const pdtTourCategories = ['rome', 'naples', 'vesuvius', 'herculaneum'];
+  const pdtBlogCategories = BLOG_CATEGORIES.map((c) => `/blog/category/${c.slug}`);
+  const pdtHrefs = [
+    ...PDT_MONEY_PAGES.map((p) => p.href),
+    ...PDT_SUPPORT_PAGES.map((p) => p.href),
+    '/about',
+    '/contact',
+    '/faq',
+    '/privacy',
+    '/terms',
+    '/cookie-policy',
+    '/affiliate-disclosure',
+    '/tours',
+    ...pdtTourCategories.map((cat) => `/tours/category/${cat}`),
+    '/blog',
+    ...pdtBlogCategories,
+    '/neighborhoods',
+  ];
   const rvHrefs = [...RV_MONEY_PAGES.map((p) => p.href), ...RV_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact', '/faq', '/privacy', '/terms', '/cookie-policy', '/affiliate-disclosure', '/tours', '/blog', '/neighborhoods'];
   const gcrHrefs = [...GCR_MONEY_PAGES.map((p) => p.href), ...GCR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
   const cirHrefs = [...CIR_MONEY_PAGES.map((p) => p.href), ...CIR_SUPPORT_PAGES.map((p) => p.href), '/about', '/contact'];
@@ -1078,6 +1102,74 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
   if (site.slug === 'pompeii-day-trip') {
     const path = `/${rest.join('/')}`;
+
+    // Handle tours category pages
+    if (path.startsWith('/tours/category/')) {
+      const category = path.replace('/tours/category/', '');
+      return <PDTToursCategoryPage category={category} />;
+    }
+
+    // Handle blog post pages
+    if (path.startsWith('/blog/') && !path.startsWith('/blog/category/')) {
+      try {
+        const allPosts = await getAllBlogPosts();
+        const postSlug = path.replace('/blog/', '');
+        const post = allPosts.find((p) => p.slug === postSlug);
+        if (post) return <PDTBlogPostPage post={post} />;
+      } catch (error) {
+        console.error('Error fetching blog post:', error);
+      }
+    }
+
+    // Handle blog category pages
+    if (path.startsWith('/blog/category/')) {
+      try {
+        const allPosts = await getAllBlogPosts();
+        const category = path.replace('/blog/category/', '');
+        const categoryPosts = allPosts.filter((p) => p.categorySlug === category);
+        return <PDTBlogCategoryPage category={category} posts={categoryPosts} />;
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      }
+    }
+
+    // Handle neighborhood detail pages
+    if (path.startsWith('/neighborhoods/') && path !== '/neighborhoods') {
+      try {
+        const allTours = await getAllTours();
+        const neighborhoodSlug = path.replace('/neighborhoods/', '');
+        // For PDT, neighborhoods are actually Pompeii areas, so we pass a simplified structure
+        const tours = allTours.filter((t) => t.neighborhood === neighborhoodSlug);
+        const areaNames: Record<string, string> = {
+          'forum': 'The Forum',
+          'house-of-the-faun': 'House of the Faun',
+          'house-of-mysteries': 'House of the Mysteries',
+          'amphitheater': 'Amphitheater',
+          'theaters': 'Theaters',
+          'street-of-tombs': 'Street of Tombs',
+          'bakery-thermopolium': 'Bakery & Thermopolium',
+          'lupanare': 'The Lupanare',
+          'herculaneum-gate': 'Herculaneum Gate',
+          'garden-houses': 'Garden Houses',
+        };
+        const areaName = areaNames[neighborhoodSlug] || neighborhoodSlug;
+        return <PDTNeighborhoodDetailPage name={areaName} description="" tours={tours} />;
+      } catch (error) {
+        console.error('Error fetching neighborhood:', error);
+      }
+    }
+
+    // Handle blog index page (now with full content)
+    if (path === '/blog') {
+      try {
+        const allPosts = await getAllBlogPosts();
+        return <PDTBlogPageFull posts={allPosts} />;
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+        return <PDTBlogPage />;
+      }
+    }
+
     const resolved = resolvePompeiiDayTripPage(path);
 
     if (resolved?.type === 'money') return <PDTMoneyPageTemplate content={resolved.content} />;
@@ -1090,7 +1182,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'cookie-policy') return <PDTCookiePolicyPage />;
     if (resolved?.type === 'affiliate-disclosure') return <PDTAffiliateDisclosurePage />;
     if (resolved?.type === 'tours') return <PDTToursPage />;
-    if (resolved?.type === 'blog') return <PDTBlogPage />;
     if (resolved?.type === 'neighborhoods') return <PDTNeighborhoodsPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
