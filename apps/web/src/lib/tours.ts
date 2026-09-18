@@ -161,6 +161,11 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
   ],
   'rome-vespa': [
     { label: 'All Tours', href: '/tours' },
+    { label: 'Vespa Tour of Rome', href: '/money/vespa-tour-of-rome' },
+    { label: 'Sidecar Tour of Rome', href: '/money/sidecar-tour-of-rome' },
+    { label: 'Self-Drive vs Guided Vespa', href: '/money/self-drive-vs-guided-vespa' },
+    { label: 'Vespa at Sunset', href: '/money/vespa-at-sunset' },
+    { label: 'Private Vespa Tour', href: '/money/private-vespa-tour' },
     { label: 'Blog', href: '/blog' },
   ],
   'tuscany-day-trip': [

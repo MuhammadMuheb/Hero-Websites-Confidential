@@ -84,7 +84,7 @@ export function ViewToursMenu() {
       </button>
 
       {open ? (
-        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-media border border-line bg-white p-6 shadow-popover lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-3 lg:max-h-none lg:w-[92vw] lg:max-w-[560px] lg:overflow-visible">
+        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-media border border-line bg-white p-6 shadow-popover lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-3 lg:max-h-none lg:w-[92vw] lg:max-w-[820px] lg:overflow-visible">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
             <div>
               <ColumnHeading>Pages</ColumnHeading>
