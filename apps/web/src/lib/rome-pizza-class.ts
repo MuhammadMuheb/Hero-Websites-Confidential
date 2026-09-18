@@ -366,3 +366,79 @@ export const PRIVACY_POLICY = {
   ],
   contactEmail: 'hello@rome-pizza-class.com',
 };
+
+export const TERMS_OF_SERVICE = {
+  title: 'Terms of Service',
+  intro: 'By accessing Rome Pizza Class, you agree to these terms and conditions.',
+  sections: [
+    {
+      heading: 'Use of the Site',
+      content: 'Rome Pizza Class provides independent pizza-class guides and comparisons for informational purposes only. We are not affiliated with any cooking schools, pizzerias, or instructors featured on this site. The information on this site is believed to be accurate but is provided "as is" without warranties of any kind.',
+    },
+    {
+      heading: 'Affiliate Links',
+      content: 'This site includes links to GetYourGuide and other tour booking platforms, where we receive a commission if you book through our links. These commissions help support the independent research behind our guides and don\'t affect the price you pay.',
+    },
+    {
+      heading: 'Limitation of Liability',
+      content: 'To the extent permitted by law, Rome Pizza Class, its authors, and affiliates are not liable for any direct, indirect, incidental, special, or consequential damages arising out of or related to your use of this site or any linked third-party sites.',
+    },
+    {
+      heading: 'Changes to These Terms',
+      content: 'We may update these terms at any time by posting the revised version on this page. Your continued use of the site constitutes your acceptance of the revised terms.',
+    },
+    {
+      heading: 'Governing Law',
+      content: 'These terms are governed by Italian law and the courts of Rome, Italy.',
+    },
+  ],
+  contactEmail: 'hello@rome-pizza-class.com',
+};
+
+export const COOKIE_POLICY = {
+  title: 'Cookie Policy',
+  intro: 'This Cookie Policy explains how Rome Pizza Class uses cookies and similar technologies.',
+  sections: [
+    {
+      heading: 'What cookies we use',
+      content: 'We use a small number of strictly necessary cookies to keep the site functioning — for example, remembering your cookie-consent choice. We also use standard analytics cookies to understand which pages and classes are useful to visitors, so we can improve the site over time.',
+    },
+    {
+      heading: 'Third-party cookies',
+      content: 'When you click through to book a class, you leave romepizzaclass.com and land on GetYourGuide or another booking partner. These platforms set their own cookies under their own privacy and cookie policies, which we don\'t control. We recommend reviewing their policies directly if you have questions about their tracking.',
+    },
+    {
+      heading: 'Managing cookies',
+      content: 'Most browsers let you block or delete cookies through their settings. Blocking cookies may affect how parts of this site work, but it won\'t prevent you from reading class information or content.',
+    },
+    {
+      heading: 'Changes to this policy',
+      content: 'We may update this policy occasionally to reflect changes in the tools we use. Check back here periodically for the current version.',
+    },
+  ],
+  contactEmail: 'hello@rome-pizza-class.com',
+};
+
+export const AFFILIATE_DISCLOSURE = {
+  title: 'Affiliate Disclosure',
+  intro: 'Full transparency about how this site works and how we make money.',
+  sections: [
+    {
+      heading: 'How we earn money',
+      content: 'Rome Pizza Class is an independent guide maintained by a Rome-based pizzaiolo and pizza-making instructor. When you book a class through our links, we earn a small commission from our affiliate partner GetYourGuide. We do not receive any money from GetYourGuide or other operators for featuring them on this site.',
+    },
+    {
+      heading: 'How this affects our recommendations',
+      content: 'Our partner relationships do not influence which classes we recommend or how honestly we write about them. We compare classes across multiple operators and platforms, recommend the best option for your situation, and have no financial incentive to favor one partner over another — we earn the same commission regardless of which partner you choose.',
+    },
+    {
+      heading: 'Who runs this site',
+      content: 'Matteo Russo, a Rome-based pizzaiolo and pizza-making instructor with years of experience teaching traditional pizza-dough technique, wood-fired oven cooking, and pizza-making classes for families and small groups. Every class review, technique note, and oven-type comparison on this site reflects his direct, first-hand experience.',
+    },
+    {
+      heading: 'Questions',
+      content: 'For questions about this disclosure or anything else on the site, reach out to hello@rome-pizza-class.com.',
+    },
+  ],
+  contactEmail: 'hello@rome-pizza-class.com',
+};

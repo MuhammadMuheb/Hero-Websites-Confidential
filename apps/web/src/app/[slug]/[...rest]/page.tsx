@@ -79,6 +79,13 @@ import { MoneyPageTemplate as RPCMoneyPageTemplate } from '@/components/rome-piz
 import { SupportPageTemplate as RPCSupportPageTemplate } from '@/components/rome-pizza-class/SupportPageTemplate';
 import { RPCAboutPage } from '@/components/rome-pizza-class/RPCAboutPage';
 import { RPCContactPage } from '@/components/rome-pizza-class/RPCContactPage';
+import { RPCFAQPage } from '@/components/rome-pizza-class/RPCFAQPage';
+import { RPCPrivacyPolicyPage } from '@/components/rome-pizza-class/RPCPrivacyPolicyPage';
+import { RPCTermsOfServicePage } from '@/components/rome-pizza-class/RPCTermsOfServicePage';
+import { RPCCookiePolicyPage } from '@/components/rome-pizza-class/RPCCookiePolicyPage';
+import { RPCAffiliateDisclosurePage } from '@/components/rome-pizza-class/RPCAffiliateDisclosurePage';
+import { RPCToursPage } from '@/components/rome-pizza-class/RPCToursPage';
+import { RPCBlogPage } from '@/components/rome-pizza-class/RPCBlogPage';
 import { MoneyPageTemplate as TCMoneyPageTemplate } from '@/components/tiramisu-class/MoneyPageTemplate';
 import { SupportPageTemplate as TCSupportPageTemplate } from '@/components/tiramisu-class/SupportPageTemplate';
 import { TCAboutPage } from '@/components/tiramisu-class/TCAboutPage';
@@ -398,6 +405,13 @@ function resolveRomePizzaClassPage(path: string) {
 
   if (path === '/about') return { type: 'about' as const };
   if (path === '/contact') return { type: 'contact' as const };
+  if (path === '/faq') return { type: 'faq' as const };
+  if (path === '/privacy') return { type: 'privacy' as const };
+  if (path === '/terms') return { type: 'terms' as const };
+  if (path === '/cookie-policy') return { type: 'cookie-policy' as const };
+  if (path === '/affiliate-disclosure') return { type: 'affiliate-disclosure' as const };
+  if (path === '/tours') return { type: 'tours' as const };
+  if (path === '/blog') return { type: 'blog' as const };
 
   return null;
 }
@@ -1021,6 +1035,55 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         alternates: { canonical },
       };
     }
+    if (resolved?.type === 'faq') {
+      return {
+        title: { absolute: 'Pizza Class FAQ | Rome Pizza Class' },
+        description: 'Common questions about Rome pizza-making classes, wood-fired ovens, and class bookings.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'privacy') {
+      return {
+        title: { absolute: 'Privacy Policy | Rome Pizza Class' },
+        description: 'Privacy Policy for Rome Pizza Class.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'terms') {
+      return {
+        title: { absolute: 'Terms of Service | Rome Pizza Class' },
+        description: 'Terms of Service for Rome Pizza Class.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'cookie-policy') {
+      return {
+        title: { absolute: 'Cookie Policy | Rome Pizza Class' },
+        description: 'Cookie Policy for Rome Pizza Class.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'affiliate-disclosure') {
+      return {
+        title: { absolute: 'Affiliate Disclosure | Rome Pizza Class' },
+        description: 'How Rome Pizza Class works and how we make money — full transparency.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'tours') {
+      return {
+        title: { absolute: 'Featured Pizza-Making Classes | Rome Pizza Class' },
+        description: 'Featured Rome pizza-making classes — hands-on, wood-fired oven, family-friendly and private options.',
+        alternates: { canonical },
+      };
+    }
+    if (resolved?.type === 'blog') {
+      return {
+        title: { absolute: 'Blog | Rome Pizza Class' },
+        description: 'Pizza technique guides, dough hydration notes, and Rome cooking class planning.',
+        alternates: { canonical },
+      };
+    }
 
     return { title: `${site.name} | Page Not Found`, robots: { index: false, follow: false } };
   }
@@ -1475,6 +1538,13 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
     if (resolved?.type === 'support') return <RPCSupportPageTemplate content={resolved.content} />;
     if (resolved?.type === 'about') return <RPCAboutPage />;
     if (resolved?.type === 'contact') return <RPCContactPage />;
+    if (resolved?.type === 'faq') return <RPCFAQPage />;
+    if (resolved?.type === 'privacy') return <RPCPrivacyPolicyPage />;
+    if (resolved?.type === 'terms') return <RPCTermsOfServicePage />;
+    if (resolved?.type === 'cookie-policy') return <RPCCookiePolicyPage />;
+    if (resolved?.type === 'affiliate-disclosure') return <RPCAffiliateDisclosurePage />;
+    if (resolved?.type === 'tours') return <RPCToursPage />;
+    if (resolved?.type === 'blog') return <RPCBlogPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
   }

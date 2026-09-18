@@ -205,6 +205,11 @@ export const PROPERTY_TOURS: Record<string, PropertyTourItem[]> = {
   ],
   'rome-pizza-class': [
     { label: 'All Classes', href: '/tours' },
+    { label: 'Rome Pizza-Making Class', href: '/rome-pizza-making-class' },
+    { label: 'Pizza + Gelato Combo', href: '/money/pizza-gelato-combo' },
+    { label: 'Family Pizza Class', href: '/family-pizza-class' },
+    { label: 'Private Pizza Class', href: '/private-pizza-class' },
+    { label: 'Blog', href: '/blog' },
   ],
   'tiramisu-class': [
     { label: 'All Classes', href: '/tours' },
