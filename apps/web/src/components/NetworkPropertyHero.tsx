@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import Link from '@/components/NetworkLink';
 import { SafeImage } from './SafeImage';
+import { GlobalSearchBox } from './GlobalSearchBox';
 
 export interface NavigationLink {
   label: string;
@@ -62,24 +63,11 @@ export function NetworkPropertyHero({
       {/* Search bar straddles the hero/strip boundary — half over the photo, half over the light
           section below — matching the reference's actual overlap, not fully embedded in the photo. */}
       <div className="relative z-10 mx-auto -mt-8 max-w-[896px] px-6">
-        <form action="#" className="flex items-center gap-2 rounded-card border border-line/60 bg-white p-2.5 shadow-search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="ml-3 shrink-0 text-ink-muted" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
-            <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          </svg>
-          <input
-            type="text"
-            name="q"
-            placeholder={searchPlaceholder}
-            className="h-10 w-full bg-transparent text-base text-ink placeholder:text-ink-muted focus:outline-none"
-          />
-          <button
-            type="submit"
-            className="h-11 shrink-0 rounded-control bg-accent-gradient px-5 text-base font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Search Tours
-          </button>
-        </form>
+        <GlobalSearchBox
+          placeholder={searchPlaceholder}
+          className="w-full"
+          compact={false}
+        />
       </div>
 
       {/* Navigation links — separate strip below the photo, functional scroll like the reference.

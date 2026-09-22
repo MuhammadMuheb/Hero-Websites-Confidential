@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import Link from '@/components/NetworkLink';
 import { usePathname } from 'next/navigation';
 import { AccountMenu } from './AccountMenu';
-import { GlobalSearchBox } from './GlobalSearchBox';
 import { NETWORK_SITES, getPropertyToursAndBlog } from '@/lib/tours';
 
 interface NavItem {
@@ -83,14 +82,6 @@ export function Header() {
             </span>
             <span className="hidden text-sm font-semibold text-gray-900 sm:inline">{brandName}</span>
           </Link>
-
-          {/* Global Search - Center */}
-          <div className="hidden sm:flex flex-1 max-w-md lg:max-w-lg">
-            <GlobalSearchBox
-              placeholder="Search all 13 websites..."
-              compact={false}
-            />
-          </div>
 
           {/* Center Navigation - Desktop Only */}
           <nav className="hidden lg:flex items-center gap-1">
