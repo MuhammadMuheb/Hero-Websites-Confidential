@@ -15,6 +15,7 @@ export function Header() {
   const [hidden, setHidden] = useState(false);
   const [toursOpen, setToursOpen] = useState(false);
   const [networkOpen, setNetworkOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
   const segments = pathname.split('/').filter(Boolean);
@@ -195,16 +196,20 @@ export function Header() {
           </nav>
 
           {/* Right Actions - Account & Bag */}
-          <div className="flex items-center gap-4 ml-auto">
+          <div className="flex items-center gap-3 sm:gap-4 ml-auto">
             {/* Mobile Menu Button */}
-            <button className="lg:hidden px-2 py-2 text-gray-700 hover:text-gray-900">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors"
+              aria-label="Menu"
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
 
             <AccountMenu />
-            <button type="button" aria-label="Shopping bag" className="text-gray-700 hover:text-gray-900">
+            <button type="button" aria-label="Shopping bag" className="p-2 text-gray-700 hover:text-gray-900 transition-colors">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M7 8V6a5 5 0 0 1 10 0v2" stroke="currentColor" strokeWidth="1.6" />
                 <rect x="3.5" y="8" width="17" height="13" rx="2" stroke="currentColor" strokeWidth="1.6" />
@@ -212,6 +217,124 @@ export function Header() {
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu - Below Header */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden border-t border-gray-200 bg-white py-4 px-4 space-y-3">
+            {/* Home */}
+            <Link
+              href={basePrefix || '/'}
+              className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+
+            {/* About Us */}
+            <Link
+              href={`${basePrefix}/about`}
+              className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About Us
+            </Link>
+
+            {/* Contact Us */}
+            <Link
+              href={`${basePrefix}/contact`}
+              className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact Us
+            </Link>
+
+            {/* FAQ */}
+            <Link
+              href={`${basePrefix}/faq`}
+              className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              FAQ
+            </Link>
+
+            {/* Privacy Policy */}
+            <Link
+              href={`${basePrefix}/privacy`}
+              className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Privacy Policy
+            </Link>
+
+            {/* Terms of Service */}
+            <Link
+              href={`${basePrefix}/terms`}
+              className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Terms of Service
+            </Link>
+
+            {/* Divider */}
+            <div className="h-px bg-gray-200 my-2"></div>
+
+            {/* Tours & Blog */}
+            <button
+              onClick={() => setToursOpen(!toursOpen)}
+              className="w-full text-left px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors flex items-center justify-between"
+            >
+              Tours & Blog
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform ${toursOpen ? 'rotate-180' : ''}`}>
+                <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            {toursOpen && (
+              <div className="pl-4 space-y-2">
+                {toursItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => {
+                      setToursOpen(false);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {/* Our Network */}
+            <button
+              onClick={() => setNetworkOpen(!networkOpen)}
+              className="w-full text-left px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors flex items-center justify-between"
+            >
+              Our Network
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform ${networkOpen ? 'rotate-180' : ''}`}>
+                <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            {networkOpen && (
+              <div className="pl-4 space-y-2 max-h-64 overflow-y-auto">
+                {siblingSites.map((site) => (
+                  <Link
+                    key={site.number}
+                    href={`/${site.slug}`}
+                    onClick={() => {
+                      setNetworkOpen(false);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+                  >
+                    {site.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );
