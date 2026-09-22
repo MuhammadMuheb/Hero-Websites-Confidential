@@ -47,10 +47,10 @@ function buildNavSections(basePrefix: string, networkSiteSlug: string): NavSecti
 }
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <p className="text-xs font-semibold uppercase tracking-[0.1em] text-faint mb-2">{children}</p>;
+  return <p className="text-xs font-semibold uppercase tracking-[0.15em] text-faint/60 mb-3">{children}</p>;
 }
 
-const linkClass = 'text-sm text-ink-muted transition-colors hover:text-accent block py-1';
+const linkClass = 'text-sm text-ink-muted transition-colors hover:text-ink hover:font-medium block py-1.5';
 
 export function ViewToursMenu() {
   const [open, setOpen] = useState(false);
@@ -88,7 +88,7 @@ export function ViewToursMenu() {
         type="button"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-control bg-accent-gradient px-3 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] sm:h-10 sm:px-4 sm:text-base"
+        className="flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md bg-accent-gradient px-3.5 text-sm font-semibold text-white shadow-md transition-all duration-200 ease-out hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] sm:h-10 sm:px-4 sm:text-base"
       >
         Menu
         <svg
@@ -104,12 +104,12 @@ export function ViewToursMenu() {
       </button>
 
       {open && (
-        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-lg border border-line bg-white p-6 shadow-lg lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-2 lg:max-h-none lg:w-max lg:min-w-[900px] lg:overflow-visible">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="fixed inset-x-4 top-[72px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-md border border-line/40 bg-white p-8 shadow-xl lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-3 lg:max-h-none lg:w-max lg:min-w-[920px] lg:overflow-visible">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {/* Pages Section */}
             <div>
               <SectionHeading>Pages</SectionHeading>
-              <ul className="space-y-1">
+              <ul className="space-y-2">
                 {pageSection?.items.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} onClick={closeMenu} className={linkClass}>
@@ -123,7 +123,7 @@ export function ViewToursMenu() {
             {/* Tours & Blog Section */}
             <div>
               <SectionHeading>Tours &amp; Blog</SectionHeading>
-              <ul className="space-y-1">
+              <ul className="space-y-2">
                 {toursSection?.items.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} onClick={closeMenu} className={linkClass}>
@@ -137,7 +137,7 @@ export function ViewToursMenu() {
             {/* Legal Section */}
             <div>
               <SectionHeading>Legal</SectionHeading>
-              <ul className="space-y-1">
+              <ul className="space-y-2">
                 {legalSection?.items.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} onClick={closeMenu} className={linkClass}>
@@ -151,7 +151,7 @@ export function ViewToursMenu() {
             {/* Our Network Section - Prominent */}
             <div>
               <SectionHeading>Our Network</SectionHeading>
-              <ul className="space-y-1">
+              <ul className="space-y-2">
                 {siblingSites.slice(0, 6).map((site) => (
                   <li key={site.number}>
                     <Link href={`/${site.slug}`} onClick={closeMenu} className={linkClass}>
@@ -160,8 +160,8 @@ export function ViewToursMenu() {
                   </li>
                 ))}
                 {siblingSites.length > 6 && (
-                  <li className="pt-2 border-t border-line/30 mt-2">
-                    <Link href="/network" onClick={closeMenu} className={`${linkClass} font-medium text-accent`}>
+                  <li className="pt-3 border-t border-line/20 mt-3">
+                    <Link href="/network" onClick={closeMenu} className={`${linkClass} font-semibold text-accent hover:text-accent/80`}>
                       All Properties →
                     </Link>
                   </li>
