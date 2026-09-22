@@ -1,4 +1,4 @@
-import { getAllTours, getAllBlogPosts, listPageDocs, type TourDoc, type BlogPostDoc, type PageDoc } from '@/lib/firestore';
+import { getAllTours, getAllBlogPosts, listPageDocs } from '@/lib/firestore';
 import { NETWORK_SITES } from '@/lib/tours';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -17,7 +17,7 @@ function normalizeQuery(query: string): string {
   return query.toLowerCase().trim();
 }
 
-function calculateRelevance(query: string, title: string, description: string, exact: boolean): number {
+function calculateRelevance(query: string, title: string, description: string): number {
   const normalizedQuery = normalizeQuery(query);
   const normalizedTitle = normalizeQuery(title);
   const normalizedDesc = normalizeQuery(description);

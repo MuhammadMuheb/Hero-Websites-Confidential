@@ -45,7 +45,7 @@ async function SearchResults({ query }: { query: string }) {
         <div className="mx-auto max-w-3xl px-6 py-16 text-center sm:px-14">
           <h2 className="text-2xl font-bold text-ink">No results found</h2>
           <p className="mt-2 text-ink-muted">
-            We couldn't find anything matching "{query}". Try different keywords or explore our tours by category.
+            We couldn&apos;t find anything matching &quot;{query}&quot;. Try different keywords or explore our tours by category.
           </p>
         </div>
       );
@@ -62,10 +62,10 @@ async function SearchResults({ query }: { query: string }) {
       <div className="mx-auto max-w-3xl px-6 py-12 sm:px-14">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-ink">
-            Search results for "{query}"
+            Search results for &quot;{query}&quot;
           </h1>
           <p className="mt-2 text-sm text-ink-muted">
-            Found {results.length} result{results.length !== 1 ? 's' : ''}
+            Found {results.length} result{results.length !== 1 ? &apos;s&apos; : &apos;&apos;}
           </p>
         </div>
 

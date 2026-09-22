@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Link from '@/components/NetworkLink';
 import { useRouter } from 'next/navigation';
 
 interface SearchResult {
@@ -134,7 +133,7 @@ export function SearchBox({ placeholder = 'Search tours, guides, neighborhoods..
             <div className="px-4 py-8 text-center text-sm text-faint">Searching...</div>
           ) : results.length === 0 ? (
             <div className="px-4 py-8 text-center text-sm text-faint">
-              No results found for "{query}"
+              No results found for &quot;{query}&quot;
             </div>
           ) : (
             <>
@@ -224,7 +223,7 @@ export function SearchBox({ placeholder = 'Search tours, guides, neighborhoods..
                     }}
                     className="text-sm font-medium text-accent hover:text-accent-dark"
                   >
-                    View all {results.length} results →
+                    View all {results.length} results &rarr;
                   </button>
                 </div>
               )}
