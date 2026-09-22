@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from '@/components/NetworkLink';
 import { usePathname } from 'next/navigation';
 import { AccountMenu } from './AccountMenu';
+import { GlobalSearchBox } from './GlobalSearchBox';
 import { NETWORK_SITES, getPropertyToursAndBlog } from '@/lib/tours';
 
 interface NavItem {
@@ -70,12 +71,12 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 h-[66px] border-b border-gray-200 bg-white transition-transform duration-300 ease-out ${
+      className={`sticky top-0 z-40 h-16 border-b border-gray-200 bg-white shadow-sm transition-transform duration-300 ease-out ${
         hidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
       <div className="mx-auto h-full max-w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex h-full items-center justify-between gap-8">
+        <div className="flex h-full items-center justify-between gap-4 sm:gap-6 lg:gap-8">
           {/* Logo - Left */}
           <Link href={brandHref} className="group flex shrink-0 items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white">
@@ -84,8 +85,16 @@ export function Header() {
             <span className="hidden text-sm font-semibold text-gray-900 sm:inline">{brandName}</span>
           </Link>
 
+          {/* Global Search - Center */}
+          <div className="hidden sm:flex flex-1 max-w-md lg:max-w-lg">
+            <GlobalSearchBox
+              placeholder="Search all 13 websites..."
+              compact={false}
+            />
+          </div>
+
           {/* Center Navigation - Desktop Only */}
-          <nav className="hidden flex-1 lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {/* Home */}
             <Link
               href={basePrefix || '/'}
