@@ -8,9 +8,26 @@ interface GlobalSearchResult {
   title: string;
   description: string;
   url: string;
-  location: string; // Which property/site it's on
+  location: string;
   locationSlug: string;
   relevanceScore: number;
+}
+
+// Property detection helper - determines which network site an item belongs to
+function detectPropertyForTour(): { name: string; slug: string } {
+  // Default to Street Food Rome - the base property with tours
+  return { name: 'Street Food Rome', slug: 'street-food-rome' };
+}
+
+function detectPropertyForBlog(): { name: string; slug: string } {
+  // Default to Street Food Rome - the base property with blog posts
+  return { name: 'Street Food Rome', slug: 'street-food-rome' };
+}
+
+function detectPropertyForPage(): { name: string; slug: string } {
+  // Pages might have property metadata or slug-based detection
+  // For now, default to Street Food Rome for shared pages
+  return { name: 'Street Food Rome', slug: 'street-food-rome' };
 }
 
 function normalizeQuery(query: string): string {
@@ -43,14 +60,15 @@ async function searchAllTours(query: string): Promise<GlobalSearchResult[]> {
     return tours
       .map((tour) => {
         const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
+        const property = detectPropertyForTour();
         return {
           id: tour.slug,
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
           url: `/tours/${tour.slug}`,
-          location: 'Street Food Rome',
-          locationSlug: 'street-food-rome',
+          location: property.name,
+          locationSlug: property.slug,
           relevanceScore: score,
         };
       })
@@ -69,14 +87,15 @@ async function searchAllBlogPosts(query: string): Promise<GlobalSearchResult[]> 
     return posts
       .map((post) => {
         const score = calculateRelevance(query, post.title, post.excerpt);
+        const property = detectPropertyForBlog();
         return {
           id: post.slug,
           type: 'blog' as const,
           title: post.title,
           description: post.excerpt || '',
           url: `/blog/${post.slug}`,
-          location: 'Street Food Rome',
-          locationSlug: 'street-food-rome',
+          location: property.name,
+          locationSlug: property.slug,
           relevanceScore: score,
         };
       })
@@ -96,14 +115,15 @@ async function searchAllPages(query: string): Promise<GlobalSearchResult[]> {
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.metaDesc);
         const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
+        const property = detectPropertyForPage();
         return {
           id: page.slug,
           type: 'page' as const,
           title: page.title,
           description: page.metaDesc || '',
           url: urlSegment,
-          location: 'Street Food Rome',
-          locationSlug: 'street-food-rome',
+          location: property.name,
+          locationSlug: property.slug,
           relevanceScore: score,
         };
       })
