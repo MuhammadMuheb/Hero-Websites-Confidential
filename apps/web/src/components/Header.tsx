@@ -4,12 +4,17 @@ import { useEffect, useRef, useState } from 'react';
 import Link from '@/components/NetworkLink';
 import { usePathname } from 'next/navigation';
 import { AccountMenu } from './AccountMenu';
-import { ViewToursMenu } from './ViewToursMenu';
-import { SearchBox } from './SearchBox';
-import { NETWORK_SITES } from '@/lib/tours';
+import { NETWORK_SITES, getPropertyToursAndBlog } from '@/lib/tours';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
 
 export function Header() {
   const [hidden, setHidden] = useState(false);
+  const [toursOpen, setToursOpen] = useState(false);
+  const [networkOpen, setNetworkOpen] = useState(false);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
   const segments = pathname.split('/').filter(Boolean);
@@ -18,6 +23,15 @@ export function Header() {
   const brandName = networkSite ? networkSite.name.toLowerCase() : 'street food rome';
   const brandHref = networkSite ? `/${networkSite.slug}` : '/';
   const basePrefix = networkSite ? `/${networkSite.slug}` : '';
+  const currentSiteSlug = networkSite?.slug || 'street-food-rome';
+  const siblingSites = NETWORK_SITES.filter((site) => site.slug !== currentSiteSlug);
+
+  // Get tours & blog items
+  const propertyTours = getPropertyToursAndBlog(currentSiteSlug);
+  const toursItems: NavItem[] = propertyTours.map((item) => ({
+    label: item.label,
+    href: basePrefix ? `${basePrefix}${item.href}` : item.href,
+  }));
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
@@ -40,87 +54,123 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      const target = e.target as HTMLElement;
+      if (!target.closest('[data-dropdown]')) {
+        setToursOpen(false);
+        setNetworkOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <header
-      className={`sticky top-0 z-40 h-[70px] border-b border-line/50 bg-white shadow-sm transition-transform duration-300 ease-out ${
+      className={`sticky top-0 z-40 h-[66px] border-b border-gray-200 bg-white transition-transform duration-300 ease-out ${
         hidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
-      <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6 sm:px-8 lg:px-14">
-        {/* Logo & Brand - Left Section */}
-        <Link href={brandHref} className="group flex min-w-0 items-center gap-2.5 shrink-0">
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-gradient text-white shadow-md transition-transform duration-300 ease-out group-hover:scale-105">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M6 3v7a2 2 0 0 0 2 2v9M6 3a2 2 0 0 0-2 2M6 3a2 2 0 0 1 2 2v5M18 3c-1.6 0-3 2-3 6s1.4 5 3 5v7"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span className="truncate text-sm font-bold tracking-tight text-ink sm:text-base hidden sm:block">
-            {brandName}
-          </span>
-        </Link>
+      <div className="mx-auto h-full max-w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex h-full items-center justify-between gap-8">
+          {/* Logo - Left */}
+          <Link href={brandHref} className="group flex shrink-0 items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white">
+              <span className="text-xs font-bold">🍝</span>
+            </span>
+            <span className="hidden text-sm font-semibold text-gray-900 sm:inline">{brandName}</span>
+          </Link>
 
-        {/* Center Navigation - Desktop Only */}
-        <nav className="hidden lg:flex items-center gap-6 flex-1 justify-center">
-          <Link
-            href={basePrefix || '/'}
-            className="text-sm font-medium text-ink-muted hover:text-ink transition-colors duration-200"
-          >
-            Home
-          </Link>
-          <Link
-            href={`${basePrefix}/about`}
-            className="text-sm font-medium text-ink-muted hover:text-ink transition-colors duration-200"
-          >
-            About
-          </Link>
-          <Link
-            href={`${basePrefix}/tours`}
-            className="text-sm font-medium text-ink-muted hover:text-ink transition-colors duration-200"
-          >
-            Tours
-          </Link>
-          <Link
-            href={`${basePrefix}/blog`}
-            className="text-sm font-medium text-ink-muted hover:text-ink transition-colors duration-200"
-          >
-            Blog
-          </Link>
-          <Link
-            href={`${basePrefix}/contact`}
-            className="text-sm font-medium text-ink-muted hover:text-ink transition-colors duration-200"
-          >
-            Contact
-          </Link>
-        </nav>
+          {/* Center Navigation - Desktop Only */}
+          <nav className="hidden flex-1 lg:flex items-center gap-1">
+            {/* Home */}
+            <Link
+              href={basePrefix || '/'}
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Home
+            </Link>
 
-        {/* Search Bar - Hidden on Homepage */}
-        {!isHomepage && (
-          <SearchBox placeholder="Search tours, guides…" className="hidden flex-1 lg:max-w-xs lg:block" />
-        )}
+            {/* Tours & Blog Dropdown */}
+            <div className="relative" data-dropdown="tours">
+              <button
+                onClick={() => {
+                  setToursOpen(!toursOpen);
+                  setNetworkOpen(false);
+                }}
+                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Tours & Blog
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform ${toursOpen ? 'rotate-180' : ''}`}>
+                  <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {toursOpen && (
+                <div className="absolute left-0 top-full mt-0 w-48 rounded-md border border-gray-200 bg-white shadow-lg">
+                  {toursItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setToursOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 first:rounded-t-md last:rounded-b-md"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
-        {/* Right Actions Section */}
-        <div className="flex items-center gap-3 sm:gap-4 ml-auto">
-          {/* Menu Button - Always visible, but different behavior on mobile vs desktop */}
-          <ViewToursMenu />
+            {/* Our Network Dropdown */}
+            <div className="relative" data-dropdown="network">
+              <button
+                onClick={() => {
+                  setNetworkOpen(!networkOpen);
+                  setToursOpen(false);
+                }}
+                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                Our Network
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform ${networkOpen ? 'rotate-180' : ''}`}>
+                  <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {networkOpen && (
+                <div className="absolute left-0 top-full mt-0 w-56 rounded-md border border-gray-200 bg-white shadow-lg max-h-96 overflow-y-auto">
+                  {siblingSites.map((site) => (
+                    <Link
+                      key={site.number}
+                      href={`/${site.slug}`}
+                      onClick={() => setNetworkOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 first:rounded-t-md last:rounded-b-md"
+                    >
+                      {site.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </nav>
 
-          {/* Account & Shopping Bag */}
-          <AccountMenu />
-          <button
-            type="button"
-            aria-label="Shopping bag"
-            className="text-ink hover:text-accent transition-colors duration-200"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 8V6a5 5 0 0 1 10 0v2" stroke="currentColor" strokeWidth="1.6" />
-              <rect x="3.5" y="8" width="17" height="13" rx="2" stroke="currentColor" strokeWidth="1.6" />
-            </svg>
-          </button>
+          {/* Right Actions - Account & Bag */}
+          <div className="flex items-center gap-4 ml-auto">
+            {/* Mobile Menu Button */}
+            <button className="lg:hidden px-2 py-2 text-gray-700 hover:text-gray-900">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+
+            <AccountMenu />
+            <button type="button" aria-label="Shopping bag" className="text-gray-700 hover:text-gray-900">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M7 8V6a5 5 0 0 1 10 0v2" stroke="currentColor" strokeWidth="1.6" />
+                <rect x="3.5" y="8" width="17" height="13" rx="2" stroke="currentColor" strokeWidth="1.6" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </header>
