@@ -3,6 +3,8 @@
  * Ensures no broken image icons or missing images across the site
  */
 
+const DEFAULT_IMAGE_URL = 'https://images.unsplash.com/photo-1504674900967-86e697a72fb2?w=800';
+
 export const IMAGE_FALLBACKS: Record<string, string> = {
   // Tour images
   'tour-default': 'https://images.unsplash.com/photo-1504674900967-86e697a72fb2?w=800',
@@ -58,7 +60,7 @@ export function getImageUrl(
   }
 
   // Fall back to category/type specific image
-  return IMAGE_FALLBACKS[fallbackKey] || IMAGE_FALLBACKS.default;
+  return IMAGE_FALLBACKS[fallbackKey] ?? DEFAULT_IMAGE_URL;
 }
 
 /**
@@ -76,12 +78,12 @@ export function getImageUrlWithCategory(
 
   // Try category-specific fallback first
   if (category && category in IMAGE_FALLBACKS) {
-    return IMAGE_FALLBACKS[category];
+    return IMAGE_FALLBACKS[category] ?? DEFAULT_IMAGE_URL;
   }
 
   // Fall back to type-specific
   const typeKey = `${type}-default`;
-  return IMAGE_FALLBACKS[typeKey] || IMAGE_FALLBACKS.default;
+  return IMAGE_FALLBACKS[typeKey] ?? DEFAULT_IMAGE_URL;
 }
 
 /**
