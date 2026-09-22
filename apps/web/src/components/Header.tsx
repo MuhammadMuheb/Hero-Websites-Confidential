@@ -5,6 +5,7 @@ import Link from '@/components/NetworkLink';
 import { usePathname } from 'next/navigation';
 import { AccountMenu } from './AccountMenu';
 import { ViewToursMenu } from './ViewToursMenu';
+import { SearchBox } from './SearchBox';
 import { NETWORK_SITES } from '@/lib/tours';
 
 export function Header() {
@@ -73,27 +74,7 @@ export function Header() {
         </div>
 
         {isHomepage ? null : (
-          <form
-            action="#"
-            className="hidden min-w-0 max-w-[420px] flex-1 items-center gap-2 rounded-control border border-line bg-paper-tint/70 px-3 transition-colors focus-within:border-accent lg:flex"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="shrink-0 text-faint" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
-              <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-            </svg>
-            <input
-              type="text"
-              name="q"
-              placeholder="Rome, Trastevere, Testaccio…"
-              className="h-9 w-full min-w-0 bg-transparent text-sm text-ink placeholder:text-faint focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="h-8 shrink-0 whitespace-nowrap rounded-control border border-accent px-3 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-white"
-            >
-              Search Tours
-            </button>
-          </form>
+          <SearchBox placeholder="Search tours, guides, neighborhoods…" className="hidden flex-1 lg:block" />
         )}
 
         <div className="flex shrink-0 items-center gap-3 sm:gap-5">
