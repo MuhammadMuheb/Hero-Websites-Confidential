@@ -179,12 +179,13 @@ async function SearchResults({ query }: { query: string }) {
   }
 }
 
-export default function SearchPage({
+export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 }) {
-  const query = typeof searchParams.q === 'string' ? searchParams.q : '';
+  const params = await searchParams;
+  const query = typeof params.q === 'string' ? params.q : '';
 
   return (
     <Suspense fallback={<div className="min-h-screen" />}>
