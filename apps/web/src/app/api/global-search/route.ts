@@ -161,9 +161,7 @@ export async function GET(request: NextRequest) {
         if (!acc[result.location]) {
           acc[result.location] = [];
         }
-        if (acc[result.location]) {
-          acc[result.location].push(result);
-        }
+        acc[result.location].push(result);
         return acc;
       },
       {} as Record<string, GlobalSearchResult[]>
