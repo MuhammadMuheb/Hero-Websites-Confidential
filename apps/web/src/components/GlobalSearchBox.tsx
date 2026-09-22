@@ -26,7 +26,7 @@ export function GlobalSearchBox({
   compact = false
 }: GlobalSearchBoxProps) {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<SearchResult[]>());
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [groupedResults, setGroupedResults] = useState<Record<string, SearchResult[]>>({});
