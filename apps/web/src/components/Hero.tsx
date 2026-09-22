@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import Link from '@/components/NetworkLink';
 import { SafeImage } from './SafeImage';
-import { SearchBox } from './SearchBox';
+import { GlobalSearchBox } from './GlobalSearchBox';
 import { tourHref } from '@/lib/tours';
 
 interface HeroProps {
@@ -71,12 +71,11 @@ export function Hero({ imageUrl }: HeroProps) {
       {/* Search bar straddles the hero/strip boundary — half over the photo, half over the light
           section below — matching the reference's actual overlap, not fully embedded in the photo. */}
       <div className="relative z-10 mx-auto -mt-8 max-w-[896px] px-6">
-        <div className="rounded-card border border-line/60 bg-white p-2 shadow-search">
-          <SearchBox
-            placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
-            showCompact={true}
-          />
-        </div>
+        <GlobalSearchBox
+          placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
+          compact={false}
+          className="w-full"
+        />
       </div>
 
       {/* Category chips — separate strip below the photo, functional scroll like the reference.
