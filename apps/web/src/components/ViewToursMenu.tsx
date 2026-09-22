@@ -10,34 +10,47 @@ interface NavItem {
   href: string;
 }
 
-function buildNavItems(basePrefix: string, networkSiteSlug: string): { PAGES: NavItem[]; TOURS_AND_BLOG: NavItem[] } {
-  const homeHref = basePrefix || '/';
+interface NavSection {
+  title: string;
+  items: NavItem[];
+}
 
-  const PAGES: NavItem[] = [
-    { label: 'Home', href: homeHref },
-    { label: 'About Us', href: `${basePrefix}/about` },
-    { label: 'Contact Us', href: `${basePrefix}/contact` },
-    { label: 'FAQ', href: `${basePrefix}/faq` },
-    { label: 'Privacy Policy', href: `${basePrefix}/privacy` },
-    { label: 'Terms of Service', href: `${basePrefix}/terms` },
-  ];
+function buildNavSections(basePrefix: string, networkSiteSlug: string): NavSection[] {
+  const homeHref = basePrefix || '/';
 
   // Get property-specific tours and blog items
   const propertyTours = getPropertyToursAndBlog(networkSiteSlug);
-  // Map the property tours to use the correct base prefix
-  const TOURS_AND_BLOG: NavItem[] = propertyTours.map((item) => ({
+  const toursAndBlogItems: NavItem[] = propertyTours.map((item) => ({
     label: item.label,
     href: basePrefix ? `${basePrefix}${item.href}` : item.href,
   }));
 
-  return { PAGES, TOURS_AND_BLOG };
+  // Main pages
+  const pageItems: NavItem[] = [
+    { label: 'Home', href: homeHref },
+    { label: 'About Us', href: `${basePrefix}/about` },
+    { label: 'Contact Us', href: `${basePrefix}/contact` },
+    { label: 'FAQ', href: `${basePrefix}/faq` },
+  ];
+
+  // Legal/policy items (hidden from main display, available in footer/full menu)
+  const legalItems: NavItem[] = [
+    { label: 'Privacy Policy', href: `${basePrefix}/privacy` },
+    { label: 'Terms of Service', href: `${basePrefix}/terms` },
+  ];
+
+  return [
+    { title: 'Pages', items: pageItems },
+    { title: 'Tours & Blog', items: toursAndBlogItems },
+    { title: 'Legal', items: legalItems },
+  ];
 }
 
-function ColumnHeading({ children }: { children: React.ReactNode }) {
-  return <p className="text-xs font-semibold uppercase tracking-[0.1em] text-faint">{children}</p>;
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return <p className="text-xs font-semibold uppercase tracking-[0.1em] text-faint mb-2">{children}</p>;
 }
 
-const linkClass = 'text-sm text-ink-muted transition-colors hover:text-accent';
+const linkClass = 'text-sm text-ink-muted transition-colors hover:text-accent block py-1';
 
 export function ViewToursMenu() {
   const [open, setOpen] = useState(false);
@@ -50,7 +63,7 @@ export function ViewToursMenu() {
   const siblingSites = NETWORK_SITES.filter((site) => site.slug !== currentSiteSlug);
 
   const basePrefix = networkSite ? `/${networkSite.slug}` : '';
-  const { PAGES, TOURS_AND_BLOG } = buildNavItems(basePrefix, currentSiteSlug);
+  const sections = buildNavSections(basePrefix, currentSiteSlug);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
@@ -62,6 +75,8 @@ export function ViewToursMenu() {
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
 
+  const closeMenu = () => setOpen(false);
+
   return (
     <div className="relative" ref={menuRef}>
       <button
@@ -70,7 +85,7 @@ export function ViewToursMenu() {
         onClick={() => setOpen((o) => !o)}
         className="flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-control bg-accent-gradient px-3 text-sm font-bold text-white shadow-glow transition-transform duration-200 ease-out hover:scale-[1.02] sm:h-10 sm:px-4 sm:text-base"
       >
-        View Tours
+        Menu
         <svg
           width="12"
           height="12"
@@ -83,15 +98,16 @@ export function ViewToursMenu() {
         </svg>
       </button>
 
-      {open ? (
-        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-media border border-line bg-white p-6 shadow-popover lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-3 lg:max-h-none lg:w-[92vw] lg:max-w-[820px] lg:overflow-visible">
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+      {open && (
+        <div className="fixed inset-x-4 top-[73px] z-50 max-h-[calc(100vh-90px)] overflow-y-auto rounded-lg border border-line bg-white p-6 shadow-lg lg:absolute lg:inset-x-auto lg:left-0 lg:top-full lg:mt-2 lg:max-h-none lg:w-max lg:min-w-[900px] lg:overflow-visible">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Pages Section */}
             <div>
-              <ColumnHeading>Pages</ColumnHeading>
-              <ul className="mt-3 space-y-2.5">
-                {PAGES.map((item) => (
+              <SectionHeading>Pages</SectionHeading>
+              <ul className="space-y-1">
+                {sections[0].items.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} onClick={() => setOpen(false)} className={linkClass}>
+                    <Link href={item.href} onClick={closeMenu} className={linkClass}>
                       {item.label}
                     </Link>
                   </li>
@@ -99,12 +115,13 @@ export function ViewToursMenu() {
               </ul>
             </div>
 
+            {/* Tours & Blog Section */}
             <div>
-              <ColumnHeading>Tours &amp; Blog</ColumnHeading>
-              <ul className="mt-3 space-y-2.5">
-                {TOURS_AND_BLOG.map((item) => (
+              <SectionHeading>Tours &amp; Blog</SectionHeading>
+              <ul className="space-y-1">
+                {sections[1].items.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} onClick={() => setOpen(false)} className={linkClass}>
+                    <Link href={item.href} onClick={closeMenu} className={linkClass}>
                       {item.label}
                     </Link>
                   </li>
@@ -112,22 +129,43 @@ export function ViewToursMenu() {
               </ul>
             </div>
 
-            {/* Sister properties in the same affiliate network — each links to its own internal page. */}
-            <div className="col-span-2 sm:col-span-1">
-              <ColumnHeading>Our Network</ColumnHeading>
-              <ul className="mt-3 space-y-2.5">
-                {siblingSites.map((site) => (
+            {/* Legal Section */}
+            <div>
+              <SectionHeading>Legal</SectionHeading>
+              <ul className="space-y-1">
+                {sections[2].items.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} onClick={closeMenu} className={linkClass}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Our Network Section - Prominent */}
+            <div>
+              <SectionHeading>Our Network</SectionHeading>
+              <ul className="space-y-1">
+                {siblingSites.slice(0, 6).map((site) => (
                   <li key={site.number}>
-                    <Link href={`/${site.slug}`} onClick={() => setOpen(false)} className={linkClass}>
+                    <Link href={`/${site.slug}`} onClick={closeMenu} className={linkClass}>
                       {site.name}
                     </Link>
                   </li>
                 ))}
+                {siblingSites.length > 6 && (
+                  <li className="pt-2 border-t border-line/30 mt-2">
+                    <Link href="/network" onClick={closeMenu} className={`${linkClass} font-medium text-accent`}>
+                      All Properties →
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 }
