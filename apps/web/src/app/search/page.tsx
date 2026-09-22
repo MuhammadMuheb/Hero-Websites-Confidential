@@ -65,7 +65,7 @@ async function SearchResults({ query }: { query: string }) {
             Search results for &quot;{query}&quot;
           </h1>
           <p className="mt-2 text-sm text-ink-muted">
-            Found {results.length} result{results.length !== 1 ? &apos;s&apos; : &apos;&apos;}
+            Found {results.length} result{results.length !== 1 ? 's' : ''}
           </p>
         </div>
 
