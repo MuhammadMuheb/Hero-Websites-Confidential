@@ -47,7 +47,7 @@ async function searchTours(query: string): Promise<SearchResult[]> {
     const tours = await getAllTours();
     return tours
       .map((tour) => {
-        const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '', false);
+        const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
         return {
           id: tour.slug,
           type: 'tour' as const,
@@ -72,7 +72,7 @@ async function searchBlogPosts(query: string): Promise<SearchResult[]> {
     const posts = await getAllBlogPosts();
     return posts
       .map((post) => {
-        const score = calculateRelevance(query, post.title, post.excerpt, false);
+        const score = calculateRelevance(query, post.title, post.excerpt);
         return {
           id: post.slug,
           type: 'blog' as const,
@@ -97,7 +97,7 @@ async function searchPages(query: string): Promise<SearchResult[]> {
     const pages = await listPageDocs();
     return pages
       .map((page) => {
-        const score = calculateRelevance(query, page.title, page.metaDesc, false);
+        const score = calculateRelevance(query, page.title, page.metaDesc);
         const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
         return {
           id: page.slug,
@@ -122,7 +122,7 @@ function searchProperties(query: string): SearchResult[] {
   const normalizedQuery = normalizeQuery(query);
 
   return NETWORK_SITES.map((property) => {
-    const score = calculateRelevance(normalizedQuery, property.name, property.name, false);
+    const score = calculateRelevance(normalizedQuery, property.name, property.name);
     return {
       id: property.slug,
       type: 'property' as const,
