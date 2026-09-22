@@ -93,6 +93,46 @@ export function Header() {
               Home
             </Link>
 
+            {/* About Us */}
+            <Link
+              href={`${basePrefix}/about`}
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              About Us
+            </Link>
+
+            {/* Contact Us */}
+            <Link
+              href={`${basePrefix}/contact`}
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Contact Us
+            </Link>
+
+            {/* FAQ */}
+            <Link
+              href={`${basePrefix}/faq`}
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              FAQ
+            </Link>
+
+            {/* Privacy Policy */}
+            <Link
+              href={`${basePrefix}/privacy`}
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+
+            {/* Terms of Service */}
+            <Link
+              href={`${basePrefix}/terms`}
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              Terms of Service
+            </Link>
+
             {/* Tours & Blog Dropdown */}
             <div className="relative" data-dropdown="tours">
               <button
