@@ -65,6 +65,11 @@ export function ViewToursMenu() {
   const basePrefix = networkSite ? `/${networkSite.slug}` : '';
   const sections = buildNavSections(basePrefix, currentSiteSlug);
 
+  // Guarantee sections exist for TypeScript
+  const pageSection = sections[0];
+  const toursSection = sections[1];
+  const legalSection = sections[2];
+
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -105,7 +110,7 @@ export function ViewToursMenu() {
             <div>
               <SectionHeading>Pages</SectionHeading>
               <ul className="space-y-1">
-                {sections[0].items.map((item) => (
+                {pageSection?.items.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} onClick={closeMenu} className={linkClass}>
                       {item.label}
@@ -119,7 +124,7 @@ export function ViewToursMenu() {
             <div>
               <SectionHeading>Tours &amp; Blog</SectionHeading>
               <ul className="space-y-1">
-                {sections[1].items.map((item) => (
+                {toursSection?.items.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} onClick={closeMenu} className={linkClass}>
                       {item.label}
@@ -133,7 +138,7 @@ export function ViewToursMenu() {
             <div>
               <SectionHeading>Legal</SectionHeading>
               <ul className="space-y-1">
-                {sections[2].items.map((item) => (
+                {legalSection?.items.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} onClick={closeMenu} className={linkClass}>
                       {item.label}
