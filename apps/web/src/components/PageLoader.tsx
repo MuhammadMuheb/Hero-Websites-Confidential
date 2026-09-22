@@ -8,9 +8,6 @@ export function PageLoader() {
   const router = useRouter();
 
   useEffect(() => {
-    const handleStart = () => setIsLoading(true);
-    const handleStop = () => setIsLoading(false);
-
     // Listen for route changes
     const originalPush = router.push;
     router.push = function(...args) {

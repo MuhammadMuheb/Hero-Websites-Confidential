@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from '@/components/NetworkLink';
 
 interface SearchResult {
   id: string;
@@ -137,7 +136,7 @@ export function GlobalSearchBox({
             ) : results.length === 0 && query.length >= 2 ? (
               <div className="px-4 py-8 text-center">
                 <p className="text-sm text-gray-600">
-                  No results found for <span className="font-medium">"{query}"</span>
+                  No results found for <span className="font-medium">&quot;{query}&quot;</span>
                 </p>
                 <p className="mt-1 text-xs text-gray-500">Try different keywords or browse by category</p>
               </div>

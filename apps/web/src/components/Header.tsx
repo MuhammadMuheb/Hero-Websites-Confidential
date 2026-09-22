@@ -21,7 +21,6 @@ export function Header() {
   const pathname = usePathname();
   const segments = pathname.split('/').filter(Boolean);
   const networkSite = NETWORK_SITES.find((s) => s.slug === segments[0]);
-  const isHomepage = networkSite ? segments.length === 1 : pathname === '/';
   const brandName = networkSite ? networkSite.name.toLowerCase() : 'street food rome';
   const brandHref = networkSite ? `/${networkSite.slug}` : '/';
   const basePrefix = networkSite ? `/${networkSite.slug}` : '';
