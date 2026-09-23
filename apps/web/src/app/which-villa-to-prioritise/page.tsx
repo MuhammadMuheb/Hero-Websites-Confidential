@@ -183,9 +183,9 @@ export default function WhichVillaPage() {
             </div>
 
             <div className="rounded-media border border-line bg-white p-6">
-              <p className="font-bold text-accent">If You're a History Nerd</p>
+              <p className="font-bold text-accent">If You&apos;re a History Nerd</p>
               <p className="mt-3 text-base text-ink-muted">
-                <strong>Hadrian&apos;s Villa is your priority.</strong> Villa d&apos;Este is nice, but Hadrian&apos;s Villa tells the story of Imperial Rome — the emperor's personal retreat, the scale of power, the engineering. It rewards deep exploration.
+                <strong>Hadrian&apos;s Villa is your priority.</strong> Villa d&apos;Este is nice, but Hadrian&apos;s Villa tells the story of Imperial Rome — the emperor&apos;s personal retreat, the scale of power, the engineering. It rewards deep exploration.
               </p>
             </div>
           </div>
