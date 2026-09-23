@@ -24,7 +24,7 @@ export const MONEY_PAGES = [
     keyword: 'full day tivoli tour both villas',
     cta: 'Explore Full-Day Tours',
     badge: 'Most Popular' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1532619675605-1ede6c2e7b94', alt: 'Spectacular water features and terraced gardens at Villa d\'Este' },
+    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=450&fit=crop', alt: 'Spectacular water features and terraced gardens at Villa d\'Este' },
   },
   {
     title: 'Half-Day Villa d\'Este',
@@ -33,7 +33,7 @@ export const MONEY_PAGES = [
     keyword: 'half day villa d este tour',
     cta: 'View Half-Day Options',
     badge: 'Quick Escape' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f', alt: 'Golden hour light dancing across Villa d\'Este fountains' },
+    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=450&fit=crop', alt: 'Golden hour light dancing across Villa d\'Este fountains' },
   },
   {
     title: 'Private Expert Guide',
@@ -42,7 +42,7 @@ export const MONEY_PAGES = [
     keyword: 'private tivoli tour with guide',
     cta: 'Book Private Tour',
     badge: 'Premium' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1470114716159-e389f8712fda', alt: 'Ancient Roman architecture and columns at Hadrian\'s Villa' },
+    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=450&fit=crop', alt: 'Ancient Roman architecture and columns at Hadrian\'s Villa' },
   },
   {
     title: 'Self-Guided Essentials',
@@ -51,7 +51,7 @@ export const MONEY_PAGES = [
     keyword: 'self guided tivoli day trip',
     cta: 'Plan Your Route',
     badge: 'Budget-Friendly' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1495483277328-e3f5e6c20619', alt: 'Serene garden pathways and Mediterranean landscape at Tivoli' },
+    image: { src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=450&fit=crop', alt: 'Serene garden pathways and Mediterranean landscape at Tivoli' },
   },
 ];
 
