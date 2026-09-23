@@ -202,7 +202,7 @@ export default function WhichVillaPage() {
               Book a Full-Day Tour
             </Link>
             <Link href="/gardens-best-season" className="inline-flex h-12 items-center justify-center rounded-control border border-line px-8 text-sm font-bold text-ink">
-              When's Best to Visit?
+              When&apos;s Best to Visit?
             </Link>
           </div>
         </div>

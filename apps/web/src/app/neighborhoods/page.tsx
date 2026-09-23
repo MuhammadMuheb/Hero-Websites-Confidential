@@ -37,7 +37,7 @@ export default function NeighborhoodsIndexPage() {
       <InnerHero
         eyebrow="Neighbourhood Guides"
         title="Where to Eat in Rome, By Neighbourhood"
-        subtitle="Every neighbourhood has a different food identity — here's what to eat and when to go, area by area."
+        subtitle="Every neighbourhood has a different food identity — here&apos;s what to eat and when to go, area by area."
         breadcrumb={{ label: 'Home', href: '/' }}
       />
 

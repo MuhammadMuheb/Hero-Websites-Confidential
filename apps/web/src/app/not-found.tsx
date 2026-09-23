@@ -3,7 +3,7 @@ import Link from '@/components/NetworkLink';
 
 export const metadata: Metadata = {
   title: 'Page Not Found',
-  description: "The page you're looking for doesn't exist on Street Food Rome.",
+  description: "The page you&apos;re looking for doesn't exist on Street Food Rome.",
   robots: { index: false, follow: true },
 };
 

@@ -36,7 +36,7 @@ export default function SelfGuidedTivoliPage() {
             Self-Guided Tivoli: Complete Route & Budget Tips
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
-            Independent travelers: here's the complete route, exact transit timings, money-saving strategies, and everything you need to explore Tivoli on your own schedule.
+            Independent travelers: here&apos;s the complete route, exact transit timings, money-saving strategies, and everything you need to explore Tivoli on your own schedule.
           </p>
 
           <a href="#guide" className="mt-10 inline-flex h-12 items-center justify-center rounded-control bg-accent-gradient px-8 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.02]">

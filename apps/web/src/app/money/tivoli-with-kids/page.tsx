@@ -44,7 +44,7 @@ export default function TivoliWithKidsPage() {
           <div className="mt-8 rounded-media border border-line bg-paper-tint p-8">
             <h3 className="font-bold text-accent mb-4">Villa d&apos;Este for Kids</h3>
             <p className="text-base text-ink-muted">
-              The fountains are genuinely exciting to children. Water features, outdoor exploration, running along paths — kids find it engaging and not boring like traditional museums. It's essentially an outdoor water playground with history.
+              The fountains are genuinely exciting to children. Water features, outdoor exploration, running along paths — kids find it engaging and not boring like traditional museums. It&apos;s essentially an outdoor water playground with history.
             </p>
 
             <h3 className="font-bold text-accent mt-6 mb-4">Hadrian&apos;s Villa for Kids</h3>
