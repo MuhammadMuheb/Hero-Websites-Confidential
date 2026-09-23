@@ -5,12 +5,12 @@ import { SafeImage } from '@/components/SafeImage';
 import Link from '@/components/NetworkLink';
 
 interface Props {
-  params: Promise<{ property: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { property } = await params;
-  const site = getNetworkSite(property);
+  const { slug } = await params;
+  const site = getNetworkSite(slug);
   if (!site) return {};
 
   const title = `About ${site.name}`;
@@ -19,14 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `https://${SITE_DOMAIN}/${property}/about` },
-    openGraph: { title, description, url: `https://${SITE_DOMAIN}/${property}/about` },
+    alternates: { canonical: `https://${SITE_DOMAIN}/${slug}/about` },
+    openGraph: { title, description, url: `https://${SITE_DOMAIN}/${slug}/about` },
   };
 }
 
 export default async function PropertyAboutPage({ params }: Props) {
-  const { property } = await params;
-  const site = getNetworkSite(property);
+  const { slug } = await params;
+  const site = getNetworkSite(slug);
 
   if (!site) {
     notFound();
@@ -49,7 +49,7 @@ export default async function PropertyAboutPage({ params }: Props) {
 
         <div className="relative mx-auto flex min-h-[400px] max-w-[1440px] flex-col justify-end px-6 py-16 sm:px-14 sm:py-20">
           <nav className="mb-6 text-sm text-white/70">
-            <Link href={`/${property}`} className="hover:text-white">{site.name}</Link>
+            <Link href={`/${slug}`} className="hover:text-white">{site.name}</Link>
             <span className="mx-2">/</span>
             <span className="text-white">About Us</span>
           </nav>
@@ -101,7 +101,7 @@ export default async function PropertyAboutPage({ params }: Props) {
             Questions? Get in Touch
           </h2>
           <Link
-            href={`/${property}/contact`}
+            href={`/${slug}/contact`}
             className="mt-8 inline-flex h-12 items-center justify-center rounded-control bg-accent-gradient px-8 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.02]"
           >
             Contact Us
