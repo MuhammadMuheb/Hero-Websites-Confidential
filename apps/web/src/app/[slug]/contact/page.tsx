@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getNetworkSite, SITE_DOMAIN } from '@/lib/tours';
-import Link from '@/components/NetworkLink';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -28,7 +27,7 @@ export default async function PropertyContactPage({ params }: Props) {
       <section className="border-b border-line py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
           <h1 className="font-sans text-4xl font-extrabold text-ink sm:text-5xl">Contact {site.name}</h1>
-          <p className="mt-4 max-w-2xl text-base text-ink-muted">Have questions? We'd love to hear from you.</p>
+          <p className="mt-4 max-w-2xl text-base text-ink-muted">Have questions? We&apos;d love to hear from you.</p>
         </div>
       </section>
       <section className="py-16 sm:py-20">

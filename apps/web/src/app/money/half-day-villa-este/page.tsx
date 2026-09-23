@@ -38,7 +38,7 @@ export default function HalfDayVillaEstePage() {
             Half-Day Villa d&apos;Este: Fountains & Renaissance Gardens
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
-            Perfect for travelers with limited time. Discover Villa d&apos;Este's breathtaking water features and Renaissance gardens in 4–5 focused hours from Rome.
+            Perfect for travelers with limited time. Discover Villa d&apos;Este&apos;s breathtaking water features and Renaissance gardens in 4&ndash;5 focused hours from Rome.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
