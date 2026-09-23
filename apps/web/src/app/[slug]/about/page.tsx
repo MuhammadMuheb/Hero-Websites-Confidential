@@ -69,7 +69,7 @@ export default async function PropertyAboutPage({ params }: Props) {
             Our Mission
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted">
-            {site.name} is built on one core principle: everything we recommend has been experienced firsthand. No crowd-sourced rankings, no sponsored placements — just honest, thoughtful recommendations from someone who genuinely cares about the experience.
+            {site.name} is built on one core principle: everything we recommend has been experienced firsthand. No crowd-sourced rankings, no sponsored placements &mdash; just honest, thoughtful recommendations from someone who genuinely cares about the experience.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
@@ -82,7 +82,7 @@ export default async function PropertyAboutPage({ params }: Props) {
             <div className="rounded-media border border-line bg-paper-tint p-6">
               <h3 className="font-bold text-accent">Honesty</h3>
               <p className="mt-3 text-sm text-ink-muted">
-                We don't accept commissions or sponsorships. Our recommendations are entirely independent.
+                We don&apos;t accept commissions or sponsorships. Our recommendations are entirely independent.
               </p>
             </div>
             <div className="rounded-media border border-line bg-paper-tint p-6">

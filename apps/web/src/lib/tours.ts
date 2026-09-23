@@ -1,5 +1,7 @@
 import type { BlogPostDoc, TourDoc } from './firestore';
 
+export const SITE_DOMAIN = 'italy-tours.example.com';
+
 /**
  * apps/web/src/lib/tours.ts — canonical tour/category/neighbourhood registry.
  *

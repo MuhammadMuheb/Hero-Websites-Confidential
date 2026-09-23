@@ -30,11 +30,11 @@ export default async function TermsPage({ params }: Props) {
           </div>
           <div>
             <h2 className="font-bold text-ink mb-3">Affiliate Links</h2>
-            <p>We may earn commissions on bookings. This doesn't affect the price you pay.</p>
+            <p>We may earn commissions on bookings. This doesn&apos;t affect the price you pay.</p>
           </div>
           <div>
             <h2 className="font-bold text-ink mb-3">Third-Party Services</h2>
-            <p>We're not responsible for tour operators or venues. Always confirm details before visiting.</p>
+            <p>We&apos;re not responsible for tour operators or venues. Always confirm details before visiting.</p>
           </div>
           <div>
             <h2 className="font-bold text-ink mb-3">Questions?</h2>

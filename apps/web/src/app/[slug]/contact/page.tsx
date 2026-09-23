@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getNetworkSite, SITE_DOMAIN } from '@/lib/tours';
-import Link from '@/components/NetworkLink';
 
 interface Props {
   params: Promise<{ slug: string }>;
