@@ -36,7 +36,7 @@ export default function PrivateTivoliGuidePage() {
             Private Tivoli Tour: Personalized Experience with Expert Guide
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
-            Skip the bus tours and crowds. A private guide, door-to-door transport, and custom pacing give you Tivoli on your terms — with insider knowledge you won't find in guidebooks.
+            Skip the bus tours and crowds. A private guide, door-to-door transport, and custom pacing give you Tivoli on your terms — with insider knowledge you won&apos;t find in guidebooks.
           </p>
 
           <a href="#tours" className="mt-10 inline-flex h-12 items-center justify-center rounded-control bg-accent-gradient px-8 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.02]">
@@ -73,7 +73,7 @@ export default function PrivateTivoliGuidePage() {
             </div>
             <div className="rounded-media border border-line bg-white p-6">
               <h3 className="font-bold text-accent">Expert Knowledge</h3>
-              <p className="mt-2 text-sm text-ink-muted">Professional guides provide context, history, and insider stories you won't find in any guidebook.</p>
+              <p className="mt-2 text-sm text-ink-muted">Professional guides provide context, history, and insider stories you won&apos;t find in any guidebook.</p>
             </div>
             <div className="rounded-media border border-line bg-white p-6">
               <h3 className="font-bold text-accent">Flexible Scheduling</h3>
@@ -132,7 +132,7 @@ export default function PrivateTivoliGuidePage() {
       <section className="bg-paper-tint py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
           <h2 className="font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            What's Included
+            What&apos;s Included
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -30,7 +30,7 @@ export default function GettingToTivoliPage() {
             Getting to Tivoli from Rome: Complete Transit Guide
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/90">
-            Train, bus, car, or guided tour? Here's every option with exact costs, timing, and honest pros/cons so you choose what works best for you.
+            Train, bus, car, or guided tour? Here&apos;s every option with exact costs, timing, and honest pros/cons so you choose what works best for you.
           </p>
         </div>
       </section>
@@ -108,7 +108,7 @@ export default function GettingToTivoliPage() {
             </div>
 
             <p className="mt-6 text-base leading-relaxed text-ink-muted">
-              Rome traffic is notoriously chaotic. Consider this only if comfortable driving in high-stress conditions. Tivoli parking is abundant and cheap. Exact route via Rome ring road (GRA) → A24/E24 toward L'Aquila → Tivoli exit.
+              Rome traffic is notoriously chaotic. Consider this only if comfortable driving in high-stress conditions. Tivoli parking is abundant and cheap. Exact route via Rome ring road (GRA) &rarr; A24/E24 toward L&apos;Aquila &rarr; Tivoli exit.
             </p>
 
             <div className="mt-6 rounded-media bg-accent-soft p-4">

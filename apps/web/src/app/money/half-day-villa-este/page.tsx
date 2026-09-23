@@ -16,7 +16,7 @@ export default function HalfDayVillaEstePage() {
         <div className="absolute inset-0">
           <SafeImage
             src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop"
-            alt="Villa d'Este fountain details"
+            alt="Villa d&apos;Este fountain details"
             fill
             priority
             sizes="100vw"
@@ -31,14 +31,14 @@ export default function HalfDayVillaEstePage() {
               Tivoli Day Trip
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-white">Half-Day Villa d'Este</span>
+            <span className="text-white">Half-Day Villa d&apos;Este</span>
           </nav>
 
           <h1 className="max-w-3xl font-sans text-[40px] font-extrabold leading-[1.1] text-white sm:text-[52px]">
-            Half-Day Villa d'Este: Fountains & Renaissance Gardens
+            Half-Day Villa d&apos;Este: Fountains & Renaissance Gardens
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
-            Perfect for travelers with limited time. Discover Villa d'Este's breathtaking water features and Renaissance gardens in 4–5 focused hours from Rome.
+            Perfect for travelers with limited time. Discover Villa d&apos;Este's breathtaking water features and Renaissance gardens in 4–5 focused hours from Rome.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
@@ -75,10 +75,10 @@ export default function HalfDayVillaEstePage() {
       <section className="bg-paper-tint py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
           <h2 className="font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Villa d'Este: Renaissance Fountains Only
+            Villa d&apos;Este: Renaissance Fountains Only
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
-            If you only have a half day in Tivoli, Villa d'Este is the right choice. Over 500 fountains cascading through Renaissance terraced gardens — the most visually stunning site and completely walkable in 2–2.5 hours.
+            If you only have a half day in Tivoli, Villa d&apos;Este is the right choice. Over 500 fountains cascading through Renaissance terraced gardens — the most visually stunning site and completely walkable in 2–2.5 hours.
           </p>
 
           <div className="mt-10 rounded-media border border-line bg-white p-8">
@@ -106,7 +106,7 @@ export default function HalfDayVillaEstePage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-media">
                 <SafeImage
                   src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=450&fit=crop"
-                  alt="Villa d'Este half-day tour"
+                  alt="Villa d&apos;Este half-day tour"
                   fill
                   sizes="(min-width: 1024px) 380px, 90vw"
                   className="object-cover transition-transform group-hover:scale-105"
@@ -114,7 +114,7 @@ export default function HalfDayVillaEstePage() {
               </div>
               <div className="flex flex-1 flex-col p-4">
                 <span className="inline-block w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">GetYourGuide</span>
-                <h3 className="mt-3 font-sans text-base font-bold text-ink">Half-Day Villa d'Este Tour with Guide</h3>
+                <h3 className="mt-3 font-sans text-base font-bold text-ink">Half-Day Villa d&apos;Este Tour with Guide</h3>
                 <p className="mt-2 text-sm text-ink-muted">Skip-the-line tickets, expert English-speaking guide, covered 4 hours including travel.</p>
                 <p className="mt-4 font-sans text-lg font-bold text-ink">from €48</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-accent">View Tour →</span>
@@ -125,7 +125,7 @@ export default function HalfDayVillaEstePage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-media">
                 <SafeImage
                   src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=450&fit=crop"
-                  alt="Viator Villa d'Este tour"
+                  alt="Viator Villa d&apos;Este tour"
                   fill
                   sizes="(min-width: 1024px) 380px, 90vw"
                   className="object-cover transition-transform group-hover:scale-105"
@@ -133,7 +133,7 @@ export default function HalfDayVillaEstePage() {
               </div>
               <div className="flex flex-1 flex-col p-4">
                 <span className="inline-block w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">Viator</span>
-                <h3 className="mt-3 font-sans text-base font-bold text-ink">Quick Villa d'Este Self-Guided</h3>
+                <h3 className="mt-3 font-sans text-base font-bold text-ink">Quick Villa d&apos;Este Self-Guided</h3>
                 <p className="mt-2 text-sm text-ink-muted">Tickets and map provided, flexible timing, individual pace at your own speed.</p>
                 <p className="mt-4 font-sans text-lg font-bold text-ink">from €38</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-accent">View Tour →</span>
@@ -144,7 +144,7 @@ export default function HalfDayVillaEstePage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-media">
                 <SafeImage
                   src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=450&fit=crop"
-                  alt="Civitatis Villa d'Este tour"
+                  alt="Civitatis Villa d&apos;Este tour"
                   fill
                   sizes="(min-width: 1024px) 380px, 90vw"
                   className="object-cover transition-transform group-hover:scale-105"
@@ -152,7 +152,7 @@ export default function HalfDayVillaEstePage() {
               </div>
               <div className="flex flex-1 flex-col p-4">
                 <span className="inline-block w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">Civitatis</span>
-                <h3 className="mt-3 font-sans text-base font-bold text-ink">Villa d'Este Morning Group Tour</h3>
+                <h3 className="mt-3 font-sans text-base font-bold text-ink">Villa d&apos;Este Morning Group Tour</h3>
                 <p className="mt-2 text-sm text-ink-muted">Meet other travelers, guided experience, includes train transport and entrance fee.</p>
                 <p className="mt-4 font-sans text-lg font-bold text-ink">from €52</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-accent">View Tour →</span>
@@ -194,7 +194,7 @@ export default function HalfDayVillaEstePage() {
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent-gradient text-sm font-bold text-white">10</span>
               </div>
               <div>
-                <p className="font-bold text-ink">10:00 AM – 12:30 PM — Villa d'Este</p>
+                <p className="font-bold text-ink">10:00 AM – 12:30 PM — Villa d&apos;Este</p>
                 <p className="mt-1 text-sm text-ink-muted">2.5 hours exploring fountains and gardens</p>
               </div>
             </div>
@@ -225,7 +225,7 @@ export default function HalfDayVillaEstePage() {
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14 text-center">
           <h2 className="font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Book Your Half-Day Villa d'Este Tour
+            Book Your Half-Day Villa d&apos;Este Tour
           </h2>
           <a href="#tours" className="mt-8 inline-flex h-12 items-center justify-center rounded-control bg-accent-gradient px-8 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.02]">
             See Tours Above

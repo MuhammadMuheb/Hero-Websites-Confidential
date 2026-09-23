@@ -16,7 +16,7 @@ export default function WhichVillaPage() {
         <div className="absolute inset-0">
           <SafeImage
             src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop"
-            alt="Villa d'Este vs Hadrian's Villa comparison"
+            alt="Villa d&apos;Este vs Hadrian&apos;s Villa comparison"
             fill
             priority
             sizes="100vw"
@@ -27,10 +27,10 @@ export default function WhichVillaPage() {
 
         <div className="relative mx-auto flex min-h-[400px] max-w-[1440px] flex-col justify-end px-6 py-16 sm:px-14 sm:py-20">
           <h1 className="max-w-3xl font-sans text-[40px] font-extrabold leading-tight text-white sm:text-[52px]">
-            Villa d'Este or Hadrian's Villa? Which to Visit?
+            Villa d&apos;Este or Hadrian&apos;s Villa? Which to Visit?
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/90">
-            Renaissance fountains vs ancient Roman ruins — each is completely different. Here's how to choose based on your interests and available time.
+            Renaissance fountains vs ancient Roman ruins — each is completely different. Here&apos;s how to choose based on your interests and available time.
           </p>
         </div>
       </section>
@@ -38,7 +38,7 @@ export default function WhichVillaPage() {
       <section className="border-b border-line py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
           <h2 className="font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Villa d'Este: Renaissance Fountains & Gardens
+            Villa d&apos;Este: Renaissance Fountains & Gardens
           </h2>
 
           <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
@@ -75,7 +75,7 @@ export default function WhichVillaPage() {
       <section className="border-b border-line bg-paper-tint py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
           <h2 className="font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Hadrian's Villa: Ancient Roman Archaeology
+            Hadrian&apos;s Villa: Ancient Roman Archaeology
           </h2>
 
           <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
@@ -120,8 +120,8 @@ export default function WhichVillaPage() {
               <thead>
                 <tr className="border-b border-line">
                   <th className="py-3 px-4 text-left font-bold text-ink">Aspect</th>
-                  <th className="py-3 px-4 text-left font-bold text-ink">Villa d'Este</th>
-                  <th className="py-3 px-4 text-left font-bold text-ink">Hadrian's Villa</th>
+                  <th className="py-3 px-4 text-left font-bold text-ink">Villa d&apos;Este</th>
+                  <th className="py-3 px-4 text-left font-bold text-ink">Hadrian&apos;s Villa</th>
                 </tr>
               </thead>
               <tbody>
@@ -171,21 +171,21 @@ export default function WhichVillaPage() {
             <div className="rounded-media border border-line bg-white p-6">
               <p className="font-bold text-accent">If You Only Have Time for ONE Villa</p>
               <p className="mt-3 text-base text-ink-muted">
-                <strong>Choose Villa d'Este.</strong> It's the more visually striking, universally impressive, and takes less time. The fountains are genuinely remarkable — something most visitors remember for years.
+                <strong>Choose Villa d&apos;Este.</strong> It's the more visually striking, universally impressive, and takes less time. The fountains are genuinely remarkable — something most visitors remember for years.
               </p>
             </div>
 
             <div className="rounded-media border border-line bg-white p-6">
               <p className="font-bold text-accent">If You Have a Full Day</p>
               <p className="mt-3 text-base text-ink-muted">
-                <strong>Do both.</strong> Villa d'Este in the morning (2.5 hrs), lunch, then Hadrian's Villa (3.5 hrs). The contrast is the whole experience — fountains first gives you visual drama, then archaeology rewards slower exploration.
+                <strong>Do both.</strong> Villa d&apos;Este in the morning (2.5 hrs), lunch, then Hadrian&apos;s Villa (3.5 hrs). The contrast is the whole experience — fountains first gives you visual drama, then archaeology rewards slower exploration.
               </p>
             </div>
 
             <div className="rounded-media border border-line bg-white p-6">
               <p className="font-bold text-accent">If You're a History Nerd</p>
               <p className="mt-3 text-base text-ink-muted">
-                <strong>Hadrian's Villa is your priority.</strong> Villa d'Este is nice, but Hadrian's Villa tells the story of Imperial Rome — the emperor's personal retreat, the scale of power, the engineering. It rewards deep exploration.
+                <strong>Hadrian&apos;s Villa is your priority.</strong> Villa d&apos;Este is nice, but Hadrian&apos;s Villa tells the story of Imperial Rome — the emperor's personal retreat, the scale of power, the engineering. It rewards deep exploration.
               </p>
             </div>
           </div>

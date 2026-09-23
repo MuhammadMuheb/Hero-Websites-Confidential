@@ -83,8 +83,8 @@ export default function SelfGuidedTivoliPage() {
               <div className="mt-4 rounded-media border border-line bg-white p-6">
                 <p className="font-bold text-ink">Bus Options</p>
                 <ul className="mt-3 space-y-2 text-sm text-ink-muted">
-                  <li>• Bus #4 or #4X: Station → Villa d'Este (10 min, €1)</li>
-                  <li>• Bus #5: Villa d'Este → Hadrian's Villa (20 min, €1)</li>
+                  <li>• Bus #4 or #4X: Station → Villa d&apos;Este (10 min, €1)</li>
+                  <li>• Bus #5: Villa d&apos;Este → Hadrian&apos;s Villa (20 min, €1)</li>
                   <li>• Tickets: Buy at bar/newsstand in station</li>
                   <li>• Walking: 2–3 km between villas possible in 35 mins</li>
                 </ul>
@@ -96,11 +96,11 @@ export default function SelfGuidedTivoliPage() {
               <div className="mt-4 rounded-media border border-line bg-white p-6">
                 <div className="space-y-4">
                   <div>
-                    <p className="font-bold text-ink">Villa d'Este</p>
+                    <p className="font-bold text-ink">Villa d&apos;Este</p>
                     <p className="mt-1 text-sm text-ink-muted">€11 (standard) | €9 (reduced) | €6 (EU under 25)</p>
                   </div>
                   <div>
-                    <p className="font-bold text-ink">Hadrian's Villa</p>
+                    <p className="font-bold text-ink">Hadrian&apos;s Villa</p>
                     <p className="mt-1 text-sm text-ink-muted">€13 (standard) | €10 (reduced) | €7 (EU under 25)</p>
                   </div>
                   <div>
@@ -133,12 +133,12 @@ export default function SelfGuidedTivoliPage() {
 
             <div className="flex gap-4 rounded-media border border-line bg-paper-tint p-6">
               <div className="shrink-0 text-center"><span className="inline-block font-bold text-accent">9:00</span><p className="text-xs text-ink-muted">AM</p></div>
-              <div><p className="font-bold text-ink">Tivoli Station → Bus to Villa d'Este</p><p className="text-sm text-ink-muted">10 min bus ride, €1</p></div>
+              <div><p className="font-bold text-ink">Tivoli Station → Bus to Villa d&apos;Este</p><p className="text-sm text-ink-muted">10 min bus ride, €1</p></div>
             </div>
 
             <div className="flex gap-4 rounded-media border border-line bg-paper-tint p-6">
               <div className="shrink-0 text-center"><span className="inline-block font-bold text-accent">9:15</span><p className="text-xs text-ink-muted">AM</p></div>
-              <div><p className="font-bold text-ink">Villa d'Este Exploration</p><p className="text-sm text-ink-muted">2.5–3 hours (fountains, gardens)</p></div>
+              <div><p className="font-bold text-ink">Villa d&apos;Este Exploration</p><p className="text-sm text-ink-muted">2.5–3 hours (fountains, gardens)</p></div>
             </div>
 
             <div className="flex gap-4 rounded-media border border-line bg-paper-tint p-6">
@@ -148,12 +148,12 @@ export default function SelfGuidedTivoliPage() {
 
             <div className="flex gap-4 rounded-media border border-line bg-paper-tint p-6">
               <div className="shrink-0 text-center"><span className="inline-block font-bold text-accent">1:15</span><p className="text-xs text-ink-muted">PM</p></div>
-              <div><p className="font-bold text-ink">Bus to Hadrian's Villa</p><p className="text-sm text-ink-muted">20 min ride, €1</p></div>
+              <div><p className="font-bold text-ink">Bus to Hadrian&apos;s Villa</p><p className="text-sm text-ink-muted">20 min ride, €1</p></div>
             </div>
 
             <div className="flex gap-4 rounded-media border border-line bg-paper-tint p-6">
               <div className="shrink-0 text-center"><span className="inline-block font-bold text-accent">1:35</span><p className="text-xs text-ink-muted">PM</p></div>
-              <div><p className="font-bold text-ink">Hadrian's Villa Exploration</p><p className="text-sm text-ink-muted">3–3.5 hours (ruins, archaeology)</p></div>
+              <div><p className="font-bold text-ink">Hadrian&apos;s Villa Exploration</p><p className="text-sm text-ink-muted">3–3.5 hours (ruins, archaeology)</p></div>
             </div>
 
             <div className="flex gap-4 rounded-media border border-line bg-paper-tint p-6">
@@ -209,9 +209,9 @@ export default function SelfGuidedTivoliPage() {
           <p className="mt-4 max-w-2xl mx-auto text-base text-ink-muted">
             Use this guide, download the map, and experience both villas at your own pace. Total cost: €30–40 per person including all transport and tickets.
           </p>
-          <a href="/getting-to-tivoli-train-vs-tour" className="mt-8 inline-flex h-12 items-center justify-center rounded-control bg-accent-gradient px-8 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.02]">
+          <Link href="/getting-to-tivoli-train-vs-tour" className="mt-8 inline-flex h-12 items-center justify-center rounded-control bg-accent-gradient px-8 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.02]">
             Read Getting to Tivoli Guide
-          </a>
+          </Link>
         </div>
       </section>
     </>

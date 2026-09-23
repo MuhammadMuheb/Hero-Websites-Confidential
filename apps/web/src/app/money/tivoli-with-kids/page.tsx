@@ -30,7 +30,7 @@ export default function TivoliWithKidsPage() {
             Tivoli with Kids: Family-Friendly Day Trip
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/90">
-            Villa d'Este fountains genuinely engage kids. Here's how to make Tivoli work for the whole family without meltdowns.
+            Villa d&apos;Este fountains genuinely engage kids. Here&apos;s how to make Tivoli work for the whole family without meltdowns.
           </p>
         </div>
       </section>
@@ -42,14 +42,14 @@ export default function TivoliWithKidsPage() {
           </h2>
 
           <div className="mt-8 rounded-media border border-line bg-paper-tint p-8">
-            <h3 className="font-bold text-accent mb-4">Villa d'Este for Kids</h3>
+            <h3 className="font-bold text-accent mb-4">Villa d&apos;Este for Kids</h3>
             <p className="text-base text-ink-muted">
               The fountains are genuinely exciting to children. Water features, outdoor exploration, running along paths — kids find it engaging and not boring like traditional museums. It's essentially an outdoor water playground with history.
             </p>
 
-            <h3 className="font-bold text-accent mt-6 mb-4">Hadrian's Villa for Kids</h3>
+            <h3 className="font-bold text-accent mt-6 mb-4">Hadrian&apos;s Villa for Kids</h3>
             <p className="text-base text-ink-muted">
-              More challenging for younger kids. The vast ruins require imagination to visualize what was there. Better for kids 8+ who can appreciate archaeology and don't tire easily. Little ones (3–6) find endless walking frustrating.
+              More challenging for younger kids. The vast ruins require imagination to visualize what was there. Better for kids 8+ who can appreciate archaeology and don&apos;t tire easily. Little ones (3–6) find endless walking frustrating.
             </p>
           </div>
         </div>
@@ -65,14 +65,14 @@ export default function TivoliWithKidsPage() {
             <div className="rounded-media border border-line bg-white p-6">
               <h3 className="font-bold text-accent">Ages 3–5 (Toddlers/Preschool)</h3>
               <p className="mt-3 text-base text-ink-muted">
-                <strong>Villa d'Este only, 1–1.5 hours max.</strong> The fountains are mesmerizing but attention span is short. Bring snacks, water, wet wipes. Skip Hadrian's Villa entirely — too much walking, too boring without context.
+                <strong>Villa d&apos;Este only, 1–1.5 hours max.</strong> The fountains are mesmerizing but attention span is short. Bring snacks, water, wet wipes. Skip Hadrian&apos;s Villa entirely — too much walking, too boring without context.
               </p>
             </div>
 
             <div className="rounded-media border border-line bg-white p-6">
               <h3 className="font-bold text-accent">Ages 6–9 (Elementary School)</h3>
               <p className="mt-3 text-base text-ink-muted">
-                <strong>Villa d'Este (2 hrs) + light Hadrian's exploration (1 hr).</strong> Kids this age can appreciate both sites if you keep it interactive. Make it a scavenger hunt — find the dragon fountain, the organ fountain, etc.
+                <strong>Villa d&apos;Este (2 hrs) + light Hadrian&apos;s exploration (1 hr).</strong> Kids this age can appreciate both sites if you keep it interactive. Make it a scavenger hunt — find the dragon fountain, the organ fountain, etc.
               </p>
             </div>
 
@@ -114,7 +114,7 @@ export default function TivoliWithKidsPage() {
             <div className="rounded-media border border-line bg-paper-tint p-6">
               <h3 className="font-bold text-ink">👕 Clothing & Sun</h3>
               <ul className="mt-3 space-y-2 text-sm text-ink-muted">
-                <li>• Comfortable walking shoes (they'll complain otherwise)</li>
+                <li>• Comfortable walking shoes (they&apos;ll complain otherwise)</li>
                 <li>• Sun hats, sunscreen (essential!)</li>
                 <li>• Light layers for variable weather</li>
               </ul>
@@ -169,7 +169,7 @@ export default function TivoliWithKidsPage() {
               </div>
               <div className="flex flex-1 flex-col p-4">
                 <span className="inline-block w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">GetYourGuide</span>
-                <h3 className="mt-3 font-bold text-ink">Family-Friendly Villa d'Este Tour</h3>
+                <h3 className="mt-3 font-bold text-ink">Family-Friendly Villa d&apos;Este Tour</h3>
                 <p className="mt-2 text-sm text-ink-muted">Guide trained for kids, skip-the-line, interactive storytelling. Ages 5+.</p>
                 <p className="mt-4 font-bold text-ink">from €55</p>
               </div>

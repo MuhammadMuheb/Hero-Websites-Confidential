@@ -22,7 +22,7 @@ export default function FullDayTivoliPage() {
         <div className="absolute inset-0">
           <SafeImage
             src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&h=600&fit=crop"
-            alt="Villa d'Este fountains in Tivoli"
+            alt="Villa d&apos;Este fountains in Tivoli"
             fill
             priority
             sizes="100vw"
@@ -44,7 +44,7 @@ export default function FullDayTivoliPage() {
             Full-Day Tivoli Tour: Both Villas in One Day
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
-            Experience the complete Tivoli masterpiece — Renaissance fountains at Villa d'Este and ancient imperial ruins at Hadrian's Villa. The ultimate cultural immersion without feeling rushed.
+            Experience the complete Tivoli masterpiece &mdash; Renaissance fountains at Villa d&apos;Este and ancient imperial ruins at Hadrian&apos;s Villa. The ultimate cultural immersion without feeling rushed.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
@@ -97,12 +97,12 @@ export default function FullDayTivoliPage() {
             Why Full-Day Tivoli?
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
-            Tivoli's two major villas represent two completely different worlds: Renaissance fountains and gardens at Villa d'Este versus imperial archaeology at Hadrian's Villa. A full day lets you experience both properly without rushing.
+            Tivoli&apos;s two major villas represent two completely different worlds: Renaissance fountains and gardens at Villa d&apos;Este versus imperial archaeology at Hadrian&apos;s Villa. A full day lets you experience both properly without rushing.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
             <div className="rounded-media border border-line bg-white p-6">
-              <h3 className="font-sans text-lg font-bold text-accent">Villa d'Este (Fountains)</h3>
+              <h3 className="font-sans text-lg font-bold text-accent">Villa d&apos;Este (Fountains)</h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                 Renaissance masterpiece with over 500 fountains, terraced gardens, and artistic water features. Most visually dramatic and widely photographed.
               </p>
@@ -254,13 +254,13 @@ export default function FullDayTivoliPage() {
                 <div>
                   <p className="font-bold text-ink">Can I do Tivoli as a half-day trip?</p>
                   <p className="mt-1 text-base text-ink-muted">
-                    Villa d'Este alone fits in 4–5 hours. Both villas properly explored requires a full day.
+                    Villa d&apos;Este alone fits in 4&ndash;5 hours. Both villas properly explored requires a full day.
                   </p>
                 </div>
                 <div>
                   <p className="font-bold text-ink">Which villa first?</p>
                   <p className="mt-1 text-base text-ink-muted">
-                    Either order works. Some prefer fountains first (Villa d'Este) for visual drama, then ruins. Others reverse it.
+                    Either order works. Some prefer fountains first (Villa d&apos;Este) for visual drama, then ruins. Others reverse it.
                   </p>
                 </div>
               </div>

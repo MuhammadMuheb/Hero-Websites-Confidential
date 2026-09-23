@@ -16,7 +16,7 @@ export default function BestSeasonPage() {
         <div className="absolute inset-0">
           <SafeImage
             src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&h=600&fit=crop"
-            alt="Villa d'Este best season"
+            alt="Villa d&apos;Este best season"
             fill
             priority
             sizes="100vw"
@@ -27,7 +27,7 @@ export default function BestSeasonPage() {
 
         <div className="relative mx-auto flex min-h-[400px] max-w-[1440px] flex-col justify-end px-6 py-16 sm:px-14 sm:py-20">
           <h1 className="max-w-3xl font-sans text-[40px] font-extrabold leading-tight text-white sm:text-[52px]">
-            Best Time to Visit Villa d'Este: Month-by-Month Guide
+            Best Time to Visit Villa d&apos;Este: Month-by-Month Guide
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/90">
             When do fountains flow best? When are crowds smallest? Here's the honest breakdown by month.
