@@ -110,7 +110,7 @@ export default function FullDayTivoliPage() {
             </div>
 
             <div className="rounded-media border border-line bg-white p-6">
-              <h3 className="font-sans text-lg font-bold text-accent">Hadrian's Villa (Ruins)</h3>
+              <h3 className="font-sans text-lg font-bold text-accent">Hadrian&apos;s Villa (Ruins)</h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                 Ancient Roman imperial retreat with elaborate ruins, temples, and 27 hectares of archaeological wonders. Rewards slow exploration and curiosity.
               </p>

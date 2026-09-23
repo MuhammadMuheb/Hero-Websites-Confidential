@@ -82,7 +82,7 @@ export default function HalfDayVillaEstePage() {
           </p>
 
           <div className="mt-10 rounded-media border border-line bg-white p-8">
-            <h3 className="font-sans text-lg font-bold text-accent">What You'll See</h3>
+            <h3 className="font-sans text-lg font-bold text-accent">What You&apos;ll See</h3>
             <ul className="mt-4 space-y-3 text-base text-ink-muted">
               <li>✓ Fountain of Tivoli (centerpiece, oldest feature)</li>
               <li>✓ Fountain of the Hundred Fountains (cascading water features)</li>

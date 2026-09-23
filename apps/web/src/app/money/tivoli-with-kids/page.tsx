@@ -79,7 +79,7 @@ export default function TivoliWithKidsPage() {
             <div className="rounded-media border border-line bg-white p-6">
               <h3 className="font-bold text-accent">Ages 10+ (Tweens/Teens)</h3>
               <p className="mt-3 text-base text-ink-muted">
-                <strong>Both villas, full day possible.</strong> Can appreciate history, handle longer walking, engage with archaeology. Bring a simple guidebook or download info beforehand so they understand what they're seeing.
+                <strong>Both villas, full day possible.</strong> Can appreciate history, handle longer walking, engage with archaeology. Bring a simple guidebook or download info beforehand so they understand what they&apos;re seeing.
               </p>
             </div>
           </div>
