@@ -171,7 +171,7 @@ export default function WhichVillaPage() {
             <div className="rounded-media border border-line bg-white p-6">
               <p className="font-bold text-accent">If You Only Have Time for ONE Villa</p>
               <p className="mt-3 text-base text-ink-muted">
-                <strong>Choose Villa d&apos;Este.</strong> It's the more visually striking, universally impressive, and takes less time. The fountains are genuinely remarkable — something most visitors remember for years.
+                <strong>Choose Villa d&apos;Este.</strong> It&apos;s the more visually striking, universally impressive, and takes less time. The fountains are genuinely remarkable &mdash; something most visitors remember for years.
               </p>
             </div>
 
