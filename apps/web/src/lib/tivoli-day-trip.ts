@@ -19,7 +19,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Full-Day Both Villas',
-    href: '/money/full-day-tivoli',
+    href: '/villa-d-este-hadrian-s-villa',
     blurb: 'Experience the complete Tivoli masterpiece: Renaissance fountains at Villa d\'Este and ancient imperial ruins at Hadrian\'s Villa. The ultimate cultural immersion without feeling rushed.',
     keyword: 'full day tivoli tour both villas',
     cta: 'Explore Full-Day Tours',
@@ -28,7 +28,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Half-Day Villa d\'Este',
-    href: '/money/half-day-villa-este',
+    href: '/half-day-tivoli',
     blurb: 'Perfect for limited time. Discover the breathtaking fountains and Renaissance gardens of Villa d\'Este. Fast, focused, and thoroughly rewarding for art and history lovers.',
     keyword: 'half day villa d este tour',
     cta: 'View Half-Day Options',
@@ -37,7 +37,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Private Expert Guide',
-    href: '/money/private-tivoli-guide',
+    href: '/private-tivoli-tour',
     blurb: 'Personalized experience with an English-speaking guide who knows every corner of both sites. Skip the crowds, set your own pace, and get insider stories you won\'t find anywhere else.',
     keyword: 'private tivoli tour with guide',
     cta: 'Book Private Tour',
@@ -46,7 +46,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Self-Guided Essentials',
-    href: '/money/self-guided-tivoli',
+    href: '/support/getting-to-tivoli-train-vs-tour',
     blurb: 'Independent travelers: get the complete route, timing tips, transport hacks, and must-see highlights. Save money while still seeing everything that matters.',
     keyword: 'self guided tivoli day trip',
     cta: 'Plan Your Route',
@@ -155,16 +155,16 @@ export const NAV_ITEMS: NavItem[] = [
   { title: 'Both Villas', href: '/villa-d-este-hadrian-s-villa', keyword: 'villa d\'este hadrian\'s villa tour' },
   { title: 'Private Tours', href: '/private-tivoli-tour', keyword: 'private tivoli tour' },
   { title: 'Half-Day', href: '/half-day-tivoli', keyword: 'half day tivoli tour' },
-  { title: 'Getting There', href: '/getting-to-tivoli-train-vs-tour', keyword: 'how to get to tivoli' },
+  { title: 'Getting There', href: '/support/getting-to-tivoli-train-vs-tour', keyword: 'how to get to tivoli' },
   { title: 'Which Villa', href: '/which-villa-to-prioritise', keyword: 'villa d\'este or hadrian\'s villa' },
   { title: 'Best Season', href: '/gardens-best-season', keyword: 'best time to visit tivoli' },
-  { title: 'With Kids', href: '/money/tivoli-with-kids', keyword: 'tivoli day trip with children' },
+  { title: 'With Kids', href: '/tivoli-with-kids', keyword: 'tivoli day trip with children' },
 ];
 
 export const SUPPORT_PAGES = [
   {
     title: 'Getting to Tivoli',
-    href: '/getting-to-tivoli-train-vs-tour',
+    href: '/support/getting-to-tivoli-train-vs-tour',
     keyword: 'how to get to tivoli from rome',
     image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop', alt: 'Italian regional train window view of countryside heading toward Tivoli' },
   },
@@ -182,7 +182,7 @@ export const SUPPORT_PAGES = [
   },
   {
     title: 'With Kids',
-    href: '/money/tivoli-with-kids',
+    href: '/tivoli-with-kids',
     keyword: 'tivoli day trip with children',
     image: { src: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f', alt: 'Family-friendly fountain pathway at Villa d\'Este, safe and accessible for all ages' },
   },
@@ -196,9 +196,9 @@ export const TOURS_NAV_ITEMS: NavItem[] = MONEY_PAGES.map((p) => ({ title: p.tit
 export const PLAN_NAV_ITEMS: NavItem[] = SUPPORT_PAGES.map((p) => ({ title: p.title, href: p.href, keyword: p.keyword }));
 
 export const Tivoli_DAY_TRIP_GALLERY = [
-  { src: 'https://images.unsplash.com/photo-1532619675605-1ede6c2e7b94', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
+  { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
   { src: 'https://images.unsplash.com/photo-1470114716159-e389f8712fda', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
-  { src: 'https://images.unsplash.com/photo-1495483277328-e3f5e6c20619', alt: 'Sunset light over Villa d\'Este fountains with golden-hour glow on the water features' },
+  { src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828', alt: "Early morning light over the gardens of Villa d'Este" },
   { src: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f', alt: 'Aerial view of Villa d\'Este\'s terraced gardens with fountains and symmetrical landscaping' },
 ];
 

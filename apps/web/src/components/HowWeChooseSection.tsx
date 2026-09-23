@@ -5,14 +5,14 @@ const STEPS = [
   {
     title: 'Walk it First',
     description: 'Every tour on this site has been taken in person before it was ever recommended.',
-    image: 'https://images.unsplash.com/photo-1488374713501-52264e3df371?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1565182252045-3cfae92017e0?w=600&h=400&fit=crop',
     href: '#',
   },
   {
     title: 'Stay Off the Tourist Track',
     description:
       'We look for real neighbourhoods and family-run kitchens, not the stops every guidebook already sends you to.',
-    image: 'https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e?w=600&h=400&fit=crop',
     href: '#',
   },
   {
@@ -25,7 +25,7 @@ const STEPS = [
   {
     title: 'Keep it Personal',
     description: 'One person writes this site. Every review reflects an actual visit, not a template.',
-    image: 'https://images.unsplash.com/photo-1504674900968-f0cbe0e78c90?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1668171321834-658179e37f5e?w=600&h=400&fit=crop',
     href: '#',
   },
 ];

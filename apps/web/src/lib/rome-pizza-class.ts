@@ -44,7 +44,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Rome Pizza-Making Class',
-    href: '/rome-pizza-making-class',
+    href: '/money/rome-pizza-making-class',
     blurb: 'The flagship single-dish class — real dough technique, a proper wood-fired oven, and enough time to actually get the stretch right instead of rushing to the next station.',
     keyword: 'pizza making class rome',
     cta: 'Compare pizza classes',
@@ -58,20 +58,20 @@ export const MONEY_PAGES = [
     keyword: 'pizza and gelato class rome',
     cta: 'Compare combo classes',
     badge: 'Combo Class' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b', alt: 'A round of pizza dough being tossed and stretched in mid-air' },
+    image: { src: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f', alt: "A pair of hands stretching fresh pizza dough into a round on a floured surface" },
   },
   {
     title: 'Family Pizza Class',
-    href: '/family-pizza-class',
+    href: '/money/family-pizza-class',
     blurb: "Kids-friendly pacing and portion-sized dough balls that make the stretch-and-toss step actually achievable for smaller hands.",
     keyword: 'family pizza class rome',
     cta: 'See family classes',
     badge: 'Family Friendly' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5', alt: "A child's small hands shaping a portion of pizza dough on a floured table" },
+    image: { src: 'https://images.unsplash.com/photo-1642354571956-d77dfd9596bb', alt: "A child's small hands shaping a portion of pizza dough on a floured table" },
   },
   {
     title: 'Private Pizza Class',
-    href: '/private-pizza-class',
+    href: '/money/private-pizza-class',
     blurb: "A private setting for groups who'd rather not share an oven queue with strangers.",
     keyword: 'private pizza class rome',
     cta: 'Compare private classes',
@@ -128,7 +128,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     meta: '4h · shared group, two-technique combo',
     priceFrom: 75,
     badge: 'Combo Class' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b', alt: 'A round of pizza dough being tossed and stretched in mid-air' },
+    image: { src: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f', alt: "A pair of hands stretching fresh pizza dough into a round on a floured surface" },
     woodFiredOven: true,
     tags: ['combo', 'gelato'],
   },
@@ -139,7 +139,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     meta: '2h · shared group, kid-sized dough portions',
     priceFrom: 55,
     badge: 'Family Friendly' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5', alt: "A child's small hands shaping a portion of pizza dough on a floured table" },
+    image: { src: 'https://images.unsplash.com/photo-1642354571956-d77dfd9596bb', alt: "A child's small hands shaping a portion of pizza dough on a floured table" },
     woodFiredOven: false,
     tags: ['family', 'kids'],
   },
@@ -194,7 +194,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     meta: '2.5h · shared group, evening slot',
     priceFrom: 68,
     badge: 'Evening' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1548365328-9f547fb0953b', alt: 'A freshly baked pizza with a charred, blistered crust' },
+    image: { src: 'https://images.unsplash.com/photo-1595854341625-f33ee10dbf94', alt: "A pizza baking inside a glowing wood-fired oven" },
     woodFiredOven: true,
     tags: ['wine', 'classic'],
   },
@@ -207,10 +207,10 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  * 8 cards in the same order on all 4 pages.
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
-  '/rome-pizza-making-class': ['classic', 'beginner'],
+  '/money/rome-pizza-making-class': ['classic', 'beginner'],
   '/money/pizza-gelato-combo': ['combo', 'gelato'],
-  '/family-pizza-class': ['family', 'kids'],
-  '/private-pizza-class': ['private', 'small-group'],
+  '/money/family-pizza-class': ['family', 'kids'],
+  '/money/private-pizza-class': ['private', 'small-group'],
 };
 
 /**
@@ -250,33 +250,33 @@ export const QUICK_FACTS = [
  */
 export const ROME_PIZZA_CLASS_GALLERY = [
   { src: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f', alt: 'A pair of hands stretching fresh pizza dough into a round on a floured surface' },
-  { src: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b', alt: 'A round of pizza dough being tossed and stretched in mid-air' },
+  { src: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f', alt: "A pair of hands stretching fresh pizza dough into a round on a floured surface" },
   { src: 'https://images.unsplash.com/photo-1595854341625-f33ee10dbf94', alt: 'A pizza baking inside a glowing wood-fired oven' },
-  { src: 'https://images.unsplash.com/photo-1548365328-9f547fb0953b', alt: 'A freshly baked pizza with a charred, blistered crust' },
+  { src: 'https://images.unsplash.com/photo-1595854341625-f33ee10dbf94', alt: "A pizza baking inside a glowing wood-fired oven" },
 ];
 
 export const SUPPORT_PAGES = [
   {
     title: 'What You Make and Eat',
-    href: '/what-you-make-and-eat',
+    href: '/support/what-you-make-and-eat',
     keyword: 'what do you make in a pizza class rome',
     image: { src: 'https://images.unsplash.com/photo-1552539618-7eec9b4d1796', alt: 'A finished round pizza with pepperoni resting on a wooden board' },
   },
   {
     title: 'Kids Pizza Classes',
-    href: '/kids-pizza-classes',
+    href: '/support/kids-pizza-classes',
     keyword: 'kids pizza class rome',
-    image: { src: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5', alt: "A child's small hands shaping a portion of pizza dough on a floured table" },
+    image: { src: 'https://images.unsplash.com/photo-1642354571956-d77dfd9596bb', alt: "A child's small hands shaping a portion of pizza dough on a floured table" },
   },
   {
     title: 'Pizza vs Pasta Class',
-    href: '/money/pizza-vs-pasta-class',
+    href: '/support/pizza-vs-pasta-class',
     keyword: 'pizza vs pasta class rome',
     image: { src: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234', alt: 'A hand lifting a cheese-topped pizza slice from a whole pie' },
   },
   {
     title: 'Wine Pairing',
-    href: '/wine-pairing',
+    href: '/support/wine-pairing',
     keyword: 'pizza class wine pairing rome',
     image: { src: 'https://images.unsplash.com/photo-1516594798947-e65505dbb29d', alt: 'Two glasses of red wine beside a wood-fired pizza on a rustic table' },
   },
@@ -311,13 +311,13 @@ export const FAQS = [
 ];
 
 export const QUICK_LINKS = [
-  { label: 'Rome Pizza-Making Class', href: '/rome-pizza-making-class' },
+  { label: 'Rome Pizza-Making Class', href: '/money/rome-pizza-making-class' },
   { label: 'Pizza + Gelato Combo', href: '/money/pizza-gelato-combo' },
-  { label: 'Family Pizza Class', href: '/family-pizza-class' },
-  { label: 'Private Pizza Class', href: '/private-pizza-class' },
-  { label: 'Kids Pizza Classes', href: '/kids-pizza-classes' },
-  { label: 'Pizza vs Pasta Class', href: '/money/pizza-vs-pasta-class' },
-  { label: 'Wine Pairing', href: '/wine-pairing' },
+  { label: 'Family Pizza Class', href: '/money/family-pizza-class' },
+  { label: 'Private Pizza Class', href: '/money/private-pizza-class' },
+  { label: 'Kids Pizza Classes', href: '/support/kids-pizza-classes' },
+  { label: 'Pizza vs Pasta Class', href: '/support/pizza-vs-pasta-class' },
+  { label: 'Wine Pairing', href: '/support/wine-pairing' },
 ];
 
 export const EXPLORE_LINKS = MONEY_PAGES.map((p) => ({ label: p.title, href: p.href }));

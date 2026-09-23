@@ -10,7 +10,7 @@ export const CATEGORY_HERO_IMAGES: Record<string, { src: string; alt: string }> 
     alt: 'A pair of hands stretching fresh pizza dough into a round on a floured surface',
   },
   pasta: {
-    src: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5',
+    src: 'https://images.unsplash.com/photo-1642354571956-d77dfd9596bb',
     alt: 'A plate of freshly cooked cacio e pepe with pecorino and black pepper',
   },
   'beer-and-wine': {
@@ -18,7 +18,7 @@ export const CATEGORY_HERO_IMAGES: Record<string, { src: string; alt: string }> 
     alt: 'Glasses of wine and beer on a table at a Roman enoteca or bar',
   },
   gelato: {
-    src: 'https://images.unsplash.com/photo-1577003832033-a0d99e4e7ec6',
+    src: 'https://images.unsplash.com/photo-1555992643-0c053cbd87e1',
     alt: 'Display of fresh gelato in metal tins showing vibrant, natural colors',
   },
   'street-food-classics': {

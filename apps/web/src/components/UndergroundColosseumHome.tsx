@@ -359,7 +359,7 @@ export function UndergroundColosseumHome() {
                 <p className="mt-3 text-xs leading-relaxed text-faint">
                   Closed Jan 1, May 1 &amp; Dec 25. Hours shift with sunset — always confirm before you go.
                 </p>
-                <Link href="/opening-hours-beating-the-crowds" className="mt-4 inline-block text-sm font-bold text-accent hover:underline">
+                <Link href="/support/opening-hours-beating-the-crowds" className="mt-4 inline-block text-sm font-bold text-accent hover:underline">
                   Full crowd-avoidance guide &rarr;
                 </Link>
               </div>

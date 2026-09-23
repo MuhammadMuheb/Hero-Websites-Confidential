@@ -6,7 +6,7 @@ import Link from '@/components/NetworkLink';
  * structure. Wrapped in .pdt-scope for Volcanic Ember theming.
  */
 
-const POMPEII_AREAS = [
+export const POMPEII_AREAS = [
   {
     slug: 'forum',
     name: 'The Forum',

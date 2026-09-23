@@ -162,7 +162,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
         answer: 'No — skip-the-line and fast-track slots must be booked in advance online; on-site ticket windows only sell standard, unreserved entry when available.',
       },
     ],
-    relatedSupportHref: '/opening-hours-beating-the-crowds',
+    relatedSupportHref: '/support/opening-hours-beating-the-crowds',
     relatedSupportLabel: 'Opening Hours & Beating the Crowds',
   },
   {
@@ -221,7 +221,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
         answer: 'Not directly — you\'ll need to cancel (check the cancellation window) and rebook the private listing, since they\'re separate products with separate guides.',
       },
     ],
-    relatedSupportHref: '/getting-there-metro-meeting-points',
+    relatedSupportHref: '/support/getting-there-metro-meeting-points',
     relatedSupportLabel: 'Getting There: Metro & Meeting Points',
   },
   {
@@ -280,7 +280,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
         answer: 'Seating is limited — most of the interior is standing/walking only, so budget for breaks outside the monument if you\'re visiting with young children.',
       },
     ],
-    relatedSupportHref: '/support/colosseum-forum-palatine-itinerary',
+    relatedSupportHref: '/colosseum-forum-palatine-itinerary',
     relatedSupportLabel: 'Colosseum + Forum + Palatine Itinerary',
   },
   {
@@ -351,7 +351,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
         answer: 'Anywhere from 90 minutes for a self-paced, fast-track visit up to a full half-day if you\'re combining the Colosseum with the Roman Forum and Palatine Hill — match the length to which visitor type above fits you.',
       },
     ],
-    relatedSupportHref: '/is-the-underground-worth-it',
+    relatedSupportHref: '/support/is-the-underground-worth-it',
     relatedSupportLabel: 'Is the Underground Worth It?',
   },
 ];
@@ -362,7 +362,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     navTitle: 'How Underground Access Really Works',
     h1: 'How Colosseum Underground Access Really Works',
     keyword: 'colosseum underground access',
-    metaTitle: 'How Colosseum Underground Access Works — Booking, Entry & What to Expect',
+    metaTitle: 'How Colosseum Underground Access Works: Booking & Entry',
     metaDescription:
       'How Colosseum underground (hypogeum) access actually works: how tickets are released, how entry happens through the Gladiator\'s Gate, and what security requires.',
     heroImage: { src: 'https://images.unsplash.com/photo-1632851853187-dae5c83372dc', alt: 'The Colosseum seen through greenery on a sunny day' },
@@ -536,7 +536,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
         answer: 'Arrive at least 20–30 minutes before your scheduled time — meeting points can be crowded and easy to miss, especially for underground tours with strict entry windows.',
       },
     ],
-    relatedMoneyHref: '/private-vs-group-colosseum-tour',
+    relatedMoneyHref: '/money/private-vs-group-colosseum-tour',
     relatedMoneyLabel: 'Compare Private & Group Tours',
   },
   {
@@ -544,7 +544,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     navTitle: 'Colosseum + Forum + Palatine Itinerary',
     h1: 'Colosseum, Forum & Palatine Hill: A Half-Day Itinerary',
     keyword: 'colosseum forum palatine itinerary',
-    metaTitle: 'Colosseum, Forum & Palatine Hill Itinerary — A Realistic Half-Day Plan',
+    metaTitle: 'Colosseum, Forum & Palatine Itinerary: A Half-Day Plan',
     metaDescription:
       'A realistic half-day itinerary combining the Colosseum, Roman Forum, and Palatine Hill, plus the combo-ticket rule most visitors miss.',
     heroImage: { src: 'https://images.unsplash.com/photo-1663143050642-69240b347b2b', alt: 'Full daytime view of the Colosseum exterior' },
@@ -578,7 +578,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
         answer: 'Colosseum first (to beat the morning crowds and heat), then the Roman Forum, finishing at Palatine Hill, which connects directly from the Forum without backtracking.',
       },
     ],
-    relatedMoneyHref: '/best-colosseum-tour-by-visitor-type',
+    relatedMoneyHref: '/money/best-colosseum-tour-by-visitor-type',
     relatedMoneyLabel: 'Find the Best Tour for You',
   },
   {

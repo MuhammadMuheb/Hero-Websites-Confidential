@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { ACTIVE_NETWORK_SLUG } from '@/lib/tours';
+import { ACTIVE_NETWORK_SLUG, NETWORK_SITES } from '@/lib/tours';
+
+const NETWORK_SLUGS = new Set(NETWORK_SITES.map((site) => site.slug));
 
 /**
  * Only the one active network property (ACTIVE_NETWORK_SLUG) gets its
@@ -17,6 +19,14 @@ import { ACTIVE_NETWORK_SLUG } from '@/lib/tours';
  */
 export function middleware(request: NextRequest) {
   const segments = request.nextUrl.pathname.split('/').filter(Boolean);
+
+  // Affiliate links rendered inside a property (NetworkLink prefixes every
+  // internal href) all share the one /go/:slug redirect handler.
+  if (segments.length === 3 && segments[1] === 'go' && NETWORK_SLUGS.has(segments[0] ?? '')) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/go/${segments[2]}`;
+    return NextResponse.rewrite(url);
+  }
 
   if (segments.length >= 2 && segments[0] === ACTIVE_NETWORK_SLUG) {
     const url = request.nextUrl.clone();

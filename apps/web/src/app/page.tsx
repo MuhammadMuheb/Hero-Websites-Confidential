@@ -52,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // Fallback hero image for the homepage if Firestore doc doesn't have one
-const HOME_HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1555939594-58d7cb561552';
+const HOME_HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e';
 
 export default async function HomePage() {
   const [page, tours, allBlogPosts] = await Promise.all([

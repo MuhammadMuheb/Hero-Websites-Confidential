@@ -122,7 +122,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'One day is enough for a genuine first taste of two towns plus maybe a winery — it is not enough to see the whole region, so treat it as a sampler rather than a complete visit.',
       },
     ],
-    relatedSupportHref: '/which-tuscany-trip-to-pick',
+    relatedSupportHref: '/support/which-tuscany-trip-to-pick',
     relatedSupportLabel: 'Which Tuscany Trip to Pick',
   },
   {
@@ -187,7 +187,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'A genuinely good winery will offer a non-alcoholic tasting flight or grape-juice alternative — ask before booking if this matters, since not every smaller producer offers it.',
       },
     ],
-    relatedSupportHref: '/wine-tour-logistics',
+    relatedSupportHref: '/support/wine-tour-logistics',
     relatedSupportLabel: 'Wine Tour Logistics',
   },
   {
@@ -251,7 +251,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'It’s tight but workable if the operator times it well — San Gimignano briefly in the morning, a relaxed lunch/wine stop midday, and Siena with real time in the afternoon; a poorly paced version of the same trio can feel rushed.',
       },
     ],
-    relatedSupportHref: '/best-season-for-tuscany',
+    relatedSupportHref: '/support/best-season-for-tuscany',
     relatedSupportLabel: 'Best Season for Tuscany',
   },
   {
@@ -315,7 +315,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'Most visitors get the most value from one well-routed hill-town-and-wine day plus, on a longer stay, a separate dedicated wine day or a Pisa day — trying to compress everything into a single trip usually costs more in transit than it gains in sightseeing.',
       },
     ],
-    relatedSupportHref: '/with-or-without-a-car',
+    relatedSupportHref: '/support/with-or-without-a-car',
     relatedSupportLabel: 'With or Without a Car',
   },
 ];
@@ -465,7 +465,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Often close to a wash once you add car rental, fuel, parking, and tolls for a small group — a guided tour tends to be better value for solo travelers or couples, while self-driving can pencil out for larger groups splitting the cost.',
       },
     ],
-    relatedMoneyHref: '/florence-base-day-trips',
+    relatedMoneyHref: '/money/florence-base-day-trips',
     relatedMoneyLabel: 'See Florence-Base Day Trips',
   },
   {
@@ -514,7 +514,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'It’s manageable with planning — start early, expect midday heat above 30°C/86°F, and build in shaded or indoor time during the early afternoon rather than pushing through it.',
       },
     ],
-    relatedMoneyHref: '/siena-san-gimignano-chianti',
+    relatedMoneyHref: '/money/siena-san-gimignano-chianti',
     relatedMoneyLabel: 'See Siena + San Gimignano + Chianti',
   },
   {

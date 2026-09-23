@@ -42,6 +42,15 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'Street Food Rome',
     locale: 'en_US',
+    // Fallback share image for any page that doesn't set its own.
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e?w=1200&h=630&fit=crop&q=80&auto=format',
+        width: 1200,
+        height: 630,
+        alt: 'A Rome side street lit for the evening, tables set out along the cobblestones',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

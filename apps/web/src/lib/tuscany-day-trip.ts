@@ -201,8 +201,8 @@ export const FEATURED_TOURS: FeaturedTour[] = [
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
   '/money/tuscany-from-florence': ['from-florence', 'first-timer'],
   '/money/tuscany-wine-day-trip': ['wine', 'tasting'],
-  '/siena-san-gimignano-chianti': ['siena-sg'],
-  '/florence-base-day-trips': ['from-florence', 'multi-destination'],
+  '/money/siena-san-gimignano-chianti': ['siena-sg'],
+  '/money/florence-base-day-trips': ['from-florence', 'multi-destination'],
 };
 
 /**
@@ -250,31 +250,31 @@ export const TUSCANY_DAY_TRIP_GALLERY = [
 export const SUPPORT_PAGES = [
   {
     title: 'Which Tuscany Trip to Pick',
-    href: '/which-tuscany-trip-to-pick',
+    href: '/support/which-tuscany-trip-to-pick',
     keyword: 'which tuscany day trip to pick',
     image: { src: 'https://images.unsplash.com/photo-1496886357681-bb985aa5e4c6', alt: "A high rooftop view over Siena, with the Torre del Mangia visible among the terracotta roofs" },
   },
   {
     title: 'Wine Tour Logistics',
-    href: '/wine-tour-logistics',
+    href: '/support/wine-tour-logistics',
     keyword: 'tuscany wine tour logistics',
     image: { src: 'https://images.unsplash.com/photo-1783443799503-e1587f423bd0', alt: 'An arched brick wine cellar lined with large aging wooden barrels' },
   },
   {
     title: 'With or Without a Car',
-    href: '/with-or-without-a-car',
+    href: '/support/with-or-without-a-car',
     keyword: 'tuscany day trip with or without a car',
     image: { src: 'https://images.unsplash.com/photo-1593270187915-d7a91b726610', alt: 'An open two-lane road running straight through Tuscan countryside farmland' },
   },
   {
     title: 'Best Season for Tuscany',
-    href: '/best-season-for-tuscany',
+    href: '/support/best-season-for-tuscany',
     keyword: 'best season for tuscany day trip',
     image: { src: 'https://images.unsplash.com/photo-1567072629554-20e689de2400', alt: 'Sunset light breaking over vineyard rows on a Tuscan hillside' },
   },
   {
     title: "What's Included",
-    href: '/what-s-included',
+    href: '/support/what-s-included',
     keyword: 'what is included in a tuscany day trip',
     image: { src: 'https://images.unsplash.com/photo-1744139056941-6200ae72e7cb', alt: 'Olive trees framing a stone Tuscan farmhouse and tower' },
   },
@@ -311,11 +311,11 @@ export const FAQS = [
 export const QUICK_LINKS = [
   { label: 'Tuscany from Florence', href: '/money/tuscany-from-florence' },
   { label: 'Tuscany Wine Day Trip', href: '/money/tuscany-wine-day-trip' },
-  { label: 'Siena + San Gimignano + Chianti', href: '/siena-san-gimignano-chianti' },
-  { label: 'Florence-Base Day Trips', href: '/florence-base-day-trips' },
-  { label: 'Which Tuscany Trip to Pick', href: '/which-tuscany-trip-to-pick' },
-  { label: 'With or Without a Car', href: '/with-or-without-a-car' },
-  { label: 'Best Season for Tuscany', href: '/best-season-for-tuscany' },
+  { label: 'Siena + San Gimignano + Chianti', href: '/money/siena-san-gimignano-chianti' },
+  { label: 'Florence-Base Day Trips', href: '/money/florence-base-day-trips' },
+  { label: 'Which Tuscany Trip to Pick', href: '/support/which-tuscany-trip-to-pick' },
+  { label: 'With or Without a Car', href: '/support/with-or-without-a-car' },
+  { label: 'Best Season for Tuscany', href: '/support/best-season-for-tuscany' },
 ];
 
 export const EXPLORE_LINKS = MONEY_PAGES.map((p) => ({ label: p.title, href: p.href }));

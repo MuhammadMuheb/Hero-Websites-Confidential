@@ -5,13 +5,13 @@ const CARDS = [
   {
     title: 'Moved for a Semester, Stayed for a Decade',
     description: 'What started as one semester abroad turned into more than ten years in Rome — long enough to know which market stalls are worth the walk.',
-    image: 'https://images.unsplash.com/photo-1504674900968-f0cbe0e78c90?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1668171321834-658179e37f5e?w=600&h=400&fit=crop',
     href: '#',
   },
   {
     title: 'Got Tired of Sending the Same Three Names',
     description: 'Friends kept asking for restaurant names. Writing it down properly turned into something longer than a message thread.',
-    image: 'https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e?w=600&h=400&fit=crop',
     href: '#',
   },
   {
@@ -23,7 +23,7 @@ const CARDS = [
   {
     title: 'Walked Every Street',
     description: 'Every neighbourhood explored on foot. Every market stall visited. Every recommendation tested personally.',
-    image: 'https://images.unsplash.com/photo-1488374713501-52264e3df371?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1565182252045-3cfae92017e0?w=600&h=400&fit=crop',
     href: '#',
   },
 ];

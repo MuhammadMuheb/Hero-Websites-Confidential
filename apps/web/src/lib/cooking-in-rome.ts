@@ -265,31 +265,31 @@ export const COOKING_IN_ROME_GALLERY = [
 export const SUPPORT_PAGES = [
   {
     title: 'What a Class Includes',
-    href: '/what-a-class-includes',
+    href: '/support/what-a-class-includes',
     keyword: 'what does a rome cooking class include',
     image: { src: 'https://images.unsplash.com/photo-1549590143-d5855148a9d5', alt: 'Flour poured on a table beside eggs and a whisk, ready for pasta dough' },
   },
   {
     title: 'Classes with a Market Visit',
-    href: '/classes-with-a-market-visit',
+    href: '/support/classes-with-a-market-visit',
     keyword: 'cooking class with market visit rome',
     image: { src: 'https://images.unsplash.com/photo-1616362406547-1c556ceb4d80', alt: 'A shopper standing in front of a market stall stocked with green vegetables' },
   },
   {
     title: 'Vegetarian Options',
-    href: '/vegetarian-options',
+    href: '/support/vegetarian-options',
     keyword: 'vegetarian cooking class rome',
     image: { src: 'https://images.unsplash.com/photo-1678705649594-35939644af9c', alt: 'A plate of pasta with vegetables' },
   },
   {
     title: 'Gift a Cooking Class',
-    href: '/gift-a-cooking-class',
+    href: '/support/gift-a-cooking-class',
     keyword: 'gift a cooking class rome',
     image: { src: 'https://images.unsplash.com/photo-1620475676913-9497df261cc3', alt: 'A plate of pasta beside a glass and bottle of wine, set for a celebratory meal' },
   },
   {
     title: 'Classes Near You by Area',
-    href: '/classes-near-you-by-area',
+    href: '/support/classes-near-you-by-area',
     keyword: 'rome cooking classes by neighborhood',
     image: { src: 'https://images.unsplash.com/photo-1616363306182-778dcf76a476', alt: 'A shopper standing near a market table on a Rome side street' },
   },
@@ -324,13 +324,13 @@ export const FAQS = [
 ];
 
 export const QUICK_LINKS = [
-  { label: 'Best Cooking Classes', href: '/best-rome-cooking-classes' },
-  { label: 'Pasta-Making Class', href: '/pasta-making-class' },
-  { label: 'Pizza + Gelato Class', href: '/pizza-gelato-class' },
-  { label: 'Market-to-Table Class', href: '/market-to-table-class' },
-  { label: 'Private / Small-Group', href: '/private-small-group-class' },
-  { label: 'Vegetarian Options', href: '/vegetarian-options' },
-  { label: 'Gift a Class', href: '/gift-a-cooking-class' },
+  { label: 'Best Cooking Classes', href: '/money/best-rome-cooking-classes' },
+  { label: 'Pasta-Making Class', href: '/money/pasta-making-class' },
+  { label: 'Pizza + Gelato Class', href: '/money/pizza-gelato-class' },
+  { label: 'Market-to-Table Class', href: '/money/market-to-table-class' },
+  { label: 'Private / Small-Group', href: '/money/private-small-group-class' },
+  { label: 'Vegetarian Options', href: '/support/vegetarian-options' },
+  { label: 'Gift a Class', href: '/support/gift-a-cooking-class' },
 ];
 
 export const EXPLORE_LINKS = MONEY_PAGES.map((p) => ({ label: p.title, href: p.href }));

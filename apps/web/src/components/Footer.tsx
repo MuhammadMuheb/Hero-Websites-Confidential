@@ -4,15 +4,29 @@ import { usePathname } from 'next/navigation';
 import Link from '@/components/NetworkLink';
 import { NETWORK_SITES } from '@/lib/tours';
 
-const COMPANY_LINKS = [
+const SFR_COMPANY_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
   { label: 'Blog', href: '/blog' },
   { label: 'Rome Food Tours', href: '/tours' },
   { label: 'Top Attractions', href: '/neighborhoods' },
-  { label: 'All Destinations', href: '/tours' },
 ];
+
+/** Properties with a real /neighborhoods area guide (see app/[slug]/[...rest]/registry.tsx). */
+const AREA_GUIDE_SLUGS = new Set(['underground-colosseum', 'pompeii-day-trip', 'rome-vespa']);
+
+function companyLinks(slug: string) {
+  if (slug === 'street-food-rome') return SFR_COMPANY_LINKS;
+  return [
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Guides', href: '/blog' },
+    { label: 'Compare Tours', href: '/tours' },
+    ...(AREA_GUIDE_SLUGS.has(slug) ? [{ label: 'Explore by Area', href: '/neighborhoods' }] : []),
+  ];
+}
 
 const LEGAL_LINKS = [
   { label: 'Privacy Policy', href: '/privacy' },
@@ -65,6 +79,7 @@ export function Footer() {
   const currentSiteSlug = networkSite ? networkSite.slug : 'street-food-rome';
   const brandName = networkSite ? networkSite.name : 'Street Food Rome';
   const siblingSites = NETWORK_SITES.filter((site) => site.slug !== currentSiteSlug);
+  const contactEmail = `hello@${currentSiteSlug.replace(/-/g, '')}.com`;
 
   return (
     <footer className="bg-ink text-white/70">
@@ -89,6 +104,12 @@ export function Footer() {
               A first-hand guide to unforgettable experiences, written by a local insider — honest
               recommendations, expert comparisons, no tourist traps.
             </p>
+            <Link
+              href="/tours"
+              className="mt-6 inline-flex min-h-[44px] items-center rounded-control bg-accent px-5 text-sm font-bold text-white transition-colors duration-200 hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Compare tours
+            </Link>
           </div>
 
           <div className="flex gap-3">
@@ -111,7 +132,7 @@ export function Footer() {
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Company</h3>
             <ul className="mt-4 space-y-3">
-              {COMPANY_LINKS.map((link) => (
+              {companyLinks(currentSiteSlug).map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm text-white/65 transition-colors hover:text-accent">
                     {link.label}
@@ -154,24 +175,24 @@ export function Footer() {
             <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-white/40">Contact Us</h3>
             <ul className="mt-4 space-y-3 text-sm text-white/65">
               <li>
-                <a href="mailto:hello@streetfoodrome.com" className="transition-colors hover:text-accent">
-                  hello@streetfoodrome.com
+                <a href={`mailto:${contactEmail}`} className="transition-colors hover:text-accent">
+                  {contactEmail}
                 </a>
               </li>
-              <li>Based in Rome, Italy</li>
+              <li>Based in Italy</li>
               <li>We usually reply within 24 hours</li>
             </ul>
             <p className="mt-5 inline-flex items-center gap-1.5 rounded-control border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs text-white/55">
-              Bookings powered by GetYourGuide
+              Bookings via trusted partners
             </p>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/40">© {year} Street Food Rome. All rights reserved.</p>
+          <p className="text-xs text-white/40">© {year} {brandName}. All rights reserved.</p>
           <p className="text-xs text-white/40">
-            As a GetYourGuide affiliate partner, we may earn a commission on bookings made through
-            links on this site.
+            We may earn a commission when you book through partner links on this site, at no extra
+            cost to you.
           </p>
         </div>
       </div>

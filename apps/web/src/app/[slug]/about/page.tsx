@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getNetworkSite, SITE_DOMAIN } from '@/lib/tours';
+import { NETWORK_PAGE_META } from '@/lib/network-page-meta';
 import { SafeImage } from '@/components/SafeImage';
 import Link from '@/components/NetworkLink';
 
@@ -13,14 +14,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const site = getNetworkSite(slug);
   if (!site) return {};
 
-  const title = `About ${site.name}`;
-  const description = `Learn about ${site.name} — our story, values, and commitment to authentic experiences.`;
+  const meta = NETWORK_PAGE_META[slug]?.pages.about;
+  const title = meta?.title ?? `About ${site.name}`;
+  const description = meta?.description ?? `Learn about ${site.name} — our story, values, and commitment to authentic experiences.`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: `https://${SITE_DOMAIN}/${slug}/about` },
-    openGraph: { title, description, url: `https://${SITE_DOMAIN}/${slug}/about` },
+    openGraph: {
+      title,
+      description,
+      url: `https://${SITE_DOMAIN}/${slug}/about`,
+      images: [{ url: 'https://images.unsplash.com/photo-1668171321834-658179e37f5e?w=1200&h=630&fit=crop&q=80&auto=format', width: 1200, height: 630 }],
+    },
   };
 }
 
@@ -37,7 +44,7 @@ export default async function PropertyAboutPage({ params }: Props) {
       <section className="relative min-h-[400px] w-full overflow-hidden bg-ink">
         <div className="absolute inset-0">
           <SafeImage
-            src="https://images.unsplash.com/photo-1504674900968-f0cbe0e78c90?w=1200&h=600&fit=crop"
+            src="https://images.unsplash.com/photo-1668171321834-658179e37f5e?w=1200&h=600&fit=crop"
             alt={`About ${site.name}`}
             fill
             priority

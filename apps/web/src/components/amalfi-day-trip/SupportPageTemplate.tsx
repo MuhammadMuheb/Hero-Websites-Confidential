@@ -15,8 +15,8 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tuscanydaytrip.com/' },
-      { '@type': 'ListItem', position: 2, name: content.navTitle, item: `https://tuscanydaytrip.com${content.href}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://amalfidaytrip.com/' },
+      { '@type': 'ListItem', position: 2, name: content.navTitle, item: `https://amalfidaytrip.com${content.href}` },
     ],
   };
 
@@ -48,11 +48,9 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
         <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-8 sm:px-14 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-14">
           <div>
             {content.keyword && <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{content.keyword}</p>}
-            {content.h1 && (
-              <h1 className="mt-3 font-display text-[30px] font-bold leading-[1.15] tracking-tight text-ink sm:text-[38px]">
-                {content.h1}
-              </h1>
-            )}
+            <h1 className="mt-3 font-display text-[30px] font-bold leading-[1.15] tracking-tight text-ink sm:text-[38px]">
+              {content.h1 ?? content.navTitle ?? content.metaTitle}
+            </h1>
             <div className="mt-7 flex flex-wrap gap-3">
               {content.relatedMoneyHref && content.relatedMoneyLabel && (
                 <Link

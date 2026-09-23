@@ -259,18 +259,6 @@ export function getNetworkSite(slug: string): NetworkSiteDef | undefined {
   return NETWORK_SITES.find((s) => s.slug === slug);
 }
 
-/**
- * True for /{slug} or any /{slug}/... path belonging to one of the 12
- * not-yet-built network properties. Header and Footer both check this and
- * render nothing at all on these routes — they must be fully isolated, blank
- * pages with no site chrome, not just a page missing its content.
- */
-export function isUnbuiltNetworkRoute(pathname: string): boolean {
-  const firstSegment = pathname.split('/')[1] ?? '';
-  const site = getNetworkSite(firstSegment);
-  return site !== undefined && site.slug !== ACTIVE_NETWORK_SLUG;
-}
-
 export interface LandmarkDef {
   slug: string;
   name: string;

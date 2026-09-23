@@ -162,7 +162,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (site.slug === 'golf-cart-rome') {
     const title = 'Golf Cart Tours of Rome — Guided, Seated & Accessible';
     const description =
-      "Guided golf cart tours of Rome for families, seniors, and anyone who&apos;d rather sit down and still see everything. Honest accessibility notes.";
+      "Guided golf cart tours of Rome for families, seniors, and anyone who’d rather sit down and still see everything. Honest accessibility notes.";
     const ogImage = `${GCR_HERO_IMAGE.src}?w=1200&h=630&q=80&auto=format&fit=crop`;
     return {
       title: { absolute: title },
@@ -274,9 +274,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   if (site.slug === 'tivoli-day-trip') {
-    const title = "Tivoli Day Trips — Villa d&apos;Este & Hadrian&apos;s Villa Guide";
+    const title = "Tivoli Day Trips — Villa d’Este & Hadrian’s Villa Guide";
     const description =
-      "First-hand Tivoli day-trip guide from Rome. Villa d&apos;Este vs Hadrian&apos;s Villa, half-day vs full-day, and honest transit logistics.";
+      "First-hand Tivoli day-trip guide from Rome. Villa d’Este vs Hadrian’s Villa, half-day vs full-day, and honest transit logistics.";
     const ogImage = `${TVDT_HERO_IMAGE.src}?w=1200&h=630&q=80&auto=format&fit=crop`;
     return {
       title: { absolute: title },

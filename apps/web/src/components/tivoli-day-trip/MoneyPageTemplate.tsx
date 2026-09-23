@@ -23,8 +23,8 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tuscanydaytrip.com/' },
-      { '@type': 'ListItem', position: 2, name: content.navTitle, item: `https://tuscanydaytrip.com${content.href}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tivolidaytrip.com/' },
+      { '@type': 'ListItem', position: 2, name: content.navTitle, item: `https://tivolidaytrip.com${content.href}` },
     ],
   };
 
@@ -46,7 +46,7 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
     name: content.navTitle,
     description: content.metaDescription,
     provider: { '@type': 'Organization', name: 'Tivoli Day Trip' },
-    url: `https://tuscanydaytrip.com${content.href}`,
+    url: `https://tivolidaytrip.com${content.href}`,
     touristType: 'Day trip visitor',
   };
 
@@ -60,7 +60,7 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
       '@type': 'Offer',
       priceCurrency: 'EUR',
       price: tour.priceFrom,
-      url: `https://tuscanydaytrip.com/go/${tour.slug}`,
+      url: `https://tivolidaytrip.com/go/${tour.slug}`,
       availability: 'https://schema.org/InStock',
     },
   }));

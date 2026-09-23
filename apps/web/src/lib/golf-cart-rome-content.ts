@@ -117,7 +117,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           "Most routes pass the Colosseum's exterior for a photo stop rather than including entry — this is a sightseeing tour, not a skip-the-line ticket, so book Colosseum entry separately if you want to go inside.",
       },
     ],
-    relatedSupportHref: '/what-the-route-covers',
+    relatedSupportHref: '/support/what-the-route-covers',
     relatedSupportLabel: 'What the Route Covers',
   },
   {
@@ -180,7 +180,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'Most private cart models seat up to 6; larger families or groups may need two carts booked together, which most operators can arrange at a small additional cost.',
       },
     ],
-    relatedSupportHref: '/best-for-whom',
+    relatedSupportHref: '/support/best-for-whom',
     relatedSupportLabel: 'Who a Cart Tour Is Best For',
   },
   {
@@ -243,7 +243,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           "The route and vehicle are largely the same — the difference is pacing (slightly longer stops) and the guide's explicit accommodation for riders who want more time or a slower transition between stops.",
       },
     ],
-    relatedSupportHref: '/accessibility-limited-mobility',
+    relatedSupportHref: '/support/accessibility-limited-mobility',
     relatedSupportLabel: 'Accessibility & Limited Mobility',
   },
   {
@@ -306,7 +306,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           "Mostly the same major landmarks, but timed around which monuments are actually floodlit after dark — check the specific listing's stop list before booking if a particular illuminated sight matters to you.",
       },
     ],
-    relatedSupportHref: '/how-long-it-takes',
+    relatedSupportHref: '/support/how-long-it-takes',
     relatedSupportLabel: 'How Long a Cart Tour Takes',
   },
   {
@@ -369,7 +369,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'Often yes — a self-guided walk costs nothing, and even a paid walking tour usually runs slightly less than a shared cart tour, though it demands considerably more physical effort.',
       },
     ],
-    relatedSupportHref: '/why-a-cart-heat-mobility-distance',
+    relatedSupportHref: '/support/why-a-cart-heat-mobility-distance',
     relatedSupportLabel: 'Why Take a Cart at All',
   },
 ];
@@ -519,7 +519,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Most operators allow trained service animals — confirm directly with the specific operator before booking, since policy can vary.',
       },
     ],
-    relatedMoneyHref: '/cart-tour-for-families-seniors',
+    relatedMoneyHref: '/money/cart-tour-for-families-seniors',
     relatedMoneyLabel: 'See Families & Seniors Tours',
   },
   {
@@ -568,7 +568,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           "Roughly 15-30 minutes depending on your hotel's distance from the historic center — confirm your pickup window with the operator the day before.",
       },
     ],
-    relatedMoneyHref: '/night-cart-tour',
+    relatedMoneyHref: '/money/night-cart-tour',
     relatedMoneyLabel: 'See the Night Cart Tour',
   },
   {
@@ -617,7 +617,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           "A cart if you want seated comfort and family/senior-friendly pacing; a Vespa if you're comfortable riding and want more speed and an active, adrenaline-tinged experience — see our sibling site Rome Vespa for that format.",
       },
     ],
-    relatedMoneyHref: '/cart-vs-walking-tour',
+    relatedMoneyHref: '/money/cart-vs-walking-tour',
     relatedMoneyLabel: 'Compare Cart vs Walking',
   },
 ];

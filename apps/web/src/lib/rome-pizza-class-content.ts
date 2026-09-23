@@ -123,7 +123,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           "At least 30-90 minutes for a same-day proof, though some operators pre-prove a batch earlier in the day so the full rise doesn't consume your class time — ask which approach your specific listing uses.",
       },
     ],
-    relatedSupportHref: '/what-you-make-and-eat',
+    relatedSupportHref: '/support/what-you-make-and-eat',
     relatedSupportLabel: 'What You Make and Eat',
   },
   {
@@ -134,7 +134,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     metaTitle: 'Pizza and Gelato Class Rome: Combo Timing, Compared',
     metaDescription:
       'A two-dish pizza and gelato combo class in Rome — combined-session timing, which comes first and why, and price vs booking separately.',
-    heroImage: { src: 'https://images.unsplash.com/photo-1585921122519-c21107fb054b', alt: 'A round of pizza dough being tossed and stretched in mid-air' },
+    heroImage: { src: 'https://images.unsplash.com/photo-1716237388087-4e47595a6615', alt: "A person kneading pizza dough by hand on a wooden table" },
     intro: [
       'A two-dish combo for anyone who wants the full afternoon — pizza first, gelato-making after, in one booking.',
       "The two techniques share a kitchen well because pizza dough needs real proving and baking time, and most operators use that dead time productively by starting the gelato base during the pizza's rest or bake stage rather than making guests wait around doing nothing.",
@@ -186,7 +186,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'A standalone pizza class runs shorter and cheaper — see our Rome Pizza-Making Class page for a pizza-only format if the gelato segment doesn\'t interest you.',
       },
     ],
-    relatedSupportHref: '/pizza-vs-pasta-class',
+    relatedSupportHref: '/support/pizza-vs-pasta-class',
     relatedSupportLabel: 'Pizza vs Pasta Class',
   },
   {
@@ -197,7 +197,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     metaTitle: 'Family Pizza Class Rome: Kid-Sized Dough, Honestly Reviewed',
     metaDescription:
       'A family pizza class in Rome built around age-appropriate technique — kid-sized dough portions, shorter sessions, and parent-and-child pairing.',
-    heroImage: { src: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5', alt: "A child's small hands shaping a portion of pizza dough on a floured table" },
+    heroImage: { src: 'https://images.unsplash.com/photo-1683633815082-783838d0dfe0', alt: "A group of people preparing food together in a kitchen" },
     intro: [
       "Kids-friendly pacing and portion-sized dough balls that make the stretch-and-toss step actually achievable for smaller hands.",
       "The core adjustment that separates a genuine family class from a standard class with kids tagging along: smaller dough portions that are actually manageable for a child's grip strength, and a shorter total session length that respects a shorter attention span.",
@@ -249,7 +249,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           "Yes — a private family pizza class runs a flat rate (typically €165 for up to a small group) and lets the instructor pace entirely around your children's ages rather than an average across a shared class.",
       },
     ],
-    relatedSupportHref: '/kids-pizza-classes',
+    relatedSupportHref: '/support/kids-pizza-classes',
     relatedSupportLabel: 'Kids Pizza Classes',
   },
   {
@@ -312,7 +312,7 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
           'Most private bookings cap at 8 guests; larger groups may need to split into two private bookings, which most operators can arrange at a reduced per-group rate.',
       },
     ],
-    relatedSupportHref: '/wine-pairing',
+    relatedSupportHref: '/support/wine-pairing',
     relatedSupportLabel: 'Wine Pairing',
   },
 ];
@@ -364,7 +364,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           'Often yes for the standard class (usually a soft drink or a single glass of wine), though a dedicated wine-pairing option goes further — check the wine-pairing page for specifics.',
       },
     ],
-    relatedMoneyHref: '/rome-pizza-making-class',
+    relatedMoneyHref: '/money/rome-pizza-making-class',
     relatedMoneyLabel: 'See the Rome Pizza-Making Class',
   },
   {
@@ -375,7 +375,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
     metaTitle: 'Kids Pizza Classes in Rome: Age Limits & What to Expect',
     metaDescription:
       'What to check before booking a kids pizza class in Rome — age minimums, oven-area safety, and dough portion sizing for smaller hands.',
-    heroImage: { src: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5', alt: "A child's small hands shaping a portion of pizza dough on a floured table" },
+    heroImage: { src: 'https://images.unsplash.com/photo-1683633815082-783838d0dfe0', alt: "A group of people preparing food together in a kitchen" },
     sections: [
       {
         heading: 'Age minimums, honestly stated',
@@ -413,7 +413,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           "Rare — nearly every listing on this site is a parent-and-child pairing format rather than a drop-off class, mainly for supervision reasons around the oven stage.",
       },
     ],
-    relatedMoneyHref: '/family-pizza-class',
+    relatedMoneyHref: '/money/family-pizza-class',
     relatedMoneyLabel: 'See the Family Pizza Class',
   },
   {
@@ -511,7 +511,7 @@ export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [
           "Most pairing sessions pour 2-3 wines matched to the pizza styles made in class — a lighter white alongside a Margherita-style pie, a fuller red alongside a meat-topped one.",
       },
     ],
-    relatedMoneyHref: '/private-pizza-class',
+    relatedMoneyHref: '/money/private-pizza-class',
     relatedMoneyLabel: 'See the Private Pizza Class',
   },
 ];

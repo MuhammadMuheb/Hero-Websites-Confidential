@@ -177,7 +177,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     atAGlance: [],
     sections: [],
     faqs: [],
-    relatedSupportHref: '/getting-to-tivoli-train-vs-tour',
+    relatedSupportHref: '/support/getting-to-tivoli-train-vs-tour',
     relatedSupportLabel: 'Getting to Tivoli',
   },
   {
@@ -197,7 +197,7 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
   },
   {
     href: '/private-tivoli-tour',
-    heroImage: { src: 'https://images.unsplash.com/photo-1552832860-cfb67165eaf0', alt: "Sunset light over Villa d'Este fountains with golden-hour glow on the water features" },
+    heroImage: { src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828', alt: "Early morning light over the gardens of Villa d'Este" },
     h1: 'Private Tivoli Tour: Door-to-Door Transport & Pacing',
     keyword: 'private tivoli tour',
     metaTitle: 'Private Tivoli Tour: Door-to-Door Transport & Pacing',
@@ -207,12 +207,12 @@ const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     atAGlance: [],
     sections: [],
     faqs: [],
-    relatedSupportHref: '/getting-to-tivoli-train-vs-tour',
+    relatedSupportHref: '/support/getting-to-tivoli-train-vs-tour',
     relatedSupportLabel: 'Getting to Tivoli',
   },
   {
     href: '/half-day-tivoli',
-    heroImage: { src: 'https://images.unsplash.com/photo-1549144611-11a278e1e57a', alt: "Aerial view of Villa d'Este's terraced gardens with fountains and symmetrical landscaping" },
+    heroImage: { src: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f', alt: "Aerial view of Villa d'Este's terraced gardens with fountains and symmetrical landscaping" },
     h1: "Half-Day Tivoli: Villa d'Este Fountains Only",
     keyword: 'half day tivoli tour',
     metaTitle: "Half-Day Tivoli: Villa d'Este Fountains Only",

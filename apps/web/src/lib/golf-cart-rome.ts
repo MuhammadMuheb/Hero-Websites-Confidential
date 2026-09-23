@@ -47,7 +47,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Private Cart Tour',
-    href: '/private-cart-tour',
+    href: '/money/private-cart-tour',
     blurb: "A private cart means your family's pace, not a stranger's — useful when you've got very different energy levels in one group.",
     keyword: 'private golf cart tour rome',
     cta: 'Compare private tours',
@@ -56,7 +56,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Cart Tour for Families & Seniors',
-    href: '/cart-tour-for-families-seniors',
+    href: '/money/cart-tour-for-families-seniors',
     blurb: "Built around comfort and accessibility from the ground up — not a walking tour with a cart bolted on as an afterthought.",
     keyword: 'rome tour for seniors',
     cta: 'See accessible tours',
@@ -65,7 +65,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Night Cart Tour',
-    href: '/night-cart-tour',
+    href: '/money/night-cart-tour',
     blurb: 'Illuminated Rome from a cart at night — cooler temperatures, dramatically lit monuments, and none of the daytime heat fatigue.',
     keyword: 'rome night tour cart',
     cta: 'See night tours',
@@ -74,7 +74,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Cart vs Walking Tour',
-    href: '/cart-vs-walking-tour',
+    href: '/money/cart-vs-walking-tour',
     blurb: 'A cart covers more ground in less time with zero fatigue — the honest comparison of what you gain and what you trade away.',
     keyword: 'golf cart vs walking rome',
     cta: 'Compare formats',
@@ -212,10 +212,10 @@ export const FEATURED_TOURS: FeaturedTour[] = [
  */
 const MONEY_PAGE_RELEVANCE: Record<string, string[]> = {
   '/money/golf-cart-tour-of-rome': ['guided', 'shared', 'first-timer'],
-  '/private-cart-tour': ['private'],
-  '/cart-tour-for-families-seniors': ['family', 'seniors', 'accessible'],
-  '/night-cart-tour': ['night', 'sunset', 'guided'],
-  '/cart-vs-walking-tour': ['guided', 'shared', 'family'],
+  '/money/private-cart-tour': ['private'],
+  '/money/cart-tour-for-families-seniors': ['family', 'seniors', 'accessible'],
+  '/money/night-cart-tour': ['night', 'sunset', 'guided'],
+  '/money/cart-vs-walking-tour': ['guided', 'shared', 'family'],
 };
 
 /**
@@ -263,31 +263,31 @@ export const GOLF_CART_ROME_GALLERY = [
 export const SUPPORT_PAGES = [
   {
     title: 'Why a Cart at All',
-    href: '/why-a-cart-heat-mobility-distance',
+    href: '/support/why-a-cart-heat-mobility-distance',
     keyword: 'why take a golf cart tour rome',
     image: { src: 'https://images.unsplash.com/photo-1668171321834-658179e37f5e', alt: "An elevated view over Rome's dense historic center, showing how close together its major landmarks sit" },
   },
   {
     title: 'What the Route Covers',
-    href: '/what-the-route-covers',
+    href: '/support/what-the-route-covers',
     keyword: 'golf cart tour rome route',
     image: { src: 'https://images.unsplash.com/photo-1662398885856-cf2ab6e981b2', alt: 'Historic buildings lining a quiet street near Piazza Navona' },
   },
   {
     title: 'Accessibility & Limited Mobility',
-    href: '/accessibility-limited-mobility',
+    href: '/support/accessibility-limited-mobility',
     keyword: 'wheelchair accessible tour rome',
     image: { src: 'https://images.unsplash.com/photo-1640307112649-01bfc4c77a77', alt: 'A narrow Trastevere street with its original, uneven cobblestone paving' },
   },
   {
     title: 'How Long It Takes',
-    href: '/how-long-it-takes',
+    href: '/support/how-long-it-takes',
     keyword: 'how long is a golf cart tour rome',
     image: { src: 'https://images.unsplash.com/photo-1573070917719-cb3768c42634', alt: 'Visitors gathered around a fountain in an open Rome piazza' },
   },
   {
     title: 'Best For Whom',
-    href: '/best-for-whom',
+    href: '/support/best-for-whom',
     keyword: 'who is a golf cart tour rome for',
     image: { src: 'https://images.unsplash.com/photo-1561251224-e393160cd769', alt: 'A row of electric carts lined up on a paved road, ready to depart' },
   },
@@ -323,12 +323,12 @@ export const FAQS = [
 
 export const QUICK_LINKS = [
   { label: 'Golf-Cart Tour', href: '/money/golf-cart-tour-of-rome' },
-  { label: 'Private Cart Tour', href: '/private-cart-tour' },
-  { label: 'Families & Seniors', href: '/cart-tour-for-families-seniors' },
-  { label: 'Night Tour', href: '/night-cart-tour' },
-  { label: 'Cart vs Walking', href: '/cart-vs-walking-tour' },
-  { label: 'Accessibility', href: '/accessibility-limited-mobility' },
-  { label: 'How Long It Takes', href: '/how-long-it-takes' },
+  { label: 'Private Cart Tour', href: '/money/private-cart-tour' },
+  { label: 'Families & Seniors', href: '/money/cart-tour-for-families-seniors' },
+  { label: 'Night Tour', href: '/money/night-cart-tour' },
+  { label: 'Cart vs Walking', href: '/money/cart-vs-walking-tour' },
+  { label: 'Accessibility', href: '/support/accessibility-limited-mobility' },
+  { label: 'How Long It Takes', href: '/support/how-long-it-takes' },
 ];
 
 export const EXPLORE_LINKS = MONEY_PAGES.map((p) => ({ label: p.title, href: p.href }));

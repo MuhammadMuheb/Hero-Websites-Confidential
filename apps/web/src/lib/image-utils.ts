@@ -3,16 +3,16 @@
  * Ensures no broken image icons or missing images across the site
  */
 
-const DEFAULT_IMAGE_URL = 'https://images.unsplash.com/photo-1504674900967-86e697a72fb2?w=800';
+const DEFAULT_IMAGE_URL = 'https://images.unsplash.com/photo-1585688973401-e696e4ca678a?w=800';
 
 export const IMAGE_FALLBACKS: Record<string, string> = {
   // Tour images
-  'tour-default': 'https://images.unsplash.com/photo-1504674900967-86e697a72fb2?w=800',
+  'tour-default': 'https://images.unsplash.com/photo-1585688973401-e696e4ca678a?w=800',
 
   // Category fallbacks - Food tours
   'pizza': 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=800',
-  'pasta': 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=800',
-  'gelato': 'https://images.unsplash.com/photo-1577003832033-a0d99e4e7ec6?w=800',
+  'pasta': 'https://images.unsplash.com/photo-1642354571956-d77dfd9596bb?w=800',
+  'gelato': 'https://images.unsplash.com/photo-1555992643-0c053cbd87e1?w=800',
   'wine': 'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?w=800',
   'beer-and-wine': 'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?w=800',
   'street-food': 'https://images.unsplash.com/photo-1552539618-7eec9b4d1796?w=800',
@@ -41,7 +41,7 @@ export const IMAGE_FALLBACKS: Record<string, string> = {
   'seasonal-events': 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800',
 
   // Generic fallback
-  'default': 'https://images.unsplash.com/photo-1504674900967-86e697a72fb2?w=800',
+  'default': 'https://images.unsplash.com/photo-1585688973401-e696e4ca678a?w=800',
 };
 
 /**

@@ -19,7 +19,7 @@ export interface NavItem {
 export const MONEY_PAGES = [
   {
     title: 'Amalfi from Rome',
-    href: '/money/amalfi-from-rome',
+    href: '/amalfi-from-rome',
     blurb: 'The long-day flagship from Rome — over 4 hours of one-way travel, which makes this the trip where "is it actually worth it" matters most.',
     keyword: 'amalfi coast from rome',
     cta: 'Compare Rome day trips',
@@ -28,7 +28,7 @@ export const MONEY_PAGES = [
   },
   {
     title: 'Amalfi from Naples/Sorrento',
-    href: '/money/amalfi-from-naples-sorrento',
+    href: '/amalfi-from-naples-sorrento',
     blurb: 'A short-hop origin that makes a proper Amalfi day genuinely realistic instead of an exhausting round-trip slog.',
     keyword: 'amalfi from sorrento',
     cta: 'Compare coastal day trips',
@@ -104,8 +104,8 @@ export const FEATURED_TOURS: FeaturedTour[] = [
 ];
 
 export const NAV_ITEMS: NavItem[] = [
-  { title: 'From Rome', href: '/money/amalfi-from-rome', keyword: 'amalfi coast from rome' },
-  { title: 'From Naples/Sorrento', href: '/money/amalfi-from-naples-sorrento', keyword: 'amalfi from sorrento' },
+  { title: 'From Rome', href: '/amalfi-from-rome', keyword: 'amalfi coast from rome' },
+  { title: 'From Naples/Sorrento', href: '/amalfi-from-naples-sorrento', keyword: 'amalfi from sorrento' },
   { title: 'Positano, Amalfi, Ravello', href: '/positano-amalfi-ravello', keyword: 'positano amalfi ravello tour' },
   { title: 'Boat Tours', href: '/money/amalfi-boat-day-trip', keyword: 'amalfi boat tour' },
   { title: 'Boat vs Road', href: '/boat-vs-road', keyword: 'amalfi boat vs road' },

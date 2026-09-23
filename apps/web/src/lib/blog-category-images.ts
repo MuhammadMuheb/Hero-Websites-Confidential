@@ -6,11 +6,11 @@
 
 export const BLOG_CATEGORY_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
   'food-guides': {
-    src: 'https://images.unsplash.com/photo-1555939594-58d7cb561552',
+    src: 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e',
     alt: 'Close-up of authentic Roman dishes on a wooden table — cacio e pepe and other pasta classics',
   },
   'neighborhood-guides': {
-    src: 'https://images.unsplash.com/photo-1592840042225-a83e8fad67d2',
+    src: 'https://images.unsplash.com/photo-1640307112649-01bfc4c77a77',
     alt: 'A charming Roman street in Trastevere with ivy-covered buildings and restaurant seating',
   },
   'practical-tips': {

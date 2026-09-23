@@ -270,7 +270,7 @@ export const SUPPORT_PAGES = [
   },
   {
     title: 'Colosseum + Forum + Palatine Itinerary',
-    href: '/support/colosseum-forum-palatine-itinerary',
+    href: '/colosseum-forum-palatine-itinerary',
     keyword: 'colosseum forum palatine itinerary',
     image: { src: 'https://images.unsplash.com/photo-1663143050642-69240b347b2b', alt: 'Full daytime view of the Colosseum exterior' },
   },
