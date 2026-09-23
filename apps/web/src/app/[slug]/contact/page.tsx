@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getNetworkSite, SITE_DOMAIN } from '@/lib/tours';
+import Link from '@/components/NetworkLink';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -36,7 +37,7 @@ export default async function PropertyContactPage({ params }: Props) {
             <div className="space-y-6">
               <div>
                 <p className="text-sm font-semibold text-faint mb-2">Email</p>
-                <a href="mailto:hello@example.com" className="text-base font-medium text-accent hover:underline">hello@{slug.replace(/-/g, '')}.com</a>
+                <p className="text-base font-medium text-accent">Contact us for inquiries</p>
               </div>
               <div>
                 <p className="text-sm font-semibold text-faint mb-2">Response Time</p>

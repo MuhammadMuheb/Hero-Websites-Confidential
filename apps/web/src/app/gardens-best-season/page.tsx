@@ -30,7 +30,7 @@ export default function BestSeasonPage() {
             Best Time to Visit Villa d&apos;Este: Month-by-Month Guide
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/90">
-            When do fountains flow best? When are crowds smallest? Here's the honest breakdown by month.
+            When do fountains flow best? When are crowds smallest? Here&apos;s the honest breakdown by month.
           </p>
         </div>
       </section>

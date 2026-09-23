@@ -88,7 +88,7 @@ export default async function PropertyAboutPage({ params }: Props) {
             <div className="rounded-media border border-line bg-paper-tint p-6">
               <h3 className="font-bold text-accent">Quality</h3>
               <p className="mt-3 text-sm text-ink-muted">
-                We set a high bar. If something doesn't meet our standards, it simply doesn't get recommended.
+                We set a high bar. If something doesn&apos;t meet our standards, it simply doesn&apos;t get recommended.
               </p>
             </div>
           </div>
