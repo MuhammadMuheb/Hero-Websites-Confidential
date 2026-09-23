@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import { UnderConstructionNotice } from '@/components/UnderConstructionNotice';
 import { MoneyPageTemplate } from '@/components/underground-colosseum/MoneyPageTemplate';
 import { SupportPageTemplate } from '@/components/underground-colosseum/SupportPageTemplate';
-import { UCAboutPage } from '@/components/underground-colosseum/UCAboutPage';
 import { UCContactPage } from '@/components/underground-colosseum/UCContactPage';
 import { UCFAQPage } from '@/components/underground-colosseum/UCFAQPage';
 import { UCPrivacyPolicyPage } from '@/components/underground-colosseum/UCPrivacyPolicyPage';
@@ -15,7 +14,6 @@ import { UCBlogPage } from '@/components/underground-colosseum/UCBlogPage';
 import { UCNeighborhoodsPage } from '@/components/underground-colosseum/UCNeighborhoodsPage';
 import { MoneyPageTemplate as PVMoneyPageTemplate } from '@/components/private-vatican/MoneyPageTemplate';
 import { SupportPageTemplate as PVSupportPageTemplate } from '@/components/private-vatican/SupportPageTemplate';
-import { PVAboutPage } from '@/components/private-vatican/PVAboutPage';
 import { PVContactPage } from '@/components/private-vatican/PVContactPage';
 import { PVFAQPage } from '@/components/private-vatican/PVFAQPage';
 import { PVPrivacyPolicyPage } from '@/components/private-vatican/PVPrivacyPolicyPage';
@@ -26,7 +24,6 @@ import { PVToursPage } from '@/components/private-vatican/PVToursPage';
 import { PVBlogPage } from '@/components/private-vatican/PVBlogPage';
 import { MoneyPageTemplate as PDTMoneyPageTemplate } from '@/components/pompeii-day-trip/MoneyPageTemplate';
 import { SupportPageTemplate as PDTSupportPageTemplate } from '@/components/pompeii-day-trip/SupportPageTemplate';
-import { PDTAboutPage } from '@/components/pompeii-day-trip/PDTAboutPage';
 import { PDTContactPage } from '@/components/pompeii-day-trip/PDTContactPage';
 import { PDTFAQPage } from '@/components/pompeii-day-trip/PDTFAQPage';
 import { PDTPrivacyPolicyPage } from '@/components/pompeii-day-trip/PDTPrivacyPolicyPage';
@@ -43,7 +40,6 @@ import { PDTNeighborhoodsPage } from '@/components/pompeii-day-trip/PDTNeighborh
 import { PDTNeighborhoodDetailPage } from '@/components/pompeii-day-trip/PDTNeighborhoodDetailPage';
 import { MoneyPageTemplate as RVMoneyPageTemplate } from '@/components/rome-vespa/MoneyPageTemplate';
 import { SupportPageTemplate as RVSupportPageTemplate } from '@/components/rome-vespa/SupportPageTemplate';
-import { RVAboutPage } from '@/components/rome-vespa/RVAboutPage';
 import { RVContactPage } from '@/components/rome-vespa/RVContactPage';
 import { RVFAQPage } from '@/components/rome-vespa/RVFAQPage';
 import { RVPrivacyPolicyPage } from '@/components/rome-vespa/RVPrivacyPolicyPage';
@@ -55,7 +51,6 @@ import { RVBlogPage } from '@/components/rome-vespa/RVBlogPage';
 import { RVNeighborhoodsPage } from '@/components/rome-vespa/RVNeighborhoodsPage';
 import { MoneyPageTemplate as GCRMoneyPageTemplate } from '@/components/golf-cart-rome/MoneyPageTemplate';
 import { SupportPageTemplate as GCRSupportPageTemplate } from '@/components/golf-cart-rome/SupportPageTemplate';
-import { GCRAboutPage } from '@/components/golf-cart-rome/GCRAboutPage';
 import { GCRContactPage } from '@/components/golf-cart-rome/GCRContactPage';
 import { GCRFAQPage } from '@/components/golf-cart-rome/GCRFAQPage';
 import { GCRPrivacyPolicyPage } from '@/components/golf-cart-rome/GCRPrivacyPolicyPage';
@@ -66,7 +61,6 @@ import { GCRToursPage } from '@/components/golf-cart-rome/GCRToursPage';
 import { GCRBlogPage } from '@/components/golf-cart-rome/GCRBlogPage';
 import { MoneyPageTemplate as CIRMoneyPageTemplate } from '@/components/cooking-in-rome/MoneyPageTemplate';
 import { SupportPageTemplate as CIRSupportPageTemplate } from '@/components/cooking-in-rome/SupportPageTemplate';
-import { CIRAboutPage } from '@/components/cooking-in-rome/CIRAboutPage';
 import { CIRContactPage } from '@/components/cooking-in-rome/CIRContactPage';
 import { CIRFAQPage } from '@/components/cooking-in-rome/CIRFAQPage';
 import { CIRPrivacyPolicyPage } from '@/components/cooking-in-rome/CIRPrivacyPolicyPage';
@@ -77,7 +71,6 @@ import { CIRToursPage } from '@/components/cooking-in-rome/CIRToursPage';
 import { CIRBlogPage } from '@/components/cooking-in-rome/CIRBlogPage';
 import { MoneyPageTemplate as RPCMoneyPageTemplate } from '@/components/rome-pizza-class/MoneyPageTemplate';
 import { SupportPageTemplate as RPCSupportPageTemplate } from '@/components/rome-pizza-class/SupportPageTemplate';
-import { RPCAboutPage } from '@/components/rome-pizza-class/RPCAboutPage';
 import { RPCContactPage } from '@/components/rome-pizza-class/RPCContactPage';
 import { RPCFAQPage } from '@/components/rome-pizza-class/RPCFAQPage';
 import { RPCPrivacyPolicyPage } from '@/components/rome-pizza-class/RPCPrivacyPolicyPage';
@@ -88,11 +81,9 @@ import { RPCToursPage } from '@/components/rome-pizza-class/RPCToursPage';
 import { RPCBlogPage } from '@/components/rome-pizza-class/RPCBlogPage';
 import { MoneyPageTemplate as TCMoneyPageTemplate } from '@/components/tiramisu-class/MoneyPageTemplate';
 import { SupportPageTemplate as TCSupportPageTemplate } from '@/components/tiramisu-class/SupportPageTemplate';
-import { TCAboutPage } from '@/components/tiramisu-class/TCAboutPage';
 import { TCContactPage } from '@/components/tiramisu-class/TCContactPage';
 import { MoneyPageTemplate as TDTMoneyPageTemplate } from '@/components/tuscany-day-trip/MoneyPageTemplate';
 import { SupportPageTemplate as TDTSupportPageTemplate } from '@/components/tuscany-day-trip/SupportPageTemplate';
-import { TDTAboutPage } from '@/components/tuscany-day-trip/TDTAboutPage';
 import { TDTContactPage } from '@/components/tuscany-day-trip/TDTContactPage';
 import { TDTFAQPage } from '@/components/tuscany-day-trip/TDTFAQPage';
 import { TDTPrivacyPolicyPage } from '@/components/tuscany-day-trip/TDTPrivacyPolicyPage';
@@ -103,15 +94,12 @@ import { TDTToursPage } from '@/components/tuscany-day-trip/TDTToursPage';
 import { TDTBlogPage } from '@/components/tuscany-day-trip/TDTBlogPage';
 import { MoneyPageTemplate as ADTMoneyPageTemplate } from '@/components/amalfi-day-trip/MoneyPageTemplate';
 import { SupportPageTemplate as ADTSupportPageTemplate } from '@/components/amalfi-day-trip/SupportPageTemplate';
-import { ADTAboutPage } from '@/components/amalfi-day-trip/ADTAboutPage';
 import { ADTContactPage } from '@/components/amalfi-day-trip/ADTContactPage';
 import { MoneyPageTemplate as TVDTMoneyPageTemplate } from '@/components/tivoli-day-trip/MoneyPageTemplate';
 import { SupportPageTemplate as TVDTSupportPageTemplate } from '@/components/tivoli-day-trip/SupportPageTemplate';
-import { TVDTAboutPage } from '@/components/tivoli-day-trip/TVDTAboutPage';
 import { TVDTContactPage } from '@/components/tivoli-day-trip/TVDTContactPage';
 import { MoneyPageTemplate as NSFMoneyPageTemplate } from '@/components/naples-street-food/MoneyPageTemplate';
 import { SupportPageTemplate as NSFSupportPageTemplate } from '@/components/naples-street-food/SupportPageTemplate';
-import { NSFAboutPage } from '@/components/naples-street-food/NSFAboutPage';
 import { NSFContactPage } from '@/components/naples-street-food/NSFContactPage';
 import { getNetworkSite } from '@/lib/tours';
 import { getAllBlogPosts, getAllTours } from '@/lib/firestore';
@@ -1352,7 +1340,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <MoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <SupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <UCAboutPage />;
     if (resolved?.type === 'contact') return <UCContactPage />;
     if (resolved?.type === 'faq') return <UCFAQPage />;
     if (resolved?.type === 'privacy') return <UCPrivacyPolicyPage />;
@@ -1372,7 +1359,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <PVMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <PVSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <PVAboutPage />;
     if (resolved?.type === 'contact') return <PVContactPage />;
     if (resolved?.type === 'faq') return <PVFAQPage />;
     if (resolved?.type === 'privacy') return <PVPrivacyPolicyPage />;
@@ -1459,7 +1445,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <PDTMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <PDTSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <PDTAboutPage />;
     if (resolved?.type === 'contact') return <PDTContactPage />;
     if (resolved?.type === 'faq') return <PDTFAQPage />;
     if (resolved?.type === 'privacy') return <PDTPrivacyPolicyPage />;
@@ -1478,7 +1463,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <RVMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <RVSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <RVAboutPage />;
     if (resolved?.type === 'contact') return <RVContactPage />;
     if (resolved?.type === 'faq') return <RVFAQPage />;
     if (resolved?.type === 'privacy') return <RVPrivacyPolicyPage />;
@@ -1498,7 +1482,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <GCRMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <GCRSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <GCRAboutPage />;
     if (resolved?.type === 'contact') return <GCRContactPage />;
     if (resolved?.type === 'faq') return <GCRFAQPage />;
     if (resolved?.type === 'privacy') return <GCRPrivacyPolicyPage />;
@@ -1517,7 +1500,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <CIRMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <CIRSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <CIRAboutPage />;
     if (resolved?.type === 'contact') return <CIRContactPage />;
     if (resolved?.type === 'faq') return <CIRFAQPage />;
     if (resolved?.type === 'privacy') return <CIRPrivacyPolicyPage />;
@@ -1536,7 +1518,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <RPCMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <RPCSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <RPCAboutPage />;
     if (resolved?.type === 'contact') return <RPCContactPage />;
     if (resolved?.type === 'faq') return <RPCFAQPage />;
     if (resolved?.type === 'privacy') return <RPCPrivacyPolicyPage />;
@@ -1555,7 +1536,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <TCMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <TCSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <TCAboutPage />;
     if (resolved?.type === 'contact') return <TCContactPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
@@ -1567,7 +1547,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <TDTMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <TDTSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <TDTAboutPage />;
     if (resolved?.type === 'contact') return <TDTContactPage />;
     if (resolved?.type === 'faq') return <TDTFAQPage />;
     if (resolved?.type === 'privacy') return <TDTPrivacyPolicyPage />;
@@ -1586,7 +1565,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <ADTMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <ADTSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <ADTAboutPage />;
     if (resolved?.type === 'contact') return <ADTContactPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
@@ -1598,7 +1576,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <TVDTMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <TVDTSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <TVDTAboutPage />;
     if (resolved?.type === 'contact') return <TVDTContactPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
@@ -1610,7 +1587,6 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
     if (resolved?.type === 'money') return <NSFMoneyPageTemplate content={resolved.content} />;
     if (resolved?.type === 'support') return <NSFSupportPageTemplate content={resolved.content} />;
-    if (resolved?.type === 'about') return <NSFAboutPage />;
     if (resolved?.type === 'contact') return <NSFContactPage />;
 
     return <UnderConstructionNotice siteName={site.name} />;
