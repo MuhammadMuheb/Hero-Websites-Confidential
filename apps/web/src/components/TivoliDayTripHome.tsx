@@ -39,15 +39,15 @@ function MoneyPagesCarousel() {
       <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
         <div className="flex flex-wrap items-end justify-between gap-y-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">The 4 ways to book</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Choose Your Experience</p>
             <h2 className="mt-2 font-display text-[26px] font-bold leading-[1.2] tracking-tight text-ink sm:text-[32px]">
-              Choose Your Tivoli Day Trip
+              8 Featured Day Trips
             </h2>
           </div>
-          <CarouselArrows label="day trip page" onPrev={() => scrollByOneCard(-1)} onNext={() => scrollByOneCard(1)} />
+          <CarouselArrows label="day trip" onPrev={() => scrollByOneCard(-1)} onNext={() => scrollByOneCard(1)} />
         </div>
         <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
-          Compare 4 distinct day trip options — each with different timing, transport, and price points, so you can find the one that fits your schedule and budget.
+          Hand-picked tours from top operators — find the perfect match for your schedule, budget, and interests. All rated, verified, and bookable through trusted partner sites.
         </p>
 
         <div
@@ -55,37 +55,36 @@ function MoneyPagesCarousel() {
           className="mt-8 grid auto-cols-[calc(100%-2.5rem)] grid-flow-col gap-6 overflow-x-auto scroll-smooth [scrollbar-width:none] sm:auto-cols-[calc((100%-1.5rem)/2)] lg:auto-cols-[calc((100%-3*1.5rem)/4)] [&::-webkit-scrollbar]:hidden"
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          {MONEY_PAGES.map((page) => (
-            <Link
-              key={page.href}
-              href={page.href}
+          {FEATURED_TOURS.map((tour) => (
+            <div
+              key={tour.slug}
               style={{ scrollSnapAlign: 'start' }}
-              className="group flex flex-col overflow-hidden rounded-media border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-line hover:shadow-card-hover"
+              className="flex flex-col overflow-hidden rounded-media border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-media">
                 <SafeImage
-                  src={page.image.src}
-                  alt={page.image.alt}
+                  src={tour.image.src}
+                  alt={tour.image.alt}
                   fill
                   sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 90vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
                 />
-                {page.badge ? <RibbonBadge label={page.badge} /> : null}
+                {tour.badge ? <RibbonBadge label={tour.badge} /> : null}
               </div>
               <div className="flex flex-1 flex-col p-4">
-                <h3 className="font-display text-[16px] font-bold leading-snug text-ink">{page.title}</h3>
-                <p className="mt-2 flex-1 text-[14.5px] leading-relaxed text-ink-muted">{page.blurb}</p>
-                <span className="mt-3 inline-block w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">
-                  {page.keyword}
+                <span className="w-fit rounded-full bg-media px-2.5 py-1 text-xs font-semibold text-ink-muted">
+                  {tour.partner}
                 </span>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-accent">
-                  {page.cta}
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
+                <h3 className="mt-3 font-display text-[16px] font-bold leading-snug text-ink">{tour.title}</h3>
+                <p className="mt-1.5 text-sm text-ink-muted">{tour.meta}</p>
+                <div className="mt-4 flex items-end justify-between">
+                  <span className="font-display text-2xl font-bold tabular-nums text-ink">from €{tour.priceFrom}</span>
+                  <Link href={tour.href} className="text-sm font-bold text-accent hover:underline">
+                    View &rarr;
+                  </Link>
+                </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

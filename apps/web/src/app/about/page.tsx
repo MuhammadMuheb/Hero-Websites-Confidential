@@ -67,7 +67,6 @@ export default async function AboutPage() {
       <HowItStartedSection />
       <HowWeChooseSection />
       <ExploreLinksSection tours={tours} allBlogPosts={allBlogPosts} />
-      <AllDestinationsSection />
     </>
   );
 }

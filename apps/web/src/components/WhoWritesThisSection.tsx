@@ -36,7 +36,7 @@ export function WhoWritesThisSection() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage
-              src="https://images.unsplash.com/photo-1771476320575-02ab6cc4ecd9"
+              src="https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=600&h=450&fit=crop"
               alt="An evening aperitivo stop in Rome, the kind of first-hand experience behind every tour on this site"
               fill
               sizes="(min-width: 1024px) 560px, 90vw"
