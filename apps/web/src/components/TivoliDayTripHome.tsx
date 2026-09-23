@@ -239,12 +239,12 @@ export function TivoliDayTripHome() {
       {/* ---------- before you book: Tivoli facts ---------- */}
       <section className="border-b border-line bg-paper-tint py-14 sm:py-16">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Before you book</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Plan Smarter</p>
           <h2 className="mt-2 font-display text-[24px] font-bold leading-snug tracking-tight text-ink sm:text-[28px]">
-            Tivoli, by the Numbers
+            Everything You Need to Know
           </h2>
           <p className="mt-3 max-w-[62ch] text-[15.5px] leading-relaxed text-ink-muted">
-            Essential facts about Tivoli — distance from Rome, travel time by train and bus, visit duration for each villa, and best times to visit.
+            Key logistics at a glance: How far? How long to travel? How much time at each site? When to go? Get the facts that shape your perfect day trip.
           </p>
           <div className="mt-8">
             <QuickFactsStrip facts={QUICK_FACTS} />

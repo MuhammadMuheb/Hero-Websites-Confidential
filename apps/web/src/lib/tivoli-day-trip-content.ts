@@ -106,12 +106,12 @@ export const AUTHOR = {
 export const FAQS = FAQ_ITEMS;
 
 export const QUICK_FACTS = [
-  { label: 'Distance from Rome', value: 'Tivoli: ~28 km', detail: 'About 30 kilometers northeast of Rome' },
-  { label: 'Travel time (from Rome)', value: '45 min – 1 hour by train + bus', detail: 'Regional train plus local bus to both villas' },
-  { label: 'Villa d\'Este visit time', value: '1.5–2.5 hours', detail: 'Fountains and garden tour duration' },
-  { label: "Hadrian's Villa visit time", value: '2–3 hours', detail: 'Ruins and archaeological site tour duration' },
-  { label: 'Best months', value: 'May–June, Sept–Oct', detail: 'Mild weather and lower crowds' },
-  { label: 'Peak season', value: 'July–August', detail: 'Summer brings larger crowds and heat' },
+  { label: 'Distance Northeast', value: '28 km from Rome', detail: 'Easy day trip by train and local bus' },
+  { label: 'Travel Time', value: '1 hour round-trip', detail: 'Fast regional rail connection to Tivoli station' },
+  { label: 'Fountain Gardens', value: '2 hours to explore', detail: 'Villa d\'Este\'s Renaissance masterpiece' },
+  { label: 'Ancient Ruins', value: '3 hours to discover', detail: 'Hadrian\'s Villa imperial archaeological site' },
+  { label: 'Golden Season', value: 'May through October', detail: 'Perfect weather and manageable crowds' },
+  { label: 'Peak Crowds', value: 'July & August', detail: 'Summer heat and tourist congestion' },
 ];
 
 export interface QuickLink {
