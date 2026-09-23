@@ -6,8 +6,8 @@
 export { AUTHOR, FAQS, QUICK_FACTS, QUICK_LINKS } from './tivoli-day-trip-content';
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1495483277328-e3f5e6c20619',
-  alt: 'Cascading fountains of Villa d\'Este at Tivoli, with terraced Renaissance gardens and tall cypress trees framing the water features',
+  src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
+  alt: 'Panoramic view of Tivoli landscape with Villa d\'Este and Hadrian\'s Villa nestled in the rolling Lazio countryside, ancient history meets Renaissance beauty',
 };
 
 export interface NavItem {

@@ -5,17 +5,17 @@
  */
 
 export const HERO = {
-  eyebrow: undefined,
-  headline: "Tivoli Day Trips — Villa d'Este's Fountains, Hadrian's Ruins",
+  eyebrow: 'ESCAPE ROME FOR A DAY',
+  headline: 'Renaissance Fountains & Imperial Ruins: The Ultimate Tivoli Guide',
   subheadline:
-    "A half-day or full-day trip from Rome to two of Italy's most underrated sites — written by a guide who's walked both villas enough times to know which one to prioritise if you're short on time.",
-  primaryCta: { label: 'Plan My Tivoli Day Trip', href: '#tours' },
-  secondaryCta: { label: 'Which villa should I prioritise?', href: '/which-villa-to-prioritise' },
+    "Discover Villa d'Este's breathtaking water features and Hadrian's Villa's ancient grandeur. Complete guide with expert comparisons, logistics, and insider tips for the perfect day trip.",
+  primaryCta: { label: 'Explore Tivoli Tours', href: '#tours' },
+  secondaryCta: { label: 'Start Planning Your Visit', href: '#plan-your-trip' },
   trustBullets: [
-    'Both villas walked and compared first-hand',
-    'Honest half-day vs full-day guidance',
-    'Train-vs-tour logistics from Rome, explained plainly',
-    'Strictly Tivoli — no generic Rome day-trip filler',
+    'Expert recommendations from Italy-based guides',
+    'Real photos and detailed site comparisons',
+    'Easy-to-follow Rome transportation guide',
+    'Best times to visit and skip the crowds',
   ],
 };
 
