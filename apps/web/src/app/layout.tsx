@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Fraunces, Playfair_Display, Public_Sans } from 'next/font/google';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BING_SITE_VERIFICATION, GA_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION } from '@/lib/analytics';
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
