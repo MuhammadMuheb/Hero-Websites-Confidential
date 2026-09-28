@@ -3,7 +3,6 @@
 import type { TourDoc } from '@/lib/firestore';
 import { Hero } from '@/components/Hero';
 import { TourCard } from '@/components/cards/TourCard';
-import { SectionHeader } from '@/components/SectionHeader';
 import { useReveal } from '@/hooks/useReveal';
 
 interface AreaHubTemplateProps {

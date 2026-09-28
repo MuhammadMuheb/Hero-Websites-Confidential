@@ -17,7 +17,6 @@ export default function ContactPage() {
         imageUrl="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80"
         title="Get In Touch"
         subtitle="We'd love to hear from you"
-        accentWord="love"
       />
 
       <section className="bg-cream py-20">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from '@/components/NetworkLink';
 import { usePathname } from 'next/navigation';
 import { GlobalSearchBox } from './GlobalSearchBox';
@@ -24,7 +24,6 @@ export function Header() {
   const brandHref = networkSite ? `/${networkSite.slug}` : '/';
   const basePrefix = networkSite ? `/${networkSite.slug}` : '';
   const currentSiteSlug = networkSite?.slug || 'street-food-rome';
-  const siblingSites = NETWORK_SITES.filter((site) => site.slug !== currentSiteSlug);
 
   const propertyTours = getPropertyToursAndBlog(currentSiteSlug);
   const toursItems: NavItem[] = propertyTours.map((item) => ({

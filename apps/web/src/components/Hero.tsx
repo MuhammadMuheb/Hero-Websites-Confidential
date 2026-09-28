@@ -8,6 +8,10 @@ import { tourHref } from '@/lib/tours';
 
 interface HeroProps {
   imageUrl: string | null;
+  /** Inner page title (triggers inner page hero mode instead of homepage hero) */
+  title?: string;
+  subtitle?: string;
+  accentWord?: string;
 }
 
 /**
@@ -38,13 +42,34 @@ const CHIPS: { label: string; href: string }[] = [
   { label: 'Market Tour', href: tourHref('testaccio-market-food-tour') },
 ];
 
-export function Hero({ imageUrl }: HeroProps) {
+export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const isInnerPage = !!title;
 
   function scrollBy(delta: number) {
     scrollerRef.current?.scrollBy({ left: delta, behavior: 'smooth' });
   }
 
+  // Inner page hero mode
+  if (isInnerPage) {
+    return (
+      <section className="bg-paper">
+        {imageUrl ? (
+          <div className="relative h-64 w-full overflow-hidden sm:h-80">
+            <SafeImage src={imageUrl} alt={title} fill priority sizes="100vw" className="object-cover" />
+          </div>
+        ) : null}
+        <div className="mx-auto max-w-6xl px-6 py-12 text-center sm:px-8 sm:py-16">
+          <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
+            {title}{accentWord && <span className="text-accent"> {accentWord}</span>}
+          </h1>
+          {subtitle && <p className="mt-3 text-lg text-ink-muted">{subtitle}</p>}
+        </div>
+      </section>
+    );
+  }
+
+  // Homepage hero mode (§4 spec)
   return (
     <section id="hero">
       {/* Dark hero: photo + overlay as same box (absolute inset-0) to prevent gaps/horizontal scroll */}
