@@ -17,27 +17,27 @@ export function Hero({
 }: HeroProps) {
 
   return (
-    <section className="relative min-h-[100svh] w-full bg-ink flex flex-col justify-between pt-16">
-      {/* Full-bleed Ken Burns image with overlay */}
+    <section className="relative min-h-[100svh] w-full overflow-hidden bg-ink flex flex-col justify-between">
+      {/* Full-bleed Ken Burns image with overlay - both absolute inset-0 */}
       {imageUrl && (
         <>
-          <div className="kenburns absolute inset-0 top-0 z-0">
+          <div className="kenburns absolute inset-0 z-0">
             <SafeImage
               src={imageUrl}
               alt="Authentic Roman street food scene"
               fill
               priority
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 100vw"
               className="object-cover"
             />
           </div>
-          {/* Dark overlay */}
+          {/* Dark overlay - same size as image */}
           <div className="absolute inset-0 bg-ink/60 z-10" />
         </>
       )}
 
-      {/* Hero content */}
-      <div className="relative z-20 mx-auto flex flex-1 max-w-7xl flex-col justify-center px-4 sm:px-6 lg:px-8">
+      {/* Hero content - overlays both image and overlay */}
+      <div className="relative z-20 mx-auto flex flex-1 max-w-7xl flex-col justify-center px-4 sm:px-6 lg:px-8 pt-16">
         {/* Gold dotted eyebrow */}
         <p className="animate-fade-up text-sm font-semibold uppercase tracking-wider text-gold border-t-2 border-dashed border-gold pt-4 mb-6">
           Explore Rome
