@@ -83,7 +83,7 @@ function CategoryCard({
   return (
     <Link
       href={href}
-      className="group relative col-span-1 sm:col-span-2 lg:col-span-1 overflow-hidden rounded-[20px] h-full min-h-[300px] flex flex-col transition-all duration-300 hover:-translate-y-1"
+      className="group relative col-span-1 sm:col-span-2 lg:col-span-1 overflow-hidden rounded-[20px] h-full min-h-[300px] lg:h-[400px] flex flex-col transition-all duration-300 hover:-translate-y-1"
     >
       <SafeImage
         src={imageUrl}
@@ -138,7 +138,7 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
             return (
               <div
                 key={category.name}
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[1.75fr_1fr_1fr_1fr] lg:items-stretch"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[1.75fr_1fr_1fr_1fr] lg:items-end"
               >
                 <CategoryCard
                   name={category.name}
