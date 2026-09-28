@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getAllBlogPosts, getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
-import { HomeTemplate } from '@/components/HomeTemplate';
+import { HomePageBody } from '@/components/HomePageBody';
 
 export const revalidate = 3600;
 
@@ -34,10 +34,12 @@ export default async function HomePage() {
   ]);
 
   return (
-    <HomeTemplate
+    <HomePageBody
+      siteName="Street Food Rome"
+      canonicalUrl={`https://${SITE_DOMAIN}/`}
       heroImageUrl={page?.heroImageUrl ?? HOME_HERO_IMAGE_URL}
       tours={tours}
-      blogPosts={blogPosts}
+      allBlogPosts={blogPosts}
     />
   );
 }
