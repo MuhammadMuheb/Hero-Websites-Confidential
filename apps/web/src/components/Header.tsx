@@ -22,7 +22,7 @@ export function Header() {
   const pathname = usePathname();
   const segments = pathname.split('/').filter(Boolean);
   const networkSite = NETWORK_SITES.find((s) => s.slug === segments[0]);
-  const brandName = networkSite ? networkSite.name.toLowerCase() : 'street food rome';
+  const brandName = networkSite ? networkSite.name : 'Street Food Rome';
   const brandHref = networkSite ? `/${networkSite.slug}` : '/';
   const basePrefix = networkSite ? `/${networkSite.slug}` : '';
   const currentSiteSlug = networkSite?.slug || 'street-food-rome';
@@ -91,7 +91,7 @@ export function Header() {
           <div className="flex h-full items-center justify-between gap-6">
             {/* Logo - Left */}
             <Link href={brandHref} className="flex shrink-0 items-center gap-2">
-              <span className="font-display text-lg font-extrabold tracking-tight text-ink">{brandName}</span>
+              <span className="font-hero text-[20px] font-black tracking-[-0.01em] text-ink">{brandName}</span>
             </Link>
 
             {/* Center Navigation - Desktop Only */}
