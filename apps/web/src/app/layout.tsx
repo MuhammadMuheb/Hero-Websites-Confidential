@@ -15,17 +15,21 @@ const montserrat = Montserrat({
   fallback: ['system-ui', 'sans-serif'],
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: { template: '%s | Italy Tours Network', default: 'Italy Tours Network' },
   description: 'First-hand tour comparisons and travel guides for Italy. Unbiased recommendations from local experts.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://italy-tours.example.com'),
   robots: { index: true, follow: true },
   openGraph: { type: 'website', locale: 'en_US' },
-  verification: {
-    google: GOOGLE_SITE_VERIFICATION,
-    other: { 'msvalidate.01': BING_SITE_VERIFICATION },
-  },
+  ...(GOOGLE_SITE_VERIFICATION || BING_SITE_VERIFICATION ? {
+    verification: {
+      ...(GOOGLE_SITE_VERIFICATION && { google: GOOGLE_SITE_VERIFICATION }),
+      ...(BING_SITE_VERIFICATION && { other: { 'msvalidate.01': BING_SITE_VERIFICATION } }),
+    },
+  } : {}),
 };
+
+export { metadata };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
