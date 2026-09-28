@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { SITE_DOMAIN, getAllBlogPosts, getAllTours } from '@/lib/firestore';
+import { SITE_DOMAIN, getAllBlogPosts } from '@/lib/firestore';
 import { HomePageBody } from '@/components/HomePageBody';
 import { NetworkHomeTemplate } from '@/components/NetworkHomeTemplate';
 import { getNetworkSite, NETWORK_SITES } from '@/lib/tours';
 import { getSiteConfig } from '@/lib/sites';
+import { getSiteData } from '@/lib/sites/loader';
 import { PROPERTIES } from '@/app/[slug]/[...rest]/registry';
 
 export const revalidate = 3600;
@@ -71,17 +72,16 @@ export default async function NetworkSitePage({ params }: { params: Promise<{ sl
   }
 
   // Use HomePageBody for sites with complete config
-  const [allTours, allBlogPosts] = await Promise.all([
-    getAllTours(),
-    getAllBlogPosts().catch(() => []),
-  ]);
+  const siteData = await getSiteData(slug);
+  const siteTours = siteData.FEATURED_TOURS ?? [];
+  const allBlogPosts = await getAllBlogPosts().catch(() => []);
 
   return (
     <HomePageBody
       siteName={site.name}
       canonicalUrl={`https://${SITE_DOMAIN}/${slug}`}
       heroImageUrl={def.heroImage.src}
-      tours={allTours}
+      tours={siteTours}
       allBlogPosts={allBlogPosts}
       config={config}
     />

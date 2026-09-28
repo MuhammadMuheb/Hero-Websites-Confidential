@@ -6,6 +6,9 @@ import { NETWORK_SITES } from '@/lib/tours';
 
 const NETWORK_SLUGS = new Set(NETWORK_SITES.map((site) => site.slug));
 
+/** Street Food Rome is the root site: it lives at "/", not "/street-food-rome". */
+const ROOT_SITE_SLUG = 'street-food-rome';
+
 type Props = React.ComponentProps<typeof NextLink>;
 
 /**
@@ -20,6 +23,12 @@ type Props = React.ComponentProps<typeof NextLink>;
 export default function Link({ href, ...rest }: Props) {
   const pathname = usePathname();
   const activeSlug = NETWORK_SLUGS.has(pathname.split('/')[1] ?? '') ? pathname.split('/')[1] : null;
+
+  // Any link to /street-food-rome(/...) goes to the root site as-is — never prefixed, never 404.
+  if (typeof href === 'string' && (href === `/${ROOT_SITE_SLUG}` || href.startsWith(`/${ROOT_SITE_SLUG}/`))) {
+    const rootHref = href.slice(ROOT_SITE_SLUG.length + 1) || '/';
+    return <NextLink href={rootHref} {...rest} />;
+  }
 
   let resolvedHref = href;
   if (activeSlug && typeof href === 'string' && href.startsWith('/')) {

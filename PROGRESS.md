@@ -1,4 +1,6 @@
-# Config-Driven Refactor Progress
+# Config-Driven Refactor Progress (MASTER-CLONE-BLUEPRINT)
+
+**Scope:** Full 12-site config-driven refactor. All 13 sites = same structure, same 9 homepage sections, same 19 page types (4 legal, 5 category tour pages). Only text/images differ per site. Data from src/lib/<slug>.ts + config.
 
 ## Current State
 - **SiteConfig**: Basic type at `apps/web/src/lib/sites/config.ts` with hero/meta properties

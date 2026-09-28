@@ -1,0 +1,111 @@
+import type { SiteConfig } from '@/lib/sites/config';
+
+export const undergroundColosseumConfig: SiteConfig = {
+  slug: 'underground-colosseum',
+  name: 'Underground Colosseum',
+  domain: 'undergroundcolosseum.com',
+  description: 'Underground and arena-floor Colosseum tours compared.',
+
+  heroImage: { src: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5', alt: 'The Colosseum illuminated at dusk' },
+  heroEyebrow: 'COLOSSEUM, ROME',
+  heroTitle: "Rome's Colosseum Underground & Arena Floor Tours",
+  heroGoldWord: 'Underground',
+  heroSubtitle: 'Access beyond the typical experience',
+
+  chips: ['Underground Tours', 'Arena Floor Access', 'Skip-the-Line', 'Small Groups', 'Expert Guides', 'Ancient History', 'Gladiator Sites', 'Hypogeum Tunnels', 'Fast-Track Entry', 'Audio Guides', 'Morning Tours', 'Evening Tours', 'Family-Friendly', 'Photography Allowed', 'Private Groups', 'Multi-Site Combos', 'Roman Forum', 'Palatine Hill', 'Third Tier Access', 'Night Tours'],
+
+  namesStrip: [
+    { name: 'Hypogeum', href: '/tours/category/underground' },
+    { name: 'Arena Floor', href: '/tours/category/arena-floor' },
+    { name: 'Third Tier', href: '/tours' },
+    { name: 'Gladiator Gate', href: '/tours' },
+    { name: 'Roman Forum', href: '/tours/category/forum-palatine' },
+    { name: 'Palatine Hill', href: '/tours/category/forum-palatine' },
+    { name: 'Arch of Constantine', href: '/tours' },
+    { name: 'Ludus Magnus', href: '/tours' },
+    { name: 'Colosseum Night', href: '/tours/category/night-tours' },
+    { name: 'Domus Aurea', href: '/tours' },
+  ],
+  namesStripLabel: 'Top Colosseum Areas',
+
+  sliderEyebrow: 'OUR BEST COLOSSEUM TOURS',
+  sliderTitle: 'Top Colosseum Tours in Rome',
+
+  categoryEyebrow: 'COLOSSEUM EXPERIENCES',
+  categoryTitle: 'Top Colosseum Areas to Explore',
+  categories: [
+    {
+      name: 'Underground Tours',
+      slug: 'underground',
+      description: 'Explore the ancient Hypogeum, the underground chambers where gladiators and animals waited.',
+      imageUrl: 'https://images.unsplash.com/photo-1580502255216-32c910c0840c',
+      tourSlugs: ['colosseum-underground-tour', 'arena-floor-tour', 'underground-skip-line'],
+    },
+    {
+      name: 'Arena Floor Experience',
+      slug: 'arena-floor',
+      description: 'Walk on the same arena where gladiators once fought, now restored to ancient appearance.',
+      imageUrl: 'https://images.unsplash.com/photo-1604537529428-15bcbeecfe4d',
+      tourSlugs: ['arena-floor-tour', 'arena-floor-private', 'colosseum-vip-access'],
+    },
+    {
+      name: 'Skip-the-Line Tickets',
+      slug: 'skip-line',
+      description: 'Beat the queues with express entry and more time to explore the Colosseum\'s three tiers.',
+      imageUrl: 'https://images.unsplash.com/photo-1552832230-c1cabf89d71d',
+      tourSlugs: ['skip-line-colosseum', 'early-entry-tour', 'fast-track-access'],
+    },
+    {
+      name: 'Forum & Palatine Combo',
+      slug: 'forum-palatine',
+      description: 'Visit three sites in one journey: Colosseum, Roman Forum, and Palatine Hill with expert guidance.',
+      imageUrl: 'https://images.unsplash.com/photo-1577720643272-265fd1620b5f',
+      tourSlugs: ['colosseum-forum-palatine', 'three-sites-tour', 'ancient-rome-combo'],
+    },
+    {
+      name: 'Night & Special Tours',
+      slug: 'night-tours',
+      description: 'Experience the Colosseum under lights, discover hidden chambers, or enjoy family-friendly adventures.',
+      imageUrl: 'https://images.unsplash.com/photo-1552832249-8c0ec61b6f3e',
+      tourSlugs: ['colosseum-night-tour', 'family-colosseum-tour', 'private-after-hours'],
+    },
+  ],
+
+  howWeChooseEyebrow: 'OUR STANDARDS',
+  howWeChooseTitle: 'How We Choose',
+  howWeChooseSubtitle: 'Every Colosseum tour is vetted for access, expertise, and authentic experience.',
+  howWeChoose: [
+    { title: 'Underground Access', description: 'We only feature tours with verified Hypogeum access and special permits.' },
+    { title: 'Expert Guides', description: 'Guides with degrees in ancient history or archaeology who live in Rome.' },
+    { title: 'Small Groups', description: 'Maximum 12 people per tour for genuine connection and close-up exploration.' },
+    { title: 'Real Reviews', description: '12+ years of direct feedback from travelers, not ratings from other sites.' },
+  ],
+
+  placesTitle: 'Places You Can Plan Your Next Trip',
+  placesTabs: [
+    { name: 'Colosseum', href: '/areas/colosseum' },
+    { name: 'Roman Forum', href: '/areas/forum' },
+    { name: 'Palatine Hill', href: '/areas/palatine' },
+    { name: 'Arch of Constantine', href: '/areas/arch' },
+    { name: 'Ludus Magnus', href: '/areas/ludus' },
+    { name: 'Trevi Fountain', href: '/areas/trevi' },
+    { name: 'Pantheon', href: '/areas/pantheon' },
+    { name: 'Piazza Navona', href: '/areas/navona' },
+    { name: 'Vatican City', href: '/areas/vatican' },
+    { name: 'Trastevere', href: '/areas/trastevere' },
+    { name: 'Monti', href: '/areas/monti' },
+    { name: 'Campo de\'Fiori', href: '/areas/campo' },
+    { name: 'Testaccio', href: '/areas/testaccio' },
+    { name: 'Spanish Steps', href: '/areas/spanish-steps' },
+    { name: 'Circus Maximus', href: '/areas/circus' },
+    { name: 'Appian Way', href: '/areas/appian' },
+    { name: 'Borghese Gardens', href: '/areas/borghese' },
+    { name: 'Jewish Ghetto', href: '/areas/ghetto' },
+    { name: 'Aventine Hill', href: '/areas/aventine' },
+    { name: 'Colosseum Evening', href: '/tours/category/night-tours' },
+  ],
+
+  metaTitle: 'Underground Colosseum & Arena Floor Tours',
+  metaDescription: 'Expert-led Colosseum underground and arena-floor tours with skip-the-line access.',
+  contactEmail: 'hello@undergroundcolosseum.com',
+};

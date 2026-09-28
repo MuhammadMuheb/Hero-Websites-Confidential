@@ -228,7 +228,7 @@ export function Header() {
                         className="block whitespace-nowrap rounded-lg px-2 py-1.5 text-ink transition-colors hover:bg-accent-soft hover:text-brand"
                       >
                         <span className="text-[14px] font-semibold">{site.name}</span>
-                        {site.slug === currentSiteSlug && <span className="ml-1.5 text-[11px] font-bold text-brand">· You are here</span>}
+                        {site.slug === currentSiteSlug && <span className="block text-[11px] font-bold text-brand">You are here</span>}
                       </Link>
                     ))}
                   </div>

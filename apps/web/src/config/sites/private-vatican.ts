@@ -1,0 +1,111 @@
+import type { SiteConfig } from '@/lib/sites/config';
+
+export const privateVaticanConfig: SiteConfig = {
+  slug: 'private-vatican',
+  name: 'Private Vatican',
+  domain: 'privatevatican.com',
+  description: 'Early-access and private Vatican tours compared.',
+
+  heroImage: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800', alt: 'St. Peter\'s Basilica and Vatican City' },
+  heroEyebrow: 'VATICAN CITY, ROME',
+  heroTitle: 'Private & Early-Entry Vatican Tours',
+  heroGoldWord: 'Private',
+  heroSubtitle: 'Early access and exclusive experiences',
+
+  chips: ['Private Guides', 'Early Entry', 'Skip-the-Line', 'Small Groups', 'Expert Art History', 'Sistine Chapel', 'St. Peter\'s Basilica', 'Vatican Museums', 'Raphael Rooms', 'Gallery of Maps', 'Pinacoteca', 'Vatican Gardens', 'After Hours Tours', 'Family-Friendly', 'Photography Allowed', 'Dome Climb', 'Audio Guides', 'Lunch Included', 'Wine Tasting', 'VIP Access'],
+
+  namesStrip: [
+    { name: 'Sistine Chapel', href: '/tours/category/sistine' },
+    { name: 'St. Peter\'s Basilica', href: '/tours/category/st-peters' },
+    { name: 'Raphael Rooms', href: '/tours/category/raphael' },
+    { name: 'Gallery of Maps', href: '/tours/category/maps' },
+    { name: 'Pinacoteca', href: '/tours' },
+    { name: 'Vatican Gardens', href: '/tours/category/gardens' },
+    { name: 'St. Peter\'s Dome', href: '/tours/category/dome' },
+    { name: 'Bramante Staircase', href: '/tours' },
+    { name: 'Castel Sant\'Angelo', href: '/tours/category/castel' },
+    { name: 'Vatican Library', href: '/tours' },
+  ],
+  namesStripLabel: 'Vatican Highlights',
+
+  sliderEyebrow: 'OUR BEST VATICAN TOURS',
+  sliderTitle: 'Top Vatican Tours in Rome',
+
+  categoryEyebrow: 'VATICAN EXPERIENCES',
+  categoryTitle: 'Top Vatican Experiences',
+  categories: [
+    {
+      name: 'Early Entry Tours',
+      slug: 'early-entry',
+      description: 'Beat the crowds with exclusive early-morning access to the Vatican Museums before regular opening.',
+      imageUrl: 'https://images.unsplash.com/photo-1534114714131-4a0f4fb66c8b',
+      tourSlugs: ['vatican-early-entry-tour', 'pre-dawn-vatican', 'first-entry-privilege'],
+    },
+    {
+      name: 'Private Guide Experiences',
+      slug: 'private-guides',
+      description: 'One-on-one or small group tours with expert guides who customize the experience to your interests.',
+      imageUrl: 'https://images.unsplash.com/photo-1540575467063-178f50002cbc',
+      tourSlugs: ['vatican-private-guide', 'exclusive-vatican-tour', 'personalized-experience'],
+    },
+    {
+      name: 'Sistine Chapel & Michelangelo',
+      slug: 'sistine-chapel',
+      description: 'Explore the masterpiece of the Sistine Chapel with art history experts and learn Michelangelo\'s genius.',
+      imageUrl: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e',
+      tourSlugs: ['sistine-chapel-tour', 'michelangelo-mastery', 'chapel-private-access'],
+    },
+    {
+      name: 'St. Peter\'s & Dome Climb',
+      slug: 'st-peters-dome',
+      description: 'Ascend the iconic dome for breathtaking views, explore the basilica, and discover papal history.',
+      imageUrl: 'https://images.unsplash.com/photo-1584574923281-8872a469b26d',
+      tourSlugs: ['st-peters-dome-climb', 'basilica-private-tour', 'dome-summit-tour'],
+    },
+    {
+      name: 'After-Hours & Special Access',
+      slug: 'after-hours',
+      description: 'Exclusive evening tours and special access to rarely-open areas with private viewings.',
+      imageUrl: 'https://images.unsplash.com/photo-1552832250-4661a20b1e90',
+      tourSlugs: ['vatican-night-tour', 'after-hours-access', 'vip-evening-tour'],
+    },
+  ],
+
+  howWeChooseEyebrow: 'OUR STANDARDS',
+  howWeChooseTitle: 'How We Choose',
+  howWeChooseSubtitle: 'Every Vatican tour is verified for authentic access, scholarly expertise, and personalized service.',
+  howWeChoose: [
+    { title: 'Verified Access', description: 'We confirm all early-entry and private-guide privileges directly with Vatican authorities.' },
+    { title: 'Art Historians', description: 'Guides with advanced degrees in art history, theology, or Vatican studies.' },
+    { title: 'Intimate Groups', description: 'Maximum 8 people for exclusive tours, ensuring genuine private experiences.' },
+    { title: 'Unsponsored Reviews', description: '12+ years of feedback from real travelers, independent of tourism boards.' },
+  ],
+
+  placesTitle: 'Places You Can Plan Your Next Trip',
+  placesTabs: [
+    { name: 'Vatican City', href: '/areas/vatican' },
+    { name: 'Sistine Chapel', href: '/areas/sistine' },
+    { name: 'St. Peter\'s Basilica', href: '/areas/st-peters' },
+    { name: 'Castel Sant\'Angelo', href: '/areas/castel' },
+    { name: 'Ponte Sant\'Angelo', href: '/areas/ponte' },
+    { name: 'Trastevere', href: '/areas/trastevere' },
+    { name: 'Campo de\'Fiori', href: '/areas/campo' },
+    { name: 'Pantheon', href: '/areas/pantheon' },
+    { name: 'Trevi Fountain', href: '/areas/trevi' },
+    { name: 'Spanish Steps', href: '/areas/spanish-steps' },
+    { name: 'Colosseum', href: '/areas/colosseum' },
+    { name: 'Roman Forum', href: '/areas/forum' },
+    { name: 'Piazza Navona', href: '/areas/navona' },
+    { name: 'Jewish Ghetto', href: '/areas/ghetto' },
+    { name: 'Aventine Keyhole', href: '/areas/aventine' },
+    { name: 'Villa Borghese', href: '/areas/borghese' },
+    { name: 'Monti', href: '/areas/monti' },
+    { name: 'Testaccio', href: '/areas/testaccio' },
+    { name: 'Vatican Museums', href: '/tours/category/museums' },
+    { name: 'Evening Walks', href: '/tours/category/evening' },
+  ],
+
+  metaTitle: 'Private & Early-Entry Vatican Tours',
+  metaDescription: 'Exclusive Vatican tours with early access, private guides, and skip-the-line privileges.',
+  contactEmail: 'hello@privatevatican.com',
+};
