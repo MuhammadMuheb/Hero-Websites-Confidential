@@ -19,7 +19,6 @@ type SiteDataModule = {
 };
 
 const siteModules: Record<string, () => Promise<SiteDataModule>> = {
-  'street-food-rome': () => import('@/lib/street-food-rome').then((m) => m as any),
   'underground-colosseum': () => import('@/lib/underground-colosseum').then((m) => m as any),
   'private-vatican': () => import('@/lib/private-vatican').then((m) => m as any),
   'pompeii-day-trip': () => import('@/lib/pompeii-day-trip').then((m) => m as any),
