@@ -701,3 +701,23 @@ export function getHomeContent(slug: string): HomeContent | null {
     topTours,
   };
 }
+
+/** Real images and pages of a network site, for the other page builders (About, etc.). */
+export function getSiteAssets(slug: string): {
+  gallery: { src: string; alt: string }[];
+  money: { title: string; href: string; blurb: string; image: { src: string; alt: string } | null }[];
+  support: { title: string; href: string }[];
+} | null {
+  const site = RAW[slug];
+  if (!site) return null;
+  return {
+    gallery: site.gallery.map((g) => ({ src: cleanImage(g.src), alt: g.alt })),
+    money: site.money.map((p) => ({
+      title: p.title,
+      href: p.href,
+      blurb: p.blurb ?? '',
+      image: p.image ? { src: cleanImage(p.image.src), alt: p.image.alt } : null,
+    })),
+    support: site.support.map((p) => ({ title: p.title, href: p.href })),
+  };
+}
