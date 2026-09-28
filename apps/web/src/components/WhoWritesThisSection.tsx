@@ -12,7 +12,6 @@ interface WhoWritesSectionProps {
 
 export function WhoWritesThisSection({
   name = 'Street Food Rome',
-  role = 'Food Writer',
   bio = 'There\'s no team behind this site — just one person who\'s lived in Rome for over a decade. Every tour recommended here has been taken in person.',
   imageUrl = 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e?w=600&h=450&fit=crop',
   imageAlt = 'An evening aperitivo stop in Rome',
