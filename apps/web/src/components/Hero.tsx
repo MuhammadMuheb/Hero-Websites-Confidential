@@ -87,34 +87,22 @@ export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
         {/* Overlay and hero content in same container */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gold">Rome, Italy</p>
-          <h1 className="mt-4 max-w-3xl text-center font-display text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
-            Rome&rsquo;s Ultimate <span className="text-gold">Street Food</span> &amp; Culinary Experiences
-          </h1>
-          <p className="mt-4 max-w-2xl text-center text-lg text-white/90">Authentic culinary walks led by locals</p>
-
-          {/* Search bar */}
-          <div className="mt-8 w-full max-w-2xl">
-            <GlobalSearchBox
-              placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
-              compact={false}
-              className="w-full"
-            />
+        <div className="absolute inset-0 mx-auto max-w-6xl flex flex-col justify-between px-6 py-16">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold">Rome, Italy</p>
+            <h1 className="mt-4 font-display text-4xl font-black leading-[1.05] text-white sm:text-5xl md:text-6xl max-w-2xl">
+              Rome&rsquo;s Ultimate <span className="text-gold">Street Food</span><br />&amp; Culinary Experiences
+            </h1>
           </div>
+        </div>
 
-          {/* Chips */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            {CHIPS.slice(0, 8).map((chip) => (
-              <Link
-                key={chip.label}
-                href={chip.href}
-                className="inline-flex rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-sm font-medium text-white hover:bg-white/20 transition-colors backdrop-blur"
-              >
-                {chip.label}
-              </Link>
-            ))}
-          </div>
+        {/* Search bar at bottom edge, straddling hero and below */}
+        <div className="relative mx-auto -mb-8 max-w-2xl px-6 text-center z-10">
+          <GlobalSearchBox
+            placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
+            compact={false}
+            className="w-full"
+          />
         </div>
       </div>
 

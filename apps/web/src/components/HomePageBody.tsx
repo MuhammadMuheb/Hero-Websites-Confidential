@@ -3,9 +3,8 @@ import { TrustPointsSection } from '@/components/TrustPointsSection';
 import { MediaBar } from '@/components/MediaBar';
 import { TourCarouselSection } from '@/components/TourCarouselSection';
 import { CategoryToursSection } from '@/components/CategoryToursSection';
-import { ExploreLinksSection } from '@/components/ExploreLinksSection';
 import { AllDestinationsSection } from '@/components/AllDestinationsSection';
-import type { BlogPostDoc, TourDoc } from '@/lib/firestore';
+import type { TourDoc } from '@/lib/firestore';
 import { tourHref } from '@/lib/tours';
 
 interface HomePageBodyProps {
@@ -13,23 +12,21 @@ interface HomePageBodyProps {
   canonicalUrl: string;
   heroImageUrl: string | null;
   tours: TourDoc[];
-  allBlogPosts: BlogPostDoc[];
 }
 
 /**
- * Shared homepage template: §4 blueprint layout A-J with section IDs.
+ * Shared homepage template: §4 blueprint layout A-I with section IDs.
  * A: Navbar (handled in layout)
  * B: Hero (§4-B)
  * C: Trust strip (§4-C)
  * D: Top tours slider (§4-D)
- * E: How we choose (§4-E)
- * F: Guides & stories (§4-F)
  * G: Top items to try (§4-G)
+ * E: How we choose (§4-E)
  * H: Places to plan next trip (§4-H)
  * I: Explore our Italy collection (§4-I)
  * J: Footer (handled in layout)
  */
-export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allBlogPosts }: HomePageBodyProps) {
+export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours }: HomePageBodyProps) {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -72,19 +69,14 @@ export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allB
         <TourCarouselSection tours={tours} />
       </section>
 
-      {/* §4-E: How we choose - dark section with 4 icons */}
-      <section id="how-we-choose">
-        <MediaBar />
-      </section>
-
-      {/* §4-F: Guides & stories - 3 cards + All guides */}
-      <section id="guides">
-        <ExploreLinksSection tours={tours} allBlogPosts={allBlogPosts} />
-      </section>
-
       {/* §4-G: Top items to try - 5 rows of category + 3 tour cards */}
       <section id="categories">
         <CategoryToursSection tours={tours} />
+      </section>
+
+      {/* §4-E: How we choose - dark section with 4 icons */}
+      <section id="how-we-choose">
+        <MediaBar />
       </section>
 
       {/* §4-H: Places you can plan next trip - 3 tabs, numbered list */}
