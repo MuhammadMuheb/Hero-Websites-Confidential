@@ -1,6 +1,10 @@
 import Link from '@/components/NetworkLink';
 
-const FOODS = [
+interface TrustPointsSectionProps {
+  items?: Array<{ name: string; href: string }>;
+}
+
+const DEFAULT_FOODS = [
   { name: 'Carbonara', href: '/tours/category/pasta' },
   { name: 'Cacio e Pepe', href: '/tours/category/pasta' },
   { name: 'Supplì', href: '/tours/category/street-food-classics' },
@@ -13,7 +17,9 @@ const FOODS = [
   { name: 'Porchetta', href: '/tours' },
 ];
 
-export function TrustPointsSection() {
+export function TrustPointsSection({ items }: TrustPointsSectionProps) {
+  const foods = items ?? DEFAULT_FOODS;
+
   return (
     <section className="border-y border-line bg-cream py-10">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
@@ -21,7 +27,7 @@ export function TrustPointsSection() {
           Taste the real Rome
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:gap-x-8">
-          {FOODS.map((p) => (
+          {foods.map((p) => (
             <Link
               key={p.name}
               href={p.href}

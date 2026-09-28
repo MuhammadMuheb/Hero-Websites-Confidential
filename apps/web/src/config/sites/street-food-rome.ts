@@ -11,7 +11,28 @@ export const streetFoodRomeConfig: SiteConfig = {
   accentWord: 'Rome',
 
   // Homepage sections
-  chips: ['Authentic', 'Local Guides', 'Small Groups'],
+  chips: [
+    'Authentic',
+    'Local Guides',
+    'Small Groups',
+    'No Tourist Traps',
+    'Live Experience',
+    'Market Walks',
+    'Street Vendors',
+    'Family-Friendly',
+    'Hands-On Tasting',
+    'Hidden Gems',
+    'Neighborhood Focus',
+    'Expert Tips',
+    'Food Stories',
+    'Cooking Skills',
+    'Wine Pairing',
+    'Seasonal Menu',
+    'Photography Spots',
+    'Cultural Deep-Dive',
+    'Foodie Paradise',
+    'Unforgettable Flavors',
+  ],
 
   namesStrip: [
     { name: 'Carbonara', href: '/tours/category/pasta' },

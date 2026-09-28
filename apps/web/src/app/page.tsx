@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getAllBlogPosts, getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { HomePageBody } from '@/components/HomePageBody';
+import { streetFoodRomeConfig } from '@/config/sites/street-food-rome';
 
 export const revalidate = 3600;
 
@@ -40,6 +41,7 @@ export default async function HomePage() {
       heroImageUrl={page?.heroImageUrl ?? HOME_HERO_IMAGE_URL}
       tours={tours}
       allBlogPosts={allBlogPosts}
+      config={streetFoodRomeConfig}
     />
   );
 }

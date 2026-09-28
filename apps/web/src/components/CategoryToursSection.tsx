@@ -3,14 +3,19 @@ import type { TourDoc } from '@/lib/firestore';
 import { SafeImage } from './SafeImage';
 import { TourCard } from '@/components/cards/TourCard';
 
-const CATEGORIES = [
+const DEFAULT_CATEGORIES: Array<{
+  name: string;
+  slug: string;
+  description: string;
+  imageUrl: string;
+  tourSlugs: string[];
+}> = [
   {
     name: 'Pizza',
-    categorySlug: 'pizza',
+    slug: 'pizza',
     description: 'Crispy pizza al taglio, bakery pizza bianca and Roman-style thin crust.',
     imageUrl: 'https://images.unsplash.com/photo-1664309641932-0e03e0771b97',
-    subLinks: ['Pizza al Taglio', 'Trastevere', 'Bakery Tours'],
-    slugs: [
+    tourSlugs: [
       'pizza-al-taglio-suppli-tasting-tour',
       'trastevere-pizza-craft-beer-crawl',
       'roman-pizza-bianca-bakery-tour',
@@ -18,11 +23,10 @@ const CATEGORIES = [
   },
   {
     name: 'Pasta',
-    categorySlug: 'pasta',
+    slug: 'pasta',
     description: 'Carbonara, Cacio e Pepe, and other iconic Roman pasta dishes.',
     imageUrl: 'https://images.unsplash.com/photo-1755594461640-b800c6bafdfa',
-    subLinks: ['Pasta Making', 'Tasting Walk', 'Dinner Class'],
-    slugs: [
+    tourSlugs: [
       'pasta-making-class-trastevere',
       'cacio-e-pepe-carbonara-tasting-walk',
       'roman-pasta-four-ways-dinner',
@@ -30,27 +34,24 @@ const CATEGORIES = [
   },
   {
     name: 'Beer & Wine',
-    categorySlug: 'beer-and-wine',
+    slug: 'beer-and-wine',
     description: 'Italian wines and local beers paired with authentic Roman cuisine.',
     imageUrl: 'https://images.unsplash.com/photo-1783443800128-8893eac948bb',
-    subLinks: ['Wine Tasting', 'Evening Crawl', 'Food Pairing'],
-    slugs: ['rome-food-wine-tasting', 'monti-food-wine-evening', 'trastevere-food-wine-walk'],
+    tourSlugs: ['rome-food-wine-tasting', 'monti-food-wine-evening', 'trastevere-food-wine-walk'],
   },
   {
     name: 'Gelato',
-    categorySlug: 'gelato',
+    slug: 'gelato',
     description: 'Artisanal gelato from the best gelaterias in Rome, with espresso.',
     imageUrl: 'https://images.unsplash.com/photo-1759314420838-36d3d881c81c',
-    subLinks: ['Gelato Tasting', 'Best Gelaterias', 'Espresso Crawl'],
-    slugs: ['roman-gelato-tasting-walk', 'best-gelaterias-of-rome-tour', 'gelato-espresso-crawl'],
+    tourSlugs: ['roman-gelato-tasting-walk', 'best-gelaterias-of-rome-tour', 'gelato-espresso-crawl'],
   },
   {
     name: 'Suppli & Street Food Classics',
-    categorySlug: 'street-food-classics',
+    slug: 'street-food-classics',
     description: 'Fried Roman street food: suppli, trapizzino, and testaccio classics.',
     imageUrl: 'https://images.unsplash.com/photo-1688458296759-91020b4ff2ba',
-    subLinks: ['Suppli Tour', 'Fried Classics', 'Testaccio Food'],
-    slugs: [
+    tourSlugs: [
       'suppli-roman-street-snacks-tour',
       'trapizzino-fried-classics-walk',
       'testaccio-fried-food-crawl',
@@ -112,8 +113,14 @@ function CategoryCard({
   );
 }
 
-export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
+interface CategoryToursSectionProps {
+  tours: TourDoc[];
+  categories?: Array<{ name: string; slug: string; imageUrl: string; tourSlugs: string[] }>;
+}
+
+export function CategoryToursSection({ tours, categories }: CategoryToursSectionProps) {
   const bySlug = new Map(tours.map((tour) => [tour.slug, tour]));
+  const categoryList = categories ?? DEFAULT_CATEGORIES;
 
   return (
     <section className="bg-cream py-16 sm:py-20">
@@ -128,8 +135,8 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
         </div>
 
         <div className="mt-12 flex flex-col gap-10">
-          {CATEGORIES.map((category) => {
-            const categoryTours = category.slugs
+          {categoryList.map((category) => {
+            const categoryTours = category.tourSlugs
               .map((slug) => bySlug.get(slug))
               .filter((tour): tour is TourDoc => Boolean(tour));
 
@@ -143,7 +150,7 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
                 <CategoryCard
                   name={category.name}
                   imageUrl={category.imageUrl}
-                  href={`/tours/category/${category.categorySlug}`}
+                  href={`/tours/category/${category.slug}`}
                   count={categoryTours.length}
                   tours={categoryTours}
                 />

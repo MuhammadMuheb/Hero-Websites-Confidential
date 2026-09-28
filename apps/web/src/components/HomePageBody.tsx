@@ -6,6 +6,7 @@ import { TourCarouselSection } from '@/components/TourCarouselSection';
 import { CategoryToursSection } from '@/components/CategoryToursSection';
 import { AllDestinationsSection } from '@/components/AllDestinationsSection';
 import type { BlogPostDoc, TourDoc } from '@/lib/firestore';
+import type { SiteConfig } from '@/lib/sites/config';
 import { tourHref } from '@/lib/tours';
 
 interface HomePageBodyProps {
@@ -14,6 +15,7 @@ interface HomePageBodyProps {
   heroImageUrl: string | null;
   tours: TourDoc[];
   allBlogPosts?: BlogPostDoc[];
+  config?: SiteConfig;
 }
 
 /**
@@ -28,7 +30,7 @@ interface HomePageBodyProps {
  * I: Explore our Italy collection (§4-I)
  * J: Footer (handled in layout)
  */
-export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allBlogPosts = [] }: HomePageBodyProps) {
+export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allBlogPosts = [], config }: HomePageBodyProps) {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -63,7 +65,7 @@ export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allB
 
       {/* 4: Names strip - real booking platforms only */}
       <div id="partners">
-        <TrustPointsSection />
+        <TrustPointsSection items={config?.namesStrip} />
       </div>
 
       {/* 5: Top Food Tours slider - 4 full cards */}
@@ -73,12 +75,12 @@ export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allB
 
       {/* 6: Top Food Items to Try - 5 rows (1 big + 3 small) */}
       <div id="categories">
-        <CategoryToursSection tours={tours} />
+        <CategoryToursSection tours={tours} categories={config?.categories?.map(c => ({ name: c.name, slug: c.slug, imageUrl: c.imageUrl, tourSlugs: c.tourSlugs }))} />
       </div>
 
       {/* 7: How We Choose - dark section, 4 gold icons */}
       <div id="how-we-choose">
-        <HowWeChooseDark />
+        <HowWeChooseDark items={config?.howWeChoose} />
       </div>
 
       {/* 8: Places You Can Plan Your Next Trip - 3 tabs */}
