@@ -53,13 +53,18 @@
 
 **Next**: Part B - Refactor HomePageBody to accept `config: SiteConfig` prop and read all content from it instead of hardcoded data
 
-### Part B: HomePageBody Config-Driven + [slug] Uses It
-- [ ] Refactor HomePageBody.tsx to accept `config: SiteConfig` prop
-- [ ] HomePageBody reads CATEGORIES, chips, namesStrip, etc. from config instead of hardcoded
-- [ ] Update `app/page.tsx` to import Street Food Rome config and pass to HomePageBody
-- [ ] Update `app/[slug]/page.tsx` to load site config and pass to HomePageBody (retire NetworkHomeTemplate)
-- [ ] Build passes, all sites use same component, zero visual change
-- [ ] Commit + push, update PROGRESS.md
+### Part B: HomePageBody Config-Driven + [slug] Uses It ✅ DONE
+- [x] Refactor HomePageBody.tsx to accept `config: SiteConfig` prop
+- [x] Updated TrustPointsSection, CategoryToursSection, HowWeChooseDark to accept data props from config
+- [x] HomePageBody reads all content from config instead of hardcoded
+- [x] Update `app/page.tsx` to import Street Food Rome config and pass to HomePageBody
+- [x] Update `app/[slug]/page.tsx` to load site config and use HomePageBody (retired NetworkHomeTemplate for these pages)
+- [x] TypeScript compilation passes (0 type errors)
+- [x] Created validateSiteConfig.ts validator
+- [x] Street Food Rome config now has all required counts: 20 chips, 10 names, 5 categories (3 tours each), 4 how-we-choose, 20 places
+- [x] Commit 2eba2e7 + push to Staging
+
+**Next**: Part C - Create full configs for 12 other sites (with validation enforcing exact counts)
 
 ### Part C: Per-Site Configs for 12 Other Sites
 - [ ] Create individual config files for: underground-colosseum, private-vatican, pompeii-day-trip, rome-vespa, golf-cart-rome, cooking-in-rome, rome-pizza-class, tiramisu-class, tuscany-day-trip, amalfi-day-trip, tivoli-day-trip, naples-street-food
