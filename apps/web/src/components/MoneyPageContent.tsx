@@ -62,7 +62,7 @@ export function MoneyPageContent({ content, siteName, relevantTours }: MoneyPage
   }));
 
   return (
-    <div className="bg-white pb-20 lg:pb-0">
+    <div className="pb-20 lg:pb-0">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(attractionJsonLd) }} />
@@ -139,7 +139,7 @@ export function MoneyPageContent({ content, siteName, relevantTours }: MoneyPage
       </section>
 
       {/* ---------- body sections ---------- */}
-      <section className="border-b border-line py-14 sm:py-16">
+      <section className="border-b border-line bg-cream py-14 sm:py-16">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           {content.sections.map((section) => (
             <div key={section.heading} className="mt-8 first:mt-0">
@@ -162,7 +162,7 @@ export function MoneyPageContent({ content, siteName, relevantTours }: MoneyPage
       </section>
 
       {/* ---------- tour comparison cards ---------- */}
-      <section id="tour-options" className="scroll-mt-[65px] border-b border-line bg-paper-tint py-14 sm:py-16">
+      <section id="tour-options" className="scroll-mt-[65px] border-b border-line bg-cream-deep py-14 sm:py-16">
         <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Live tour comparison</p>
           <h2 className="mt-2 font-sans text-[26px] font-bold leading-snug tracking-tight text-ink sm:text-[32px]">
@@ -195,7 +195,7 @@ export function MoneyPageContent({ content, siteName, relevantTours }: MoneyPage
       </section>
 
       {/* ---------- FAQ ---------- */}
-      <section id="faq" className="scroll-mt-[65px] border-b border-line py-14 sm:py-16">
+      <section id="faq" className="scroll-mt-[65px] border-b border-line bg-cream py-14 sm:py-16">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           <h2 className="font-sans text-[26px] font-bold leading-snug tracking-tight text-ink sm:text-[32px]">
             Frequently Asked
