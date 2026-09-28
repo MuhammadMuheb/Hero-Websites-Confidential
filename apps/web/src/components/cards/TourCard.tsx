@@ -9,9 +9,11 @@ interface TourCardProps {
   href?: string;
   /** Smaller card (category rows): hides chips and notes. */
   compact?: boolean;
+  /** Rank in category: shows as #1, #2, #3 in compact mode */
+  rank?: number;
 }
 
-export function TourCard({ tour, priority, href, compact }: TourCardProps) {
+export function TourCard({ tour, priority, href, compact, rank }: TourCardProps) {
   const chips = (tour.features ?? []).slice(0, 2);
 
   return (
@@ -32,11 +34,15 @@ export function TourCard({ tour, priority, href, compact }: TourCardProps) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : null}
-        {tour.isTopPick && (
+        {compact && rank ? (
+          <span className="absolute left-4 top-4 rounded-full bg-gold px-3 py-1 text-xs font-bold text-ink shadow-card-soft">
+            #{rank}
+          </span>
+        ) : tour.isTopPick && !compact ? (
           <span className="absolute right-4 top-4 rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink shadow-card-soft">
             Top pick
           </span>
-        )}
+        ) : null}
       </div>
 
       {/* Content */}
