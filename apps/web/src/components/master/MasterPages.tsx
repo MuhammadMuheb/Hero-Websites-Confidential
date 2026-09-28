@@ -545,3 +545,183 @@ export function MasterContactPage({
     </>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/* Areas / neighbourhoods hub + single area                             */
+/* ------------------------------------------------------------------ */
+
+export interface AreaCardItem {
+  name: string;
+  description: string;
+  href: string;
+  image?: { src: string; alt: string };
+}
+
+function AreaCard({ area }: { area: AreaCardItem }) {
+  return (
+    <Link
+      href={area.href}
+      className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-ink/5 bg-paper shadow-card-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+    >
+      {area.image ? (
+        <div className="relative aspect-[16/10] overflow-hidden bg-media">
+          <SafeImage
+            src={area.image.src}
+            alt={area.image.alt}
+            fill
+            sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      ) : null}
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="font-hero text-[18px] font-extrabold leading-snug text-ink group-hover:text-brand">{area.name}</h3>
+        <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-muted">{area.description}</p>
+        <span className="mt-4 text-sm font-bold text-brand">Learn more →</span>
+      </div>
+    </Link>
+  );
+}
+
+export function MasterAreasPage({
+  siteName,
+  heroImage,
+  title,
+  subtitle,
+  eyebrow,
+  sectionTitle,
+  areas,
+  tours,
+  guides,
+}: {
+  siteName: string;
+  heroImage: string;
+  title: string;
+  subtitle: string;
+  eyebrow: string;
+  /** [before, green word, after] */
+  sectionTitle: [string, string, string];
+  areas: AreaCardItem[];
+  tours: TourDoc[];
+  guides: LinkItem[];
+}) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${siteName}: ${title}`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: areas.map((a, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: { '@type': 'Place', name: a.name, description: a.description },
+      })),
+    },
+  };
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Hero imageUrl={heroImage} title={title} subtitle={subtitle} />
+      <section className="bg-cream py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionTitle eyebrow={eyebrow} title={sectionTitle} />
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {areas.map((a) => (
+              <AreaCard key={`${a.name}-${a.href}`} area={a} />
+            ))}
+          </div>
+        </div>
+      </section>
+      {tours.length > 0 ? (
+        <section className="bg-cream-deep py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <SectionTitle eyebrow={`Book with ${siteName}`} title={['Tours That ', 'Cover', ' These Areas']} />
+            <div className="mt-12">
+              <TourGrid tours={tours} />
+            </div>
+          </div>
+        </section>
+      ) : null}
+      {guides.length > 0 ? (
+        <section className="border-t border-line bg-cream py-14">
+          <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
+            <SectionTitle eyebrow="Keep planning" title={['Read Our ', 'Guides', '']} />
+            <div className="mt-8">
+              <ChipRow items={guides} />
+            </div>
+          </div>
+        </section>
+      ) : null}
+    </>
+  );
+}
+
+export function MasterAreaPage({
+  siteName,
+  heroImage,
+  place,
+  area,
+  tours,
+  otherAreas,
+  guides,
+}: {
+  siteName: string;
+  heroImage: string;
+  place: string;
+  area: { name: string; description: string };
+  tours: TourDoc[];
+  otherAreas: LinkItem[];
+  guides: LinkItem[];
+}) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Place',
+    name: `${area.name}, ${place}`,
+    description: area.description,
+  };
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Hero imageUrl={heroImage} title={`${area.name}, ${place}`} subtitle={area.description} />
+      <section className="bg-cream py-14 sm:py-16">
+        <div className="mx-auto max-w-3xl space-y-4 px-6 text-[17px] leading-relaxed text-ink-muted">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">Plan your visit</p>
+          <p>
+            {place} is a large site, so it helps to decide in advance which areas matter most to you. Use the guides below to plan
+            your route and how much time you need, or pick a guided tour that covers the main highlights.
+          </p>
+        </div>
+      </section>
+      {tours.length > 0 ? (
+        <section className="bg-cream-deep py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <SectionTitle eyebrow={`Book with ${siteName}`} title={['Tours of ', place, '']} />
+            <div className="mt-12">
+              <TourGrid tours={tours} />
+            </div>
+          </div>
+        </section>
+      ) : null}
+      <section className="border-t border-line bg-cream py-14">
+        <div className="mx-auto max-w-[1200px] space-y-12 px-6 sm:px-10">
+          {otherAreas.length > 0 ? (
+            <div>
+              <SectionTitle eyebrow="Explore more" title={['More ', 'Areas', ` of ${place}`]} />
+              <div className="mt-8">
+                <ChipRow items={otherAreas} />
+              </div>
+            </div>
+          ) : null}
+          {guides.length > 0 ? (
+            <div>
+              <SectionTitle eyebrow="Keep planning" title={['Read Our ', 'Guides', '']} />
+              <div className="mt-8">
+                <ChipRow items={guides} />
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </section>
+    </>
+  );
+}

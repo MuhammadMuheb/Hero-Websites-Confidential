@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
-import { PDTToursCategoryPage } from '@/components/pompeii-day-trip/PDTToursCategoryPage';
-import { POMPEII_AREAS } from '@/components/pompeii-day-trip/PDTNeighborhoodsPage';
+import { POMPEII_AREAS, PDT_TOUR_CATEGORIES, getAreaHub, pompeiiCategoryTourSlugs } from '@/lib/sites/areas';
 import { NetworkLegalPage, genericLegalDoc } from '@/components/network/NetworkLegalPage';
-import { NetworkAreaPage, NetworkToursPage, type HubGuide } from '@/components/network/NetworkHubPages';
+import { NetworkToursPage, type HubGuide } from '@/components/network/NetworkHubPages';
 import { getNetworkSite, SITE_DOMAIN } from '@/lib/tours';
 import { NETWORK_PAGE_META } from '@/lib/network-page-meta';
-import { getHomeContent, getSiteExtras } from '@/lib/sites/home';
+import { getHomeContent, getSiteAssets, getSiteExtras } from '@/lib/sites/home';
 import type { TourDoc } from '@/lib/firestore';
 import {
+  MasterAreaPage,
+  MasterAreasPage,
   MasterContactPage,
   MasterContentPage,
   MasterFAQPage,
@@ -28,7 +29,7 @@ import { PROPERTIES, allContent, findCanonicalContentPath, resolveContent, type 
  */
 
 const STANDARD_PAGES: StandardPage[] = ['contact', 'faq', 'privacy', 'terms', 'cookie-policy', 'affiliate-disclosure', 'tours', 'blog', 'neighborhoods'];
-const PDT_TOUR_CATEGORIES = ['rome', 'naples', 'vesuvius', 'herculaneum'];
+const PDT_CATEGORY_SLUGS = PDT_TOUR_CATEGORIES.map((c) => c.slug);
 
 type Resolution =
   | { type: 'content'; path: string }
@@ -51,7 +52,7 @@ function resolve(slug: string, def: PropertyDef, path: string): Resolution {
 
   if (slug === 'pompeii-day-trip') {
     const category = path.match(/^\/tours\/category\/([a-z-]+)$/)?.[1];
-    if (category && PDT_TOUR_CATEGORIES.includes(category)) return { type: 'tour-category', category };
+    if (category && PDT_CATEGORY_SLUGS.includes(category)) return { type: 'tour-category', category };
     const areaSlug = path.match(/^\/neighborhoods\/([a-z-]+)$/)?.[1];
     const area = POMPEII_AREAS.find((a) => a.slug === areaSlug);
     if (area) return { type: 'area', area };
@@ -86,7 +87,7 @@ export async function generateStaticParams() {
       ...allContent(def).map((c) => c.path),
       ...STANDARD_PAGES.filter((p) => supportsPage(def, p)).map((p) => `/${p}`),
       ...(slug === 'pompeii-day-trip'
-        ? [...PDT_TOUR_CATEGORIES.map((c) => `/tours/category/${c}`), ...POMPEII_AREAS.map((a) => `/neighborhoods/${a.slug}`)]
+        ? [...PDT_CATEGORY_SLUGS.map((c) => `/tours/category/${c}`), ...POMPEII_AREAS.map((a) => `/neighborhoods/${a.slug}`)]
         : []),
     ];
     return paths.map((p) => ({ slug, rest: p.slice(1).split('/') }));
@@ -115,12 +116,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description = content.metaDescription;
     image = content.heroImage?.src;
   } else if (resolved.type === 'tour-category') {
-    const label = resolved.category.charAt(0).toUpperCase() + resolved.category.slice(1);
-    title = `${label} Pompeii Tours | ${brand}`;
-    description = `Pompeii tours that include or start from ${label}, compared on transit time, time on site and price.`;
+    const cat = PDT_TOUR_CATEGORIES.find((c) => c.slug === resolved.category);
+    title = `${cat?.title ?? 'Pompeii'} Tours | ${brand}`;
+    description = cat?.description ?? 'Pompeii tours compared on transit time, time on site and price.';
   } else if (resolved.type === 'area') {
     title = `${resolved.area.name}, Pompeii — What to See | ${brand}`;
-    description = `${resolved.area.description}. Where it sits on the site and how to fit it into a Pompeii day trip.`;
+    description = `${resolved.area.description.replace(/\.$/, '')}. Where it sits on the site and how to fit it into a Pompeii day trip.`;
   } else {
     const meta = NETWORK_PAGE_META[slug]?.pages[resolved.type];
     title = meta?.title ?? `${site.name}`;
@@ -143,7 +144,7 @@ function pageLabel(slug: string, def: PropertyDef, resolved: Exclude<Resolution,
     const { content } = resolveContent(def, resolved.path)!;
     return content.navTitle || content.h1 || content.metaTitle;
   }
-  if (resolved.type === 'tour-category') return `${resolved.category.charAt(0).toUpperCase()}${resolved.category.slice(1)} tours`;
+  if (resolved.type === 'tour-category') return PDT_TOUR_CATEGORIES.find((c) => c.slug === resolved.category)?.title ?? 'Tours';
   if (resolved.type === 'area') return resolved.area.name;
   return (NETWORK_PAGE_META[slug]?.pages[resolved.type]?.title ?? resolved.type).split(' | ')[0] ?? resolved.type;
 }
@@ -216,15 +217,59 @@ function renderPage(slug: string, def: PropertyDef, resolved: Exclude<Resolution
         />
       );
     }
-    case 'tour-category':
-      return <PDTToursCategoryPage category={resolved.category} />;
-    case 'area':
+    case 'tour-category': {
+      const cat = PDT_TOUR_CATEGORIES.find((c) => c.slug === resolved.category);
+      const wanted = pompeiiCategoryTourSlugs(resolved.category);
+      const tours = (home?.tours ?? []).filter((t) => wanted.includes(t.slug));
       return (
-        <NetworkAreaPage
-          area={resolved.area}
-          guides={allContent(def).filter((c) => c.kind === 'plan').map(toGuide)}
+        <MasterToursPage
+          siteName={siteName}
+          heroImage={heroImage}
+          title={`${cat?.title ?? 'Pompeii'} Tours`}
+          subtitle={cat?.description ?? def.toursSubtitle}
+          tours={tours}
+          categories={PDT_TOUR_CATEGORIES.map((c) => ({ label: c.title, href: `/tours/category/${c.slug}` }))}
+          guides={guides.filter((g) => g.kind === 'plan').map((g) => ({ label: g.title, href: g.href }))}
         />
       );
+    }
+    case 'area': {
+      const others = POMPEII_AREAS.filter((a) => a.slug !== resolved.area.slug).map((a) => ({ label: a.name, href: `/neighborhoods/${a.slug}` }));
+      return (
+        <MasterAreaPage
+          siteName={siteName}
+          heroImage={heroImage}
+          place="Pompeii"
+          area={resolved.area}
+          tours={(home?.tours ?? []).slice(0, 4)}
+          otherAreas={[{ label: 'All areas', href: '/neighborhoods' }, ...others]}
+          guides={guides.filter((g) => g.kind === 'plan').map((g) => ({ label: g.title, href: g.href }))}
+        />
+      );
+    }
+    case 'neighborhoods': {
+      const hub = getAreaHub(slug);
+      if (!hub) return def.pages.neighborhoods?.() ?? notFound();
+      const gallery = getSiteAssets(slug)?.gallery ?? [];
+      return (
+        <MasterAreasPage
+          siteName={siteName}
+          heroImage={heroImage}
+          title={hub.title}
+          subtitle={hub.subtitle}
+          eyebrow={hub.eyebrow}
+          sectionTitle={hub.sectionTitle}
+          areas={hub.areas.map((a, i) => ({
+            name: a.name,
+            description: a.description,
+            href: a.href ?? `/neighborhoods/${a.slug}`,
+            image: gallery.length > 0 ? gallery[i % gallery.length] : undefined,
+          }))}
+          tours={(home?.tours ?? []).slice(0, 4)}
+          guides={guides.filter((g) => g.kind === 'plan').map((g) => ({ label: g.title, href: g.href }))}
+        />
+      );
+    }
     case 'tours':
       return home ? (
         <MasterToursPage
@@ -265,10 +310,7 @@ function renderPage(slug: string, def: PropertyDef, resolved: Exclude<Resolution
       const doc = def.legal[resolved.type] ?? genericLegalDoc(resolved.type, siteName, extras?.contactEmail ?? contactEmail(slug));
       return <NetworkLegalPage doc={doc} />;
     }
-    default: {
-      const page = def.pages[resolved.type]?.();
-      if (!page) notFound();
-      return page;
-    }
+    default:
+      notFound();
   }
 }
