@@ -78,56 +78,54 @@ function CategoryCard({
   const lowestPrice = tours
     .filter((t) => t.priceBand)
     .map((t) => {
-      const price = parseInt(t.priceBand?.replace(/[^0-9]/g, '') || '0');
-      return price;
+      const match = t.priceBand?.match(/\d+/);
+      return match ? parseInt(match[0], 10) : null;
     })
+    .filter((n): n is number => n !== null)
     .sort((a, b) => a - b)[0];
 
   return (
     <Link
       href={href}
-      className="group relative col-span-1 overflow-hidden rounded-[22px] bg-paper shadow-card-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-2 lg:col-span-1 lg:min-h-[440px] flex flex-col"
+      className="group relative col-span-1 overflow-hidden rounded-[22px] transition-all duration-300 hover:-translate-y-1 sm:col-span-2 lg:col-span-1 lg:h-full min-h-[320px] flex flex-col"
     >
-      <div className="relative aspect-[4/3] lg:aspect-auto lg:flex-1 overflow-hidden bg-media">
-        <SafeImage
-          src={imageUrl}
-          alt={`${name} in Rome`}
-          fill
-          sizes="(min-width: 1024px) 320px, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/40 to-transparent" />
-        {count > 0 && (
-          <span className="absolute left-4 top-4 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-xs font-bold text-white">
-            {count} tours
-          </span>
-        )}
-      </div>
+      <SafeImage
+        src={imageUrl}
+        alt={`${name} in Rome`}
+        fill
+        sizes="(min-width: 1024px) 320px, 100vw"
+        className="absolute inset-0 object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
 
-      <div className="flex flex-1 flex-col justify-between p-7">
-        <div>
+      {count > 0 && (
+        <span className="absolute left-4 top-4 z-10 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-bold text-white">
+          {count} tours
+        </span>
+      )}
+
+      <div className="relative z-20 mt-auto flex flex-col">
+        <div className="m-3 rounded-[18px] bg-ink/35 backdrop-blur-md border border-white/15 p-5 sm:m-4 sm:p-6">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">Must taste</p>
-          <h3 className="mt-2 font-hero text-[32px] font-black leading-tight text-ink">{name}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-ink/70">{description}</p>
+          <h3 className="mt-2 font-hero text-[26px] lg:text-[30px] font-black leading-tight text-white">{name}</h3>
+          <p className="mt-2 text-sm leading-snug text-white/85 line-clamp-2">{description}</p>
+
+          {typeof lowestPrice === 'number' && lowestPrice > 0 && (
+            <p className="mt-2 text-white font-bold">From €{lowestPrice}</p>
+          )}
+
+          <div className="mt-3 flex flex-wrap gap-2">
+            {subLinks.map((link) => (
+              <span key={link} className="rounded-full bg-white/15 border border-white/20 px-2.5 py-1 text-xs font-medium text-white hover:bg-white/25 transition-colors">
+                {link}
+              </span>
+            ))}
+          </div>
+
+          <button className="mt-4 inline-flex items-center justify-center rounded-full bg-gold px-4 py-2 text-sm font-bold text-ink whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5">
+            See all {count} tours →
+          </button>
         </div>
-
-        {typeof lowestPrice === 'number' && lowestPrice > 0 && (
-          <p className="mt-3 text-sm font-bold text-ink">
-            From €{lowestPrice}
-          </p>
-        )}
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {subLinks.map((link) => (
-            <span key={link} className="rounded-full bg-white/15 backdrop-blur-sm px-3 py-1 text-xs font-medium text-white/90">
-              {link}
-            </span>
-          ))}
-        </div>
-
-        <button className="mt-4 inline-flex h-10 items-center justify-center rounded-full bg-gold px-5 text-sm font-bold text-ink transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-card">
-          See all {count} {name} tours →
-        </button>
       </div>
     </Link>
   );
@@ -159,7 +157,7 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
             return (
               <div
                 key={category.name}
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]"
+                className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:items-stretch"
               >
                 <CategoryCard
                   name={category.name}

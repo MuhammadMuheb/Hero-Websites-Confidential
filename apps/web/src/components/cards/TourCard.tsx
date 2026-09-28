@@ -23,7 +23,7 @@ export function TourCard({ tour, priority, href, compact, rank }: TourCardProps)
       className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-ink/5 bg-paper shadow-card-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-media">
+      <div className={compact ? "relative aspect-[16/11] overflow-hidden bg-media" : "relative aspect-[4/3] overflow-hidden bg-media"}>
         {tour.imageUrl ? (
           <SafeImage
             src={tour.imageUrl}
@@ -46,14 +46,14 @@ export function TourCard({ tour, priority, href, compact, rank }: TourCardProps)
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-4">
         {/* Title */}
-        <h3 className="font-hero text-[17px] font-extrabold leading-snug text-ink group-hover:text-brand transition-colors">
+        <h3 className={compact ? "font-hero text-[16px] font-extrabold line-clamp-2 text-ink group-hover:text-brand transition-colors" : "font-hero text-[17px] font-extrabold leading-snug text-ink group-hover:text-brand transition-colors"}>
           {tour.title}
         </h3>
 
         {/* Duration + features */}
-        <div className="mt-3 flex items-center gap-3 text-xs text-ink/60">
+        <div className={compact ? "mt-1.5 flex items-center gap-3 text-xs text-ink/60" : "mt-3 flex items-center gap-3 text-xs text-ink/60"}>
           {tour.duration && (
             <>
               <span className="font-medium">{tour.duration}</span>
@@ -84,11 +84,11 @@ export function TourCard({ tour, priority, href, compact, rank }: TourCardProps)
 
         {/* Price */}
         {tour.priceBand && (
-          <div className="mt-auto flex items-end justify-between border-t border-line pt-4">
+          <div className={compact ? "mt-4 flex items-end justify-between border-t border-line pt-3" : "mt-auto flex items-end justify-between border-t border-line pt-4"}>
             <span className="text-sm font-bold text-brand group-hover:underline">View tour</span>
             <span className="text-right leading-none">
               <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">From</span>
-              <span className="mt-1 block font-hero text-[22px] font-black text-ink">
+              <span className={compact ? "mt-0.5 block font-hero text-[20px] font-black text-ink" : "mt-1 block font-hero text-[22px] font-black text-ink"}>
                 {tour.priceBand}
                 <span className="ml-1 text-xs font-semibold text-ink-muted">/adult</span>
               </span>
