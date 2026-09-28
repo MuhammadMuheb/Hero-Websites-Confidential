@@ -111,7 +111,7 @@ function CategoryCard({
           <p className="mt-3 text-sm leading-relaxed text-ink/70">{description}</p>
         </div>
 
-        {lowestPrice > 0 && (
+        {typeof lowestPrice === 'number' && lowestPrice > 0 && (
           <p className="mt-3 text-sm font-bold text-ink">
             From €{lowestPrice}
           </p>
