@@ -16,9 +16,10 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1639945676247-0a495d9f0b90',
-  alt: 'St. Peter\'s Basilica dome rising over an empty St. Peter\'s Square at dawn, before the day\'s crowds arrive',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
+
 
 export interface NavItem {
   title: string;
@@ -435,4 +436,3 @@ export const AFFILIATE_DISCLOSURE = {
   ],
   contactEmail: 'hello@privatevatican.com',
 };
-

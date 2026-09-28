@@ -41,10 +41,19 @@ interface LinkItem {
   hideNumber?: boolean;
 }
 
-export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[]; allBlogPosts: BlogPostDoc[] }) {
+interface ExploreLinksSectionProps {
+  tours: TourDoc[];
+  allBlogPosts: BlogPostDoc[];
+  title?: string;
+  /** Network sites: their own 20 attractions and 20 tour links. */
+  attractions?: { label: string; href: string }[];
+  topTours?: { label: string; href: string }[];
+}
+
+export function ExploreLinksSection({ tours, allBlogPosts, title, attractions, topTours }: ExploreLinksSectionProps) {
   const [active, setActive] = useState<Tab>('Top Attractions');
 
-  const attractionItems: LinkItem[] = ATTRACTIONS.map((a) => {
+  const attractionItems: LinkItem[] = attractions ?? ATTRACTIONS.map((a) => {
     if (a.neighborhoodSlug) return { label: a.label, href: `/neighborhoods/${a.neighborhoodSlug}` };
     if (a.landmarkSlug) {
       const post = getBlogPostForLandmark(allBlogPosts, a.landmarkSlug);
@@ -60,7 +69,7 @@ export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[];
     hideNumber: true,
   }));
 
-  const tourItems: LinkItem[] = [
+  const tourItems: LinkItem[] = topTours ?? [
     ...tours.slice(0, 19).map((tour) => ({ label: tour.title, href: tourHref(tour.slug) })),
     { label: 'All Rome Food Tours', href: '/tours' },
   ];
@@ -74,10 +83,10 @@ export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[];
   const items = lists[active];
 
   return (
-    <section className="bg-paper-tint py-14">
+    <section className="bg-cream py-16 sm:py-20">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
         <h2 className="text-center font-sans text-xl font-extrabold tracking-tight text-ink sm:text-2xl">
-          Places You Can Plan Your Next Trip
+          {title ?? 'Places You Can Plan Your Next Trip'}
         </h2>
 
         <div className="mt-8 flex justify-center">
@@ -103,7 +112,7 @@ export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[];
           {items.map((item, index) =>
             item.href ? (
               <Link
-                key={item.label}
+                key={`${item.label}-${index}`}
                 href={item.href}
                 className="flex items-baseline gap-2 text-[15px] text-ink-muted transition-colors hover:text-accent"
               >

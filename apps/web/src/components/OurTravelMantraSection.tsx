@@ -16,7 +16,23 @@ const THIRD_POINT_PARAGRAPHS = [
   'This is where a good guide earns their keep — someone who eats in these neighbourhoods themselves, not just narrates them. We only recommend tours led by people like that.',
 ];
 
-export function OurTravelMantraSection() {
+interface MantraImage {
+  src: string;
+  alt: string;
+}
+
+interface OurTravelMantraSectionProps {
+  /** Points 1 and 2 (title + body). Defaults = Street Food Rome. */
+  points?: { title: string; body: string }[];
+  /** Point 3 title and paragraphs. */
+  thirdTitle?: string;
+  thirdParagraphs?: string[];
+  images?: [MantraImage, MantraImage];
+}
+
+export function OurTravelMantraSection({ points, thirdTitle, thirdParagraphs, images }: OurTravelMantraSectionProps = {}) {
+  const firstTwo = points ?? FIRST_TWO_POINTS;
+  const third = thirdParagraphs ?? THIRD_POINT_PARAGRAPHS;
   return (
     <section className="relative overflow-hidden bg-white py-16 sm:py-20">
       <div
@@ -32,8 +48,8 @@ export function OurTravelMantraSection() {
         <div className="mt-14 grid grid-cols-1 gap-x-16 gap-y-10 lg:grid-cols-2">
           <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage
-              src="https://images.unsplash.com/photo-1668171321834-658179e37f5e?w=600&h=450&fit=crop"
-              alt="Sharing wine and a meal together in Rome"
+              src={images?.[0].src ?? 'https://images.unsplash.com/photo-1668171321834-658179e37f5e?w=600&h=450&fit=crop'}
+              alt={images?.[0].alt ?? 'Sharing wine and a meal together in Rome'}
               fill
               sizes="(min-width: 1024px) 560px, 90vw"
               className="object-cover"
@@ -41,7 +57,7 @@ export function OurTravelMantraSection() {
           </div>
 
           <div className="flex flex-col justify-center gap-8">
-            {FIRST_TWO_POINTS.map((point) => (
+            {firstTwo.map((point) => (
               <div key={point.title}>
                 <h3 className="font-sans text-lg font-bold text-accent">{point.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{point.body}</p>
@@ -50,8 +66,8 @@ export function OurTravelMantraSection() {
           </div>
 
           <div className="flex flex-col justify-center gap-4">
-            <h3 className="font-sans text-lg font-bold text-accent">3. Let a Local Lead the Way</h3>
-            {THIRD_POINT_PARAGRAPHS.map((paragraph) => (
+            <h3 className="font-sans text-lg font-bold text-accent">{thirdTitle ?? '3. Let a Local Lead the Way'}</h3>
+            {third.map((paragraph) => (
               <p key={paragraph} className="text-sm leading-relaxed text-ink-muted">
                 {paragraph}
               </p>
@@ -60,8 +76,8 @@ export function OurTravelMantraSection() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media lg:mt-16">
             <SafeImage
-              src="https://images.unsplash.com/photo-1565182252045-3cfae92017e0?w=600&h=450&fit=crop"
-              alt="A guide leading a small group through Trastevere"
+              src={images?.[1].src ?? 'https://images.unsplash.com/photo-1565182252045-3cfae92017e0?w=600&h=450&fit=crop'}
+              alt={images?.[1].alt ?? 'A guide leading a small group through Trastevere'}
               fill
               sizes="(min-width: 1024px) 560px, 90vw"
               className="object-cover"

@@ -70,7 +70,7 @@ export function MoneyPageTemplate({ content }: { content: MoneyPageContent }) {
   }));
 
   return (
-    <div className="cir-scope bg-white pb-20 lg:pb-0">
+    <div className="bg-white pb-20 lg:pb-0">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />

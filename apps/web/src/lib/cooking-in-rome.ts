@@ -28,9 +28,10 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1683624328172-88fb24625ec1',
-  alt: 'A small group gathered around a kitchen counter together preparing food',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
+
 
 export interface NavItem {
   title: string;

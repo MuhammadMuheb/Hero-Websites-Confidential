@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Hero } from '@/components/Hero';
 import { SafeImage } from '@/components/SafeImage';
 import Link from '@/components/NetworkLink';
 import { SITE_DOMAIN } from '@/lib/firestore';

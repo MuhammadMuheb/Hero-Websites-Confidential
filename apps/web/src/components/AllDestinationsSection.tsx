@@ -1,26 +1,34 @@
 import Link from '@/components/NetworkLink';
 import { NETWORK_SITES } from '@/lib/tours';
 
+/** "Our Network": all sister sites as clean white cards. */
 export function AllDestinationsSection() {
   return (
-    <section className="bg-white py-14">
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
+    <section className="bg-cream-deep py-16 sm:py-20">
+      <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
         <div className="text-center">
-          <h2 className="font-sans text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-            Our Network
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">Italy Tours Network</p>
+          <h2 className="mt-3 font-hero text-[30px] font-black leading-tight tracking-[-0.02em] text-ink sm:text-[40px]">
+            Our <span className="text-brand">Network</span>
           </h2>
-          <p className="mt-2 text-base text-faint">Other sites in our affiliate network.</p>
+          <p className="mt-3 text-base text-ink-muted">More hand-picked experiences across Italy.</p>
         </div>
-
-        {/* Sister properties in the same affiliate network — clean static text only, no href yet. */}
-        <ul className="mx-auto mt-10 grid max-w-[720px] grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
+        <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {NETWORK_SITES.map((site) => (
-            <li key={site.number}>
+            <li key={site.slug}>
               <Link
                 href={`/${site.slug}`}
-                className="text-sm text-ink-muted transition-colors hover:text-accent"
+                className="group flex h-full items-center gap-4 rounded-[18px] border border-ink/5 bg-paper p-5 shadow-card-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-card-hover"
               >
-                {site.name}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-soft font-hero text-sm font-extrabold text-brand">
+                  {site.number}
+                </span>
+                <span className="flex-1 font-hero text-[15px] font-bold leading-snug text-ink group-hover:text-brand">
+                  {site.name}
+                </span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-gold-deep transition-transform group-hover:translate-x-0.5">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </Link>
             </li>
           ))}

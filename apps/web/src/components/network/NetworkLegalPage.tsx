@@ -9,32 +9,35 @@ export interface LegalDoc {
   contactEmail?: string;
 }
 
-/** Shared legal-page layout (privacy, terms, cookies, affiliate disclosure) for every property. */
-export function NetworkLegalPage({ scope, doc }: { scope: string; doc: LegalDoc }) {
+/**
+ * Shared legal-page layout (privacy, terms, cookies, affiliate disclosure) for every
+ * network property. Same design as the Street Food Rome master legal pages:
+ * InnerHero + a narrow rich-content column.
+ */
+export function NetworkLegalPage({ doc, homeHref = '/' }: { doc: LegalDoc; homeHref?: string }) {
   return (
-    <div className={`${scope} bg-white`}>
-      <InnerHero title={doc.title} breadcrumb={{ label: 'Home', href: '/' }} />
+    <>
+      <InnerHero title={doc.title} breadcrumb={{ label: 'Home', href: homeHref }} />
       <section className="py-14">
-        <div className="mx-auto max-w-[720px] space-y-8 px-6 sm:px-14">
-          <p className="text-base leading-relaxed text-ink-muted">{doc.intro}</p>
-          {doc.fallbackHtml ? <div className="rich-content" dangerouslySetInnerHTML={{ __html: doc.fallbackHtml }} /> : null}
-          {doc.sections?.map((section) => (
-            <div key={section.heading}>
-              <h2 className="mb-3 text-lg font-semibold text-ink">{section.heading}</h2>
-              <p className="text-base leading-relaxed text-ink-muted">{section.content}</p>
-            </div>
-          ))}
-          {doc.contactEmail ? (
-            <p className="border-t border-line pt-6 text-sm text-ink-muted">
-              Questions? Email{' '}
-              <a href={`mailto:${doc.contactEmail}`} className="font-semibold text-accent underline-offset-2 hover:underline">
-                {doc.contactEmail}
-              </a>
-            </p>
-          ) : null}
+        <div className="mx-auto max-w-[720px] px-6 sm:px-14">
+          <div className="rich-content">
+            <p>{doc.intro}</p>
+            {doc.fallbackHtml ? <div dangerouslySetInnerHTML={{ __html: doc.fallbackHtml }} /> : null}
+            {doc.sections?.map((section) => (
+              <div key={section.heading}>
+                <h2>{section.heading}</h2>
+                <p>{section.content}</p>
+              </div>
+            ))}
+            {doc.contactEmail ? (
+              <p>
+                Questions? Email <a href={`mailto:${doc.contactEmail}`}>{doc.contactEmail}</a>.
+              </p>
+            ) : null}
+          </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
 

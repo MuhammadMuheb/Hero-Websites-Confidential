@@ -1,25 +1,15 @@
 import type { Metadata } from 'next';
 import Link from '@/components/NetworkLink';
 import { getAllTours, SITE_DOMAIN, type TourDoc } from '@/lib/firestore';
-import { InnerHero } from '@/components/InnerHero';
-import { TourCard } from '@/components/TourCard';
+import { Hero } from '@/components/Hero';
+import { TourCard } from '@/components/cards/TourCard';
 import { CATEGORIES, NEIGHBORHOODS, getTourEntryByRealSlug, tourHref } from '@/lib/tours';
 
-export const dynamic = 'force-dynamic';
-
-async function safeGetAllTours() {
-  try {
-    return await getAllTours();
-  } catch (error) {
-    console.error('Error fetching tours:', error);
-    return [];
-  }
-}
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Rome Food Tours — Every Tour, One Place',
-  description:
-    'Every Street Food Rome tour in one index — filter by food category (pizza, pasta, gelato, beer & wine, street food classics) or by neighbourhood.',
+  description: 'Every Street Food Rome tour in one index — filter by food category or by neighbourhood.',
   alternates: { canonical: `https://${SITE_DOMAIN}/tours` },
 };
 
@@ -39,7 +29,7 @@ export default async function ToursIndexPage({
   searchParams: Promise<{ category?: string; neighborhood?: string }>;
 }) {
   const { category, neighborhood } = await searchParams;
-  const allTours = await safeGetAllTours();
+  const allTours = await getAllTours();
 
   let tours = allTours;
   if (category) tours = tours.filter((t) => matchesCategory(t, category));
@@ -69,84 +59,96 @@ export default async function ToursIndexPage({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <InnerHero
-        eyebrow="All Tours"
+      <Hero
+        imageUrl="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80"
         title="Rome Food Tours"
-        subtitle="Every tour we recommend, in one place — filter by food category or by the neighbourhood you're staying in."
-        breadcrumb={{ label: 'Home', href: '/' }}
+        subtitle="Every tour we recommend, in one place"
+        accentWord="tour"
       />
 
-      <section className="py-10">
-        <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
-          <div className="flex flex-wrap gap-2">
-            <Link
-              href="/tours"
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
-                !category && !neighborhood
-                  ? 'border-accent bg-accent text-white'
-                  : 'border-line bg-white text-ink-muted hover:border-accent hover:text-accent'
-              }`}
-            >
-              All Tours
-            </Link>
-            {CATEGORIES.map((c) => (
+      <section className="bg-cream py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Filters */}
+          <div className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-ink mb-6">Filter by Category</h2>
+            <div className="flex flex-wrap gap-2 mb-8">
               <Link
-                key={c.slug}
-                href={`/tours?category=${c.slug}`}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
-                  category === c.slug
-                    ? 'border-accent bg-accent text-white'
-                    : 'border-line bg-white text-ink-muted hover:border-accent hover:text-accent'
+                href="/tours"
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                  !category && !neighborhood
+                    ? 'bg-brand text-cream'
+                    : 'border border-line bg-paper text-ink hover:border-brand hover:text-brand'
                 }`}
               >
-                {c.name}
+                All Tours
               </Link>
-            ))}
-          </div>
+              {CATEGORIES.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/tours?category=${cat.slug}`}
+                  className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                    activeCategory?.slug === cat.slug
+                      ? 'bg-brand text-cream'
+                      : 'border border-line bg-paper text-ink hover:border-brand hover:text-brand'
+                  }`}
+                >
+                  {cat.name}
+                </Link>
+              ))}
+            </div>
 
-          <div className="mt-3 flex flex-wrap gap-2">
-            {NEIGHBORHOODS.map((n) => (
+            <h2 className="font-display text-2xl font-bold text-ink mb-6">Filter by Neighborhood</h2>
+            <div className="flex flex-wrap gap-2">
               <Link
-                key={n.slug}
-                href={`/tours?neighborhood=${n.slug}`}
-                className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
-                  neighborhood === n.slug
-                    ? 'border-accent bg-accent text-white'
-                    : 'border-line bg-white text-ink-muted hover:border-accent hover:text-accent'
+                href="/tours"
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                  !neighborhood && !category
+                    ? 'bg-brand text-cream'
+                    : 'border border-line bg-paper text-ink hover:border-brand hover:text-brand'
                 }`}
               >
-                {n.name}
+                All Areas
               </Link>
-            ))}
+              {NEIGHBORHOODS.slice(0, 8).map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/tours?neighborhood=${area.slug}`}
+                  className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                    activeNeighborhood?.slug === area.slug
+                      ? 'bg-brand text-cream'
+                      : 'border border-line bg-paper text-ink hover:border-brand hover:text-brand'
+                  }`}
+                >
+                  {area.name}
+                </Link>
+              ))}
+            </div>
           </div>
 
-          {(activeCategory || activeNeighborhood) && (
-            <p className="mt-6 text-sm text-ink-muted">
-              Showing {tours.length} tour{tours.length === 1 ? '' : 's'}
-              {activeCategory ? <> in <strong className="text-ink">{activeCategory.name}</strong></> : null}
-              {activeNeighborhood ? (
-                <>
-                  {' '}
-                  in <strong className="text-ink">{activeNeighborhood.name}</strong>
-                </>
-              ) : null}
-              .
+          {/* Results */}
+          <div className="mb-8">
+            <p className="text-ink/70">
+              {activeCategory && `Category: ${activeCategory.name}`}
+              {activeNeighborhood && `${activeCategory ? ' • ' : ''}Area: ${activeNeighborhood.name}`}
+              {!activeCategory && !activeNeighborhood && `All ${tours.length} tours`}
             </p>
-          )}
+          </div>
 
-          {tours.length === 0 ? (
-            <p className="mt-10 text-sm text-ink-muted">
-              No tours match that filter yet.{' '}
-              <Link href="/tours" className="font-bold text-accent hover:underline">
+          {/* Tour Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tours.map((tour, i) => (
+              <div key={tour.slug} data-reveal style={{ '--i': i } as React.CSSProperties}>
+                <TourCard tour={tour} priority={i === 0} />
+              </div>
+            ))}
+          </div>
+
+          {tours.length === 0 && (
+            <div className="py-20 text-center">
+              <p className="text-ink/60 mb-4">No tours found matching your filters.</p>
+              <Link href="/tours" className="text-brand hover:underline">
                 View all tours
               </Link>
-              .
-            </p>
-          ) : (
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-              {tours.map((tour, i) => (
-                <TourCard key={tour.slug} tour={tour} priority={i < 4} />
-              ))}
             </div>
           )}
         </div>

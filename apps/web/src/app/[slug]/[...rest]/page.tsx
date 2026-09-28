@@ -3,9 +3,19 @@ import { notFound, permanentRedirect } from 'next/navigation';
 import { PDTToursCategoryPage } from '@/components/pompeii-day-trip/PDTToursCategoryPage';
 import { POMPEII_AREAS } from '@/components/pompeii-day-trip/PDTNeighborhoodsPage';
 import { NetworkLegalPage, genericLegalDoc } from '@/components/network/NetworkLegalPage';
-import { NetworkAreaPage, NetworkGuidesPage, NetworkToursPage, type HubGuide } from '@/components/network/NetworkHubPages';
+import { NetworkAreaPage, NetworkToursPage, type HubGuide } from '@/components/network/NetworkHubPages';
 import { getNetworkSite, SITE_DOMAIN } from '@/lib/tours';
 import { NETWORK_PAGE_META } from '@/lib/network-page-meta';
+import { getHomeContent, getSiteExtras } from '@/lib/sites/home';
+import type { TourDoc } from '@/lib/firestore';
+import {
+  MasterContactPage,
+  MasterContentPage,
+  MasterFAQPage,
+  MasterGuidesPage,
+  MasterToursPage,
+  normalizeContent,
+} from '@/components/master/MasterPages';
 import { PROPERTIES, allContent, findCanonicalContentPath, resolveContent, type PropertyDef, type StandardPage } from './registry';
 
 /**
@@ -67,6 +77,8 @@ function toGuide(item: ReturnType<typeof allContent>[number]): HubGuide {
 function contactEmail(slug: string): string {
   return `hello@${slug.replace(/-/g, '')}.com`;
 }
+
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
   return Object.entries(PROPERTIES).flatMap(([slug, def]) => {
@@ -160,61 +172,98 @@ export default async function NetworkSiteSubPage({ params }: { params: Promise<{
 
   return (
     <>
-      {/* Money/support templates already emit their own BreadcrumbList. */}
-      {resolved.type !== 'content' ? (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
-      ) : null}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       {renderPage(slug, def, resolved, brand)}
     </>
   );
 }
 
+/** Tours for a content page: the ones the homepage shows for that page, else the first 4. */
+function toursForPath(slug: string, path: string): TourDoc[] {
+  const home = getHomeContent(slug);
+  if (!home) return [];
+  const bySlug = new Map(home.tours.map((t) => [t.slug, t]));
+  const category = home.categories.find((c) => c.href === path);
+  const picked = category ? category.tourSlugs.map((s) => bySlug.get(s)).filter((t): t is TourDoc => Boolean(t)) : [];
+  const rest = home.tours.filter((t) => !picked.includes(t));
+  return [...picked, ...rest].slice(0, 4);
+}
+
+/**
+ * Every network sub-page renders the Street Food Rome master design
+ * (src/components/master/MasterPages.tsx). Only text, images and tours change.
+ */
 function renderPage(slug: string, def: PropertyDef, resolved: Exclude<Resolution, null | { type: 'redirect' }>, brand: string) {
+  const home = getHomeContent(slug);
+  const extras = getSiteExtras(slug);
+  const siteName = home?.siteName ?? brand;
+  const heroImage = home?.heroImage.src ?? def.heroImage.src;
+  const guides = allContent(def).map(toGuide);
+
   switch (resolved.type) {
-    case 'content':
-      return resolveContent(def, resolved.path)!.node;
+    case 'content': {
+      const found = resolveContent(def, resolved.path)!;
+      const content = normalizeContent(found.content, found.kind, resolved.path);
+      // Some sites (Amalfi, Tivoli) only have short page data: never render an empty page.
+      if (content.intro.length === 0 && content.sections.length === 0 && content.description) content.intro = [content.description];
+      if (content.faqs.length === 0 && extras) content.faqs = extras.faqs.slice(0, 5);
+      return (
+        <MasterContentPage
+          content={content}
+          siteName={siteName}
+          tours={toursForPath(slug, resolved.path)}
+          moreLinks={(home?.chips ?? []).slice(0, 12)}
+        />
+      );
+    }
     case 'tour-category':
       return <PDTToursCategoryPage category={resolved.category} />;
     case 'area':
       return (
         <NetworkAreaPage
-          scope={def.scope}
           area={resolved.area}
           guides={allContent(def).filter((c) => c.kind === 'plan').map(toGuide)}
         />
       );
     case 'tours':
-      return (
-        def.pages.tours?.() ?? (
-          <NetworkToursPage
-            scope={def.scope}
-            siteName={brand}
-            title={(NETWORK_PAGE_META[slug]?.pages.tours?.title ?? 'Featured Tours').split(' | ')[0] ?? 'Featured Tours'}
-            subtitle={def.toursSubtitle}
-            tours={def.tours}
-            guides={allContent(def).map(toGuide)}
-          />
-        )
+      return home ? (
+        <MasterToursPage
+          siteName={siteName}
+          heroImage={heroImage}
+          title={(NETWORK_PAGE_META[slug]?.pages.tours?.title ?? `${siteName} Tours`).split(' | ')[0] ?? `${siteName} Tours`}
+          subtitle={def.toursSubtitle}
+          tours={home.tours}
+          categories={home.categories.filter((c) => c.href !== '/tours').map((c) => ({ label: c.name, href: c.href }))}
+          guides={guides.filter((g) => g.kind === 'plan').map((g) => ({ label: g.title, href: g.href }))}
+        />
+      ) : (
+        <NetworkToursPage siteName={brand} title="Featured Tours" subtitle={def.toursSubtitle} tours={def.tours} guides={guides} />
       );
     case 'blog':
-      return (
-        def.pages.blog?.() ?? (
-          <NetworkGuidesPage
-            scope={def.scope}
-            siteName={brand}
-            title="Guides & planning tips"
-            subtitle={`Everything we’ve written for ${brand}: honest comparisons and first-hand planning advice.`}
-            guides={allContent(def).map(toGuide)}
-          />
-        )
+      return <MasterGuidesPage siteName={siteName} heroImage={heroImage} guides={guides} />;
+    case 'faq':
+      return extras ? (
+        <MasterFAQPage siteName={siteName} city={extras.city} heroImage={heroImage} faqs={extras.faqs} />
+      ) : (
+        def.pages.faq?.() ?? notFound()
       );
+    case 'contact':
+      return extras ? (
+        <MasterContactPage siteName={siteName} city={extras.city} heroImage={heroImage} email={extras.contactEmail} faqs={extras.faqs} />
+      ) : (
+        def.pages.contact?.() ?? notFound()
+      );
+    case 'privacy': {
+      if (extras?.privacy) return <NetworkLegalPage doc={extras.privacy} />;
+      const page = def.pages.privacy?.();
+      if (!page) notFound();
+      return page;
+    }
     case 'terms':
     case 'cookie-policy':
     case 'affiliate-disclosure': {
-      const bespoke = def.pages[resolved.type]?.();
-      if (bespoke) return bespoke;
-      const doc = def.legal[resolved.type] ?? genericLegalDoc(resolved.type, brand, contactEmail(slug));
-      return <NetworkLegalPage scope={def.scope} doc={doc} />;
+      const doc = def.legal[resolved.type] ?? genericLegalDoc(resolved.type, siteName, extras?.contactEmail ?? contactEmail(slug));
+      return <NetworkLegalPage doc={doc} />;
     }
     default: {
       const page = def.pages[resolved.type]?.();

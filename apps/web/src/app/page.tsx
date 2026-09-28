@@ -1,38 +1,12 @@
 import type { Metadata } from 'next';
 import { getAllBlogPosts, getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { HomePageBody } from '@/components/HomePageBody';
+import { streetFoodRomeConfig } from '@/config/sites/street-food-rome';
 
 export const dynamic = 'force-dynamic';
 
-async function safeGetPageDoc(slug: string) {
-  try {
-    return await getPageDoc(slug);
-  } catch (error) {
-    console.error(`Error fetching page doc for ${slug}:`, error);
-    return null;
-  }
-}
-
-async function safeGetAllTours() {
-  try {
-    return await getAllTours();
-  } catch (error) {
-    console.error('Error fetching tours:', error);
-    return [];
-  }
-}
-
-async function safeGetAllBlogPosts() {
-  try {
-    return await getAllBlogPosts();
-  } catch (error) {
-    console.error('Error fetching blog posts:', error);
-    return [];
-  }
-}
-
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await safeGetPageDoc('home');
+  const page = await getPageDoc('home');
   if (!page) return {};
 
   return {
@@ -51,14 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Fallback hero image for the homepage if Firestore doc doesn't have one
 const HOME_HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e';
 
 export default async function HomePage() {
   const [page, tours, allBlogPosts] = await Promise.all([
-    safeGetPageDoc('home'),
-    safeGetAllTours(),
-    safeGetAllBlogPosts(),
+    getPageDoc('home'),
+    getAllTours(),
+    getAllBlogPosts().catch(() => []),
   ]);
 
   return (
@@ -68,6 +41,7 @@ export default async function HomePage() {
       heroImageUrl={page?.heroImageUrl ?? HOME_HERO_IMAGE_URL}
       tours={tours}
       allBlogPosts={allBlogPosts}
+      config={streetFoodRomeConfig}
     />
   );
 }

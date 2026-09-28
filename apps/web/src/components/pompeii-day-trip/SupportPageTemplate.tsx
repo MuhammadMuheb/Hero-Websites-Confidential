@@ -31,7 +31,7 @@ export function SupportPageTemplate({ content }: { content: SupportPageContent }
   };
 
   return (
-    <div className="pdt-scope bg-white">
+    <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 

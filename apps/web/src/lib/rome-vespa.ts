@@ -27,9 +27,10 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1739289928017-1eab9eb96ba8',
-  alt: 'A rider on a scooter moving down a narrow Rome street lined with tall buildings',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
+
 
 export interface NavItem {
   title: string;
@@ -449,5 +450,3 @@ export const AFFILIATE_DISCLOSURE = {
   ],
   contactEmail: 'hello@romevespa.com',
 };
-
-

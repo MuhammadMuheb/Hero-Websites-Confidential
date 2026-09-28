@@ -28,7 +28,13 @@ const CARDS = [
   },
 ];
 
-export function HowItStartedSection() {
+interface HowItStartedSectionProps {
+  subtitle?: string;
+  cards?: { title: string; description: string; image: string; href: string }[];
+}
+
+export function HowItStartedSection({ subtitle, cards }: HowItStartedSectionProps = {}) {
+  const cardList = cards ?? CARDS;
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-14">
@@ -38,12 +44,12 @@ export function HowItStartedSection() {
             How It Started
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
-            From a semester abroad to over a decade living in Rome — discover the story behind Street Food Rome.
+            {subtitle ?? 'From a semester abroad to over a decade living in Rome — discover the story behind Street Food Rome.'}
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CARDS.map((card) => (
+          {cardList.map((card) => (
             <Link
               key={card.title}
               href={card.href}

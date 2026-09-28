@@ -11,8 +11,8 @@ export const AUTHOR = {
 };
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca',
-  alt: 'Freshly cooked Neapolitan pizza with bubbling char emerging from a wood-fired oven',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
 
 export const NAPLES_STREET_FOOD_GALLERY = [

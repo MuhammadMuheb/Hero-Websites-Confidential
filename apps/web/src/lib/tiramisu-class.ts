@@ -33,9 +33,10 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9',
-  alt: 'A square slice of cocoa-dusted tiramisù with visible ladyfinger and cream layers, served on a patterned plate',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
+
 
 export interface NavItem {
   title: string;

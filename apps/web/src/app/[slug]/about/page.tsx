@@ -1,120 +1,96 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getNetworkSite, SITE_DOMAIN } from '@/lib/tours';
-import { NETWORK_PAGE_META } from '@/lib/network-page-meta';
-import { SafeImage } from '@/components/SafeImage';
-import Link from '@/components/NetworkLink';
+import { SITE_DOMAIN, getAllBlogPosts } from '@/lib/firestore';
+import { getNetworkSite } from '@/lib/tours';
+import { getAboutContent } from '@/lib/sites/about';
+import { getHomeContent } from '@/lib/sites/home';
+import { AboutHero } from '@/components/AboutHero';
+import { OurTravelMantraSection } from '@/components/OurTravelMantraSection';
+import { ExperiencesBannerSection } from '@/components/ExperiencesBannerSection';
+import { WhoWritesThisSection } from '@/components/WhoWritesThisSection';
+import { HowItStartedSection } from '@/components/HowItStartedSection';
+import { HowWeChooseSection } from '@/components/HowWeChooseSection';
+import { ExploreLinksSection } from '@/components/ExploreLinksSection';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const site = getNetworkSite(slug);
-  if (!site) return {};
+  const about = getAboutContent(slug);
+  if (!site || !about) return {};
 
-  const meta = NETWORK_PAGE_META[slug]?.pages.about;
-  const title = meta?.title ?? `About ${site.name}`;
-  const description = meta?.description ?? `Learn about ${site.name} — our story, values, and commitment to authentic experiences.`;
-
+  const url = `https://${SITE_DOMAIN}/${slug}/about`;
   return {
-    title: { absolute: title },
-    description,
-    alternates: { canonical: `https://${SITE_DOMAIN}/${slug}/about` },
+    title: { absolute: about.metaTitle },
+    description: about.metaDescription,
+    alternates: { canonical: url },
     openGraph: {
-      title,
-      description,
-      url: `https://${SITE_DOMAIN}/${slug}/about`,
-      images: [{ url: 'https://images.unsplash.com/photo-1668171321834-658179e37f5e?w=1200&h=630&fit=crop&q=80&auto=format', width: 1200, height: 630 }],
+      title: about.metaTitle,
+      description: about.metaDescription,
+      url,
+      images: [{ url: about.hero.image.src, width: 1200, height: 630, alt: about.hero.image.alt }],
     },
+    twitter: { card: 'summary_large_image', images: [about.hero.image.src] },
   };
 }
 
+/**
+ * Same sections, same order, same components as the Street Food Rome /about
+ * page. Only text and images change (see src/lib/sites/about.ts).
+ */
 export default async function PropertyAboutPage({ params }: Props) {
   const { slug } = await params;
   const site = getNetworkSite(slug);
+  const about = getAboutContent(slug);
+  const home = getHomeContent(slug);
+  if (!site || !about || !home) notFound();
 
-  if (!site) {
-    notFound();
-  }
+  const allBlogPosts = await getAllBlogPosts().catch(() => []);
 
   return (
     <>
-      <section className="relative min-h-[400px] w-full overflow-hidden bg-ink">
-        <div className="absolute inset-0">
-          <SafeImage
-            src="https://images.unsplash.com/photo-1668171321834-658179e37f5e?w=1200&h=600&fit=crop"
-            alt={`About ${site.name}`}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20" />
-
-        <div className="relative mx-auto flex min-h-[400px] max-w-[1440px] flex-col justify-end px-6 py-16 sm:px-14 sm:py-20">
-          <nav className="mb-6 text-sm text-white/70">
-            <Link href={`/${slug}`} className="hover:text-white">{site.name}</Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">About Us</span>
-          </nav>
-
-          <h1 className="max-w-3xl font-sans text-[40px] font-extrabold leading-tight text-white sm:text-[52px]">
-            About {site.name}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-white/90">
-            Our story, values, and commitment to authentic, first-hand experiences across {site.name.toLowerCase()}.
-          </p>
-        </div>
-      </section>
-
-      <section className="border-b border-line py-16 sm:py-20">
-        <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
-          <h2 className="font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Our Mission
-          </h2>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted">
-            {site.name} is built on one core principle: everything we recommend has been experienced firsthand. No crowd-sourced rankings, no sponsored placements &mdash; just honest, thoughtful recommendations from someone who genuinely cares about the experience.
-          </p>
-
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
-            <div className="rounded-media border border-line bg-paper-tint p-6">
-              <h3 className="font-bold text-accent">Authenticity</h3>
-              <p className="mt-3 text-sm text-ink-muted">
-                Every tour, restaurant, and experience recommended here has been personally visited and evaluated.
-              </p>
-            </div>
-            <div className="rounded-media border border-line bg-paper-tint p-6">
-              <h3 className="font-bold text-accent">Honesty</h3>
-              <p className="mt-3 text-sm text-ink-muted">
-                We don&apos;t accept commissions or sponsorships. Our recommendations are entirely independent.
-              </p>
-            </div>
-            <div className="rounded-media border border-line bg-paper-tint p-6">
-              <h3 className="font-bold text-accent">Quality</h3>
-              <p className="mt-3 text-sm text-ink-muted">
-                We set a high bar. If something doesn&apos;t meet our standards, it simply doesn&apos;t get recommended.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-paper-tint py-16 sm:py-20">
-        <div className="mx-auto max-w-[1200px] px-6 sm:px-14 text-center">
-          <h2 className="font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Questions? Get in Touch
-          </h2>
-          <Link
-            href={`/${slug}/contact`}
-            className="mt-8 inline-flex h-12 items-center justify-center rounded-control bg-accent-gradient px-8 text-sm font-bold text-white shadow-glow transition-transform hover:scale-[1.02]"
-          >
-            Contact Us
-          </Link>
-        </div>
-      </section>
+      <AboutHero
+        title={about.hero.title}
+        description={about.hero.description}
+        imageUrl={about.hero.image.src}
+        imageAlt={about.hero.image.alt}
+        homeHref={`/${slug}`}
+      />
+      <OurTravelMantraSection
+        points={about.mantra.points}
+        thirdTitle={about.mantra.thirdTitle}
+        thirdParagraphs={about.mantra.thirdParagraphs}
+        images={about.mantra.images}
+      />
+      <ExperiencesBannerSection
+        title={about.banner.title}
+        description={about.banner.description}
+        ctaLabel={about.banner.ctaLabel}
+        ctaHref={about.banner.ctaHref}
+        imageUrl={about.banner.image.src}
+        imageAlt={about.banner.image.alt}
+      />
+      <WhoWritesThisSection
+        name={about.whoWrites.name}
+        bio={about.whoWrites.bio}
+        closingLine={about.whoWrites.closingLine}
+        imageUrl={about.whoWrites.image.src}
+        imageAlt={about.whoWrites.image.alt}
+      />
+      <HowItStartedSection subtitle={about.howItStarted.subtitle} cards={about.howItStarted.cards} />
+      <HowWeChooseSection subtitle={about.howWeChoose.subtitle} steps={about.howWeChoose.steps} />
+      <ExploreLinksSection
+        tours={home.tours}
+        allBlogPosts={allBlogPosts}
+        title={about.places.title}
+        attractions={about.places.attractions}
+        topTours={about.places.topTours}
+      />
     </>
   );
 }

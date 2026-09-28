@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from '@/components/NetworkLink';
+import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
 
 interface SearchResult {
@@ -21,9 +22,11 @@ export const metadata: Metadata = {
 async function SearchResults({ query }: { query: string }) {
   if (!query || query.length < 2) {
     return (
-      <div className="mx-auto max-w-3xl px-6 py-16 text-center sm:px-14">
-        <h2 className="text-2xl font-bold text-ink">Enter a search term</h2>
-        <p className="mt-2 text-ink-muted">Try searching for a tour, neighborhood, or topic.</p>
+      <div className="bg-cream py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-display text-4xl font-bold text-ink mb-4">Enter a search term</h2>
+          <p className="text-ink/70">Try searching for a tour, neighborhood, or topic.</p>
+        </div>
       </div>
     );
   }
@@ -42,11 +45,13 @@ async function SearchResults({ query }: { query: string }) {
 
     if (results.length === 0) {
       return (
-        <div className="mx-auto max-w-3xl px-6 py-16 text-center sm:px-14">
-          <h2 className="text-2xl font-bold text-ink">No results found</h2>
-          <p className="mt-2 text-ink-muted">
-            We couldn&apos;t find anything matching &quot;{query}&quot;. Try different keywords or explore our tours by category.
-          </p>
+        <div className="bg-cream py-20">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="font-display text-4xl font-bold text-ink mb-4">No results found</h2>
+            <p className="text-ink/70">
+              We couldn&apos;t find anything matching &quot;{query}&quot;. Try different keywords or explore our tours by category.
+            </p>
+          </div>
         </div>
       );
     }
@@ -59,17 +64,18 @@ async function SearchResults({ query }: { query: string }) {
     };
 
     return (
-      <div className="mx-auto max-w-3xl px-6 py-12 sm:px-14">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-ink">
-            Search results for &quot;{query}&quot;
-          </h1>
-          <p className="mt-2 text-sm text-ink-muted">
-            Found {results.length} result{results.length !== 1 ? 's' : ''}
-          </p>
-        </div>
+      <div className="bg-cream py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <h1 className="font-display text-4xl font-bold text-ink mb-4">
+              Search results for &quot;{query}&quot;
+            </h1>
+            <p className="text-ink/70">
+              Found {results.length} result{results.length !== 1 ? 's' : ''}
+            </p>
+          </div>
 
-        {/* Properties */}
+          {/* Properties */}
         {groupedResults.properties.length > 0 && (
           <div className="mb-12">
             <h2 className="mb-4 text-lg font-semibold text-ink">Network Properties</h2>
@@ -78,10 +84,10 @@ async function SearchResults({ query }: { query: string }) {
                 <Link
                   key={result.id}
                   href={result.url}
-                  className="block rounded-lg border border-line p-4 transition-colors hover:border-accent hover:bg-paper-tint"
+                  className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
                 >
-                  <h3 className="font-semibold text-accent">{result.title}</h3>
-                  <p className="mt-1 text-sm text-ink-muted">{result.description}</p>
+                  <h3 className="font-semibold text-brand">{result.title}</h3>
+                  <p className="mt-1 text-sm text-ink/70">{result.description}</p>
                 </Link>
               ))}
             </div>
@@ -97,16 +103,16 @@ async function SearchResults({ query }: { query: string }) {
                 <Link
                   key={result.id}
                   href={result.url}
-                  className="block rounded-lg border border-line p-4 transition-colors hover:border-accent hover:bg-paper-tint"
+                  className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
                 >
                   <div className="flex items-start justify-between">
                     <div className="min-w-0">
                       <h3 className="font-semibold text-ink">{result.title}</h3>
                       {result.description && (
-                        <p className="mt-1 text-sm text-ink-muted line-clamp-2">{result.description}</p>
+                        <p className="mt-1 text-sm text-ink/70 line-clamp-2">{result.description}</p>
                       )}
                     </div>
-                    <span className="ml-2 shrink-0 rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+                    <span className="ml-2 shrink-0 rounded-full bg-brand/10 px-3 py-1 text-xs font-medium text-brand">
                       Tour
                     </span>
                   </div>
@@ -125,16 +131,16 @@ async function SearchResults({ query }: { query: string }) {
                 <Link
                   key={result.id}
                   href={result.url}
-                  className="block rounded-lg border border-line p-4 transition-colors hover:border-accent hover:bg-paper-tint"
+                  className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
                 >
                   <div className="flex items-start justify-between">
                     <div className="min-w-0">
                       <h3 className="font-semibold text-ink">{result.title}</h3>
                       {result.description && (
-                        <p className="mt-1 text-sm text-ink-muted line-clamp-2">{result.description}</p>
+                        <p className="mt-1 text-sm text-ink/70 line-clamp-2">{result.description}</p>
                       )}
                     </div>
-                    <span className="ml-2 shrink-0 rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
+                    <span className="ml-2 shrink-0 rounded-full bg-gold/20 px-3 py-1 text-xs font-medium text-gold">
                       Blog
                     </span>
                   </div>
@@ -153,27 +159,30 @@ async function SearchResults({ query }: { query: string }) {
                 <Link
                   key={result.id}
                   href={result.url}
-                  className="block rounded-lg border border-line p-4 transition-colors hover:border-accent hover:bg-paper-tint"
+                  className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
                 >
                   <h3 className="font-semibold text-ink">{result.title}</h3>
                   {result.description && (
-                    <p className="mt-1 text-sm text-ink-muted">{result.description}</p>
+                    <p className="mt-1 text-sm text-ink/70">{result.description}</p>
                   )}
                 </Link>
               ))}
             </div>
           </div>
         )}
+        </div>
       </div>
     );
   } catch (error) {
     console.error('Search error:', error);
     return (
-      <div className="mx-auto max-w-3xl px-6 py-16 text-center sm:px-14">
-        <h2 className="text-2xl font-bold text-ink">Search error</h2>
-        <p className="mt-2 text-ink-muted">
-          Something went wrong while searching. Please try again.
-        </p>
+      <div className="bg-cream py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-display text-4xl font-bold text-ink mb-4">Search error</h2>
+          <p className="text-ink/70">
+            Something went wrong while searching. Please try again.
+          </p>
+        </div>
       </div>
     );
   }
@@ -188,8 +197,11 @@ export default async function SearchPage({
   const query = typeof params.q === 'string' ? params.q : '';
 
   return (
-    <Suspense fallback={<div className="min-h-screen" />}>
-      <SearchResults query={query} />
-    </Suspense>
+    <>
+      <Hero imageUrl="https://images.unsplash.com/photo-1516594915649-c945b9c922c8?w=1600&q=80" title="Search Tours" subtitle="Find what you&apos;re looking for" accentWord="" />
+      <Suspense fallback={<div className="bg-cream min-h-screen" />}>
+        <SearchResults query={query} />
+      </Suspense>
+    </>
   );
 }

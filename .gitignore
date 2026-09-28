@@ -13,3 +13,4 @@ firebase-service-account*.json
 
 # repomix
 .repomix/
+apps/web/Hero-Websites-Confidential/

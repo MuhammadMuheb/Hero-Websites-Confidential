@@ -54,7 +54,7 @@ export default async function Icon({ params }: { params: Promise<{ slug: string 
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#ff0022',
+          background: '#0F7A4D',
           borderRadius: '50%',
         }}
       >

@@ -30,7 +30,13 @@ const STEPS = [
   },
 ];
 
-export function HowWeChooseSection() {
+interface HowWeChooseSectionProps {
+  subtitle?: string;
+  steps?: { title: string; description: string; image: string; href: string }[];
+}
+
+export function HowWeChooseSection({ subtitle, steps }: HowWeChooseSectionProps = {}) {
+  const stepList = steps ?? STEPS;
   return (
     <section className="bg-paper-tint py-16 sm:py-20">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-14">
@@ -40,12 +46,12 @@ export function HowWeChooseSection() {
             How We Choose Our Tours
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
-            Four principles guide every recommendation on this site — personal experience, honesty, and quality above all else.
+            {subtitle ?? 'Four principles guide every recommendation on this site — personal experience, honesty, and quality above all else.'}
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {STEPS.map((step, index) => (
+          {stepList.map((step, index) => (
             <Link
               key={step.title}
               href={step.href}

@@ -3,7 +3,7 @@ import { FAQS } from '@/lib/cooking-in-rome';
 
 export function CIRFAQPage() {
   return (
-    <div className="cir-scope bg-white">
+    <div className="bg-white">
       <FAQPageTemplate
         title="Frequently Asked Questions"
         subtitle="Classes, bookings, and what this site covers."

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from 'next';
 import Link from '@/components/NetworkLink';
 import { getAllBlogPosts, SITE_DOMAIN } from '@/lib/firestore';
@@ -5,16 +6,7 @@ import { InnerHero } from '@/components/InnerHero';
 import { SafeImage } from '@/components/SafeImage';
 import { BLOG_CATEGORIES } from '@/lib/blog';
 
-export const dynamic = 'force-dynamic';
-
-async function safeGetAllBlogPosts() {
-  try {
-    return await getAllBlogPosts();
-  } catch (error) {
-    console.error('Error fetching blog posts:', error);
-    return [];
-  }
-}
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -27,7 +19,7 @@ function formatDate(iso: string): string {
 }
 
 export default async function BlogIndexPage() {
-  const posts = await safeGetAllBlogPosts();
+  const posts = await getAllBlogPosts();
 
   return (
     <>

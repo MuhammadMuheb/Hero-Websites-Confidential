@@ -2,7 +2,7 @@ import { ADTAuthorBox, ADTFooter } from './ADTShared';
 
 export function ADTContactPage() {
   return (
-    <div className="adt-scope">
+    <div className="">
       <section className="border-b border-line py-14 sm:py-20">
         <div className="mx-auto max-w-[760px] px-6 sm:px-14">
           <h1 className="font-display text-[34px] font-bold leading-[1.12] tracking-tight text-ink sm:text-[48px]">

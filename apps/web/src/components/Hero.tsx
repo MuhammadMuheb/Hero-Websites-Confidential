@@ -8,6 +8,18 @@ import { tourHref } from '@/lib/tours';
 
 interface HeroProps {
   imageUrl: string | null;
+  /** Inner page title (triggers inner page hero mode instead of homepage hero) */
+  title?: string;
+  subtitle?: string;
+  accentWord?: string;
+  /** Homepage copy for network sites. Omitted = Street Food Rome (master). */
+  home?: {
+    eyebrow: string;
+    title: [string, string, string];
+    placeholder: string;
+    chips: { label: string; href: string }[];
+    imageAlt: string;
+  };
 }
 
 /**
@@ -38,89 +50,124 @@ const CHIPS: { label: string; href: string }[] = [
   { label: 'Market Tour', href: tourHref('testaccio-market-food-tour') },
 ];
 
-export function Hero({ imageUrl }: HeroProps) {
+export function Hero({ imageUrl, title, subtitle, accentWord, home }: HeroProps) {
+  const chips = home?.chips ?? CHIPS;
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const isInnerPage = !!title;
 
   function scrollBy(delta: number) {
     scrollerRef.current?.scrollBy({ left: delta, behavior: 'smooth' });
   }
 
+  // Inner page hero mode
+  if (isInnerPage) {
+    return (
+      <section className="bg-paper">
+        {imageUrl ? (
+          <div className="relative h-64 w-full overflow-hidden sm:h-80">
+            <SafeImage src={imageUrl} alt={title} fill priority sizes="100vw" className="object-cover" />
+          </div>
+        ) : null}
+        <div className="mx-auto max-w-6xl px-6 py-12 text-center sm:px-8 sm:py-16">
+          <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
+            {title}{accentWord && <span className="text-accent"> {accentWord}</span>}
+          </h1>
+          {subtitle && <p className="mt-3 text-lg text-ink-muted">{subtitle}</p>}
+        </div>
+      </section>
+    );
+  }
+
+  // Homepage hero mode — original Street Food Rome layout, v2 colors
   return (
-    <section>
-      <div className="relative h-[400px] w-full overflow-hidden sm:h-[480px]">
+    <section id="hero" className="bg-cream">
+      <div className="relative h-[420px] w-full overflow-hidden sm:h-[520px]">
         {imageUrl ? (
           <SafeImage
             src={imageUrl}
-            alt="A small, authentic Roman trattoria with a handwritten specials board — Rome street food, not a generic Europe scene"
+            alt={home?.imageAlt ?? "A Roman trattoria table set out on a cobbled street, where Rome's street food tours begin"}
             fill
             priority
             sizes="100vw"
             className="object-cover"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
+        {/* Dark-green overlay: same box as the image, so there is no gap or overflow */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(100deg, rgba(12,35,26,0.88) 0%, rgba(12,35,26,0.62) 45%, rgba(12,35,26,0.30) 100%)',
+          }}
+        />
 
-        <div className="relative mx-auto flex h-full max-w-[960px] flex-col justify-center px-6 pb-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Rome, Italy</p>
-          <h1 className="mt-3 max-w-2xl font-sans text-[40px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[60px] sm:leading-[1.05]">
-            Rome&rsquo;s Ultimate Street Food &amp; Culinary Experiences
+        <div className="relative mx-auto flex h-full max-w-[1200px] flex-col justify-center px-6 pb-12 sm:px-10">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-gold">{home?.eyebrow ?? 'Rome, Italy'}</p>
+          <h1 className="mt-4 max-w-3xl font-hero text-[40px] font-black leading-[1.05] tracking-[-0.02em] text-cream-text sm:text-[60px]">
+            {home ? (
+              <>
+                {home.title[0]}
+                <span className="text-gold">{home.title[1]}</span>
+                {home.title[2]}
+              </>
+            ) : (
+              <>
+                Rome&rsquo;s Ultimate <span className="text-gold">Street Food</span> &amp; Culinary Experiences
+              </>
+            )}
           </h1>
         </div>
       </div>
 
-      {/* Search bar straddles the hero/strip boundary — half over the photo, half over the light
-          section below — matching the reference's actual overlap, not fully embedded in the photo. */}
-      <div className="relative z-10 mx-auto -mt-8 max-w-[896px] px-6">
-        <GlobalSearchBox
-          placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
-          compact={false}
-          className="w-full"
-        />
+      {/* Search bar on the bottom edge of the hero: half over the photo, half below */}
+      <div className="relative z-10 mx-auto -mt-8 max-w-[820px] px-6">
+        <div className="rounded-full shadow-search">
+          <GlobalSearchBox
+            placeholder={home?.placeholder ?? 'Trastevere, Testaccio, Suppli, Pizza al Taglio…'}
+            compact={false}
+            className="w-full"
+          />
+        </div>
       </div>
 
-      {/* Category chips — separate strip below the photo, functional scroll like the reference.
-          White, not the light-gray tint used elsewhere: the section right below (Trust Points)
-          is already that gray, and two identical backgrounds back-to-back read as one seamless
-          block with no boundary between them. */}
-      <div className="bg-white">
-        <div className="mx-auto flex max-w-[1200px] items-center gap-2 px-6 pb-6 pt-8">
-          <button
-            type="button"
-            aria-label="Scroll categories left"
-            onClick={() => scrollBy(-320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-all duration-200 ease-out hover:border-accent hover:text-accent"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+      {/* Chips: one row only */}
+      <div className="mx-auto flex max-w-[1200px] items-center gap-2 px-6 pb-8 pt-8 sm:px-10">
+        <button
+          type="button"
+          aria-label="Scroll categories left"
+          onClick={() => scrollBy(-320)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-ink transition-colors duration-200 hover:border-brand hover:text-brand"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
 
-          <div
-            ref={scrollerRef}
-            className="flex flex-1 items-center gap-2.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {CHIPS.map((chip) => (
-              <Link
-                key={chip.label}
-                href={chip.href}
-                className="flex h-[42px] shrink-0 items-center whitespace-nowrap rounded-full border border-line bg-white px-4 text-[15px] font-bold text-ink-soft transition-all duration-200 ease-out hover:border-accent hover:bg-accent-soft hover:text-accent"
-              >
-                {chip.label}
-              </Link>
-            ))}
-          </div>
-
-          <button
-            type="button"
-            aria-label="Scroll categories right"
-            onClick={() => scrollBy(320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-all duration-200 ease-out hover:border-accent hover:text-accent"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+        <div
+          ref={scrollerRef}
+          className="flex flex-1 items-center gap-2.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {chips.map((chip) => (
+            <Link
+              key={`${chip.label}-${chip.href}`}
+              href={chip.href}
+              className="flex h-11 shrink-0 items-center whitespace-nowrap rounded-full border border-line bg-paper px-5 text-[15px] font-semibold text-ink transition-colors duration-200 hover:border-brand hover:bg-accent-soft hover:text-brand"
+            >
+              {chip.label}
+            </Link>
+          ))}
         </div>
+
+        <button
+          type="button"
+          aria-label="Scroll categories right"
+          onClick={() => scrollBy(320)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-ink transition-colors duration-200 hover:border-brand hover:text-brand"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
       </div>
     </section>
   );
