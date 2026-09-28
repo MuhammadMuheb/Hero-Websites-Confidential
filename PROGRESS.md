@@ -44,12 +44,14 @@
 
 ## 4 Parts (Sequential with build+commit+push after each)
 
-### Part A: Type Extension + Street Food Rome Config ✅ IN PROGRESS
-- [ ] Extend SiteConfig schema in `config.ts` with all fields above
-- [ ] Create `apps/web/src/config/sites/street-food-rome.ts` with full homepage content
-- [ ] HomePageBody stays unchanged (still hardcoded, Street Food Rome will use config)
-- [ ] Build passes, Street Food Rome looks IDENTICAL
-- [ ] Commit + push, update PROGRESS.md
+### Part A: Type Extension + Street Food Rome Config ✅ DONE
+- [x] Extend SiteConfig schema in `config.ts` with all fields above
+- [x] Create `apps/web/src/config/sites/street-food-rome.ts` with full homepage content
+- [x] HomePageBody stays unchanged (still hardcoded, Street Food Rome will use config)
+- [x] TypeScript compilation passes (0 type errors)
+- [x] Commit 54626c4 + push to Staging
+
+**Next**: Part B - Refactor HomePageBody to accept `config: SiteConfig` prop and read all content from it instead of hardcoded data
 
 ### Part B: HomePageBody Config-Driven + [slug] Uses It
 - [ ] Refactor HomePageBody.tsx to accept `config: SiteConfig` prop
