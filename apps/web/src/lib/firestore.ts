@@ -10,6 +10,7 @@
  */
 import { cert, getApps, initializeApp, type App } from 'firebase-admin/app';
 import { getFirestore, type Firestore } from 'firebase-admin/firestore';
+import { unstable_cache } from 'next/cache';
 
 export const SITE_DOMAIN = 'streetfoodrome.com';
 
@@ -51,6 +52,17 @@ export interface TourDoc {
   /** Rome neighbourhood this tour is set in (e.g. "trastevere"), for cross-linking with /neighborhoods/{slug}.
    *  Not yet populated on most existing Firestore docs — reads default this to null. */
   neighborhood: string | null;
+  /** Real, sourced facts only (e.g. "Free cancellation", "Small group") — TourCard
+   *  renders at most 2 as chips, and only when this array is non-empty. Not yet
+   *  populated on any existing Firestore doc — reads default this to []. */
+  features: string[];
+  /** True only when the site's own editorial config genuinely marks this tour
+   *  as a top pick — never inferred. Not yet populated — reads default this to false. */
+  isTopPick: boolean;
+  /** e.g. "Max 12". Not yet populated — reads default this to null. */
+  groupSize: string | null;
+  /** e.g. "EN, IT". Not yet populated — reads default this to null. */
+  language: string | null;
 }
 
 export interface PageFaq {
@@ -101,44 +113,93 @@ export interface BlogPostDoc {
 }
 
 function normalizeTour(data: FirebaseFirestore.DocumentData): TourDoc {
-  return { neighborhood: null, ...data } as TourDoc;
+  return {
+    neighborhood: null,
+    features: Array.isArray(data.features) ? data.features : [],
+    isTopPick: data.isTopPick === true,
+    groupSize: null,
+    language: null,
+    ...data,
+  } as unknown as TourDoc;
 }
 
 function normalizeBlogPost(data: FirebaseFirestore.DocumentData): BlogPostDoc {
   return { categorySlug: null, landmarkSlug: null, authorId: null, ...data } as BlogPostDoc;
 }
 
-export async function getAllTours(): Promise<TourDoc[]> {
-  const snap = await getDb().collection('tours').get();
-  return snap.docs.map((doc) => normalizeTour(doc.data()));
-}
+/**
+ * Every read below is wrapped in `unstable_cache` (blueprint §13.2.2 — never
+ * fetch the full tours/pages/blog list more than once per request/build) and
+ * tagged so `/api/revalidate` can invalidate just the affected collection.
+ *
+ * None of these wrappers catch Firestore errors: a failed read throws,
+ * exactly like the underlying `getDb()...get()` calls already did. That's
+ * deliberate (blueprint Phase 0 addition #3) — a route that swallowed the
+ * error into `[]`/`null` could get that empty result cached as the page for
+ * up to an hour under ISR. Letting it throw means a build-time failure fails
+ * the build, and a revalidation-time failure is caught by Next's built-in
+ * stale-while-error behavior, which keeps serving the last good cached page
+ * instead of publishing an empty one.
+ */
+export const getAllTours = unstable_cache(
+  async (): Promise<TourDoc[]> => {
+    const snap = await getDb().collection('tours').get();
+    return snap.docs.map((doc) => normalizeTour(doc.data()));
+  },
+  ['tours:all'],
+  { tags: ['tours'], revalidate: 3600 },
+);
 
-export async function getTourBySlug(slug: string): Promise<TourDoc | null> {
-  const snap = await getDb().collection('tours').doc(slug).get();
-  return snap.exists ? normalizeTour(snap.data()!) : null;
-}
+export const getTourBySlug = unstable_cache(
+  async (slug: string): Promise<TourDoc | null> => {
+    const snap = await getDb().collection('tours').doc(slug).get();
+    return snap.exists ? normalizeTour(snap.data()!) : null;
+  },
+  ['tours:by-slug'],
+  { tags: ['tours'], revalidate: 3600 },
+);
 
-export async function getPageDoc(slug: string): Promise<PageDoc | null> {
-  const snap = await getDb().collection('sites').doc(SITE_DOMAIN).collection('pages').doc(slug).get();
-  return snap.exists ? (snap.data() as PageDoc) : null;
-}
+export const getPageDoc = unstable_cache(
+  async (slug: string): Promise<PageDoc | null> => {
+    const snap = await getDb().collection('sites').doc(SITE_DOMAIN).collection('pages').doc(slug).get();
+    return snap.exists ? (snap.data() as PageDoc) : null;
+  },
+  ['pages:by-slug'],
+  { tags: ['pages'], revalidate: 3600 },
+);
 
-export async function listPageDocs(): Promise<PageDoc[]> {
-  const snap = await getDb().collection('sites').doc(SITE_DOMAIN).collection('pages').get();
-  return snap.docs.map((doc) => doc.data() as PageDoc);
-}
+export const listPageDocs = unstable_cache(
+  async (): Promise<PageDoc[]> => {
+    const snap = await getDb().collection('sites').doc(SITE_DOMAIN).collection('pages').get();
+    return snap.docs.map((doc) => doc.data() as PageDoc);
+  },
+  ['pages:all'],
+  { tags: ['pages'], revalidate: 3600 },
+);
 
-export async function getAuthor(id: string): Promise<AuthorDoc | null> {
-  const snap = await getDb().collection('authors').doc(id).get();
-  return snap.exists ? (snap.data() as AuthorDoc) : null;
-}
+export const getAuthor = unstable_cache(
+  async (id: string): Promise<AuthorDoc | null> => {
+    const snap = await getDb().collection('authors').doc(id).get();
+    return snap.exists ? (snap.data() as AuthorDoc) : null;
+  },
+  ['authors:by-id'],
+  { tags: ['authors'], revalidate: 3600 },
+);
 
-export async function getAllBlogPosts(): Promise<BlogPostDoc[]> {
-  const snap = await getDb().collection('blogPosts').orderBy('publishedAt', 'desc').get();
-  return snap.docs.map((doc) => normalizeBlogPost(doc.data()));
-}
+export const getAllBlogPosts = unstable_cache(
+  async (): Promise<BlogPostDoc[]> => {
+    const snap = await getDb().collection('blogPosts').orderBy('publishedAt', 'desc').get();
+    return snap.docs.map((doc) => normalizeBlogPost(doc.data()));
+  },
+  ['blog-posts:all'],
+  { tags: ['blog-posts'], revalidate: 3600 },
+);
 
-export async function getBlogPostBySlug(slug: string): Promise<BlogPostDoc | null> {
-  const snap = await getDb().collection('blogPosts').doc(slug).get();
-  return snap.exists ? normalizeBlogPost(snap.data()!) : null;
-}
+export const getBlogPostBySlug = unstable_cache(
+  async (slug: string): Promise<BlogPostDoc | null> => {
+    const snap = await getDb().collection('blogPosts').doc(slug).get();
+    return snap.exists ? normalizeBlogPost(snap.data()!) : null;
+  },
+  ['blog-posts:by-slug'],
+  { tags: ['blog-posts'], revalidate: 3600 },
+);

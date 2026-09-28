@@ -1,30 +1,16 @@
 import type { Metadata } from 'next';
-import { Fraunces, Playfair_Display, Public_Sans } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import Script from 'next/script';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { Header } from '@/components/chrome/Header';
+import { Footer } from '@/components/chrome/Footer';
 import { BING_SITE_VERIFICATION, GA_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION } from '@/lib/analytics';
 import './globals.css';
+import './animations.css';
 
-const fraunces = Fraunces({
+const montserrat = Montserrat({
   subsets: ['latin'],
-  variable: '--font-fraunces',
-  axes: ['opsz', 'SOFT', 'WONK'],
-  display: 'swap',
-});
-
-const publicSans = Public_Sans({
-  subsets: ['latin'],
-  variable: '--font-public-sans',
-  display: 'swap',
-});
-
-// Second serif, distinct from Fraunces — used only for the media-mentions
-// row so each masthead-style name reads as its own distinct publication,
-// not a uniform list.
-const playfairDisplay = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-montserrat',
+  weight: ['600', '700', '800', '900'],
   display: 'swap',
 });
 
@@ -69,8 +55,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${publicSans.variable} ${playfairDisplay.variable}`}>
-      <body className="flex min-h-screen flex-col bg-paper text-ink antialiased">
+    <html lang="en" className={montserrat.variable}>
+      <body className="flex min-h-screen flex-col bg-cream text-ink antialiased">
         {/* GA4 — only renders once NEXT_PUBLIC_GA_MEASUREMENT_ID is set (see
             lib/analytics.ts); a no-op on every environment until then, so
             nothing here reports to an analytics property that doesn't exist. */}

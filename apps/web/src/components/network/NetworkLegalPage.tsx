@@ -1,4 +1,4 @@
-import { InnerHero } from '@/components/InnerHero';
+import { Hero } from '@/components/Hero';
 
 export interface LegalDoc {
   title: string;
@@ -10,31 +10,31 @@ export interface LegalDoc {
 }
 
 /** Shared legal-page layout (privacy, terms, cookies, affiliate disclosure) for every property. */
-export function NetworkLegalPage({ scope, doc }: { scope: string; doc: LegalDoc }) {
+export function NetworkLegalPage({ doc }: { doc: LegalDoc }) {
   return (
-    <div className={`${scope} bg-white`}>
-      <InnerHero title={doc.title} breadcrumb={{ label: 'Home', href: '/' }} />
-      <section className="py-14">
-        <div className="mx-auto max-w-[720px] space-y-8 px-6 sm:px-14">
-          <p className="text-base leading-relaxed text-ink-muted">{doc.intro}</p>
-          {doc.fallbackHtml ? <div className="rich-content" dangerouslySetInnerHTML={{ __html: doc.fallbackHtml }} /> : null}
+    <>
+      <Hero imageUrl="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80" title={doc.title} subtitle="" accentWord="" />
+      <section className="bg-cream py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <p className="text-base leading-relaxed text-ink/70">{doc.intro}</p>
+          {doc.fallbackHtml ? <div className="prose prose-sm max-w-none text-ink" dangerouslySetInnerHTML={{ __html: doc.fallbackHtml }} /> : null}
           {doc.sections?.map((section) => (
             <div key={section.heading}>
-              <h2 className="mb-3 text-lg font-semibold text-ink">{section.heading}</h2>
-              <p className="text-base leading-relaxed text-ink-muted">{section.content}</p>
+              <h2 className="text-2xl font-bold text-ink mb-3">{section.heading}</h2>
+              <p className="text-base leading-relaxed text-ink/70">{section.content}</p>
             </div>
           ))}
           {doc.contactEmail ? (
-            <p className="border-t border-line pt-6 text-sm text-ink-muted">
+            <p className="border-t border-line pt-6 text-sm text-ink/70">
               Questions? Email{' '}
-              <a href={`mailto:${doc.contactEmail}`} className="font-semibold text-accent underline-offset-2 hover:underline">
+              <a href={`mailto:${doc.contactEmail}`} className="font-semibold text-brand hover:underline">
                 {doc.contactEmail}
               </a>
             </p>
           ) : null}
         </div>
       </section>
-    </div>
+    </>
   );
 }
 

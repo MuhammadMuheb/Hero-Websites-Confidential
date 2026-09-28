@@ -31,7 +31,7 @@ export function PDTToursCategoryPage({ category }: { category: string }) {
   });
 
   return (
-    <div className="pdt-scope bg-white">
+    <div className="bg-white">
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1440px] px-6 pt-6 sm:px-14">
           <nav aria-label="Breadcrumb" className="text-sm text-faint">

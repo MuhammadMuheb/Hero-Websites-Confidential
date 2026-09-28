@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { getAuthor, getBlogPostBySlug, SITE_DOMAIN } from '@/lib/firestore';
 import { SafeImage } from '@/components/SafeImage';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 async function safeBlogPostBySlug(slug: string) {
   try {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { InnerHero } from '@/components/InnerHero';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 const FALLBACK_TITLE = 'Affiliate Disclosure';
 

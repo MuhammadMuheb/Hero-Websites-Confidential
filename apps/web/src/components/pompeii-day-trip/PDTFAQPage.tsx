@@ -8,7 +8,7 @@ import { FAQS } from '@/lib/pompeii-day-trip';
 
 export function PDTFAQPage() {
   return (
-    <div className="pdt-scope bg-white">
+    <div className="bg-white">
       <FAQPageTemplate
         title="Frequently Asked Questions"
         subtitle="Day trip planning, logistics, and what this site covers."

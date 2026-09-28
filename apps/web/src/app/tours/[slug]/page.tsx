@@ -5,7 +5,7 @@ import { TourPageContent } from '@/components/TourPageContent';
 import { getCategory, getNeighborhood, getRelatedTours, getTourEntryBySeoSlug } from '@/lib/tours';
 import { CATEGORY_HERO_IMAGES } from '@/lib/category-images';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 async function safeTourBySlug(slug: string) {
   try {

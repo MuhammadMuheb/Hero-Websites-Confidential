@@ -1,0 +1,210 @@
+/* Animation library (NETWORK-BLUEPRINT-V2.md §2.5) */
+
+:root {
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Ken Burns zoom on hero images (disabled on mobile and with reduced motion) */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1.16) translateY(-1%);
+  }
+}
+
+.kenburns {
+  animation: kenburns 26s var(--ease-out) infinite alternate;
+  transform-origin: 60% 40%;
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .kenburns {
+    animation: none;
+  }
+}
+
+/* Reveal on scroll (cards, H2s, stats, review blocks) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+[data-reveal].in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition-duration: 0.3s;
+  }
+}
+
+/* Line reveal (hero H1, final CTA H2) */
+@keyframes line-reveal {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.reveal-lines {
+  /* Parent: display grid or similar */
+}
+
+.reveal-lines .line {
+  overflow: hidden;
+  display: inline;
+}
+
+.reveal-lines .line-i {
+  display: inline-block;
+  animation: line-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--ln, 0) * 95ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-lines .line-i {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Fade up (hero eyebrow, subline, buttons on load) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Card lift on hover */
+.card-lift {
+  transition: transform 0.35s ease-out, box-shadow 0.35s ease-out;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -16px rgba(19, 42, 30, 0.22);
+}
+
+/* Image zoom on hover */
+.img-zoom img {
+  transition: transform 0.7s ease-out;
+}
+
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* Nav underline animation */
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 100%;
+  height: 2px;
+  background-color: rgb(var(--gold));
+  width: 0.875rem;
+  transition: right 0.3s ease-out;
+}
+
+.nav-underline:hover::after {
+  right: 0;
+}
+
+/* CTA pulse animation (header "See tours" pill only) */
+@keyframes cta-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  90%, 95.5% {
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(232, 169, 61, 0.4);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.cta-pulse {
+  animation: cta-pulse 15s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-pulse {
+    animation: none;
+  }
+}
+
+/* Ticker slide (reviews, guides) */
+@keyframes ticker-slide {
+  to {
+    transform: translate(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker-slide var(--ticker-duration, 45s) linear infinite;
+  animation-play-state: paused;
+}
+
+.ticker-track:hover,
+.ticker-track:focus-within {
+  animation-play-state: paused;
+}
+
+/* Apply animation when not paused */
+.ticker-container:not(:hover) .ticker-track {
+  animation-play-state: running;
+}
+
+/* Header glass effect (after scroll) */
+.header-glass {
+  background: color-mix(in srgb, rgb(var(--cream)) 62%, transparent);
+  backdrop-filter: blur(18px) saturate(1.6);
+}
+
+/* Header overlay (over dark heroes) */
+.header-overlay {
+  background: transparent;
+  color: rgb(var(--cream-text));
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+
+.header-overlay .header-pill {
+  text-shadow: none;
+}
+
+/* Respect reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

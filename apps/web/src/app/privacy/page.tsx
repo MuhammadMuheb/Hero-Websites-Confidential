@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { PageDocContent } from '@/components/PageDocContent';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageDoc('privacy');

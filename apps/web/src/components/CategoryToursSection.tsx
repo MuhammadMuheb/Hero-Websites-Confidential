@@ -1,7 +1,7 @@
 import Link from '@/components/NetworkLink';
 import type { TourDoc } from '@/lib/firestore';
 import { SafeImage } from './SafeImage';
-import { TourCard } from './TourCard';
+import { TourCard } from '@/components/cards/TourCard';
 
 const CATEGORIES = [
   {
