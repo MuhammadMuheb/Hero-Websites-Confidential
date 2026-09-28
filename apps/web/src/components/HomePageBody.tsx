@@ -59,41 +59,43 @@ export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allB
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* Section B: Hero */}
+      {/* §4-B: Hero */}
       <Hero imageUrl={heroImageUrl} />
 
-      {/* Section C: Trust strip */}
+      {/* §4-C: Trust strip - booking platforms only */}
       <section id="partners">
         <TrustPointsSection />
       </section>
 
-      {/* Section D: Top tours slider */}
+      {/* §4-D: Top tours slider */}
       <section id="popular">
         <TourCarouselSection tours={tours} />
       </section>
 
-      {/* Section E: How we choose */}
+      {/* §4-E: How we choose - dark section with 4 icons */}
       <section id="how-we-choose">
         <MediaBar />
       </section>
 
-      {/* Section F: Guides & stories */}
+      {/* §4-F: Guides & stories - 3 cards + All guides */}
       <section id="guides">
         <ExploreLinksSection tours={tours} allBlogPosts={allBlogPosts} />
       </section>
 
-      {/* Section G: Top items to try */}
+      {/* §4-G: Top items to try - 5 rows of category + 3 tour cards */}
       <section id="categories">
         <CategoryToursSection tours={tours} />
       </section>
 
-      {/* Section H: Places to plan next trip */}
+      {/* §4-H: Places you can plan next trip - 3 tabs, numbered list */}
       <section id="places">
         <AllDestinationsSection />
       </section>
 
-      {/* Section I: Explore our Italy collection */}
-      {/* (To be implemented in Step 2) */}
+      {/* §4-I: Explore our Italy collection - white background, 4-column grid of 13 sites */}
+      <section id="network" className="bg-white">
+        {/* Network collection grid - to be implemented with site cards */}
+      </section>
     </>
   );
 }
