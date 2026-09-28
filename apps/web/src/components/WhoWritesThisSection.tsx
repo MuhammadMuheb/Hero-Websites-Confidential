@@ -1,6 +1,20 @@
 import { SafeImage } from './SafeImage';
 
-export function WhoWritesThisSection() {
+interface WhoWritesSectionProps {
+  name?: string;
+  role?: string;
+  bio?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+export function WhoWritesThisSection({
+  name = 'Street Food Rome',
+  role = 'Food Writer',
+  bio = 'There\'s no team behind this site — just one person who\'s lived in Rome for over a decade. Every tour recommended here has been taken in person.',
+  imageUrl = 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e?w=600&h=450&fit=crop',
+  imageAlt = 'An evening aperitivo stop in Rome',
+}: WhoWritesSectionProps = {}) {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-14">
@@ -8,36 +22,22 @@ export function WhoWritesThisSection() {
           <div>
             <p className="text-sm font-semibold text-faint">Something people often ask&hellip; okay, but&hellip;</p>
             <h2 className="mt-2 font-sans text-3xl font-extrabold tracking-tight text-accent sm:text-4xl">
-              Who Writes Street Food Rome?
+              Who Writes {name}?
             </h2>
 
             <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-ink-muted">
+              <p>{bio}</p>
               <p>
-                There&rsquo;s <strong className="font-bold text-ink">no team behind this site</strong> — just
-                one person who&rsquo;s lived in Rome for over a decade and still gets a little smug about knowing
-                which pizza al taglio counter is worth the queue.
-              </p>
-              <p>
-                Every tour recommended here has been{' '}
-                <strong className="font-bold text-ink">taken in person, paid for like anyone else would</strong>,
-                and judged the same way you&rsquo;d judge it yourself: was it worth the afternoon?
-              </p>
-              <p>
-                This site doesn&rsquo;t run tours directly. It points you toward the ones led by people who clearly
-                love doing this, and{' '}
-                <strong className="font-bold text-ink">quietly leaves off the ones that don&rsquo;t</strong>.
-              </p>
-              <p>
-                &ldquo;Street food&rdquo; covers a lot of ground here — market stalls, pizza counters, wine bars, and
-                the occasional trapizzino eaten standing up on a side street.
+                Every tour and experience recommended here has been{' '}
+                <strong className="font-bold text-ink">personally visited and verified</strong>.
               </p>
             </div>
           </div>
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-media bg-media">
             <SafeImage
-              src="https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e?w=600&h=450&fit=crop"
-              alt="An evening aperitivo stop in Rome, the kind of first-hand experience behind every tour on this site"
+              src={imageUrl}
+              alt={imageAlt}
               fill
               sizes="(min-width: 1024px) 560px, 90vw"
               className="object-cover"

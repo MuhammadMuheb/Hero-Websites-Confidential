@@ -10,6 +10,7 @@ import { HowItStartedSection } from '@/components/HowItStartedSection';
 import { HowWeChooseSection } from '@/components/HowWeChooseSection';
 import { ExploreLinksSection } from '@/components/ExploreLinksSection';
 import { getAllTours, getAllBlogPosts, type TourDoc, type BlogPostDoc } from '@/lib/firestore';
+import { getAboutContent } from '@/lib/sites/about';
 
 interface Props {
   params: Promise<{ slug: string }>;
