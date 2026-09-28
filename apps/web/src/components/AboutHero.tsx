@@ -5,12 +5,26 @@ export const ABOUT_HERO_IMAGE_URL = 'https://images.unsplash.com/photo-175984354
 export const ABOUT_HERO_IMAGE_ALT =
   'A fruit and vegetable stall at a Roman street market — the everyday food shopping behind the recommendations on this site';
 
-export function AboutHero() {
+interface AboutHeroProps {
+  title: string;
+  description: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  homeHref?: string;
+}
+
+export function AboutHero({
+  title,
+  description,
+  imageUrl = ABOUT_HERO_IMAGE_URL,
+  imageAlt = ABOUT_HERO_IMAGE_ALT,
+  homeHref = '/',
+}: AboutHeroProps) {
   return (
     <section className="relative flex min-h-[360px] items-end overflow-hidden sm:min-h-[440px]">
       <SafeImage
-        src={ABOUT_HERO_IMAGE_URL}
-        alt={ABOUT_HERO_IMAGE_ALT}
+        src={imageUrl}
+        alt={imageAlt}
         fill
         priority
         sizes="100vw"
@@ -20,7 +34,7 @@ export function AboutHero() {
 
       <div className="relative mx-auto w-full max-w-[1440px] px-6 pb-12 sm:px-14 sm:pb-16">
         <nav className="mb-4 text-sm text-white/70">
-          <Link href="/" className="hover:text-white">
+          <Link href={homeHref} className="hover:text-white">
             Home
           </Link>
           <span className="mx-2">/</span>
@@ -28,11 +42,10 @@ export function AboutHero() {
         </nav>
 
         <h1 className="max-w-2xl font-sans text-[32px] font-extrabold leading-[1.15] text-white sm:text-[44px] sm:leading-[1.1]">
-          Rome Street Food, Walked and Written by One Person
+          {title}
         </h1>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
-          Honest neighbourhood, market, and tour recommendations — no crowd-sourced rankings, no sponsored
-          placements deciding what gets featured.
+          {description}
         </p>
 
         <a

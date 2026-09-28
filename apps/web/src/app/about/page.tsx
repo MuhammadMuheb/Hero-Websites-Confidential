@@ -59,7 +59,13 @@ export default async function AboutPage() {
 
   return (
     <>
-      <AboutHero />
+      <AboutHero
+        title="Rome Street Food, Walked and Written by One Person"
+        description="Honest neighbourhood, market, and tour recommendations — no crowd-sourced rankings, no sponsored placements deciding what gets featured."
+        imageUrl={ABOUT_HERO_IMAGE_URL}
+        imageAlt={ABOUT_HERO_IMAGE_ALT}
+        homeHref="/"
+      />
       <OurTravelMantraSection />
       <ExperiencesBannerSection />
       <WhoWritesThisSection />
