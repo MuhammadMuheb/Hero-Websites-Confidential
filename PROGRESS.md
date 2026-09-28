@@ -2,13 +2,38 @@
 
 **Scope:** Full 12-site config-driven refactor. All 13 sites = same structure, same 9 homepage sections, same 19 page types (4 legal, 5 category tour pages). Only text/images differ per site. Data from src/lib/<slug>.ts + config.
 
-## Current State
-- **SiteConfig**: Basic type at `apps/web/src/lib/sites/config.ts` with hero/meta properties
-- **13 Sites**: All defined in `apps/web/src/lib/sites/index.ts` with slug, name, domain, heroImage, etc.
-- **Homepage**: `apps/web/src/app/page.tsx` renders hardcoded HomePageBody + NetworkHomeTemplate
-- **[slug]/page**: `apps/web/src/app/[slug]/page.tsx` renders NetworkHomeTemplate
-- **HomePageBody**: `apps/web/src/components/HomePageBody.tsx` hardcodes CATEGORIES, chips, names, places, etc.
-- **NetworkHomeTemplate**: Legacy component for [slug] pages — to be retired
+## MASTER-CLONE-BLUEPRINT Status
+
+### ✅ DONE (commit 0cce945)
+- **§1 Fix #1**: Created `src/lib/sites/loader.ts` → dynamically load FEATURED_TOURS per site
+- **§1 Fix #2**: Updated `app/[slug]/page.tsx` → uses site-specific tours, not getAllTours()
+- **§1 Fix #3**: Extended `SiteConfig` schema with all homepage text fields (heroEyebrow, sliderEyebrow, categoryEyebrow, etc.)
+- **§3 Architecture**: Loader function + type-safe site data imports
+- **2/13 Configs**: street-food-rome (updated), underground-colosseum, private-vatican (full)
+
+### 🔄 IN PROGRESS (10/13 sites need configs)
+**Remaining sites:** pompeii-day-trip, rome-vespa, tuscany-day-trip, amalfi-day-trip, tivoli-day-trip, naples-street-food, golf-cart-rome, cooking-in-rome, rome-pizza-class, tiramisu-class
+
+**Pattern per site:**
+```typescript
+{
+  slug, name, domain, description,
+  heroImage, heroEyebrow, heroTitle, heroGoldWord, heroSubtitle,
+  chips: [20 items],
+  namesStrip: [10 items] + namesStripLabel,
+  sliderEyebrow, sliderTitle,
+  categoryEyebrow, categoryTitle, categories: [5 items with 3 tourSlugs each],
+  howWeChooseEyebrow, howWeChooseTitle, howWeChooseSubtitle, howWeChoose: [4 items],
+  placesTitle, placesTabs: [3 tabs × 20 items],
+  metaTitle, metaDescription, contactEmail
+}
+```
+
+### ⏳ NOT YET STARTED
+- **§2 Data**: Map FEATURED_TOURS/GALLERY/FAQS/AUTHOR from src/lib/<slug>.ts to each config
+- **§1 Fix #2b**: Update components to accept config props (Hero, TourCarouselSection, CategoryToursSection, TrustPointsSection, HowWeChooseDark all need config.heroEyebrow, etc.)
+- **§4 Pages**: Create/update 19 page types for each site (about, contact, faq, tours, blog, legal, etc.)
+- **§7 Validator**: Full validation at build time (counts, images, text checks)
 
 ## SiteConfig Extension Needed
 ```typescript
