@@ -60,19 +60,15 @@ const CATEGORIES = [
 
 function CategoryCard({
   name,
-  description,
   imageUrl,
   href,
   count,
-  subLinks,
   tours,
 }: {
   name: string;
-  description: string;
   imageUrl: string;
   href: string;
   count: number;
-  subLinks: string[];
   tours: TourDoc[];
 }) {
   const lowestPrice = tours
@@ -87,45 +83,30 @@ function CategoryCard({
   return (
     <Link
       href={href}
-      className="group relative col-span-1 overflow-hidden rounded-[22px] transition-all duration-300 hover:-translate-y-1 sm:col-span-2 lg:col-span-1 lg:h-full min-h-[320px] flex flex-col"
+      className="group relative col-span-1 sm:col-span-2 lg:col-span-1 overflow-hidden rounded-[20px] h-full min-h-[300px] flex flex-col transition-all duration-300 hover:-translate-y-1"
     >
       <SafeImage
         src={imageUrl}
         alt={`${name} in Rome`}
         fill
-        sizes="(min-width: 1024px) 320px, 100vw"
+        sizes="(min-width: 1024px) 380px, 100vw"
         className="absolute inset-0 object-cover transition-transform duration-500 ease-out group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-ink/55 to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-ink/45 to-transparent" />
 
-      {count > 0 && (
-        <span className="absolute left-4 top-4 z-10 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-bold text-white">
-          {count} tours
-        </span>
-      )}
-
-      <div className="relative z-20 mt-auto flex flex-col">
-        <div className="m-3 rounded-[18px] bg-ink/35 backdrop-blur-md border border-white/15 p-5 sm:m-4 sm:p-6">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">Must taste</p>
-          <h3 className="mt-2 font-hero text-[26px] lg:text-[30px] font-black leading-tight text-white">{name}</h3>
-          <p className="mt-2 text-sm leading-snug text-white/85 line-clamp-2">{description}</p>
-
-          {typeof lowestPrice === 'number' && lowestPrice > 0 && (
-            <p className="mt-2 text-white font-bold">From €{lowestPrice}</p>
-          )}
-
-          <div className="mt-3 flex flex-wrap gap-2">
-            {subLinks.map((link) => (
-              <span key={link} className="rounded-full bg-white/15 border border-white/20 px-2.5 py-1 text-xs font-medium text-white hover:bg-white/25 transition-colors">
-                {link}
-              </span>
-            ))}
-          </div>
-
-          <button className="mt-4 inline-flex items-center justify-center rounded-full bg-gold px-4 py-2 text-sm font-bold text-ink whitespace-nowrap transition-all duration-200 hover:-translate-y-0.5">
-            See all {count} tours →
-          </button>
+      <div className="relative z-10 p-6 flex flex-col h-full">
+        <div>
+          <h3 className="font-hero text-[30px] lg:text-[34px] font-black leading-tight text-white drop-shadow">{name}</h3>
+          <p className="mt-2 text-sm text-white/85">
+            {count} tours
+            {typeof lowestPrice === 'number' && lowestPrice > 0 && ` · From €${lowestPrice}`}
+          </p>
         </div>
+
+        <button className="mt-auto inline-flex items-center justify-center rounded-full bg-white text-ink px-5 h-11 font-bold whitespace-nowrap transition-all duration-200 hover:bg-gold">
+          See {count} tours →
+        </button>
       </div>
     </Link>
   );
@@ -136,7 +117,7 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
 
   return (
     <section className="bg-cream py-16 sm:py-20">
-      <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
+      <div className="mx-auto max-w-[1280px] px-6 sm:px-10">
         <div className="text-center">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">
             Things you must taste in Rome
@@ -146,7 +127,7 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
           </h2>
         </div>
 
-        <div className="mt-12 flex flex-col gap-12">
+        <div className="mt-12 flex flex-col gap-10">
           {CATEGORIES.map((category) => {
             const categoryTours = category.slugs
               .map((slug) => bySlug.get(slug))
@@ -157,15 +138,13 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
             return (
               <div
                 key={category.name}
-                className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:items-stretch"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[1.75fr_1fr_1fr_1fr] lg:items-stretch"
               >
                 <CategoryCard
                   name={category.name}
-                  description={category.description}
                   imageUrl={category.imageUrl}
                   href={`/tours/category/${category.categorySlug}`}
                   count={categoryTours.length}
-                  subLinks={category.subLinks}
                   tours={categoryTours}
                 />
                 {categoryTours.map((tour, idx) => (
