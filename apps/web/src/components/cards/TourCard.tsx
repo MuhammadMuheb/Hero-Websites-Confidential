@@ -21,7 +21,7 @@ export function TourCard({ tour, priority, href, compact, rank }: TourCardProps)
       <Link
         id={`tour-${tour.slug}`}
         href={href ?? tourHref(tour.slug)}
-        className="group flex flex-col overflow-hidden rounded-[18px] border border-line bg-paper p-2.5 shadow-card-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover"
+        className="group flex flex-col overflow-hidden rounded-[18px] border border-line bg-paper p-2.5 shadow-card-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover self-end"
       >
         {/* Image */}
         <div className="relative aspect-[3/2] overflow-hidden rounded-[14px] bg-media">
