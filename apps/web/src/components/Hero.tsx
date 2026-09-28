@@ -12,6 +12,14 @@ interface HeroProps {
   title?: string;
   subtitle?: string;
   accentWord?: string;
+  /** Homepage copy for network sites. Omitted = Street Food Rome (master). */
+  home?: {
+    eyebrow: string;
+    title: [string, string, string];
+    placeholder: string;
+    chips: { label: string; href: string }[];
+    imageAlt: string;
+  };
 }
 
 /**
@@ -42,7 +50,8 @@ const CHIPS: { label: string; href: string }[] = [
   { label: 'Market Tour', href: tourHref('testaccio-market-food-tour') },
 ];
 
-export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
+export function Hero({ imageUrl, title, subtitle, accentWord, home }: HeroProps) {
+  const chips = home?.chips ?? CHIPS;
   const scrollerRef = useRef<HTMLDivElement>(null);
   const isInnerPage = !!title;
 
@@ -76,7 +85,7 @@ export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
         {imageUrl ? (
           <SafeImage
             src={imageUrl}
-            alt="A Roman trattoria table set out on a cobbled street, where Rome's street food tours begin"
+            alt={home?.imageAlt ?? "A Roman trattoria table set out on a cobbled street, where Rome's street food tours begin"}
             fill
             priority
             sizes="100vw"
@@ -93,9 +102,19 @@ export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
         />
 
         <div className="relative mx-auto flex h-full max-w-[1200px] flex-col justify-center px-6 pb-12 sm:px-10">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-gold">Rome, Italy</p>
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-gold">{home?.eyebrow ?? 'Rome, Italy'}</p>
           <h1 className="mt-4 max-w-3xl font-hero text-[40px] font-black leading-[1.05] tracking-[-0.02em] text-cream-text sm:text-[60px]">
-            Rome&rsquo;s Ultimate <span className="text-gold">Street Food</span> &amp; Culinary Experiences
+            {home ? (
+              <>
+                {home.title[0]}
+                <span className="text-gold">{home.title[1]}</span>
+                {home.title[2]}
+              </>
+            ) : (
+              <>
+                Rome&rsquo;s Ultimate <span className="text-gold">Street Food</span> &amp; Culinary Experiences
+              </>
+            )}
           </h1>
         </div>
       </div>
@@ -104,7 +123,7 @@ export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
       <div className="relative z-10 mx-auto -mt-8 max-w-[820px] px-6">
         <div className="rounded-full shadow-search">
           <GlobalSearchBox
-            placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
+            placeholder={home?.placeholder ?? 'Trastevere, Testaccio, Suppli, Pizza al Taglio…'}
             compact={false}
             className="w-full"
           />
@@ -128,9 +147,9 @@ export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
           ref={scrollerRef}
           className="flex flex-1 items-center gap-2.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {CHIPS.map((chip) => (
+          {chips.map((chip) => (
             <Link
-              key={chip.label}
+              key={`${chip.label}-${chip.href}`}
               href={chip.href}
               className="flex h-11 shrink-0 items-center whitespace-nowrap rounded-full border border-line bg-paper px-5 text-[15px] font-semibold text-ink transition-colors duration-200 hover:border-brand hover:bg-accent-soft hover:text-brand"
             >

@@ -1,89 +1,59 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { SITE_DOMAIN, getAllBlogPosts, type TourDoc } from '@/lib/firestore';
+import { SITE_DOMAIN, getAllBlogPosts } from '@/lib/firestore';
 import { HomePageBody } from '@/components/HomePageBody';
-import { NetworkHomeTemplate } from '@/components/NetworkHomeTemplate';
 import { getNetworkSite, NETWORK_SITES } from '@/lib/tours';
-import { getSiteConfig } from '@/lib/sites';
-import { getSiteData } from '@/lib/sites/loader';
-import { PROPERTIES } from '@/app/[slug]/[...rest]/registry';
+import { getHomeContent } from '@/lib/sites/home';
 
 export const revalidate = 3600;
 
 export function generateStaticParams() {
-  return NETWORK_SITES.map((site) => ({ slug: site.slug }));
+  // Street Food Rome is the root site ("/"); /street-food-rome redirects there.
+  return NETWORK_SITES.filter((site) => site.slug !== 'street-food-rome').map((site) => ({ slug: site.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const site = getNetworkSite(slug);
-  const def = PROPERTIES[slug];
-  if (!site || !def) return {};
+  const home = getHomeContent(slug);
+  if (!site || !home) return {};
 
-  const title = site.name;
-  const description = `Curated ${site.name} tours and local experiences`;
-  const ogImage = def.heroImage.src;
-
+  const url = `https://${SITE_DOMAIN}/${site.slug}`;
   return {
-    title: { absolute: title },
-    description,
-    alternates: { canonical: `https://${SITE_DOMAIN}/${site.slug}` },
+    title: { absolute: home.metaTitle },
+    description: home.metaDescription,
+    alternates: { canonical: url },
     openGraph: {
-      title,
-      description,
-      url: `https://${SITE_DOMAIN}/${site.slug}`,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      title: home.metaTitle,
+      description: home.metaDescription,
+      url,
+      images: [{ url: home.heroImage.src, width: 1200, height: 630, alt: home.heroImage.alt }],
     },
-    twitter: { card: 'summary_large_image', images: [ogImage] },
+    twitter: { card: 'summary_large_image', images: [home.heroImage.src] },
   };
 }
 
+/**
+ * Every network site renders the SAME homepage as Street Food Rome (the master):
+ * same sections, same order, same components. Only the text, images and tours
+ * change, and they come from the site's own data (see src/lib/sites/home.ts).
+ */
 export default async function NetworkSitePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const site = getNetworkSite(slug);
-  const config = getSiteConfig(slug);
-  const def = PROPERTIES[slug];
-  if (!site || !def) notFound();
+  const home = getHomeContent(slug);
+  if (!site || !home) notFound();
 
-  // Check if config has full homepage data (chips, categories, etc.)
-  const hasFullConfig = config?.chips && config?.categories && config?.howWeChoose;
-
-  // Use NetworkHomeTemplate for incomplete configs (Part C work in progress)
-  if (!hasFullConfig) {
-    const hubTours = def.tours.map((tour) => ({
-      partner: tour.partner,
-      slug: tour.slug,
-      title: tour.title,
-      meta: tour.meta,
-      priceFrom: tour.priceFrom,
-      badge: tour.badge,
-      image: tour.image,
-    }));
-
-    return (
-      <NetworkHomeTemplate
-        siteName={site.name}
-        heroImageUrl={def.heroImage.src}
-        heroTitle={site.name}
-        tours={hubTours}
-        description={`Curated ${site.name} experiences`}
-      />
-    );
-  }
-
-  // Use HomePageBody for sites with complete config
-  const siteData = await getSiteData(slug);
-  const siteTours = (siteData.FEATURED_TOURS ?? []) as unknown as TourDoc[];
   const allBlogPosts = await getAllBlogPosts().catch(() => []);
 
   return (
     <HomePageBody
-      siteName={site.name}
+      siteName={home.siteName}
       canonicalUrl={`https://${SITE_DOMAIN}/${slug}`}
-      heroImageUrl={def.heroImage.src}
-      tours={siteTours}
+      heroImageUrl={home.heroImage.src}
+      tours={home.tours}
       allBlogPosts={allBlogPosts}
-      config={config}
+      home={home}
     />
   );
 }

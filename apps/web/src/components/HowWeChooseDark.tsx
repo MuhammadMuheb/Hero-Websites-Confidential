@@ -1,10 +1,16 @@
-import { Heart, Users, MapPin, Clock } from 'lucide-react';
+import { Heart, Users, MapPin, Clock, Compass, Camera } from 'lucide-react';
 
 interface HowWeChooseDarkProps {
-  items?: Array<{ title: string; description: string }>;
+  items?: Array<{ title: string; description: string; icon?: string }>;
+  eyebrow?: string;
+  /** [before, gold word, after] */
+  title?: [string, string, string];
+  subtitle?: string;
 }
 
-const DEFAULT_ITEMS = [
+const ICONS_BY_NAME = { heart: Heart, users: Users, map: MapPin, clock: Clock, compass: Compass, camera: Camera };
+
+const DEFAULT_ITEMS: Array<{ title: string; description: string; icon?: string }> = [
   { title: 'Authentic', description: 'No tourist traps — only where Romans actually eat.' },
   { title: 'Local-Led', description: 'Guides who live and eat in Rome every day.' },
   { title: 'Neighborhood-Based', description: 'Explore real neighborhoods, not just landmarks.' },
@@ -19,23 +25,36 @@ const ICON_MAP = {
 };
 
 /** Homepage "How We Choose": dark ink band with 4 gold icons. */
-export function HowWeChooseDark({ items }: HowWeChooseDarkProps) {
+export function HowWeChooseDark({ items, eyebrow, title, subtitle }: HowWeChooseDarkProps) {
   const itemList = items ?? DEFAULT_ITEMS;
   return (
     <section className="bg-ink py-16 text-cream-text sm:py-20">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
         <div className="text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold">Our Standards</p>
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold">{eyebrow ?? 'Our Standards'}</p>
           <h2 className="mt-3 font-hero text-[30px] font-black leading-tight tracking-[-0.02em] sm:text-[40px]">
-            How We <span className="text-gold">Choose</span>
+            {title ? (
+              <>
+                {title[0]}
+                <span className="text-gold">{title[1]}</span>
+                {title[2]}
+              </>
+            ) : (
+              <>
+                How We <span className="text-gold">Choose</span>
+              </>
+            )}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-cream-text/75">
-            Every tour is built on 12+ years of living, eating, and exploring Rome.
+            {subtitle ?? 'Every tour is built on 12+ years of living, eating, and exploring Rome.'}
           </p>
         </div>
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {itemList.map(({ title, description }) => {
-            const Icon = ICON_MAP[title as keyof typeof ICON_MAP] || Heart;
+          {itemList.map(({ title, description, icon }) => {
+            const Icon =
+              (icon ? ICONS_BY_NAME[icon as keyof typeof ICONS_BY_NAME] : undefined) ??
+              ICON_MAP[title as keyof typeof ICON_MAP] ??
+              Heart;
             return (
               <div key={title} className="rounded-[22px] border border-white/10 bg-white/[0.04] p-7 text-center">
                 <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold/15 text-gold">

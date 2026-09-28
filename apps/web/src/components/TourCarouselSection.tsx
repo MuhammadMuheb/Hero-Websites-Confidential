@@ -4,7 +4,16 @@ import { useRef } from 'react';
 import type { TourDoc } from '@/lib/firestore';
 import { TourCard } from '@/components/cards/TourCard';
 
-export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
+interface TourCarouselSectionProps {
+  tours: TourDoc[];
+  eyebrow?: string;
+  /** [before, green word, after] */
+  title?: [string, string, string];
+  /** tour slug -> page the card opens (network sites) */
+  hrefs?: Record<string, string>;
+}
+
+export function TourCarouselSection({ tours, eyebrow, title, hrefs }: TourCarouselSectionProps) {
   const trackRef = useRef<HTMLDivElement>(null);
 
   function scrollByOneCard(direction: 1 | -1) {
@@ -33,10 +42,20 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
         <div className="flex flex-wrap items-end justify-between gap-y-4 mb-12">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">
-              Our best selling tours at a glance
+              {eyebrow ?? 'Our best selling tours at a glance'}
             </p>
             <h2 className="mt-3 font-hero text-[32px] font-black leading-tight tracking-[-0.02em] text-ink sm:text-[44px]">
-              Top Food <span className="text-brand">Tours</span> in Rome
+              {title ? (
+                <>
+                  {title[0]}
+                  <span className="text-brand">{title[1]}</span>
+                  {title[2]}
+                </>
+              ) : (
+                <>
+                  Top Food <span className="text-brand">Tours</span> in Rome
+                </>
+              )}
             </h2>
           </div>
 
@@ -74,7 +93,7 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
               key={tour.slug}
               style={{ scrollSnapAlign: 'start' }}
             >
-              <TourCard tour={tour} priority={index < 4} />
+              <TourCard tour={tour} priority={index < 4} href={hrefs?.[tour.slug]} />
             </div>
           ))}
         </div>

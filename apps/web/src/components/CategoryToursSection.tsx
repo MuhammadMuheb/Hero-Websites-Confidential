@@ -9,6 +9,7 @@ const DEFAULT_CATEGORIES: Array<{
   description: string;
   imageUrl: string;
   tourSlugs: string[];
+  href?: string;
 }> = [
   {
     name: 'Pizza',
@@ -65,12 +66,14 @@ function CategoryCard({
   href,
   count,
   tours,
+  city,
 }: {
   name: string;
   imageUrl: string;
   href: string;
   count: number;
   tours: TourDoc[];
+  city: string;
 }) {
   const lowestPrice = tours
     .filter((t) => t.priceBand)
@@ -88,7 +91,7 @@ function CategoryCard({
     >
       <SafeImage
         src={imageUrl}
-        alt={`${name} in Rome`}
+        alt={`${name} in ${city}`}
         fill
         sizes="(min-width: 1024px) 380px, 100vw"
         className="absolute inset-0 object-cover transition-transform duration-500 ease-out group-hover:scale-105"
@@ -115,10 +118,14 @@ function CategoryCard({
 
 interface CategoryToursSectionProps {
   tours: TourDoc[];
-  categories?: Array<{ name: string; slug: string; imageUrl: string; tourSlugs: string[] }>;
+  categories?: Array<{ name: string; slug: string; imageUrl: string; tourSlugs: string[]; href?: string }>;
+  eyebrow?: string;
+  /** [before, green word, after] */
+  title?: [string, string, string];
+  city?: string;
 }
 
-export function CategoryToursSection({ tours, categories }: CategoryToursSectionProps) {
+export function CategoryToursSection({ tours, categories, eyebrow, title, city = 'Rome' }: CategoryToursSectionProps) {
   const bySlug = new Map(tours.map((tour) => [tour.slug, tour]));
   const categoryList = categories ?? DEFAULT_CATEGORIES;
 
@@ -127,10 +134,20 @@ export function CategoryToursSection({ tours, categories }: CategoryToursSection
       <div className="mx-auto max-w-[1280px] px-6 sm:px-10">
         <div className="text-center">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">
-            Things you must taste in Rome
+            {eyebrow ?? 'Things you must taste in Rome'}
           </p>
           <h2 className="mt-3 font-hero text-[32px] font-black leading-tight tracking-[-0.02em] text-ink sm:text-[44px]">
-            Top Food <span className="text-brand">Items</span> to Try in Rome
+            {title ? (
+              <>
+                {title[0]}
+                <span className="text-brand">{title[1]}</span>
+                {title[2]}
+              </>
+            ) : (
+              <>
+                Top Food <span className="text-brand">Items</span> to Try in Rome
+              </>
+            )}
           </h2>
         </div>
 
@@ -150,12 +167,13 @@ export function CategoryToursSection({ tours, categories }: CategoryToursSection
                 <CategoryCard
                   name={category.name}
                   imageUrl={category.imageUrl}
-                  href={`/tours/category/${category.slug}`}
+                  href={category.href ?? `/tours/category/${category.slug}`}
+                  city={city}
                   count={categoryTours.length}
                   tours={categoryTours}
                 />
                 {categoryTours.map((tour, idx) => (
-                  <TourCard key={tour.slug} tour={tour} compact rank={idx + 1} />
+                  <TourCard key={tour.slug} tour={tour} compact rank={idx + 1} href={category.href} />
                 ))}
               </div>
             );
