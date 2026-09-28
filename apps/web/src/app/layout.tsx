@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import Script from 'next/script';
-import { Header } from '@/components/chrome/Header';
-import { Footer } from '@/components/chrome/Footer';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 import { BING_SITE_VERIFICATION, GA_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION } from '@/lib/analytics';
 import './globals.css';
 import './animations.css';
