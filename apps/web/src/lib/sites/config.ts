@@ -13,26 +13,46 @@ export const SiteConfigSchema = z.object({
   heroSubtitle: z.string(),
   accentWord: z.string(),
 
-  // Home page sections
-  exploreTitle: z.string().optional(),
-  exploreDescription: z.string().optional(),
+  // Home page: chips/badges
+  chips: z.array(z.string()).optional(),
 
-  // Tours & categories
-  featuredTours: z.array(z.string()).optional(),
+  // Home page: names strip (food/place links)
+  namesStrip: z.array(z.object({
+    name: z.string(),
+    href: z.string(),
+  })).optional(),
+
+  // Home page: category slider title
+  sliderTitle: z.string().optional(),
+
+  // Home page: category cards with tours
   categories: z.array(z.object({
     name: z.string(),
     slug: z.string(),
+    description: z.string(),
+    imageUrl: z.string(),
+    tourSlugs: z.array(z.string()),
   })).optional(),
 
-  // CTA & booking
-  ctaTitle: z.string().optional(),
-  ctaDescription: z.string().optional(),
-  bookingUrl: z.string().optional(),
+  // Home page: how we choose section
+  howWeChoose: z.array(z.object({
+    title: z.string(),
+    description: z.string(),
+    icon: z.string().optional(),
+  })).optional(),
+
+  // Home page: places/neighborhoods tabs
+  placesTabs: z.array(z.object({
+    name: z.string(),
+    href: z.string(),
+    description: z.string().optional(),
+  })).optional(),
 
   // SEO
   metaDescription: z.string(),
   keywords: z.array(z.string()).optional(),
   ogImage: z.string().optional(),
+  jsonLd: z.any().optional(),
 
   // Contact
   contactEmail: z.string().email(),
