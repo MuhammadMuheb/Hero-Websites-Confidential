@@ -81,7 +81,7 @@ export function PDTNeighborhoodsPage() {
   };
 
   return (
-    <div className="pdt-scope bg-white">
+    <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Hero Section */}

@@ -10,25 +10,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        brand: withOpacity('--brand'),
+        'brand-dark': withOpacity('--brand-dark'),
+        cream: withOpacity('--cream'),
+        'cream-deep': withOpacity('--cream-deep'),
+        'cream-text': withOpacity('--cream-text'),
         paper: withOpacity('--paper'),
-        'paper-tint': withOpacity('--paper-tint'),
         ink: withOpacity('--ink'),
-        'ink-muted': withOpacity('--ink-muted'),
-        'ink-soft': withOpacity('--ink-soft'),
-        faint: withOpacity('--faint'),
-        accent: withOpacity('--accent'),
-        'accent-hover': withOpacity('--accent-hover'),
-        'accent-soft': withOpacity('--accent-soft'),
         gold: withOpacity('--gold'),
+        'gold-deep': withOpacity('--gold-deep'),
         success: withOpacity('--success'),
         line: withOpacity('--line'),
         'line-strong': withOpacity('--line-strong'),
         media: withOpacity('--media'),
       },
       fontFamily: {
-        display: ['var(--font-fraunces)', 'Georgia', 'serif'],
-        sans: ['var(--font-public-sans)', 'system-ui', 'sans-serif'],
-        playfair: ['var(--font-playfair)', 'Georgia', 'serif'],
+        hero: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        sans: ['system-ui', 'sans-serif'],
       },
       // A named radius scale (ui-ux-pro-max: "pick one radius scale and apply
       // consistently"). Slightly larger than the previous system for a
@@ -54,10 +53,10 @@ const config: Config = {
         aside: '0 4px 16px -4px rgba(20,20,22,0.06), 0 20px 40px -12px rgba(20,20,22,0.10)',
         search: '0 12px 24px -8px rgba(20,20,22,0.12), 0 32px 64px -16px rgba(20,20,22,0.20)',
         tab: '0 1px 3px rgba(20,20,22,0.15)',
-        glow: '0 8px 24px -4px rgba(255,0,34,0.35)',
+        glow: '0 8px 24px -6px rgb(var(--brand) / 0.35)',
       },
       backgroundImage: {
-        'accent-gradient': 'linear-gradient(135deg, rgb(var(--accent)) 0%, rgb(var(--accent-hover)) 100%)',
+        'accent-gradient': 'linear-gradient(135deg, rgb(var(--brand)) 0%, rgb(var(--brand-dark)) 100%)',
         'ink-gradient': 'linear-gradient(180deg, rgba(20,20,22,0) 0%, rgba(20,20,22,0.92) 100%)',
       },
       transitionTimingFunction: {

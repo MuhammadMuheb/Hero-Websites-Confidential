@@ -8,7 +8,7 @@ import { PRIVACY_POLICY } from '@/lib/pompeii-day-trip';
 
 export function PDTPrivacyPolicyPage() {
   return (
-    <div className="pdt-scope bg-white">
+    <div className="bg-white">
       <PrivacyPolicyTemplate data={PRIVACY_POLICY} />
     </div>
   );

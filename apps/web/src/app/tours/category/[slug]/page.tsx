@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { InnerHero } from '@/components/InnerHero';
-import { TourCard } from '@/components/TourCard';
+import { TourCard } from '@/components/cards/TourCard';
 import Link from '@/components/NetworkLink';
 import { CATEGORIES, getNeighborhood, getTourEntryByRealSlug, tourHref } from '@/lib/tours';
 import { CATEGORY_HERO_IMAGES } from '@/lib/category-images';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 async function safeGetPageDoc(slug: string) {
   try {

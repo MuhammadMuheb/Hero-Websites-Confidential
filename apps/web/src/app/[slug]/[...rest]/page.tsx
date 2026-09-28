@@ -178,7 +178,6 @@ function renderPage(slug: string, def: PropertyDef, resolved: Exclude<Resolution
     case 'area':
       return (
         <NetworkAreaPage
-          scope={def.scope}
           area={resolved.area}
           guides={allContent(def).filter((c) => c.kind === 'plan').map(toGuide)}
         />
@@ -187,7 +186,6 @@ function renderPage(slug: string, def: PropertyDef, resolved: Exclude<Resolution
       return (
         def.pages.tours?.() ?? (
           <NetworkToursPage
-            scope={def.scope}
             siteName={brand}
             title={(NETWORK_PAGE_META[slug]?.pages.tours?.title ?? 'Featured Tours').split(' | ')[0] ?? 'Featured Tours'}
             subtitle={def.toursSubtitle}
@@ -200,7 +198,6 @@ function renderPage(slug: string, def: PropertyDef, resolved: Exclude<Resolution
       return (
         def.pages.blog?.() ?? (
           <NetworkGuidesPage
-            scope={def.scope}
             siteName={brand}
             title="Guides & planning tips"
             subtitle={`Everything we’ve written for ${brand}: honest comparisons and first-hand planning advice.`}
@@ -214,7 +211,7 @@ function renderPage(slug: string, def: PropertyDef, resolved: Exclude<Resolution
       const bespoke = def.pages[resolved.type]?.();
       if (bespoke) return bespoke;
       const doc = def.legal[resolved.type] ?? genericLegalDoc(resolved.type, brand, contactEmail(slug));
-      return <NetworkLegalPage scope={def.scope} doc={doc} />;
+      return <NetworkLegalPage doc={doc} />;
     }
     default: {
       const page = def.pages[resolved.type]?.();

@@ -1,5 +1,5 @@
 import Link from '@/components/NetworkLink';
-import { InnerHero } from '@/components/InnerHero';
+import { Hero } from '@/components/Hero';
 import { SafeImage } from '@/components/SafeImage';
 
 export interface HubTour {
@@ -24,10 +24,11 @@ function GuideCard({ guide }: { guide: HubGuide }) {
   return (
     <Link
       href={guide.href}
-      className="group flex flex-col overflow-hidden rounded-card border border-line bg-white shadow-card-soft transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      className="group flex flex-col overflow-hidden rounded-card border border-line bg-cream shadow-md transition-all duration-200 ease-out hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+      data-reveal
     >
       {guide.image ? (
-        <div className="relative aspect-[16/10] overflow-hidden bg-media">
+        <div className="relative aspect-[16/10] overflow-hidden bg-cream-deep">
           <SafeImage
             src={guide.image.src}
             alt={guide.image.alt}
@@ -38,11 +39,11 @@ function GuideCard({ guide }: { guide: HubGuide }) {
         </div>
       ) : null}
       <div className="flex flex-1 flex-col p-6">
-        <span className="text-xs font-bold uppercase tracking-[0.12em] text-accent">
+        <span className="text-xs font-bold uppercase tracking-[0.12em] text-brand">
           {guide.kind === 'compare' ? 'Compare & book' : 'Plan your visit'}
         </span>
-        <h3 className="mt-2 font-display text-xl font-semibold leading-snug text-ink group-hover:text-accent">{guide.title}</h3>
-        <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-muted">{guide.description}</p>
+        <h3 className="mt-2 font-display text-xl font-semibold leading-snug text-ink group-hover:text-brand">{guide.title}</h3>
+        <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink/70">{guide.description}</p>
         <span className="mt-4 text-sm font-bold text-ink">
           Read the guide <span aria-hidden="true">&rarr;</span>
         </span>
@@ -63,14 +64,12 @@ function GuideGrid({ guides }: { guides: HubGuide[] }) {
 
 /** /tours — every partner listing for the property, each one a tracked /go/ link. */
 export function NetworkToursPage({
-  scope,
   siteName,
   title,
   subtitle,
   tours,
   guides,
 }: {
-  scope: string;
   siteName: string;
   title: string;
   subtitle: string;
@@ -96,21 +95,23 @@ export function NetworkToursPage({
   const compareGuides = guides.filter((g) => g.kind === 'compare');
 
   return (
-    <div className={`${scope} bg-white`}>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <InnerHero eyebrow={siteName} title={title} subtitle={subtitle} breadcrumb={{ label: 'Home', href: '/' }} />
+      <Hero imageUrl="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80" title={title} subtitle={subtitle} accentWord="" />
 
-      <section className="py-14 sm:py-16">
-        <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {tours.map((tour) => (
+      <section className="bg-cream py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {tours.map((tour, i) => (
               <a
                 key={tour.slug}
                 href={`/go/${tour.slug}`}
                 rel="sponsored nofollow"
-                className="group flex flex-col overflow-hidden rounded-card border border-line bg-white shadow-card-soft transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="group flex flex-col overflow-hidden rounded-card bg-white border border-line shadow-md hover:shadow-lg transition-all duration-200"
+                data-reveal
+                style={{ '--i': i } as React.CSSProperties}
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-media">
+                <div className="relative aspect-[4/3] overflow-hidden bg-cream-deep">
                   <SafeImage
                     src={tour.image.src}
                     alt={tour.image.alt}
@@ -119,18 +120,18 @@ export function NetworkToursPage({
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {tour.badge ? (
-                    <span className="absolute left-3 top-3 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">{tour.badge}</span>
+                    <span className="absolute left-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-bold text-cream">{tour.badge}</span>
                   ) : null}
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <span className="text-xs font-semibold uppercase tracking-[0.1em] text-faint">{tour.partner}</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.1em] text-ink/60">{tour.partner}</span>
                   <h2 className="mt-1.5 font-display text-lg font-semibold leading-snug text-ink">{tour.title}</h2>
-                  <p className="mt-1.5 text-sm text-ink-muted">{tour.meta}</p>
+                  <p className="mt-1.5 text-sm text-ink/70">{tour.meta}</p>
                   <div className="mt-auto flex items-end justify-between pt-5">
-                    <p className="text-sm text-ink-muted">
+                    <p className="text-sm text-ink/70">
                       from <span className="text-xl font-bold text-ink">&euro;{tour.priceFrom}</span>
                     </p>
-                    <span className="inline-flex min-h-[44px] items-center rounded-control bg-accent px-4 text-sm font-bold text-white transition-colors group-hover:bg-accent-hover">
+                    <span className="inline-flex min-h-[44px] items-center rounded-control bg-brand px-4 text-sm font-bold text-cream hover:bg-brand/90 transition-colors">
                       Check availability
                     </span>
                   </div>
@@ -138,9 +139,9 @@ export function NetworkToursPage({
               </a>
             ))}
           </div>
-          <p className="mt-6 text-sm text-faint">
+          <p className="mt-6 text-sm text-ink/60">
             Prices are indicative &ldquo;from&rdquo; prices set by each partner. We may earn a commission when you book &mdash;{' '}
-            <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-accent">
+            <Link href="/affiliate-disclosure" className="text-brand hover:underline">
               how that works
             </Link>
             .
@@ -149,29 +150,27 @@ export function NetworkToursPage({
       </section>
 
       {compareGuides.length ? (
-        <section className="border-t border-line bg-paper-tint py-14 sm:py-16">
-          <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
-            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Not sure which to pick?</h2>
-            <p className="mt-2 max-w-2xl text-ink-muted">Our side-by-side comparisons break down route, group size and value for each option.</p>
-            <div className="mt-8">
+        <section className="border-t border-line bg-white py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="font-display text-4xl font-bold text-ink">Not sure which to pick?</h2>
+            <p className="mt-4 max-w-2xl text-ink/70">Our side-by-side comparisons break down route, group size and value for each option.</p>
+            <div className="mt-12">
               <GuideGrid guides={compareGuides} />
             </div>
           </div>
         </section>
       ) : null}
-    </div>
+    </>
   );
 }
 
 /** /blog — the property's own comparison and planning guides. */
 export function NetworkGuidesPage({
-  scope,
   siteName,
   title,
   subtitle,
   guides,
 }: {
-  scope: string;
   siteName: string;
   title: string;
   subtitle: string;
@@ -187,59 +186,52 @@ export function NetworkGuidesPage({
   };
 
   return (
-    <div className={`${scope} bg-white`}>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <InnerHero eyebrow={siteName} title={title} subtitle={subtitle} breadcrumb={{ label: 'Home', href: '/' }} />
+      <Hero imageUrl="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80" title={title} subtitle={subtitle} accentWord="" />
       {plan.length ? (
-        <section className="py-14 sm:py-16">
-          <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
-            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Planning guides</h2>
-            <div className="mt-8">
+        <section className="bg-cream py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="font-display text-4xl font-bold text-ink">Planning guides</h2>
+            <div className="mt-12">
               <GuideGrid guides={plan} />
             </div>
           </div>
         </section>
       ) : null}
       {compare.length ? (
-        <section className="border-t border-line bg-paper-tint py-14 sm:py-16">
-          <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
-            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Tour comparisons</h2>
-            <div className="mt-8">
+        <section className="bg-white py-20 border-t border-line">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="font-display text-4xl font-bold text-ink">Tour comparisons</h2>
+            <div className="mt-12">
               <GuideGrid guides={compare} />
             </div>
           </div>
         </section>
       ) : null}
-    </div>
+    </>
   );
 }
 
 /** Pompeii area detail — the area summary plus the property's planning guides. */
 export function NetworkAreaPage({
-  scope,
   area,
   guides,
 }: {
-  scope: string;
   area: { name: string; description: string };
   guides: HubGuide[];
 }) {
   return (
-    <div className={`${scope} bg-white`}>
-      <InnerHero
-        eyebrow="Pompeii site guide"
-        title={`${area.name}, Pompeii`}
-        subtitle={area.description}
-        breadcrumb={{ label: 'All areas', href: '/neighborhoods' }}
-      />
-      <section className="py-14 sm:py-16">
-        <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
-          <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Plan your visit</h2>
-          <div className="mt-8">
+    <>
+      <Hero imageUrl="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80" title={`${area.name}, Pompeii`} subtitle={area.description} accentWord="" />
+      <section className="bg-cream py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-4xl font-bold text-ink">Plan your visit</h2>
+          <div className="mt-12">
             <GuideGrid guides={guides} />
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

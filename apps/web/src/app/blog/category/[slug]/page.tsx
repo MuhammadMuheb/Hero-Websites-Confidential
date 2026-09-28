@@ -8,7 +8,7 @@ import { getBlogCategory } from '@/lib/blog';
 import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
 import { BLOG_CATEGORY_HERO_IMAGES } from '@/lib/blog-category-images';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 async function safeGetPageDoc(slug: string) {
   try {
