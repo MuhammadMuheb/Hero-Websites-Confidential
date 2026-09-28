@@ -11,11 +11,11 @@ import { UCNeighborhoodsPage } from '@/components/underground-colosseum/UCNeighb
 import * as UC from '@/lib/underground-colosseum';
 import * as UCC from '@/lib/underground-colosseum-content';
 
-import { MoneyPageTemplate as PVMoney } from '@/components/private-vatican/MoneyPageTemplate';
 import { SupportPageTemplate as PVSupport } from '@/components/private-vatican/SupportPageTemplate';
 import { PVContactPage } from '@/components/private-vatican/PVContactPage';
 import { PVFAQPage } from '@/components/private-vatican/PVFAQPage';
 import { PVPrivacyPolicyPage } from '@/components/private-vatican/PVPrivacyPolicyPage';
+import { MoneyPageContent } from '@/components/MoneyPageContent';
 import * as PV from '@/lib/private-vatican';
 import * as PVC from '@/lib/private-vatican-content';
 
@@ -157,7 +157,16 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     heroImage: PV.HERO_IMAGE,
     hrefs: hrefsOf(PV.MONEY_PAGES, PV.SUPPORT_PAGES),
     tours: PV.FEATURED_TOURS,
-    money: (h) => { const c = PVC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <PVMoney content={c} /> } : null; },
+    money: (h) => {
+      const c = PVC.getMoneyPageContent(h);
+      if (!c) return null;
+      const relevantTours = PV.getFeaturedToursForPage(h, 4);
+      return {
+        kind: 'compare',
+        content: c,
+        node: <MoneyPageContent content={c} siteName="privatevatican.com" relevantTours={relevantTours} />,
+      };
+    },
     support: (h) => { const c = PVC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <PVSupport content={c} /> } : null; },
     pages: { contact: () => <PVContactPage />, faq: () => <PVFAQPage />, privacy: () => <PVPrivacyPolicyPage /> },
     legal: { terms: PV.TERMS_OF_SERVICE, 'cookie-policy': PV.COOKIE_POLICY, 'affiliate-disclosure': PV.AFFILIATE_DISCLOSURE },
