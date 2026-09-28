@@ -7,6 +7,8 @@ import { BING_SITE_VERIFICATION, GA_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION } f
 import './globals.css';
 import './animations.css';
 
+export const dynamic = 'force-dynamic';
+
 const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',

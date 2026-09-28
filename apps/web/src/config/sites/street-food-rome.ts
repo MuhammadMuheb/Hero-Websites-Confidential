@@ -7,8 +7,8 @@ export const streetFoodRomeConfig: SiteConfig = {
   description: 'First-hand guide to Rome\'s street food — honest recommendations, no tourist traps.',
   heroImage: { src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80', alt: 'Rome street food' },
   heroTitle: 'Rome Street Food Tours',
+  heroGoldWord: 'Rome',
   heroSubtitle: 'Authentic flavors, local neighborhoods',
-  accentWord: 'Rome',
 
   // Homepage sections
   chips: [

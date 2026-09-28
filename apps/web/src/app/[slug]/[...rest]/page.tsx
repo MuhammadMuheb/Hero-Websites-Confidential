@@ -68,6 +68,8 @@ function contactEmail(slug: string): string {
   return `hello@${slug.replace(/-/g, '')}.com`;
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
   return Object.entries(PROPERTIES).flatMap(([slug, def]) => {
     const paths = [

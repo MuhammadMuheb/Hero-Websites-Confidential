@@ -4,7 +4,7 @@ import { Hero } from '@/components/Hero';
 import { SectionHeader } from '@/components/SectionHeader';
 import { JournalCard } from '@/components/JournalCard';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Guides & Stories — Street Food Rome',

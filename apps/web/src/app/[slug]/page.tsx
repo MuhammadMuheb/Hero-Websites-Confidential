@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { SITE_DOMAIN, getAllBlogPosts } from '@/lib/firestore';
+import { SITE_DOMAIN, getAllBlogPosts, type TourDoc } from '@/lib/firestore';
 import { HomePageBody } from '@/components/HomePageBody';
 import { NetworkHomeTemplate } from '@/components/NetworkHomeTemplate';
 import { getNetworkSite, NETWORK_SITES } from '@/lib/tours';
@@ -73,7 +73,7 @@ export default async function NetworkSitePage({ params }: { params: Promise<{ sl
 
   // Use HomePageBody for sites with complete config
   const siteData = await getSiteData(slug);
-  const siteTours = siteData.FEATURED_TOURS ?? [];
+  const siteTours = (siteData.FEATURED_TOURS ?? []) as unknown as TourDoc[];
   const allBlogPosts = await getAllBlogPosts().catch(() => []);
 
   return (

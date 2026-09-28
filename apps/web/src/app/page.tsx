@@ -3,7 +3,7 @@ import { getAllBlogPosts, getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/fir
 import { HomePageBody } from '@/components/HomePageBody';
 import { streetFoodRomeConfig } from '@/config/sites/street-food-rome';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageDoc('home');

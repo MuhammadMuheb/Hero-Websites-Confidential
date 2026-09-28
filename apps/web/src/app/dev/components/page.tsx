@@ -17,6 +17,8 @@ export const metadata = {
   robots: 'noindex, nofollow',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ComponentsPage() {
   const tours = await getAllTours();
   const sampleTour = tours[0];
