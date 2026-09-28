@@ -7,7 +7,6 @@ import { WhoWritesThisSection } from '@/components/WhoWritesThisSection';
 import { HowItStartedSection } from '@/components/HowItStartedSection';
 import { HowWeChooseSection } from '@/components/HowWeChooseSection';
 import { ExploreLinksSection } from '@/components/ExploreLinksSection';
-import { AllDestinationsSection } from '@/components/AllDestinationsSection';
 
 export const dynamic = 'force-dynamic';
 
