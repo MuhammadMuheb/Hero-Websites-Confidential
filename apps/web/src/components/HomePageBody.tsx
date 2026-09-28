@@ -17,10 +17,17 @@ interface HomePageBodyProps {
 }
 
 /**
- * The full homepage content structure (Hero through AllDestinationsSection),
- * shared between the main site ('/') and each network property's branded
- * page ('/{slug}') — only the JSON-LD's name/url and the Header's wordmark
- * (handled separately, by route, in Header.tsx) vary by brand.
+ * Shared homepage template: §4 blueprint layout A-J with section IDs.
+ * A: Navbar (handled in layout)
+ * B: Hero (§4-B)
+ * C: Trust strip (§4-C)
+ * D: Top tours slider (§4-D)
+ * E: How we choose (§4-E)
+ * F: Guides & stories (§4-F)
+ * G: Top items to try (§4-G)
+ * H: Places to plan next trip (§4-H)
+ * I: Explore our Italy collection (§4-I)
+ * J: Footer (handled in layout)
  */
 export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allBlogPosts }: HomePageBodyProps) {
   const jsonLd = [
@@ -52,13 +59,41 @@ export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allB
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
+      {/* Section B: Hero */}
       <Hero imageUrl={heroImageUrl} />
-      <TrustPointsSection />
-      <MediaBar />
-      <TourCarouselSection tours={tours} />
-      <CategoryToursSection tours={tours} />
-      <ExploreLinksSection tours={tours} allBlogPosts={allBlogPosts} />
-      <AllDestinationsSection />
+
+      {/* Section C: Trust strip */}
+      <section id="partners">
+        <TrustPointsSection />
+      </section>
+
+      {/* Section D: Top tours slider */}
+      <section id="popular">
+        <TourCarouselSection tours={tours} />
+      </section>
+
+      {/* Section E: How we choose */}
+      <section id="how-we-choose">
+        <MediaBar />
+      </section>
+
+      {/* Section F: Guides & stories */}
+      <section id="guides">
+        <ExploreLinksSection tours={tours} allBlogPosts={allBlogPosts} />
+      </section>
+
+      {/* Section G: Top items to try */}
+      <section id="categories">
+        <CategoryToursSection tours={tours} />
+      </section>
+
+      {/* Section H: Places to plan next trip */}
+      <section id="places">
+        <AllDestinationsSection />
+      </section>
+
+      {/* Section I: Explore our Italy collection */}
+      {/* (To be implemented in Step 2) */}
     </>
   );
 }

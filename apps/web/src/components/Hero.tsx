@@ -46,49 +46,61 @@ export function Hero({ imageUrl }: HeroProps) {
   }
 
   return (
-    <section>
-      <div className="relative h-[400px] w-full overflow-hidden sm:h-[480px]">
+    <section id="hero">
+      {/* Dark hero: photo + overlay as same box (absolute inset-0) to prevent gaps/horizontal scroll */}
+      <div className="relative w-full" style={{ aspectRatio: '16 / 9', maxHeight: '500px' }}>
         {imageUrl ? (
           <SafeImage
             src={imageUrl}
-            alt="A small, authentic Roman trattoria with a handwritten specials board — Rome street food, not a generic Europe scene"
+            alt="Rome street food experience"
             fill
             priority
             sizes="100vw"
             className="object-cover"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
+        {/* Overlay and hero content in same container */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
 
-        <div className="relative mx-auto flex h-full max-w-[960px] flex-col justify-center px-6 pb-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Rome, Italy</p>
-          <h1 className="mt-3 max-w-2xl font-sans text-[40px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[60px] sm:leading-[1.05]">
-            Rome&rsquo;s Ultimate Street Food &amp; Culinary Experiences
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
+          <p className="text-xs font-semibold uppercase tracking-wider text-gold">Rome, Italy</p>
+          <h1 className="mt-4 max-w-3xl text-center font-display text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+            Rome&rsquo;s Ultimate <span className="text-gold">Street Food</span> &amp; Culinary Experiences
           </h1>
+          <p className="mt-4 max-w-2xl text-center text-lg text-white/90">Authentic culinary walks led by locals</p>
+
+          {/* Search bar */}
+          <div className="mt-8 w-full max-w-2xl">
+            <GlobalSearchBox
+              placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
+              compact={false}
+              className="w-full"
+            />
+          </div>
+
+          {/* Chips */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {CHIPS.slice(0, 8).map((chip) => (
+              <Link
+                key={chip.label}
+                href={chip.href}
+                className="inline-flex rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-sm font-medium text-white hover:bg-white/20 transition-colors backdrop-blur"
+              >
+                {chip.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Search bar straddles the hero/strip boundary — half over the photo, half over the light
-          section below — matching the reference's actual overlap, not fully embedded in the photo. */}
-      <div className="relative z-10 mx-auto -mt-8 max-w-[896px] px-6">
-        <GlobalSearchBox
-          placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
-          compact={false}
-          className="w-full"
-        />
-      </div>
-
-      {/* Category chips — separate strip below the photo, functional scroll like the reference.
-          White, not the light-gray tint used elsewhere: the section right below (Trust Points)
-          is already that gray, and two identical backgrounds back-to-back read as one seamless
-          block with no boundary between them. */}
-      <div className="bg-white">
-        <div className="mx-auto flex max-w-[1200px] items-center gap-2 px-6 pb-6 pt-8">
+      {/* Category chips carousel — separate section */}
+      <div className="bg-paper">
+        <div className="mx-auto flex max-w-7xl items-center gap-2 px-6 py-6">
           <button
             type="button"
             aria-label="Scroll categories left"
             onClick={() => scrollBy(-320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-all duration-200 ease-out hover:border-accent hover:text-accent"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-ink-muted hover:border-accent hover:text-accent transition-colors duration-200"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -103,7 +115,7 @@ export function Hero({ imageUrl }: HeroProps) {
               <Link
                 key={chip.label}
                 href={chip.href}
-                className="flex h-[42px] shrink-0 items-center whitespace-nowrap rounded-full border border-line bg-white px-4 text-[15px] font-bold text-ink-soft transition-all duration-200 ease-out hover:border-accent hover:bg-accent-soft hover:text-accent"
+                className="flex h-10 shrink-0 items-center whitespace-nowrap rounded-full border border-line bg-paper px-4 text-sm font-semibold text-ink hover:border-accent hover:bg-accent-soft hover:text-accent transition-colors duration-200"
               >
                 {chip.label}
               </Link>
@@ -114,7 +126,7 @@ export function Hero({ imageUrl }: HeroProps) {
             type="button"
             aria-label="Scroll categories right"
             onClick={() => scrollBy(320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-white text-faint transition-all duration-200 ease-out hover:border-accent hover:text-accent"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-ink-muted hover:border-accent hover:text-accent transition-colors duration-200"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
