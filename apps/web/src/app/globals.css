@@ -18,9 +18,10 @@
 
   /* Text */
   --ink: 19 42 30;                /* #132A1E — all text, dark sections */
-  --ink-soft: 30 30 32;           /* unused; kept for compat */
-  --ink-muted: 92 97 102;         /* unused; kept for compat */
-  --faint: 110 115 120;           /* unused; kept for compat */
+  --ink-soft: 19 42 30;           /* = ink */
+  --ink-muted: 74 92 81;          /* ink ~70% on cream — body copy */
+  --faint: 112 126 117;           /* meta text */
+  --accent-soft: 230 242 235;     /* soft green wash for chips/hover */
 
   /* Gold accents */
   --gold: 232 169 61;             /* #E8A93D — eyebrows on dark, stars, rating, nav underline */
@@ -28,9 +29,9 @@
 
   /* Utility */
   --success: 47 125 79;           /* unused; kept for compat */
-  --line: 232 235 237;            /* unused; kept for compat */
-  --line-strong: 216 220 222;     /* unused; kept for compat */
-  --media: 244 244 244;           /* unused; kept for compat */
+  --line: 228 220 204;            /* warm cream border */
+  --line-strong: 214 204 184;
+  --media: 239 231 215;           /* image placeholder = cream-deep */
 }
 
 html {
@@ -40,7 +41,7 @@ html {
 body {
   background: rgb(var(--cream));
   color: rgb(var(--ink));
-  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -142,7 +143,7 @@ summary:focus-visible,
 }
 
 .rich-content a {
-  color: rgb(var(--accent));
+  color: rgb(var(--brand));
   text-decoration: underline;
   text-underline-offset: 2px;
 }

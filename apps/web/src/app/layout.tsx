@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         )}
       </head>
-      <body className="bg-white text-ink font-sans">
+      <body className="bg-cream text-ink font-sans">
         <Header />
         <main>{children}</main>
         <Footer />

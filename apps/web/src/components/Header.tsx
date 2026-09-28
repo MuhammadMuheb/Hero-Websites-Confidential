@@ -55,62 +55,56 @@ export function Header() {
     <>
       <header
         className={`sticky top-0 z-40 h-[72px] border-b transition-colors duration-200 ${
-          scrolled ? 'border-ink/10 bg-paper/85 backdrop-blur' : 'border-ink/10 bg-paper'
+          scrolled ? 'border-ink/10 bg-cream/90 backdrop-blur' : 'border-ink/10 bg-cream'
         }`}
-        style={{
-          backgroundImage: scrolled ? 'linear-gradient(180deg, rgba(var(--paper),0.85) 0%, rgba(var(--paper),0.75) 100%)' : undefined,
-        }}
       >
         <div className="mx-auto h-full max-w-full px-4 sm:px-6 lg:px-8">
           <div className="flex h-full items-center justify-between gap-6">
             {/* Logo - Left */}
             <Link href={brandHref} className="flex shrink-0 items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent">
-                <span className="text-sm font-bold text-white">🍝</span>
-              </span>
-              <span className="hidden text-sm font-semibold text-ink sm:inline">{brandName}</span>
+              <span className="font-display text-lg font-extrabold tracking-tight text-ink">{brandName}</span>
             </Link>
 
             {/* Center Navigation - Desktop Only */}
             <nav className="hidden lg:flex items-center gap-0.5">
             <Link
               href={basePrefix || '/'}
-              className="relative px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent after:absolute after:bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full"
+              className="relative px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
             >
               Home
             </Link>
 
             <Link
               href={`${basePrefix}/about`}
-              className="relative px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent after:absolute after:bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full"
+              className="relative px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
             >
               About Us
             </Link>
 
             <Link
               href={`${basePrefix}/contact`}
-              className="relative px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent after:absolute after:bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full"
+              className="relative px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
             >
               Contact Us
             </Link>
 
             <Link
               href={`${basePrefix}/faq`}
-              className="relative px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent after:absolute after:bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full"
+              className="relative px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
             >
               FAQ
             </Link>
 
             <Link
               href={`${basePrefix}/privacy`}
-              className="relative px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent after:absolute after:bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full"
+              className="relative px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
             >
               Privacy Policy
             </Link>
 
             <Link
               href={`${basePrefix}/terms`}
-              className="relative px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent after:absolute after:bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full"
+              className="relative px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
             >
               Terms of Service
             </Link>

@@ -23,11 +23,20 @@ const config: Config = {
         line: withOpacity('--line'),
         'line-strong': withOpacity('--line-strong'),
         media: withOpacity('--media'),
+        // Aliases so older components (accent/paper-tint/ink-muted…) render in the v2 palette
+        accent: withOpacity('--brand'),
+        'accent-hover': withOpacity('--brand-dark'),
+        'accent-soft': withOpacity('--accent-soft'),
+        'paper-tint': withOpacity('--cream'),
+        'ink-soft': withOpacity('--ink'),
+        'ink-muted': withOpacity('--ink-muted'),
+        faint: withOpacity('--faint'),
       },
       fontFamily: {
         hero: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
         display: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
-        sans: ['system-ui', 'sans-serif'],
+        sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
+        playfair: ['Georgia', '"Times New Roman"', 'serif'],
       },
       // A named radius scale (ui-ux-pro-max: "pick one radius scale and apply
       // consistently"). Slightly larger than the previous system for a
@@ -36,7 +45,7 @@ const config: Config = {
       borderRadius: {
         control: '10px',
         panel: '20px',
-        card: '24px',
+        card: '22px',
         media: '28px',
       },
       // A named elevation scale (ui-ux-pro-max: "use a small, consistent

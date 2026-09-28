@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
+import { getAllBlogPosts, getAllTours, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { HomePageBody } from '@/components/HomePageBody';
 
 export const revalidate = 3600;
@@ -27,9 +27,10 @@ export async function generateMetadata(): Promise<Metadata> {
 const HOME_HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e';
 
 export default async function HomePage() {
-  const [page, tours] = await Promise.all([
+  const [page, tours, allBlogPosts] = await Promise.all([
     getPageDoc('home'),
     getAllTours(),
+    getAllBlogPosts().catch(() => []),
   ]);
 
   return (
@@ -38,6 +39,7 @@ export default async function HomePage() {
       canonicalUrl={`https://${SITE_DOMAIN}/`}
       heroImageUrl={page?.heroImageUrl ?? HOME_HERO_IMAGE_URL}
       tours={tours}
+      allBlogPosts={allBlogPosts}
     />
   );
 }

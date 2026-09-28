@@ -3,10 +3,8 @@
 import { useRef } from 'react';
 import type { TourDoc } from '@/lib/firestore';
 import { TourCard } from '@/components/cards/TourCard';
-import { useReveal } from '@/hooks/useReveal';
 
 export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
-  useReveal();
   const trackRef = useRef<HTMLDivElement>(null);
 
   function scrollByOneCard(direction: 1 | -1) {
@@ -30,15 +28,15 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
   }
 
   return (
-    <section className="bg-cream-deep py-20">
+    <section className="bg-cream-deep py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-y-4 mb-12">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-gold-deep">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">
               Our best selling tours at a glance
             </p>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold text-ink">
-              Top Food Tours in Rome
+            <h2 className="mt-3 font-hero text-[32px] font-black leading-tight tracking-[-0.02em] text-ink sm:text-[44px]">
+              Top Food <span className="text-brand">Tours</span> in Rome
             </h2>
           </div>
 
@@ -68,19 +66,15 @@ export function TourCarouselSection({ tours }: { tours: TourDoc[] }) {
 
         <div
           ref={trackRef}
-          className="mt-12 grid auto-cols-[calc(100%-1rem)] grid-flow-col gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] sm:auto-cols-[calc((100%-1rem)/2)] sm:gap-6 lg:auto-cols-[calc((100%-3rem)/4)] [&::-webkit-scrollbar]:hidden"
+          className="grid auto-cols-[85%] grid-flow-col gap-4 overflow-x-auto scroll-smooth pb-4 pt-1 [scrollbar-width:none] sm:auto-cols-[calc((100%-1rem)/2)] sm:gap-6 lg:auto-cols-[calc((100%-4.5rem)/4)] [&::-webkit-scrollbar]:hidden"
           style={{ scrollSnapType: 'x mandatory' }}
         >
           {tours.map((tour, index) => (
             <div
               key={tour.slug}
-              data-reveal
-              style={{
-                scrollSnapAlign: 'start',
-                '--i': index,
-              } as React.CSSProperties}
+              style={{ scrollSnapAlign: 'start' }}
             >
-              <TourCard tour={tour} priority={index === 0} />
+              <TourCard tour={tour} priority={index < 4} />
             </div>
           ))}
         </div>

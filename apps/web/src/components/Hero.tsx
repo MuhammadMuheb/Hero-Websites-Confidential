@@ -69,35 +69,40 @@ export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
     );
   }
 
-  // Homepage hero mode (§4 spec)
+  // Homepage hero mode — original Street Food Rome layout, v2 colors
   return (
-    <section id="hero">
-      {/* Dark hero: photo + overlay as same box (absolute inset-0) to prevent gaps/horizontal scroll */}
-      <div className="relative w-full" style={{ aspectRatio: '16 / 9', maxHeight: '500px' }}>
+    <section id="hero" className="bg-cream">
+      <div className="relative h-[420px] w-full overflow-hidden sm:h-[520px]">
         {imageUrl ? (
           <SafeImage
             src={imageUrl}
-            alt="Rome street food experience"
+            alt="A Roman trattoria table set out on a cobbled street, where Rome's street food tours begin"
             fill
             priority
             sizes="100vw"
             className="object-cover"
           />
         ) : null}
-        {/* Overlay and hero content in same container */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
+        {/* Dark-green overlay: same box as the image, so there is no gap or overflow */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(100deg, rgba(12,35,26,0.88) 0%, rgba(12,35,26,0.62) 45%, rgba(12,35,26,0.30) 100%)',
+          }}
+        />
 
-        <div className="absolute inset-0 mx-auto max-w-6xl flex flex-col justify-between px-6 py-16">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold">Rome, Italy</p>
-            <h1 className="mt-4 font-display text-4xl font-black leading-[1.05] text-white sm:text-5xl md:text-6xl max-w-2xl">
-              Rome&rsquo;s Ultimate <span className="text-gold">Street Food</span><br />&amp; Culinary Experiences
-            </h1>
-          </div>
+        <div className="relative mx-auto flex h-full max-w-[1200px] flex-col justify-center px-6 pb-12 sm:px-10">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-gold">Rome, Italy</p>
+          <h1 className="mt-4 max-w-3xl font-hero text-[40px] font-black leading-[1.05] tracking-[-0.02em] text-cream-text sm:text-[60px]">
+            Rome&rsquo;s Ultimate <span className="text-gold">Street Food</span> &amp; Culinary Experiences
+          </h1>
         </div>
+      </div>
 
-        {/* Search bar at bottom edge, straddling hero and below */}
-        <div className="relative mx-auto -mb-8 max-w-2xl px-6 text-center z-10">
+      {/* Search bar on the bottom edge of the hero: half over the photo, half below */}
+      <div className="relative z-10 mx-auto -mt-8 max-w-[820px] px-6">
+        <div className="rounded-full shadow-search">
           <GlobalSearchBox
             placeholder="Trastevere, Testaccio, Suppli, Pizza al Taglio…"
             compact={false}
@@ -106,46 +111,44 @@ export function Hero({ imageUrl, title, subtitle, accentWord }: HeroProps) {
         </div>
       </div>
 
-      {/* Category chips carousel — separate section */}
-      <div className="bg-paper">
-        <div className="mx-auto flex max-w-7xl items-center gap-2 px-6 py-6">
-          <button
-            type="button"
-            aria-label="Scroll categories left"
-            onClick={() => scrollBy(-320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-ink-muted hover:border-accent hover:text-accent transition-colors duration-200"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+      {/* Chips: one row only */}
+      <div className="mx-auto flex max-w-[1200px] items-center gap-2 px-6 pb-8 pt-8 sm:px-10">
+        <button
+          type="button"
+          aria-label="Scroll categories left"
+          onClick={() => scrollBy(-320)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-ink transition-colors duration-200 hover:border-brand hover:text-brand"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
 
-          <div
-            ref={scrollerRef}
-            className="flex flex-1 items-center gap-2.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {CHIPS.map((chip) => (
-              <Link
-                key={chip.label}
-                href={chip.href}
-                className="flex h-10 shrink-0 items-center whitespace-nowrap rounded-full border border-line bg-paper px-4 text-sm font-semibold text-ink hover:border-accent hover:bg-accent-soft hover:text-accent transition-colors duration-200"
-              >
-                {chip.label}
-              </Link>
-            ))}
-          </div>
-
-          <button
-            type="button"
-            aria-label="Scroll categories right"
-            onClick={() => scrollBy(320)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-ink-muted hover:border-accent hover:text-accent transition-colors duration-200"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+        <div
+          ref={scrollerRef}
+          className="flex flex-1 items-center gap-2.5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {CHIPS.map((chip) => (
+            <Link
+              key={chip.label}
+              href={chip.href}
+              className="flex h-11 shrink-0 items-center whitespace-nowrap rounded-full border border-line bg-paper px-5 text-[15px] font-semibold text-ink transition-colors duration-200 hover:border-brand hover:bg-accent-soft hover:text-brand"
+            >
+              {chip.label}
+            </Link>
+          ))}
         </div>
+
+        <button
+          type="button"
+          aria-label="Scroll categories right"
+          onClick={() => scrollBy(320)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-ink transition-colors duration-200 hover:border-brand hover:text-brand"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
       </div>
     </section>
   );

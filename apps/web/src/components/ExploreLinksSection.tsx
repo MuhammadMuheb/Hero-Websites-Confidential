@@ -74,7 +74,7 @@ export function ExploreLinksSection({ tours, allBlogPosts }: { tours: TourDoc[];
   const items = lists[active];
 
   return (
-    <section className="bg-paper-tint py-14">
+    <section className="bg-cream py-16 sm:py-20">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
         <h2 className="text-center font-sans text-xl font-extrabold tracking-tight text-ink sm:text-2xl">
           Places You Can Plan Your Next Trip

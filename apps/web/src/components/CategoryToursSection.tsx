@@ -65,22 +65,23 @@ function CategoryCard({
   href: string;
 }) {
   return (
-    <div className="group relative col-span-1 overflow-hidden rounded-media shadow-card-soft sm:col-span-2 lg:col-span-1">
-      <div className="relative aspect-[4/3] h-full min-h-[260px] overflow-hidden bg-media sm:min-h-[300px] lg:aspect-auto">
+    <div className="group relative col-span-1 overflow-hidden rounded-[22px] shadow-card sm:col-span-2 lg:col-span-1">
+      <div className="relative aspect-[4/3] h-full min-h-[300px] overflow-hidden bg-media sm:min-h-[340px] lg:aspect-auto lg:min-h-[440px]">
         <SafeImage
           src={imageUrl}
           alt={`${name} in Rome`}
           fill
-          sizes="(min-width: 1024px) 320px, (min-width: 640px) 100vw, 100vw"
+          sizes="(min-width: 1024px) 420px, 100vw"
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-ink-gradient" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent" />
       </div>
-      <div className="absolute inset-x-0 bottom-0 p-5">
-        <h3 className="font-sans text-2xl font-extrabold text-white">{name}</h3>
+      <div className="absolute inset-x-0 bottom-0 p-7">
+        <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold">Must taste</p>
+        <h3 className="mt-2 font-hero text-[28px] font-black leading-tight text-white sm:text-[32px]">{name}</h3>
         <Link
           href={href}
-          className="mt-3 inline-flex h-10 items-center justify-center rounded-control bg-white px-4 text-sm font-bold text-ink transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-card"
+          className="mt-3 inline-flex h-10 items-center justify-center rounded-full bg-gold px-5 text-sm font-bold text-ink transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-card"
         >
           {ctaLabel}
         </Link>
@@ -93,18 +94,18 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
   const bySlug = new Map(tours.map((tour) => [tour.slug, tour]));
 
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-14">
+    <section className="bg-cream py-16 sm:py-20">
+      <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-faint">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">
             Things you must taste in Rome
           </p>
-          <h2 className="mt-2 font-sans text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            Top Food Items to Try in Rome
+          <h2 className="mt-3 font-hero text-[32px] font-black leading-tight tracking-[-0.02em] text-ink sm:text-[44px]">
+            Top Food <span className="text-brand">Items</span> to Try in Rome
           </h2>
         </div>
 
-        <div className="mt-10 flex flex-col gap-10">
+        <div className="mt-12 flex flex-col gap-10">
           {CATEGORIES.map((category) => {
             const categoryTours = category.slugs
               .map((slug) => bySlug.get(slug))
@@ -115,7 +116,7 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
             return (
               <div
                 key={category.name}
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1fr_1fr]"
+                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]"
               >
                 <CategoryCard
                   name={category.name}
@@ -124,7 +125,7 @@ export function CategoryToursSection({ tours }: { tours: TourDoc[] }) {
                   href={`/tours/category/${category.categorySlug}`}
                 />
                 {categoryTours.map((tour) => (
-                  <TourCard key={tour.slug} tour={tour} />
+                  <TourCard key={tour.slug} tour={tour} compact />
                 ))}
               </div>
             );
