@@ -14,3 +14,11 @@ firebase-service-account*.json
 # repomix
 .repomix/
 apps/web/Hero-Websites-Confidential/
+
+# Any env file, whatever its name (secrets must never reach GitHub)
+*.env
+*.env.*
+!*.env.example
+
+# Nested copy of the repo (causes "Failed to fetch git submodules" on Vercel)
+/Hero-Websites-Confidential/
