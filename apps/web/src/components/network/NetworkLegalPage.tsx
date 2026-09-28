@@ -1,4 +1,4 @@
-import { Hero } from '@/components/Hero';
+import { InnerHero } from '@/components/InnerHero';
 
 export interface LegalDoc {
   title: string;
@@ -9,29 +9,32 @@ export interface LegalDoc {
   contactEmail?: string;
 }
 
-/** Shared legal-page layout (privacy, terms, cookies, affiliate disclosure) for every property. */
-export function NetworkLegalPage({ doc }: { doc: LegalDoc }) {
+/**
+ * Shared legal-page layout (privacy, terms, cookies, affiliate disclosure) for every
+ * network property. Same design as the Street Food Rome master legal pages:
+ * InnerHero + a narrow rich-content column.
+ */
+export function NetworkLegalPage({ doc, homeHref = '/' }: { doc: LegalDoc; homeHref?: string }) {
   return (
     <>
-      <Hero imageUrl="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80" title={doc.title} subtitle="" accentWord="" />
-      <section className="bg-cream py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <p className="text-base leading-relaxed text-ink/70">{doc.intro}</p>
-          {doc.fallbackHtml ? <div className="prose prose-sm max-w-none text-ink" dangerouslySetInnerHTML={{ __html: doc.fallbackHtml }} /> : null}
-          {doc.sections?.map((section) => (
-            <div key={section.heading}>
-              <h2 className="text-2xl font-bold text-ink mb-3">{section.heading}</h2>
-              <p className="text-base leading-relaxed text-ink/70">{section.content}</p>
-            </div>
-          ))}
-          {doc.contactEmail ? (
-            <p className="border-t border-line pt-6 text-sm text-ink/70">
-              Questions? Email{' '}
-              <a href={`mailto:${doc.contactEmail}`} className="font-semibold text-brand hover:underline">
-                {doc.contactEmail}
-              </a>
-            </p>
-          ) : null}
+      <InnerHero title={doc.title} breadcrumb={{ label: 'Home', href: homeHref }} />
+      <section className="py-14">
+        <div className="mx-auto max-w-[720px] px-6 sm:px-14">
+          <div className="rich-content">
+            <p>{doc.intro}</p>
+            {doc.fallbackHtml ? <div dangerouslySetInnerHTML={{ __html: doc.fallbackHtml }} /> : null}
+            {doc.sections?.map((section) => (
+              <div key={section.heading}>
+                <h2>{section.heading}</h2>
+                <p>{section.content}</p>
+              </div>
+            ))}
+            {doc.contactEmail ? (
+              <p>
+                Questions? Email <a href={`mailto:${doc.contactEmail}`}>{doc.contactEmail}</a>.
+              </p>
+            ) : null}
+          </div>
         </div>
       </section>
     </>

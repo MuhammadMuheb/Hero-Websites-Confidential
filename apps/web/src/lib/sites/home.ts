@@ -92,11 +92,23 @@ interface RawTour {
   partner?: string;
   badge?: string | null;
 }
+interface RawFaq {
+  question: string;
+  answer: string;
+}
+interface RawLegal {
+  title: string;
+  intro: string;
+  sections?: { heading: string; content: string }[];
+  contactEmail?: string;
+}
 interface RawSite {
   money: RawPage[];
   support: RawPage[];
   tours: RawTour[];
   gallery: RawImage[];
+  faqs: RawFaq[];
+  privacy: RawLegal | null;
   toursFor?: (href: string, max?: number) => RawTour[];
 }
 
@@ -105,6 +117,8 @@ function raw(mod: {
   SUPPORT_PAGES: readonly RawPage[];
   FEATURED_TOURS: readonly RawTour[];
   getFeaturedToursForPage?: (href: string, max?: number) => readonly RawTour[];
+  FAQS?: readonly RawFaq[];
+  PRIVACY_POLICY?: RawLegal;
 }, gallery: readonly RawImage[]): RawSite {
   const fn = mod.getFeaturedToursForPage;
   return {
@@ -112,6 +126,8 @@ function raw(mod: {
     support: [...mod.SUPPORT_PAGES],
     tours: [...mod.FEATURED_TOURS],
     gallery: [...gallery],
+    faqs: [...(mod.FAQS ?? [])],
+    privacy: mod.PRIVACY_POLICY ?? null,
     toursFor: fn ? (href, max) => [...fn(href, max)] : undefined,
   };
 }
@@ -719,5 +735,25 @@ export function getSiteAssets(slug: string): {
       image: p.image ? { src: cleanImage(p.image.src), alt: p.image.alt } : null,
     })),
     support: site.support.map((p) => ({ title: p.title, href: p.href })),
+  };
+}
+
+/** FAQs, privacy policy and contact e-mail of a network site (its own data). */
+export function getSiteExtras(slug: string): {
+  siteName: string;
+  city: string;
+  faqs: RawFaq[];
+  privacy: RawLegal | null;
+  contactEmail: string;
+} | null {
+  const site = RAW[slug];
+  const copy = COPY[slug];
+  if (!site || !copy) return null;
+  return {
+    siteName: copy.siteName,
+    city: copy.city,
+    faqs: site.faqs,
+    privacy: site.privacy,
+    contactEmail: site.privacy?.contactEmail ?? `hello@${slug.replace(/-/g, '')}.com`,
   };
 }
