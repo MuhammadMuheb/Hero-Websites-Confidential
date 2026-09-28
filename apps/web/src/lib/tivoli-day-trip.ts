@@ -6,8 +6,8 @@
 export { AUTHOR, FAQS, QUICK_FACTS, QUICK_LINKS } from './tivoli-day-trip-content';
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
-  alt: 'Rome street food',
+  src: 'https://images.unsplash.com/photo-1654612533611-d4f18261d444?w=1600&q=80',
+  alt: 'The villa building of Villa d\'Este in Tivoli with a fountain in front',
 };
 
 
@@ -25,7 +25,7 @@ export const MONEY_PAGES = [
     keyword: 'full day tivoli tour both villas',
     cta: 'Explore Full-Day Tours',
     badge: 'Most Popular' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=450&fit=crop', alt: 'Spectacular water features and terraced gardens at Villa d\'Este' },
+    image: { src: 'https://images.unsplash.com/photo-1613002999620-f586001ee027', alt: 'An ancient statue beside the water at Hadrian\'s Villa near Tivoli' },
   },
   {
     title: 'Half-Day Villa d\'Este',
@@ -34,7 +34,7 @@ export const MONEY_PAGES = [
     keyword: 'half day villa d este tour',
     cta: 'View Half-Day Options',
     badge: 'Quick Escape' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=450&fit=crop', alt: 'Golden hour light dancing across Villa d\'Este fountains' },
+    image: { src: 'https://images.unsplash.com/photo-1664461890788-5c7d689cda56', alt: 'A row of water fountains in the gardens of Villa d\'Este, Tivoli' },
   },
   {
     title: 'Private Expert Guide',
@@ -43,7 +43,7 @@ export const MONEY_PAGES = [
     keyword: 'private tivoli tour with guide',
     cta: 'Book Private Tour',
     badge: 'Premium' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=450&fit=crop', alt: 'Ancient Roman architecture and columns at Hadrian\'s Villa' },
+    image: { src: 'https://images.unsplash.com/photo-1664461892055-a073051e3c2c', alt: 'A courtyard with a fountain and statues at Villa d\'Este, Tivoli' },
   },
   {
     title: 'Self-Guided Essentials',
@@ -52,7 +52,7 @@ export const MONEY_PAGES = [
     keyword: 'self guided tivoli day trip',
     cta: 'Plan Your Route',
     badge: 'Budget-Friendly' as string | null,
-    image: { src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=450&fit=crop', alt: 'Serene garden pathways and Mediterranean landscape at Tivoli' },
+    image: { src: 'https://images.unsplash.com/photo-1550683402-b269d8d0304f', alt: 'Tall trees in the gardens of Tivoli near Rome' },
   },
 ];
 
@@ -77,7 +77,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 69,
     badge: '⭐ Top Rated',
     href: '/go/full-day-tivoli-both-villas',
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=500&fit=crop', alt: 'Stunning water features cascading through terraced gardens at Villa d\'Este' },
+    image: { src: 'https://images.unsplash.com/photo-1654612533611-d4f18261d444', alt: 'The villa building of Villa d\'Este in Tivoli with a fountain in front' },
   },
   {
     partner: 'Viator',
@@ -87,7 +87,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 45,
     badge: '🚀 Quick Tour',
     href: '/go/half-day-villa-este-fountains',
-    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop', alt: 'Renaissance fountain architecture and water features at Villa d\'Este' },
+    image: { src: 'https://images.unsplash.com/photo-1664461890788-5c7d689cda56', alt: 'A row of water fountains in the gardens of Villa d\'Este, Tivoli' },
   },
   {
     partner: 'Civitatis',
@@ -97,7 +97,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 195,
     badge: '👑 Premium',
     href: '/go/private-tivoli-expert-guide',
-    image: { src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=500&fit=crop', alt: 'Serene garden pathways through ancient Tivoli ruins' },
+    image: { src: 'https://images.unsplash.com/photo-1664461892055-a073051e3c2c', alt: 'A courtyard with a fountain and statues at Villa d\'Este, Tivoli' },
   },
   {
     partner: 'GetYourGuide',
@@ -107,7 +107,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 55,
     badge: '🏛️ History',
     href: '/go/hadrians-villa-archaeology-focus',
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=500&fit=crop', alt: 'Ancient Roman columns and archaeological ruins at Hadrian\'s Villa' },
+    image: { src: 'https://images.unsplash.com/photo-1613002999620-f586001ee027', alt: 'An ancient statue beside the water at Hadrian\'s Villa near Tivoli' },
   },
   {
     partner: 'Viator',
@@ -117,7 +117,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 89,
     badge: '📸 Photo Tour',
     href: '/go/tivoli-gardens-photography-tour',
-    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop', alt: 'Golden hour sunset illuminating Villa d\'Este fountains and gardens' },
+    image: { src: 'https://images.unsplash.com/photo-1654533596848-5c1bd2393cae', alt: 'A fountain with a statue in the gardens of Villa d\'Este' },
   },
   {
     partner: 'Civitatis',
@@ -127,7 +127,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 65,
     badge: '⏰ Skip-Line',
     href: '/go/villa-este-skip-line-early-access',
-    image: { src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=500&fit=crop', alt: 'Early morning mist rising from Villa d\'Este terraced gardens' },
+    image: { src: 'https://images.unsplash.com/photo-1664461891582-bc909249a508', alt: 'A fountain among the trees in the gardens of Villa d\'Este' },
   },
   {
     partner: 'GetYourGuide',
@@ -137,7 +137,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 79,
     badge: '🏘️ Villages',
     href: '/go/tivoli-villages-countryside-tour',
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=500&fit=crop', alt: 'Charming hilltop village overlooking Tivoli countryside landscape' },
+    image: { src: 'https://images.unsplash.com/photo-1550683402-b269d8d0304f', alt: 'Tall trees in the gardens of Tivoli near Rome' },
   },
   {
     partner: 'Viator',
@@ -147,7 +147,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
     priceFrom: 125,
     badge: '🍽️ Dinner',
     href: '/go/tivoli-sunset-dinner-experience',
-    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop', alt: 'Sunset dinner table overlooking Tivoli villas and Italian landscape' },
+    image: { src: 'https://images.unsplash.com/photo-1664461892275-f29d4ba7897f', alt: 'A fountain in front of the villa at Villa d\'Este, Tivoli' },
   },
 ];
 
@@ -167,25 +167,25 @@ export const SUPPORT_PAGES = [
     title: 'Getting to Tivoli',
     href: '/support/getting-to-tivoli-train-vs-tour',
     keyword: 'how to get to tivoli from rome',
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop', alt: 'Italian regional train window view of countryside heading toward Tivoli' },
+    image: { src: 'https://images.unsplash.com/photo-1550683402-b269d8d0304f', alt: 'Tall trees in the gardens of Tivoli near Rome' },
   },
   {
     title: 'Which Villa',
     href: '/which-villa-to-prioritise',
     keyword: 'villa d\'este or hadrian\'s villa',
-    image: { src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop', alt: 'Aerial view of Villa d\'Este\'s terraced gardens with fountains and symmetrical landscaping' },
+    image: { src: 'https://images.unsplash.com/photo-1664461891582-bc909249a508', alt: 'A fountain among the trees in the gardens of Villa d\'Este' },
   },
   {
     title: 'Best Season',
     href: '/gardens-best-season',
     keyword: 'best time to visit villa d\'este',
-    image: { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop', alt: 'Late spring gardens of Villa d\'Este in full bloom with fresh green foliage' },
+    image: { src: 'https://images.unsplash.com/photo-1654533596848-5c1bd2393cae', alt: 'A fountain with a statue in the gardens of Villa d\'Este' },
   },
   {
     title: 'With Kids',
     href: '/tivoli-with-kids',
     keyword: 'tivoli day trip with children',
-    image: { src: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f', alt: 'Family-friendly fountain pathway at Villa d\'Este, safe and accessible for all ages' },
+    image: { src: 'https://images.unsplash.com/photo-1664461890405-fe44f7c879f7', alt: 'Visitors walking around a water fountain at Villa d\'Este' },
   },
 ];
 
@@ -197,10 +197,10 @@ export const TOURS_NAV_ITEMS: NavItem[] = MONEY_PAGES.map((p) => ({ title: p.tit
 export const PLAN_NAV_ITEMS: NavItem[] = SUPPORT_PAGES.map((p) => ({ title: p.title, href: p.href, keyword: p.keyword }));
 
 export const Tivoli_DAY_TRIP_GALLERY = [
-  { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e', alt: 'Cascading water fountains in the elaborate garden of Villa d\'Este' },
-  { src: 'https://images.unsplash.com/photo-1470114716159-e389f8712fda', alt: 'Ancient Roman columns and ruins at Hadrian\'s Villa, surrounded by cypress trees' },
-  { src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828', alt: "Early morning light over the gardens of Villa d'Este" },
-  { src: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f', alt: 'Aerial view of Villa d\'Este\'s terraced gardens with fountains and symmetrical landscaping' },
+  { src: 'https://images.unsplash.com/photo-1654612533611-d4f18261d444', alt: 'The villa building of Villa d\'Este in Tivoli with a fountain in front' },
+  { src: 'https://images.unsplash.com/photo-1613002999620-f586001ee027', alt: 'An ancient statue beside the water at Hadrian\'s Villa near Tivoli' },
+  { src: 'https://images.unsplash.com/photo-1664461890788-5c7d689cda56', alt: 'A row of water fountains in the gardens of Villa d\'Este, Tivoli' },
+  { src: 'https://images.unsplash.com/photo-1664461892055-a073051e3c2c', alt: 'A courtyard with a fountain and statues at Villa d\'Este, Tivoli' },
 ];
 
 export function getFeaturedToursForPage(href: string, max = 4): FeaturedTour[] {
