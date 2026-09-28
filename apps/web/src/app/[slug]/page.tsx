@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { SITE_DOMAIN, getAllBlogPosts, getAllTours } from '@/lib/firestore';
 import { HomePageBody } from '@/components/HomePageBody';
+import { NetworkHomeTemplate } from '@/components/NetworkHomeTemplate';
 import { getNetworkSite, NETWORK_SITES } from '@/lib/tours';
 import { getSiteConfig } from '@/lib/sites';
 import { PROPERTIES } from '@/app/[slug]/[...rest]/registry';
@@ -43,6 +44,33 @@ export default async function NetworkSitePage({ params }: { params: Promise<{ sl
   const def = PROPERTIES[slug];
   if (!site || !def) notFound();
 
+  // Check if config has full homepage data (chips, categories, etc.)
+  const hasFullConfig = config?.chips && config?.categories && config?.howWeChoose;
+
+  // Use NetworkHomeTemplate for incomplete configs (Part C work in progress)
+  if (!hasFullConfig) {
+    const hubTours = def.tours.map((tour) => ({
+      partner: tour.partner,
+      slug: tour.slug,
+      title: tour.title,
+      meta: tour.meta,
+      priceFrom: tour.priceFrom,
+      badge: tour.badge,
+      image: tour.image,
+    }));
+
+    return (
+      <NetworkHomeTemplate
+        siteName={site.name}
+        heroImageUrl={def.heroImage.src}
+        heroTitle={site.name}
+        tours={hubTours}
+        description={`Curated ${site.name} experiences`}
+      />
+    );
+  }
+
+  // Use HomePageBody for sites with complete config
   const [allTours, allBlogPosts] = await Promise.all([
     getAllTours(),
     getAllBlogPosts().catch(() => []),
