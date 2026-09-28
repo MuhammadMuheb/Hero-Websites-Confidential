@@ -25,9 +25,10 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1670792373724-39fd52df804e',
-  alt: 'An open Roman piazza with a central statue, framed by historic buildings in warm afternoon light',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
+
 
 export interface NavItem {
   title: string;

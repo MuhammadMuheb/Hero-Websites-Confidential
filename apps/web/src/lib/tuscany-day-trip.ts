@@ -22,9 +22,10 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1784824137876-9282a4c51535',
-  alt: 'A gravel road winding up to a cypress-ringed Tuscan farmhouse across rolling countryside',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
+
 
 export interface NavItem {
   title: string;

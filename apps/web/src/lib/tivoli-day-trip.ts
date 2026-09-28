@@ -6,9 +6,10 @@
 export { AUTHOR, FAQS, QUICK_FACTS, QUICK_LINKS } from './tivoli-day-trip-content';
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
-  alt: 'Panoramic view of Tivoli landscape with Villa d\'Este and Hadrian\'s Villa nestled in the rolling Lazio countryside, ancient history meets Renaissance beauty',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
+
 
 export interface NavItem {
   title: string;

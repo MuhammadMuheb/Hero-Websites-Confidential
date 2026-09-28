@@ -31,9 +31,10 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f',
-  alt: 'A pair of hands stretching fresh pizza dough into a round on a floured surface',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
+
 
 export interface NavItem {
   title: string;

@@ -13,8 +13,8 @@
  */
 
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5',
-  alt: 'The Colosseum illuminated at dusk, its arches glowing from within',
+  src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80',
+  alt: 'Rome street food',
 };
 
 export interface NavItem {
