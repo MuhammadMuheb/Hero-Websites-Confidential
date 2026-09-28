@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from 'next';
 import { SITE_DOMAIN } from '@/lib/firestore';
 import { Hero } from '@/components/Hero';

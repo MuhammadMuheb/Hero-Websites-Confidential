@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from 'next';
 import Link from '@/components/NetworkLink';
 import { getAllBlogPosts, SITE_DOMAIN } from '@/lib/firestore';
