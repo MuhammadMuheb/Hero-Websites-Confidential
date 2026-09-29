@@ -3,6 +3,7 @@ import { TrustPointsSection } from '@/components/TrustPointsSection';
 import { HowWeChooseDark } from '@/components/HowWeChooseDark';
 import { ExploreLinksSection } from '@/components/ExploreLinksSection';
 import { TourCarouselSection } from '@/components/TourCarouselSection';
+import { TourCard } from '@/components/cards/TourCard';
 import { CategoryToursSection } from '@/components/CategoryToursSection';
 import { AllDestinationsSection } from '@/components/AllDestinationsSection';
 import type { BlogPostDoc, TourDoc } from '@/lib/firestore';
@@ -89,12 +90,34 @@ export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allB
 
       {/* 5: Top Food Tours slider - 4 full cards */}
       <div id="popular">
-        <TourCarouselSection
-          tours={tours}
-          eyebrow={home?.sliderEyebrow}
-          title={home?.sliderTitle}
-          hrefs={home?.tourHrefs}
-        />
+        {siteName === 'Amalfi Day Trip' ? (
+          <section className="bg-cream-deep py-16 sm:py-20">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="mb-12">
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-deep">{home?.sliderEyebrow}</p>
+                <h2 className="mt-3 font-hero text-[32px] font-black leading-tight tracking-[-0.02em] text-ink sm:text-[44px]">
+                  {home?.sliderTitle?.[0]} <span className="text-brand">{home?.sliderTitle?.[1]}</span> {home?.sliderTitle?.[2]}
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {tours.slice(0, 8).map((tour) => (
+                  <TourCard
+                    key={tour.slug}
+                    tour={tour}
+                    href={home?.tourHrefs?.[tour.slug]}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : (
+          <TourCarouselSection
+            tours={tours}
+            eyebrow={home?.sliderEyebrow}
+            title={home?.sliderTitle}
+            hrefs={home?.tourHrefs}
+          />
+        )}
       </div>
 
       {/* 6: Top Food Items to Try - 5 rows (1 big + 3 small) */}
