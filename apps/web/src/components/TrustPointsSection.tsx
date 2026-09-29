@@ -27,12 +27,12 @@ export function TrustPointsSection({ items, label }: TrustPointsSectionProps) {
         <p className="text-center text-xs font-bold uppercase tracking-[0.24em] text-gold-deep mb-6">
           {label ?? 'Taste the real Rome'}
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:gap-x-8">
+        <div className="flex flex-nowrap items-center justify-center gap-x-6 sm:gap-x-8 overflow-x-auto">
           {foods.map((p) => (
             <Link
               key={p.name}
               href={p.href}
-              className="font-hero text-sm font-semibold tracking-[-0.01em] text-ink/45 transition-colors duration-200 hover:text-brand sm:text-base"
+              className="shrink-0 whitespace-nowrap font-hero text-sm font-semibold tracking-[-0.01em] text-ink/45 transition-colors duration-200 hover:text-brand sm:text-base"
             >
               {p.name}
             </Link>
