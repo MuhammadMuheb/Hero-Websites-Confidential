@@ -1,62 +1,62 @@
-import Link from &apos;@/components/NetworkLink&apos;;
+import Link from '@/components/NetworkLink';
 
 const ROME_NEIGHBORHOODS = [
   {
-    slug: &apos;centro-storico&apos;,
-    name: &apos;Centro Storico&apos;,
-    description: &apos;Historic center with iconic monuments — Pantheon, Trevi Fountain, and ancient squares&apos;,
+    slug: 'centro-storico',
+    name: 'Centro Storico',
+    description: 'Historic center with iconic monuments — Pantheon, Trevi Fountain, and ancient squares',
   },
   {
-    slug: &apos;colosseum-forum&apos;,
-    name: &apos;Colosseum & Forum&apos;,
-    description: &apos;Ancient Rome\&apos;s grandest landmarks with archaeological sites and history at every turn&apos;,
+    slug: 'colosseum-forum',
+    name: 'Colosseum & Forum',
+    description: 'Ancient Rome\'s grandest landmarks with archaeological sites and history at every turn',
   },
   {
-    slug: &apos;vatican&apos;,
-    name: &apos;Vatican Area&apos;,
-    description: &apos;St. Peter\&apos;s Basilica and Vatican Museums with wide streets perfect for leisurely rides&apos;,
+    slug: 'vatican',
+    name: 'Vatican Area',
+    description: 'St. Peter\'s Basilica and Vatican Museums with wide streets perfect for leisurely rides',
   },
   {
-    slug: &apos;trastevere&apos;,
-    name: &apos;Trastevere&apos;,
-    description: &apos;Charming neighborhood with cobblestone streets, ivy-covered buildings, and local atmosphere&apos;,
+    slug: 'trastevere',
+    name: 'Trastevere',
+    description: 'Charming neighborhood with cobblestone streets, ivy-covered buildings, and local atmosphere',
   },
   {
-    slug: &apos;appian-way&apos;,
-    name: &apos;Appian Way&apos;,
-    description: &apos;Ancient Roman road with archaeological sites, catacombs, and countryside views outside the city&apos;,
+    slug: 'appian-way',
+    name: 'Appian Way',
+    description: 'Ancient Roman road with archaeological sites, catacombs, and countryside views outside the city',
   },
   {
-    slug: &apos;villa-borghese&apos;,
-    name: &apos;Villa Borghese&apos;,
-    description: &apos;Expansive gardens and parks — perfect for scenic rides through Rome\&apos;s green spaces&apos;,
+    slug: 'villa-borghese',
+    name: 'Villa Borghese',
+    description: 'Expansive gardens and parks — perfect for scenic rides through Rome\'s green spaces',
   },
   {
-    slug: &apos;testaccio&apos;,
-    name: &apos;Testaccio&apos;,
-    description: &apos;Working-class Roman neighborhood with authentic local character and hidden gems&apos;,
+    slug: 'testaccio',
+    name: 'Testaccio',
+    description: 'Working-class Roman neighborhood with authentic local character and hidden gems',
   },
   {
-    slug: &apos;spanish-steps&apos;,
-    name: &apos;Spanish Steps Area&apos;,
-    description: &apos;Elegant neighborhood with designer shops, galleries, and refined Roman architecture&apos;,
+    slug: 'spanish-steps',
+    name: 'Spanish Steps Area',
+    description: 'Elegant neighborhood with designer shops, galleries, and refined Roman architecture',
   },
 ];
 
 export function GCRNeighborhoodsPage() {
   const jsonLd = {
-    &apos;@context&apos;: &apos;https://schema.org&apos;,
-    &apos;@type&apos;: &apos;CollectionPage&apos;,
-    name: &apos;Golf Cart Tours by Rome Neighborhood&apos;,
-    description: &apos;Guide to neighborhoods and areas for golf cart tours in Rome&apos;,
-    url: &apos;https://golfcartrome.com/neighborhoods&apos;,
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Golf Cart Tours by Rome Neighborhood',
+    description: 'Guide to neighborhoods and areas for golf cart tours in Rome',
+    url: 'https://golfcartrome.com/neighborhoods',
     mainEntity: {
-      &apos;@type&apos;: &apos;ItemList&apos;,
+      '@type': 'ItemList',
       itemListElement: ROME_NEIGHBORHOODS.map((neighborhood, index) => ({
-        &apos;@type&apos;: &apos;ListItem&apos;,
+        '@type': 'ListItem',
         position: index + 1,
         item: {
-          &apos;@type&apos;: &apos;Place&apos;,
+          '@type': 'Place',
           name: neighborhood.name,
           description: neighborhood.description,
         },

@@ -1,57 +1,57 @@
-import Link from &apos;@/components/NetworkLink&apos;;
+import Link from '@/components/NetworkLink';
 
 const TUSCANY_TOWNS = [
   {
-    slug: &apos;florence&apos;,
-    name: &apos;Florence&apos;,
-    description: &apos;Renaissance capital with art museums, cathedrals, and bridge crossings over the Arno&apos;,
+    slug: 'florence',
+    name: 'Florence',
+    description: 'Renaissance capital with art museums, cathedrals, and bridge crossings over the Arno',
   },
   {
-    slug: &apos;siena&apos;,
-    name: &apos;Siena&apos;,
-    description: &apos;Medieval hill town famous for its Palio horse race and stunning piazza&apos;,
+    slug: 'siena',
+    name: 'Siena',
+    description: 'Medieval hill town famous for its Palio horse race and stunning piazza',
   },
   {
-    slug: &apos;chianti&apos;,
-    name: &apos;Chianti&apos;,
-    description: &apos;Wine region with rolling vineyards, family wineries, and wine production tours&apos;,
+    slug: 'chianti',
+    name: 'Chianti',
+    description: 'Wine region with rolling vineyards, family wineries, and wine production tours',
   },
   {
-    slug: &apos;montepulciano&apos;,
-    name: &apos;Montepulciano&apos;,
-    description: &apos;Renaissance town on a hilltop with wine estates and panoramic countryside views&apos;,
+    slug: 'montepulciano',
+    name: 'Montepulciano',
+    description: 'Renaissance town on a hilltop with wine estates and panoramic countryside views',
   },
   {
-    slug: &apos;pienza&apos;,
-    name: &apos;Pienza&apos;,
-    description: &apos;Ideal Renaissance town with perfectly planned streets and Tuscan countryside&apos;,
+    slug: 'pienza',
+    name: 'Pienza',
+    description: 'Ideal Renaissance town with perfectly planned streets and Tuscan countryside',
   },
   {
-    slug: &apos;san-gimignano&apos;,
-    name: &apos;San Gimignano&apos;,
-    description: &apos;Medieval hill town famous for its tower houses and historic streets&apos;,
+    slug: 'san-gimignano',
+    name: 'San Gimignano',
+    description: 'Medieval hill town famous for its tower houses and historic streets',
   },
   {
-    slug: &apos;cortona&apos;,
-    name: &apos;Cortona&apos;,
-    description: &apos;Ancient Etruscan hilltop town with Renaissance art and sweeping valley views&apos;,
+    slug: 'cortona',
+    name: 'Cortona',
+    description: 'Ancient Etruscan hilltop town with Renaissance art and sweeping valley views',
   },
 ];
 
 export function TDTNeighborhoodsPage() {
   const jsonLd = {
-    &apos;@context&apos;: &apos;https://schema.org&apos;,
-    &apos;@type&apos;: &apos;CollectionPage&apos;,
-    name: &apos;Tuscany Day Trip Towns&apos;,
-    description: &apos;Guide to towns and areas for Tuscany day trips from Florence&apos;,
-    url: &apos;https://tuscany-day-trip.com/neighborhoods&apos;,
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Tuscany Day Trip Towns',
+    description: 'Guide to towns and areas for Tuscany day trips from Florence',
+    url: 'https://tuscany-day-trip.com/neighborhoods',
     mainEntity: {
-      &apos;@type&apos;: &apos;ItemList&apos;,
+      '@type': 'ItemList',
       itemListElement: TUSCANY_TOWNS.map((town, index) => ({
-        &apos;@type&apos;: &apos;ListItem&apos;,
+        '@type': 'ListItem',
         position: index + 1,
         item: {
-          &apos;@type&apos;: &apos;Place&apos;,
+          '@type': 'Place',
           name: town.name,
           description: town.description,
         },

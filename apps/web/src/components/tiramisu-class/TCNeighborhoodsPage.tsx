@@ -1,47 +1,47 @@
-import Link from &apos;@/components/NetworkLink&apos;;
+import Link from '@/components/NetworkLink';
 
 const ROME_NEIGHBORHOODS = [
   {
-    slug: &apos;centro-storico&apos;,
-    name: &apos;Centro Storico&apos;,
-    description: &apos;Historic center with traditional dessert shops and historic cafes&apos;,
+    slug: 'centro-storico',
+    name: 'Centro Storico',
+    description: 'Historic center with traditional dessert shops and historic cafes',
   },
   {
-    slug: &apos;trastevere&apos;,
-    name: &apos;Trastevere&apos;,
-    description: &apos;Charming neighborhood with gelato makers and local dessert traditions&apos;,
+    slug: 'trastevere',
+    name: 'Trastevere',
+    description: 'Charming neighborhood with gelato makers and local dessert traditions',
   },
   {
-    slug: &apos;monti&apos;,
-    name: &apos;Monti&apos;,
-    description: &apos;Hillside area with artisan pastry shops and traditional Italian bakeries&apos;,
+    slug: 'monti',
+    name: 'Monti',
+    description: 'Hillside area with artisan pastry shops and traditional Italian bakeries',
   },
   {
-    slug: &apos;campo-de-fiori&apos;,
-    name: &apos;Campo de\&apos; Fiori&apos;,
-    description: &apos;Market square with fresh ingredients and local food traditions&apos;,
+    slug: 'campo-de-fiori',
+    name: 'Campo de\' Fiori',
+    description: 'Market square with fresh ingredients and local food traditions',
   },
   {
-    slug: &apos;jewish-ghetto&apos;,
-    name: &apos;Jewish Ghetto&apos;,
-    description: &apos;Historic neighborhood with unique dessert traditions and food culture&apos;,
+    slug: 'jewish-ghetto',
+    name: 'Jewish Ghetto',
+    description: 'Historic neighborhood with unique dessert traditions and food culture',
   },
 ];
 
 export function TCNeighborhoodsPage() {
   const jsonLd = {
-    &apos;@context&apos;: &apos;https://schema.org&apos;,
-    &apos;@type&apos;: &apos;CollectionPage&apos;,
-    name: &apos;Tiramisu Classes by Rome Neighborhood&apos;,
-    description: &apos;Guide to neighborhoods for tiramisu and dessert classes in Rome&apos;,
-    url: &apos;https://tiramisu-class.com/neighborhoods&apos;,
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Tiramisu Classes by Rome Neighborhood',
+    description: 'Guide to neighborhoods for tiramisu and dessert classes in Rome',
+    url: 'https://tiramisu-class.com/neighborhoods',
     mainEntity: {
-      &apos;@type&apos;: &apos;ItemList&apos;,
+      '@type': 'ItemList',
       itemListElement: ROME_NEIGHBORHOODS.map((neighborhood, index) => ({
-        &apos;@type&apos;: &apos;ListItem&apos;,
+        '@type': 'ListItem',
         position: index + 1,
         item: {
-          &apos;@type&apos;: &apos;Place&apos;,
+          '@type': 'Place',
           name: neighborhood.name,
           description: neighborhood.description,
         },

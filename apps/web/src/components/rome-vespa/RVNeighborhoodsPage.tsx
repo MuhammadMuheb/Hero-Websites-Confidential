@@ -1,72 +1,72 @@
-import Link from &apos;@/components/NetworkLink&apos;;
+import Link from '@/components/NetworkLink';
 
 const ROME_NEIGHBORHOODS = [
   {
-    slug: &apos;centro-storico&apos;,
-    name: &apos;Centro Storico&apos;,
-    description: &apos;Historic center with narrow winding streets, perfect for Vespa weaving through classic Rome&apos;,
+    slug: 'centro-storico',
+    name: 'Centro Storico',
+    description: 'Historic center with narrow winding streets, perfect for Vespa weaving through classic Rome',
   },
   {
-    slug: &apos;trastevere&apos;,
-    name: &apos;Trastevere&apos;,
-    description: &apos;Charming neighborhood on the Tiber\&apos;s west bank — cobblestone streets and ivy-covered buildings&apos;,
+    slug: 'trastevere',
+    name: 'Trastevere',
+    description: 'Charming neighborhood on the Tiber\'s west bank — cobblestone streets and ivy-covered buildings',
   },
   {
-    slug: &apos;testaccio&apos;,
-    name: &apos;Testaccio&apos;,
-    description: &apos;Working-class Roman neighborhood with authentic street life and local scooter culture&apos;,
+    slug: 'testaccio',
+    name: 'Testaccio',
+    description: 'Working-class Roman neighborhood with authentic street life and local scooter culture',
   },
   {
-    slug: &apos;prati&apos;,
-    name: &apos;Prati&apos;,
-    description: &apos;Elegant area near the Vatican with wide avenues and residential charm&apos;,
+    slug: 'prati',
+    name: 'Prati',
+    description: 'Elegant area near the Vatican with wide avenues and residential charm',
   },
   {
-    slug: &apos;monti&apos;,
-    name: &apos;Monti&apos;,
-    description: &apos;Hillside neighborhood with steep streets, hidden piazzas, and local Roman authenticity&apos;,
+    slug: 'monti',
+    name: 'Monti',
+    description: 'Hillside neighborhood with steep streets, hidden piazzas, and local Roman authenticity',
   },
   {
-    slug: &apos;campo-de-fiori&apos;,
-    name: &apos;Campo de\&apos; Fiori&apos;,
-    description: &apos;Lively square and surrounding streets — market hub and nightlife destination&apos;,
+    slug: 'campo-de-fiori',
+    name: 'Campo de\' Fiori',
+    description: 'Lively square and surrounding streets — market hub and nightlife destination',
   },
   {
-    slug: &apos;jewish-ghetto&apos;,
-    name: &apos;Jewish Ghetto&apos;,
-    description: &apos;Ancient Rome\&apos;s most compact neighborhood with centuries of layered history&apos;,
+    slug: 'jewish-ghetto',
+    name: 'Jewish Ghetto',
+    description: 'Ancient Rome\'s most compact neighborhood with centuries of layered history',
   },
   {
-    slug: &apos;colosseum-area&apos;,
-    name: &apos;Colosseum Area&apos;,
-    description: &apos;Ancient Rome\&apos;s grand monuments — straight streets and touristic Roman landmarks&apos;,
+    slug: 'colosseum-area',
+    name: 'Colosseum Area',
+    description: 'Ancient Rome\'s grand monuments — straight streets and touristic Roman landmarks',
   },
   {
-    slug: &apos;appian-way&apos;,
-    name: &apos;Appian Way&apos;,
-    description: &apos;Ancient Roman road south of the city — open views and archaeological sites&apos;,
+    slug: 'appian-way',
+    name: 'Appian Way',
+    description: 'Ancient Roman road south of the city — open views and archaeological sites',
   },
   {
-    slug: &apos;villa-borghese&apos;,
-    name: &apos;Villa Borghese&apos;,
-    description: &apos;Expansive gardens and park — leafy rides through Rome\&apos;s green lung&apos;,
+    slug: 'villa-borghese',
+    name: 'Villa Borghese',
+    description: 'Expansive gardens and park — leafy rides through Rome\'s green lung',
   },
 ];
 
 export function RVNeighborhoodsPage() {
   const jsonLd = {
-    &apos;@context&apos;: &apos;https://schema.org&apos;,
-    &apos;@type&apos;: &apos;CollectionPage&apos;,
-    name: &apos;Vespa Tours by Rome Neighborhood&apos;,
-    description: &apos;Guide to different neighborhoods and areas for Vespa touring in Rome&apos;,
-    url: &apos;https://romevespa.com/neighborhoods&apos;,
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Vespa Tours by Rome Neighborhood',
+    description: 'Guide to different neighborhoods and areas for Vespa touring in Rome',
+    url: 'https://romevespa.com/neighborhoods',
     mainEntity: {
-      &apos;@type&apos;: &apos;ItemList&apos;,
+      '@type': 'ItemList',
       itemListElement: ROME_NEIGHBORHOODS.map((neighborhood, index) => ({
-        &apos;@type&apos;: &apos;ListItem&apos;,
+        '@type': 'ListItem',
         position: index + 1,
         item: {
-          &apos;@type&apos;: &apos;Place&apos;,
+          '@type': 'Place',
           name: neighborhood.name,
           description: neighborhood.description,
         },

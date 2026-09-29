@@ -1,52 +1,52 @@
-import Link from &apos;@/components/NetworkLink&apos;;
+import Link from '@/components/NetworkLink';
 
 const ROME_NEIGHBORHOODS = [
   {
-    slug: &apos;testaccio&apos;,
-    name: &apos;Testaccio&apos;,
-    description: &apos;Traditional Roman neighborhood with authentic pizza culture and family pizzerias&apos;,
+    slug: 'testaccio',
+    name: 'Testaccio',
+    description: 'Traditional Roman neighborhood with authentic pizza culture and family pizzerias',
   },
   {
-    slug: &apos;trastevere&apos;,
-    name: &apos;Trastevere&apos;,
-    description: &apos;Charming riverside area famous for casual pizza joints and traditional wood-fired ovens&apos;,
+    slug: 'trastevere',
+    name: 'Trastevere',
+    description: 'Charming riverside area famous for casual pizza joints and traditional wood-fired ovens',
   },
   {
-    slug: &apos;campo-de-fiori&apos;,
-    name: &apos;Campo de\&apos; Fiori&apos;,
-    description: &apos;Lively square surrounded by pizza restaurants and casual Roman dining&apos;,
+    slug: 'campo-de-fiori',
+    name: 'Campo de\' Fiori',
+    description: 'Lively square surrounded by pizza restaurants and casual Roman dining',
   },
   {
-    slug: &apos;centro-storico&apos;,
-    name: &apos;Centro Storico&apos;,
-    description: &apos;Historic center with mix of upscale pizzerias and traditional pizza schools&apos;,
+    slug: 'centro-storico',
+    name: 'Centro Storico',
+    description: 'Historic center with mix of upscale pizzerias and traditional pizza schools',
   },
   {
-    slug: &apos;monti&apos;,
-    name: &apos;Monti&apos;,
-    description: &apos;Hillside neighborhood with artisan bakeries and authentic neighborhood pizzerias&apos;,
+    slug: 'monti',
+    name: 'Monti',
+    description: 'Hillside neighborhood with artisan bakeries and authentic neighborhood pizzerias',
   },
   {
-    slug: &apos;jewish-ghetto&apos;,
-    name: &apos;Jewish Ghetto&apos;,
-    description: &apos;Historic area with unique pizza traditions and local food establishments&apos;,
+    slug: 'jewish-ghetto',
+    name: 'Jewish Ghetto',
+    description: 'Historic area with unique pizza traditions and local food establishments',
   },
 ];
 
 export function RPCNeighborhoodsPage() {
   const jsonLd = {
-    &apos;@context&apos;: &apos;https://schema.org&apos;,
-    &apos;@type&apos;: &apos;CollectionPage&apos;,
-    name: &apos;Pizza Classes by Rome Neighborhood&apos;,
-    description: &apos;Guide to neighborhoods for pizza-making classes in Rome&apos;,
-    url: &apos;https://romepizzaclass.com/neighborhoods&apos;,
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Pizza Classes by Rome Neighborhood',
+    description: 'Guide to neighborhoods for pizza-making classes in Rome',
+    url: 'https://romepizzaclass.com/neighborhoods',
     mainEntity: {
-      &apos;@type&apos;: &apos;ItemList&apos;,
+      '@type': 'ItemList',
       itemListElement: ROME_NEIGHBORHOODS.map((neighborhood, index) => ({
-        &apos;@type&apos;: &apos;ListItem&apos;,
+        '@type': 'ListItem',
         position: index + 1,
         item: {
-          &apos;@type&apos;: &apos;Place&apos;,
+          '@type': 'Place',
           name: neighborhood.name,
           description: neighborhood.description,
         },

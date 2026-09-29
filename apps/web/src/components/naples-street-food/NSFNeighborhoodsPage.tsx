@@ -1,57 +1,57 @@
-import Link from &apos;@/components/NetworkLink&apos;;
+import Link from '@/components/NetworkLink';
 
 const NAPLES_NEIGHBORHOODS = [
   {
-    slug: &apos;centro-storico&apos;,
-    name: &apos;Centro Storico&apos;,
-    description: &apos;Historic center with narrow alleyways and street vendors selling traditional Neapolitan food&apos;,
+    slug: 'centro-storico',
+    name: 'Centro Storico',
+    description: 'Historic center with narrow alleyways and street vendors selling traditional Neapolitan food',
   },
   {
-    slug: &apos;spanish-quarter&apos;,
-    name: &apos;Spanish Quarter&apos;,
-    description: &apos;Working-class neighborhood with authentic street food stands and local culture&apos;,
+    slug: 'spanish-quarter',
+    name: 'Spanish Quarter',
+    description: 'Working-class neighborhood with authentic street food stands and local culture',
   },
   {
-    slug: &apos;port-area&apos;,
-    name: &apos;Port Area&apos;,
-    description: &apos;Waterfront with seafood vendors, fresh catch, and maritime food traditions&apos;,
+    slug: 'port-area',
+    name: 'Port Area',
+    description: 'Waterfront with seafood vendors, fresh catch, and maritime food traditions',
   },
   {
-    slug: &apos;spaccanapoli&apos;,
-    name: &apos;Spaccanapoli&apos;,
-    description: &apos;Famous straight street cutting through historic Naples — lined with food stalls and vendors&apos;,
+    slug: 'spaccanapoli',
+    name: 'Spaccanapoli',
+    description: 'Famous straight street cutting through historic Naples — lined with food stalls and vendors',
   },
   {
-    slug: &apos;piazza-dante&apos;,
-    name: &apos;Piazza Dante&apos;,
-    description: &apos;Central square with surrounding food markets and local street vendors&apos;,
+    slug: 'piazza-dante',
+    name: 'Piazza Dante',
+    description: 'Central square with surrounding food markets and local street vendors',
   },
   {
-    slug: &apos;vomero&apos;,
-    name: &apos;Vomero&apos;,
-    description: &apos;Hilltop neighborhood with local food culture and street food traditions&apos;,
+    slug: 'vomero',
+    name: 'Vomero',
+    description: 'Hilltop neighborhood with local food culture and street food traditions',
   },
   {
-    slug: &apos;chiaia&apos;,
-    name: &apos;Chiaia&apos;,
-    description: &apos;Elegant seafront district with local food shops and casual eating spots&apos;,
+    slug: 'chiaia',
+    name: 'Chiaia',
+    description: 'Elegant seafront district with local food shops and casual eating spots',
   },
 ];
 
 export function NSFNeighborhoodsPage() {
   const jsonLd = {
-    &apos;@context&apos;: &apos;https://schema.org&apos;,
-    &apos;@type&apos;: &apos;CollectionPage&apos;,
-    name: &apos;Naples Street Food by Neighborhood&apos;,
-    description: &apos;Guide to neighborhoods and street food areas in Naples&apos;,
-    url: &apos;https://naples-street-food.com/neighborhoods&apos;,
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Naples Street Food by Neighborhood',
+    description: 'Guide to neighborhoods and street food areas in Naples',
+    url: 'https://naples-street-food.com/neighborhoods',
     mainEntity: {
-      &apos;@type&apos;: &apos;ItemList&apos;,
+      '@type': 'ItemList',
       itemListElement: NAPLES_NEIGHBORHOODS.map((neighborhood, index) => ({
-        &apos;@type&apos;: &apos;ListItem&apos;,
+        '@type': 'ListItem',
         position: index + 1,
         item: {
-          &apos;@type&apos;: &apos;Place&apos;,
+          '@type': 'Place',
           name: neighborhood.name,
           description: neighborhood.description,
         },

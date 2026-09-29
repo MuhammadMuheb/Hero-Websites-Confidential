@@ -1,57 +1,57 @@
-import Link from &apos;@/components/NetworkLink&apos;;
+import Link from '@/components/NetworkLink';
 
 const ROME_NEIGHBORHOODS = [
   {
-    slug: &apos;testaccio&apos;,
-    name: &apos;Testaccio&apos;,
-    description: &apos;Working-class neighborhood famous for traditional Roman cuisine and authentic food culture&apos;,
+    slug: 'testaccio',
+    name: 'Testaccio',
+    description: 'Working-class neighborhood famous for traditional Roman cuisine and authentic food culture',
   },
   {
-    slug: &apos;trastevere&apos;,
-    name: &apos;Trastevere&apos;,
-    description: &apos;Charming riverside area with intimate trattorias, wine bars, and local food traditions&apos;,
+    slug: 'trastevere',
+    name: 'Trastevere',
+    description: 'Charming riverside area with intimate trattorias, wine bars, and local food traditions',
   },
   {
-    slug: &apos;campo-de-fiori&apos;,
-    name: &apos;Campo de\&apos; Fiori&apos;,
-    description: &apos;Vibrant market square and surrounding streets — where Romans shop for fresh ingredients&apos;,
+    slug: 'campo-de-fiori',
+    name: 'Campo de\' Fiori',
+    description: 'Vibrant market square and surrounding streets — where Romans shop for fresh ingredients',
   },
   {
-    slug: &apos;jewish-ghetto&apos;,
-    name: &apos;Jewish Ghetto&apos;,
-    description: &apos;Historic neighborhood with unique culinary traditions and family-run food establishments&apos;,
+    slug: 'jewish-ghetto',
+    name: 'Jewish Ghetto',
+    description: 'Historic neighborhood with unique culinary traditions and family-run food establishments',
   },
   {
-    slug: &apos;monti&apos;,
-    name: &apos;Monti&apos;,
-    description: &apos;Hillside neighborhood with artisan food shops, pasta makers, and local food culture&apos;,
+    slug: 'monti',
+    name: 'Monti',
+    description: 'Hillside neighborhood with artisan food shops, pasta makers, and local food culture',
   },
   {
-    slug: &apos;centro-storico&apos;,
-    name: &apos;Centro Storico&apos;,
-    description: &apos;Historic center with markets, food shops, and traditional Roman food destinations&apos;,
+    slug: 'centro-storico',
+    name: 'Centro Storico',
+    description: 'Historic center with markets, food shops, and traditional Roman food destinations',
   },
   {
-    slug: &apos;prati&apos;,
-    name: &apos;Prati&apos;,
-    description: &apos;Residential neighborhood with neighborhood markets and authentic local food scene&apos;,
+    slug: 'prati',
+    name: 'Prati',
+    description: 'Residential neighborhood with neighborhood markets and authentic local food scene',
   },
 ];
 
 export function CIRNeighborhoodsPage() {
   const jsonLd = {
-    &apos;@context&apos;: &apos;https://schema.org&apos;,
-    &apos;@type&apos;: &apos;CollectionPage&apos;,
-    name: &apos;Cooking Classes by Rome Neighborhood&apos;,
-    description: &apos;Guide to neighborhoods and food markets for cooking classes in Rome&apos;,
-    url: &apos;https://cookinginrome.com/neighborhoods&apos;,
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Cooking Classes by Rome Neighborhood',
+    description: 'Guide to neighborhoods and food markets for cooking classes in Rome',
+    url: 'https://cookinginrome.com/neighborhoods',
     mainEntity: {
-      &apos;@type&apos;: &apos;ItemList&apos;,
+      '@type': 'ItemList',
       itemListElement: ROME_NEIGHBORHOODS.map((neighborhood, index) => ({
-        &apos;@type&apos;: &apos;ListItem&apos;,
+        '@type': 'ListItem',
         position: index + 1,
         item: {
-          &apos;@type&apos;: &apos;Place&apos;,
+          '@type': 'Place',
           name: neighborhood.name,
           description: neighborhood.description,
         },

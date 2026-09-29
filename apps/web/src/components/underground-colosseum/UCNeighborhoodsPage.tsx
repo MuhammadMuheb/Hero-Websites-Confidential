@@ -1,72 +1,72 @@
-import Link from &apos;@/components/NetworkLink&apos;;
+import Link from '@/components/NetworkLink';
 
 const COLOSSEUM_AREAS = [
   {
-    slug: &apos;arena-floor&apos;,
-    name: &apos;The Arena Floor&apos;,
-    description: &apos;The sand-covered floor where gladiators fought — now partially reconstructed for tours with underground access&apos;,
+    slug: 'arena-floor',
+    name: 'The Arena Floor',
+    description: 'The sand-covered floor where gladiators fought — now partially reconstructed for tours with underground access',
   },
   {
-    slug: &apos;hypogeum&apos;,
-    name: &apos;The Hypogeum (Underground)&apos;,
-    description: &apos;Multi-level tunnel system beneath the arena with elevators, animal cages, and trap doors for gladiators and beasts&apos;,
+    slug: 'hypogeum',
+    name: 'The Hypogeum (Underground)',
+    description: 'Multi-level tunnel system beneath the arena with elevators, animal cages, and trap doors for gladiators and beasts',
   },
   {
-    slug: &apos;upper-tiers&apos;,
-    name: &apos;Upper Tiers & Seating&apos;,
-    description: &apos;Steep stone seating with different sections for various social classes — the best views and crowded routes on standard tours&apos;,
+    slug: 'upper-tiers',
+    name: 'Upper Tiers & Seating',
+    description: 'Steep stone seating with different sections for various social classes — the best views and crowded routes on standard tours',
   },
   {
-    slug: &apos;external-arches&apos;,
-    name: &apos;External Arches & Entrances&apos;,
-    description: &apos;The 80 numbered entrance arches — where 50,000 spectators could flow in and out in minutes&apos;,
+    slug: 'external-arches',
+    name: 'External Arches & Entrances',
+    description: 'The 80 numbered entrance arches — where 50,000 spectators could flow in and out in minutes',
   },
   {
-    slug: &apos;vaulted-passages&apos;,
-    name: &apos;Vaulted Passages & Corridors&apos;,
-    description: &apos;Underground corridors connecting entrances to seating areas — cooler than the arena floor, part of most tours&apos;,
+    slug: 'vaulted-passages',
+    name: 'Vaulted Passages & Corridors',
+    description: 'Underground corridors connecting entrances to seating areas — cooler than the arena floor, part of most tours',
   },
   {
-    slug: &apos;travertine-wall&apos;,
-    name: &apos;Travertine Outer Wall&apos;,
-    description: &apos;The iconic 4-story facade of white travertine — the structure that survived the ages and draws millions of visitors&apos;,
+    slug: 'travertine-wall',
+    name: 'Travertine Outer Wall',
+    description: 'The iconic 4-story facade of white travertine — the structure that survived the ages and draws millions of visitors',
   },
   {
-    slug: &apos;interior-reconstruction&apos;,
-    name: &apos;Interior Reconstruction Areas&apos;,
-    description: &apos;Medieval and Renaissance-era modifications — walls, rooms, and structures built inside the ancient amphitheater over centuries&apos;,
+    slug: 'interior-reconstruction',
+    name: 'Interior Reconstruction Areas',
+    description: 'Medieval and Renaissance-era modifications — walls, rooms, and structures built inside the ancient amphitheater over centuries',
   },
   {
-    slug: &apos;stone-seating-sections&apos;,
-    name: &apos;Stone Seating Sections & Cavea&apos;,
-    description: &apos;The tiered seating structure — 80 rows with different sections (maenianum) for senators, knights, and common citizens&apos;,
+    slug: 'stone-seating-sections',
+    name: 'Stone Seating Sections & Cavea',
+    description: 'The tiered seating structure — 80 rows with different sections (maenianum) for senators, knights, and common citizens',
   },
   {
-    slug: &apos;spectator-entry-points&apos;,
-    name: &apos;Spectator Entry Points&apos;,
-    description: &apos;Routes from the ground-level arches up to seating — steep staircases and ramps that challenge visitors with mobility issues&apos;,
+    slug: 'spectator-entry-points',
+    name: 'Spectator Entry Points',
+    description: 'Routes from the ground-level arches up to seating — steep staircases and ramps that challenge visitors with mobility issues',
   },
   {
-    slug: &apos;gladiator-barracks-area&apos;,
-    name: &apos;Gladiator Barracks & Holding&apos;,
-    description: &apos;Underground areas where gladiators waited before combat — part of the historical narrative on every tour&apos;,
+    slug: 'gladiator-barracks-area',
+    name: 'Gladiator Barracks & Holding',
+    description: 'Underground areas where gladiators waited before combat — part of the historical narrative on every tour',
   },
 ];
 
 export function UCNeighborhoodsPage() {
   const jsonLd = {
-    &apos;@context&apos;: &apos;https://schema.org&apos;,
-    &apos;@type&apos;: &apos;CollectionPage&apos;,
-    name: &apos;Colosseum Areas & Zones&apos;,
-    description: &apos;Guide to different areas and zones within the Colosseum&apos;,
-    url: &apos;https://undergroundcolosseum.com/neighborhoods&apos;,
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Colosseum Areas & Zones',
+    description: 'Guide to different areas and zones within the Colosseum',
+    url: 'https://undergroundcolosseum.com/neighborhoods',
     mainEntity: {
-      &apos;@type&apos;: &apos;ItemList&apos;,
+      '@type': 'ItemList',
       itemListElement: COLOSSEUM_AREAS.map((area, index) => ({
-        &apos;@type&apos;: &apos;ListItem&apos;,
+        '@type': 'ListItem',
         position: index + 1,
         item: {
-          &apos;@type&apos;: &apos;Place&apos;,
+          '@type': 'Place',
           name: area.name,
           description: area.description,
         },
