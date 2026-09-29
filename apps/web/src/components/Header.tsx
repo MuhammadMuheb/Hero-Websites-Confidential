@@ -98,42 +98,42 @@ export function Header() {
             <nav className="hidden lg:flex items-center gap-0.5">
             <Link
               href={basePrefix || '/'}
-              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               Home
             </Link>
 
             <Link
               href={`${basePrefix}/about`}
-              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               About Us
             </Link>
 
             <Link
               href={`${basePrefix}/contact`}
-              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               Contact Us
             </Link>
 
             <Link
               href={`${basePrefix}/faq`}
-              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               FAQ
             </Link>
 
             <Link
               href={`${basePrefix}/privacy`}
-              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               Privacy Policy
             </Link>
 
             <Link
               href={`${basePrefix}/terms`}
-              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               Terms of Service
             </Link>
@@ -146,7 +146,7 @@ export function Header() {
                   setToursOpen((v) => !v);
                   setNetworkOpen(false);
                 }}
-                className="flex shrink-0 items-center gap-1 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand"
+                className="flex shrink-0 items-center gap-1 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand"
               >
                 Tours & Blog
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform duration-200 ${toursOpen ? 'rotate-180' : ''}`}>
@@ -209,7 +209,7 @@ export function Header() {
                   setNetworkOpen((v) => !v);
                   setToursOpen(false);
                 }}
-                className="flex shrink-0 items-center gap-1 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand"
+                className="flex shrink-0 items-center gap-1 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand"
               >
                 Our Network
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform duration-200 ${networkOpen ? 'rotate-180' : ''}`}>
