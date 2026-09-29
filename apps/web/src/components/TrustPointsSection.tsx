@@ -22,17 +22,17 @@ export function TrustPointsSection({ items, label }: TrustPointsSectionProps) {
   const foods = items ?? DEFAULT_FOODS;
 
   return (
-    <section className="border-y border-line bg-cream py-10">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-10">
-        <p className="text-center text-xs font-bold uppercase tracking-[0.24em] text-gold-deep mb-6">
+    <section className="border-y border-line bg-cream py-8 sm:py-10 overflow-x-hidden">
+      <div className="mx-auto w-full max-w-full px-2 sm:px-4 lg:px-10">
+        <p className="text-center text-xs font-bold uppercase tracking-[0.24em] text-gold-deep mb-4 sm:mb-6">
           {label ?? 'Taste the real Rome'}
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 lg:gap-4">
           {foods.map((p) => (
             <Link
               key={p.name}
               href={p.href}
-              className="font-hero text-xs font-semibold tracking-[-0.01em] text-ink/45 transition-colors duration-200 hover:text-brand sm:text-sm"
+              className="font-hero text-xs font-semibold tracking-[-0.01em] text-ink/45 transition-colors duration-200 hover:text-brand"
             >
               {p.name}
             </Link>
