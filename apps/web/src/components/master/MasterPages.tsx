@@ -46,12 +46,12 @@ function SectionTitle({
 
 function ChipRow({ items }: { items: LinkItem[] }) {
   return (
-    <div className="flex flex-wrap justify-center gap-2.5">
+    <div className="flex flex-nowrap justify-center gap-2 overflow-x-auto">
       {items.map((item) => (
         <Link
           key={`${item.label}-${item.href}`}
           href={item.href}
-          className="rounded-full border border-line bg-paper px-5 py-2.5 text-[15px] font-semibold text-ink transition-colors duration-200 hover:border-brand hover:bg-accent-soft hover:text-brand"
+          className="shrink-0 whitespace-nowrap rounded-full border border-line bg-paper px-4 py-2 text-sm font-semibold text-ink transition-colors duration-200 hover:border-brand hover:bg-accent-soft hover:text-brand"
         >
           {item.label}
         </Link>
