@@ -1,0 +1,30 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Transparent background -->
+  <defs><style>body { background: transparent; }</style></defs>
+  
+  <!-- Green left semicircle -->
+  <path d="M 128 0 A 128 128 0 0 0 0 128 L 128 128 Z" fill="#228B22"/>
+  
+  <!-- Red right semicircle -->
+  <path d="M 128 0 A 128 128 0 0 1 256 128 L 128 128 Z" fill="#DC143C"/>
+  
+  <!-- White divider -->
+  <line x1="128" y1="0" x2="128" y2="256" stroke="white" stroke-width="6"/>
+  
+  <!-- Colosseum arches (white) -->
+  <g fill="white">
+    <rect x="60" y="80" width="20" height="40" rx="3"/>
+    <rect x="90" y="80" width="20" height="40" rx="3"/>
+    <rect x="146" y="80" width="20" height="40" rx="3"/>
+    <rect x="176" y="80" width="20" height="40" rx="3"/>
+    
+    <rect x="60" y="135" width="20" height="40" rx="3"/>
+    <rect x="90" y="135" width="20" height="40" rx="3"/>
+    <rect x="146" y="135" width="20" height="40" rx="3"/>
+    <rect x="176" y="135" width="20" height="40" rx="3"/>
+  </g>
+  
+  <!-- Cypress tree (green) on right -->
+  <polygon points="210,120 200,100 220,100" fill="#228B22"/>
+  <polygon points="215,140 205,120 225,120" fill="#228B22"/>
+</svg>
