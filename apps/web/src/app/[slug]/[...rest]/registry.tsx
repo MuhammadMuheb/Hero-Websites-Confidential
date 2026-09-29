@@ -278,7 +278,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     support: (h) => { const c = TVDTC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <TVDTSupport content={c} /> } : null; },
     pages: { contact: () => <TVDTContactPage />, faq: () => <TVDTFAQPage />, privacy: () => <TVDTPrivacyPolicyPage />, neighborhoods: () => <TVDTNeighborhoodsPage /> },
     legal: {},
-    toursSubtitle: ‘Villa d’Este and Hadrian’s Villa day trips from Rome compared: full-day, half-day, private and self-guided.’,
+    toursSubtitle: ‘Villa d\’Este and Hadrian\’s Villa day trips from Rome compared: full-day, half-day, private and self-guided.’,
   },
   'naples-street-food': {
     scope: 'nsf-scope',
