@@ -31,8 +31,10 @@ function AmalfiCarousel({ tours, home }: { tours: TourDoc[]; home?: HomeContent 
   const scroll = (direction: -1 | 1) => {
     if (trackRef.current) {
       const cardWidth = trackRef.current.querySelector('a')?.offsetWidth || 0;
-      const gap = 24;
-      trackRef.current.scrollBy({ left: direction * (cardWidth + gap) * 4, behavior: 'smooth' });
+      const gap = parseInt(getComputedStyle(trackRef.current).gap || '24');
+      const viewport = trackRef.current.clientWidth;
+      const cardsPerView = Math.floor(viewport / (cardWidth + gap));
+      trackRef.current.scrollBy({ left: direction * (cardWidth + gap) * Math.max(1, cardsPerView), behavior: 'smooth' });
     }
   };
 
@@ -71,7 +73,7 @@ function AmalfiCarousel({ tours, home }: { tours: TourDoc[]; home?: HomeContent 
         </div>
         <div
           ref={trackRef}
-          className="grid auto-cols-[calc((100%-3rem)/4)] grid-flow-col gap-6 overflow-x-auto scroll-smooth pb-4 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="grid auto-cols-[85%] sm:auto-cols-[calc((100%-1rem)/2)] lg:auto-cols-[calc((100%-4.5rem)/4)] grid-flow-col gap-4 sm:gap-6 overflow-x-auto scroll-smooth pb-4 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {tours.map((tour) => (
             <TourCard key={tour.slug} tour={tour} href={home?.tourHrefs?.[tour.slug]} />
