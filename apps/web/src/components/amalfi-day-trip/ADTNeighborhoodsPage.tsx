@@ -93,7 +93,7 @@ export function ADTNeighborhoodsPage() {
           <h1 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
             Explore the Amalfi Coast
           </h1>
-          <p className="mt-4 text-ink-muted">Guide to towns and areas along Italy's most stunning coastline</p>
+          <p className="mt-4 text-ink-muted">Guide to towns and areas along Italy&apos;s most stunning coastline</p>
         </div>
       </section>
 
