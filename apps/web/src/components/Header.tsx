@@ -87,15 +87,15 @@ export function Header() {
           scrolled ? 'border-ink/10 bg-cream/90 backdrop-blur' : 'border-ink/10 bg-cream'
         }`}
       >
-        <div className="mx-auto h-full max-w-full px-3 sm:px-4 lg:px-8">
-          <div className="flex h-full items-center justify-between gap-3 sm:gap-6">
+        <div className="mx-auto h-full max-w-full px-2 sm:px-3 lg:px-8">
+          <div className="flex h-full items-center justify-between gap-2 sm:gap-3 lg:gap-6 min-w-0">
             {/* Logo - Left */}
             <Link href={brandHref} className="flex shrink-0 items-center gap-2">
               <span className="font-hero text-sm sm:text-[20px] font-black tracking-[-0.01em] text-ink">{brandName}</span>
             </Link>
 
             {/* Center Navigation - Desktop Only */}
-            <nav className="hidden lg:flex items-center gap-0.5">
+            <nav className="hidden lg:flex items-center gap-0.5 min-w-0 shrink">
             <Link
               href={basePrefix || '/'}
               className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
@@ -238,10 +238,10 @@ export function Header() {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-2 sm:gap-4 ml-auto">
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-4 ml-auto shrink">
             <Link
               href={`${basePrefix}/tours`}
-              className="hidden sm:inline-block rounded-full bg-accent px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
+              className="hidden md:inline-flex rounded-full bg-accent px-2 lg:px-4 py-1 lg:py-2 text-xs lg:text-sm font-semibold text-white hover:bg-accent-hover transition-colors whitespace-nowrap"
             >
               See Tours
             </Link>
