@@ -1,47 +1,47 @@
-import Link from '@/components/NetworkLink';
+import Link from &apos;@/components/NetworkLink&apos;;
 
 const TIVOLI_ATTRACTIONS = [
   {
-    slug: 'villa-d-este',
-    name: 'Villa d\'Este',
-    description: 'Renaissance villa famous for elaborate fountains and water features',
+    slug: &apos;villa-d-este&apos;,
+    name: &apos;Villa d\&apos;Este&apos;,
+    description: &apos;Renaissance villa famous for elaborate fountains and water features&apos;,
   },
   {
-    slug: 'hadrians-villa',
-    name: 'Hadrian\'s Villa',
-    description: 'Ancient Roman emperor\'s retreat with extensive ruins and archaeological sites',
+    slug: &apos;hadrians-villa&apos;,
+    name: &apos;Hadrian\&apos;s Villa&apos;,
+    description: &apos;Ancient Roman emperor\&apos;s retreat with extensive ruins and archaeological sites&apos;,
   },
   {
-    slug: 'tivoli-town',
-    name: 'Tivoli Town',
-    description: 'Historic hilltop town with medieval buildings and local Roman atmosphere',
+    slug: &apos;tivoli-town&apos;,
+    name: &apos;Tivoli Town&apos;,
+    description: &apos;Historic hilltop town with medieval buildings and local Roman atmosphere&apos;,
   },
   {
-    slug: 'aniene-river',
-    name: 'Aniene River',
-    description: 'Natural valley with cascading waterfalls and scenic river walks',
+    slug: &apos;aniene-river&apos;,
+    name: &apos;Aniene River&apos;,
+    description: &apos;Natural valley with cascading waterfalls and scenic river walks&apos;,
   },
   {
-    slug: 'villa-gregoriana',
-    name: 'Villa Gregoriana',
-    description: 'Park with dramatic cliff views, waterfall and ancient Roman temple remains',
+    slug: &apos;villa-gregoriana&apos;,
+    name: &apos;Villa Gregoriana&apos;,
+    description: &apos;Park with dramatic cliff views, waterfall and ancient Roman temple remains&apos;,
   },
 ];
 
 export function TVDTNeighborhoodsPage() {
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Tivoli Day Trip Attractions',
-    description: 'Guide to attractions and areas for Tivoli day trips from Rome',
-    url: 'https://tivoli-day-trip.com/neighborhoods',
+    &apos;@context&apos;: &apos;https://schema.org&apos;,
+    &apos;@type&apos;: &apos;CollectionPage&apos;,
+    name: &apos;Tivoli Day Trip Attractions&apos;,
+    description: &apos;Guide to attractions and areas for Tivoli day trips from Rome&apos;,
+    url: &apos;https://tivoli-day-trip.com/neighborhoods&apos;,
     mainEntity: {
-      '@type': 'ItemList',
+      &apos;@type&apos;: &apos;ItemList&apos;,
       itemListElement: TIVOLI_ATTRACTIONS.map((attraction, index) => ({
-        '@type': 'ListItem',
+        &apos;@type&apos;: &apos;ListItem&apos;,
         position: index + 1,
         item: {
-          '@type': 'Place',
+          &apos;@type&apos;: &apos;Place&apos;,
           name: attraction.name,
           description: attraction.description,
         },

@@ -1,78 +1,78 @@
-import Link from '@/components/NetworkLink';
+import Link from &apos;@/components/NetworkLink&apos;;
 
 /**
  * Pompeii Day Trip Neighborhoods/Areas page — displays different zones and areas
- * within the Pompeii archaeological site. Mirrors Street Food Rome's Neighborhoods
+ * within the Pompeii archaeological site. Mirrors Street Food Rome&apos;s Neighborhoods
  * structure. Wrapped in .pdt-scope for Volcanic Ember theming.
  */
 
 export const POMPEII_AREAS = [
   {
-    slug: 'forum',
-    name: 'The Forum',
-    description: 'The civic center of ancient Pompeii — temples, markets, and public buildings',
+    slug: &apos;forum&apos;,
+    name: &apos;The Forum&apos;,
+    description: &apos;The civic center of ancient Pompeii — temples, markets, and public buildings&apos;,
   },
   {
-    slug: 'house-of-the-faun',
-    name: 'House of the Faun',
-    description: 'One of Pompeii\'s largest private residences with famous Alexander mosaic',
+    slug: &apos;house-of-the-faun&apos;,
+    name: &apos;House of the Faun&apos;,
+    description: &apos;One of Pompeii\&apos;s largest private residences with famous Alexander mosaic&apos;,
   },
   {
-    slug: 'house-of-mysteries',
-    name: 'House of the Mysteries',
-    description: 'Villa with remarkable frescoes showing Dionysian rituals and initiation ceremonies',
+    slug: &apos;house-of-mysteries&apos;,
+    name: &apos;House of the Mysteries&apos;,
+    description: &apos;Villa with remarkable frescoes showing Dionysian rituals and initiation ceremonies&apos;,
   },
   {
-    slug: 'amphitheater',
-    name: 'Amphitheater',
-    description: 'Ancient entertainment venue — one of the oldest known stone amphitheaters',
+    slug: &apos;amphitheater&apos;,
+    name: &apos;Amphitheater&apos;,
+    description: &apos;Ancient entertainment venue — one of the oldest known stone amphitheaters&apos;,
   },
   {
-    slug: 'theaters',
-    name: 'Theaters',
-    description: 'The Grand Theater and Small Theater — public venues for drama and performance',
+    slug: &apos;theaters&apos;,
+    name: &apos;Theaters&apos;,
+    description: &apos;The Grand Theater and Small Theater — public venues for drama and performance&apos;,
   },
   {
-    slug: 'street-of-tombs',
-    name: 'Street of Tombs',
-    description: 'Via dei Sepolcri — lined with family tombs and monuments outside the city gate',
+    slug: &apos;street-of-tombs&apos;,
+    name: &apos;Street of Tombs&apos;,
+    description: &apos;Via dei Sepolcri — lined with family tombs and monuments outside the city gate&apos;,
   },
   {
-    slug: 'bakery-thermopolium',
-    name: 'Bakery & Thermopolium',
-    description: 'Ancient food establishments frozen in time by the eruption of Mount Vesuvius',
+    slug: &apos;bakery-thermopolium&apos;,
+    name: &apos;Bakery & Thermopolium&apos;,
+    description: &apos;Ancient food establishments frozen in time by the eruption of Mount Vesuvius&apos;,
   },
   {
-    slug: 'lupanare',
-    name: 'The Lupanare',
-    description: 'Ancient brothel with preserved frescoes and graffiti from visitors',
+    slug: &apos;lupanare&apos;,
+    name: &apos;The Lupanare&apos;,
+    description: &apos;Ancient brothel with preserved frescoes and graffiti from visitors&apos;,
   },
   {
-    slug: 'herculaneum-gate',
-    name: 'Herculaneum Gate',
-    description: 'Northern entrance with remains of inhabitants who sheltered during the eruption',
+    slug: &apos;herculaneum-gate&apos;,
+    name: &apos;Herculaneum Gate&apos;,
+    description: &apos;Northern entrance with remains of inhabitants who sheltered during the eruption&apos;,
   },
   {
-    slug: 'garden-houses',
-    name: 'Garden Houses',
-    description: 'Residential villas showcasing daily life, from wealthy estates to modest homes',
+    slug: &apos;garden-houses&apos;,
+    name: &apos;Garden Houses&apos;,
+    description: &apos;Residential villas showcasing daily life, from wealthy estates to modest homes&apos;,
   },
 ];
 
 export function PDTNeighborhoodsPage() {
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Pompeii Areas & Zones',
-    description: 'Guide to different areas and zones within the Pompeii archaeological site',
-    url: 'https://pompeiidaytrip.com/neighborhoods',
+    &apos;@context&apos;: &apos;https://schema.org&apos;,
+    &apos;@type&apos;: &apos;CollectionPage&apos;,
+    name: &apos;Pompeii Areas & Zones&apos;,
+    description: &apos;Guide to different areas and zones within the Pompeii archaeological site&apos;,
+    url: &apos;https://pompeiidaytrip.com/neighborhoods&apos;,
     mainEntity: {
-      '@type': 'ItemList',
+      &apos;@type&apos;: &apos;ItemList&apos;,
       itemListElement: POMPEII_AREAS.map((area, index) => ({
-        '@type': 'ListItem',
+        &apos;@type&apos;: &apos;ListItem&apos;,
         position: index + 1,
         item: {
-          '@type': 'Place',
+          &apos;@type&apos;: &apos;Place&apos;,
           name: area.name,
           description: area.description,
         },

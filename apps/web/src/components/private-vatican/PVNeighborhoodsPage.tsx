@@ -1,62 +1,62 @@
-import Link from '@/components/NetworkLink';
+import Link from &apos;@/components/NetworkLink&apos;;
 
 const VATICAN_NEIGHBORHOODS = [
   {
-    slug: 'vatican-city',
-    name: 'Vatican City',
-    description: 'The spiritual heart — St. Peter\'s Basilica, museums, and the entire Vatican grounds',
+    slug: &apos;vatican-city&apos;,
+    name: &apos;Vatican City&apos;,
+    description: &apos;The spiritual heart — St. Peter\&apos;s Basilica, museums, and the entire Vatican grounds&apos;,
   },
   {
-    slug: 'prati',
-    name: 'Prati',
-    description: 'Elegant neighborhood adjacent to Vatican with wide avenues and residential calm',
+    slug: &apos;prati&apos;,
+    name: &apos;Prati&apos;,
+    description: &apos;Elegant neighborhood adjacent to Vatican with wide avenues and residential calm&apos;,
   },
   {
-    slug: 'borgo',
-    name: 'Borgo',
-    description: 'Medieval streets between Vatican and Tiber — charming alleyways and historic buildings',
+    slug: &apos;borgo&apos;,
+    name: &apos;Borgo&apos;,
+    description: &apos;Medieval streets between Vatican and Tiber — charming alleyways and historic buildings&apos;,
   },
   {
-    slug: 'trastevere',
-    name: 'Trastevere',
-    description: 'Picturesque neighborhood across the Tiber with ivy-covered buildings and local atmosphere',
+    slug: &apos;trastevere&apos;,
+    name: &apos;Trastevere&apos;,
+    description: &apos;Picturesque neighborhood across the Tiber with ivy-covered buildings and local atmosphere&apos;,
   },
   {
-    slug: 'castel-sant-angelo',
-    name: 'Castel Sant\'Angelo',
-    description: 'Historic fortress on the Tiber\'s banks with panoramic city views and bridge access',
+    slug: &apos;castel-sant-angelo&apos;,
+    name: &apos;Castel Sant\&apos;Angelo&apos;,
+    description: &apos;Historic fortress on the Tiber\&apos;s banks with panoramic city views and bridge access&apos;,
   },
   {
-    slug: 'campo-de-fiori',
-    name: 'Campo de\' Fiori',
-    description: 'Lively square surrounded by Renaissance architecture and vibrant street life',
+    slug: &apos;campo-de-fiori&apos;,
+    name: &apos;Campo de\&apos; Fiori&apos;,
+    description: &apos;Lively square surrounded by Renaissance architecture and vibrant street life&apos;,
   },
   {
-    slug: 'pantheon-area',
-    name: 'Pantheon Area',
-    description: 'Ancient Rome\'s best-preserved monument surrounded by historic piazzas and streets',
+    slug: &apos;pantheon-area&apos;,
+    name: &apos;Pantheon Area&apos;,
+    description: &apos;Ancient Rome\&apos;s best-preserved monument surrounded by historic piazzas and streets&apos;,
   },
   {
-    slug: 'trevi-fountain',
-    name: 'Trevi Fountain Area',
-    description: 'The iconic Baroque fountain with elegant streets and refined Roman atmosphere',
+    slug: &apos;trevi-fountain&apos;,
+    name: &apos;Trevi Fountain Area&apos;,
+    description: &apos;The iconic Baroque fountain with elegant streets and refined Roman atmosphere&apos;,
   },
 ];
 
 export function PVNeighborhoodsPage() {
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Vatican & Rome Neighborhoods',
-    description: 'Guide to neighborhoods and areas for Vatican tours',
-    url: 'https://privatevatican.com/neighborhoods',
+    &apos;@context&apos;: &apos;https://schema.org&apos;,
+    &apos;@type&apos;: &apos;CollectionPage&apos;,
+    name: &apos;Vatican & Rome Neighborhoods&apos;,
+    description: &apos;Guide to neighborhoods and areas for Vatican tours&apos;,
+    url: &apos;https://privatevatican.com/neighborhoods&apos;,
     mainEntity: {
-      '@type': 'ItemList',
+      &apos;@type&apos;: &apos;ItemList&apos;,
       itemListElement: VATICAN_NEIGHBORHOODS.map((neighborhood, index) => ({
-        '@type': 'ListItem',
+        &apos;@type&apos;: &apos;ListItem&apos;,
         position: index + 1,
         item: {
-          '@type': 'Place',
+          &apos;@type&apos;: &apos;Place&apos;,
           name: neighborhood.name,
           description: neighborhood.description,
         },
