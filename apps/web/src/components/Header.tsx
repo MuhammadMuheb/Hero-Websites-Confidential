@@ -241,7 +241,7 @@ export function Header() {
           <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-4 ml-auto shrink-0">
             <Link
               href={`${basePrefix}/tours`}
-              className="rounded-full bg-accent px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white hover:bg-accent-hover transition-colors whitespace-nowrap"
+              className="hidden lg:inline-flex rounded-full bg-accent px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white hover:bg-accent-hover transition-colors whitespace-nowrap"
             >
               See Tours
             </Link>
