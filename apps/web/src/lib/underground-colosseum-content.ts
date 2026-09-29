@@ -354,6 +354,61 @@ export const MONEY_PAGE_CONTENT: MoneyPageContent[] = [
     relatedSupportHref: '/support/is-the-underground-worth-it',
     relatedSupportLabel: 'Is the Underground Worth It?',
   },
+  {
+    href: '/money/audio-guide-vs-live-guide',
+    navTitle: 'Audio Guide vs. Live Guide',
+    h1: 'Audio Guide vs. Live Guide: Which Colosseum Tour Suits You?',
+    keyword: 'colosseum audio guide',
+    metaTitle: 'Colosseum Audio Guide vs. Live Guide — Self-Paced or Expert-Led?',
+    metaDescription: 'Compare self-guided audio tours to live-guided Colosseum tours — pace, learning, value, and which format works best for your visit style.',
+    heroImage: { src: 'https://images.unsplash.com/photo-1511163262182-1b04e5fa4caa', alt: 'Close-up view of the Colosseum arches against a blue sky' },
+    intro: [
+      'Every Colosseum visitor enters through the same gates, but how you experience the monument splits roughly in half: solo with an audio guide, or with a live guide steering a group through the same rooms.',
+      'Both work. The choice comes down to pace, learning style, and budget — and whether you want flexibility or curated expertise.',
+    ],
+    atAGlance: [
+      { label: 'Audio guide', value: 'Self-paced, €20–40' },
+      { label: 'Live guide', value: 'Structured, €50–100+' },
+      { label: 'Audio + live', value: 'Hybrid options exist (€60–80)' },
+      { label: 'Best for', value: 'Depends on your pace and budget' },
+    ],
+    sections: [
+      {
+        heading: 'Audio-guided tours: Pace on your terms',
+        body: [
+          'Audio guides let you linger anywhere, backtrack, skip sections, or pause for photos without holding up anyone else. You control the rhythm — essential if you travel with kids, have mobility needs, or simply prefer absorbing information at your own speed.',
+          'The downside: no live answers to questions the recording doesn\'t address, and no sense of where the story leads — you\'re piecing it together as you go rather than being walked through a narrative.',
+        ],
+      },
+      {
+        heading: 'Live guides: Structure and storytelling',
+        body: [
+          'A live guide moves the group through the same route in about 2–3 hours, explaining context, answering questions on the spot, and connecting what you\'re seeing into a coherent story. Ideal for history buffs and first-time visitors who want to understand the "why" behind the layout.',
+          'Trade-off: fixed pace (you move with the group), group size (typically 15–30 people), and higher cost.',
+        ],
+      },
+    ],
+    verdict: {
+      heading: 'Our take',
+      body: 'Choose audio if flexibility matters more than depth — you\'ll see everything at your pace. Choose live if you want context and structure — a good guide adds value that audio alone can\'t replicate, especially for the underground or arena floor.',
+    },
+    faqs: [
+      {
+        question: 'Can you use a personal audio guide (phone app) instead?',
+        answer: 'Yes — apps like Tiqets and Viator let you download audio and play it on your own device, which saves rental fees and gives you full flexibility.',
+      },
+      {
+        question: 'Do live guides allow photography?',
+        answer: 'Yes, groups usually stop for photo opportunities, though the pace means less time at each spot than you\'d get with a self-guided audio tour.',
+      },
+      {
+        question: 'Is audio guide quality the same across all providers?',
+        answer: 'No — quality varies. Tiqets and GetYourGuide tend to have more thorough, well-produced audio than budget options. Listen to samples before booking.',
+      },
+    ],
+    relatedSupportHref: '/support/how-underground-access-really-works',
+    relatedSupportLabel: 'How Underground Access Really Works',
+  },
 ];
 
 export const SUPPORT_PAGE_CONTENT: SupportPageContent[] = [

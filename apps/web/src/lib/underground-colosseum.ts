@@ -69,6 +69,15 @@ export const MONEY_PAGES = [
     badge: null as string | null,
     image: { src: 'https://images.unsplash.com/photo-1552432552-06c0b0a94dda', alt: 'Wide view of the Colosseum under a sweeping cloudy sky' },
   },
+  {
+    title: 'Audio Guide vs. Live Guide',
+    href: '/money/audio-guide-vs-live-guide',
+    blurb: 'Self-paced or expert-led? Compare pace, cost, and learning.',
+    keyword: 'colosseum audio guide',
+    cta: 'Compare',
+    badge: null as string | null,
+    image: { src: 'https://images.unsplash.com/photo-1511163262182-1b04e5fa4caa', alt: 'Close-up view of the Colosseum arches' },
+  },
 ];
 
 export interface FeaturedTour {
