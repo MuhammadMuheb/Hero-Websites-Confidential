@@ -39,10 +39,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
-        <link rel="apple-touch-icon" href="/favicon-128.png" />
+        <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
+        <link rel="icon" type="image/png" href="/favicon-32.png?v=2" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/favicon-128.png?v=2" sizes="128x128" />
+        <link rel="apple-touch-icon" href="/favicon-128.png?v=2" />
         {GA_MEASUREMENT_ID && (
           <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
         )}
