@@ -51,6 +51,11 @@ const COLOSSEUM_AREAS = [
     name: 'Gladiator Barracks & Holding',
     description: 'Underground areas where gladiators waited before combat — part of the historical narrative on every tour',
   },
+  {
+    slug: 'imperial-viewing-box',
+    name: 'Imperial Viewing Box & Podium',
+    description: 'The emperor\'s elevated viewing platform with direct access and luxury seating — the most exclusive spot in the entire amphitheater',
+  },
 ];
 
 export function UCNeighborhoodsPage() {
