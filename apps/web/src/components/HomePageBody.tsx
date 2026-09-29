@@ -89,35 +89,12 @@ export function HomePageBody({ siteName, canonicalUrl, heroImageUrl, tours, allB
 
       {/* 5: Top Food Tours slider - 4 full cards */}
       <div id="popular">
-        {siteName === 'Amalfi Day Trip' ? (
-          <section className="bg-cream py-16 sm:py-20">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{home?.sliderEyebrow}</p>
-                <h2 className="mt-2 font-sans text-[28px] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[36px]">{home?.sliderTitle?.split(' ').slice(0, -1).join(' ')} <span className="text-brand">{home?.sliderTitle?.split(' ').pop()}</span></h2>
-              </div>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {tours.slice(0, 8).map((tour, i) => (
-                  <a key={tour.slug} href={home?.tourHrefs?.[tour.slug] ?? tourHref(tour.slug)} className="group flex flex-col overflow-hidden rounded-card border border-line bg-white transition-all hover:shadow-card">
-                    <div className="relative aspect-[4/3] bg-gray-200"><img src="" alt={tour.title} className="object-cover w-full h-full" /></div>
-                    <div className="flex flex-1 flex-col p-5">
-                      <h3 className="font-display text-lg font-semibold text-ink">{tour.title}</h3>
-                      <p className="mt-2 text-sm text-ink/60 flex-1">{tour.description}</p>
-                      <span className="mt-4 text-sm font-bold text-accent">View tour →</span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : (
-          <TourCarouselSection
-            tours={tours}
-            eyebrow={home?.sliderEyebrow}
-            title={home?.sliderTitle}
-            hrefs={home?.tourHrefs}
-          />
-        )}
+        <TourCarouselSection
+          tours={tours}
+          eyebrow={home?.sliderEyebrow}
+          title={home?.sliderTitle}
+          hrefs={home?.tourHrefs}
+        />
       </div>
 
       {/* 6: Top Food Items to Try - 5 rows (1 big + 3 small) */}
