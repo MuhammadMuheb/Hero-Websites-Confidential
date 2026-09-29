@@ -90,8 +90,8 @@ export function Header() {
         <div className="mx-auto h-full max-w-full px-2 sm:px-3 lg:px-8">
           <div className="flex h-full items-center justify-between gap-2 sm:gap-3 lg:gap-6 min-w-0">
             {/* Logo - Left */}
-            <Link href={brandHref} className="flex shrink-0 items-center gap-2">
-              <span className="font-hero text-sm sm:text-[20px] font-black tracking-[-0.01em] text-ink">{brandName}</span>
+            <Link href={brandHref} className="flex shrink-0 items-center gap-2 min-w-0">
+              <span className="font-hero text-base sm:text-lg lg:text-[20px] font-black tracking-[-0.01em] text-ink truncate">{brandName}</span>
             </Link>
 
             {/* Center Navigation - Desktop Only */}
@@ -238,10 +238,10 @@ export function Header() {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-4 ml-auto shrink">
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-4 ml-auto shrink-0">
             <Link
               href={`${basePrefix}/tours`}
-              className="hidden md:inline-flex rounded-full bg-accent px-2 lg:px-4 py-1 lg:py-2 text-xs lg:text-sm font-semibold text-white hover:bg-accent-hover transition-colors whitespace-nowrap"
+              className="rounded-full bg-accent px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white hover:bg-accent-hover transition-colors whitespace-nowrap"
             >
               See Tours
             </Link>
