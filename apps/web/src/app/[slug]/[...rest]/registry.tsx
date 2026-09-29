@@ -15,6 +15,7 @@ import { SupportPageTemplate as PVSupport } from '@/components/private-vatican/S
 import { PVContactPage } from '@/components/private-vatican/PVContactPage';
 import { PVFAQPage } from '@/components/private-vatican/PVFAQPage';
 import { PVPrivacyPolicyPage } from '@/components/private-vatican/PVPrivacyPolicyPage';
+import { PVNeighborhoodsPage } from '@/components/private-vatican/PVNeighborhoodsPage';
 import { MoneyPageContent } from '@/components/MoneyPageContent';
 import * as PV from '@/lib/private-vatican';
 import * as PVC from '@/lib/private-vatican-content';
@@ -42,6 +43,7 @@ import { SupportPageTemplate as GCRSupport } from '@/components/golf-cart-rome/S
 import { GCRContactPage } from '@/components/golf-cart-rome/GCRContactPage';
 import { GCRFAQPage } from '@/components/golf-cart-rome/GCRFAQPage';
 import { GCRPrivacyPolicyPage } from '@/components/golf-cart-rome/GCRPrivacyPolicyPage';
+import { GCRNeighborhoodsPage } from '@/components/golf-cart-rome/GCRNeighborhoodsPage';
 import * as GCR from '@/lib/golf-cart-rome';
 import * as GCRC from '@/lib/golf-cart-rome-content';
 
@@ -50,6 +52,7 @@ import { SupportPageTemplate as CIRSupport } from '@/components/cooking-in-rome/
 import { CIRContactPage } from '@/components/cooking-in-rome/CIRContactPage';
 import { CIRFAQPage } from '@/components/cooking-in-rome/CIRFAQPage';
 import { CIRPrivacyPolicyPage } from '@/components/cooking-in-rome/CIRPrivacyPolicyPage';
+import { CIRNeighborhoodsPage } from '@/components/cooking-in-rome/CIRNeighborhoodsPage';
 import * as CIR from '@/lib/cooking-in-rome';
 import * as CIRC from '@/lib/cooking-in-rome-content';
 
@@ -58,6 +61,7 @@ import { SupportPageTemplate as RPCSupport } from '@/components/rome-pizza-class
 import { RPCContactPage } from '@/components/rome-pizza-class/RPCContactPage';
 import { RPCFAQPage } from '@/components/rome-pizza-class/RPCFAQPage';
 import { RPCPrivacyPolicyPage } from '@/components/rome-pizza-class/RPCPrivacyPolicyPage';
+import { RPCNeighborhoodsPage } from '@/components/rome-pizza-class/RPCNeighborhoodsPage';
 import * as RPC from '@/lib/rome-pizza-class';
 import * as RPCC from '@/lib/rome-pizza-class-content';
 
@@ -66,6 +70,7 @@ import { SupportPageTemplate as TCSupport } from '@/components/tiramisu-class/Su
 import { TCContactPage } from '@/components/tiramisu-class/TCContactPage';
 import { TCFAQPage } from '@/components/tiramisu-class/TCFAQPage';
 import { TCPrivacyPolicyPage } from '@/components/tiramisu-class/TCPrivacyPolicyPage';
+import { TCNeighborhoodsPage } from '@/components/tiramisu-class/TCNeighborhoodsPage';
 import * as TC from '@/lib/tiramisu-class';
 import * as TCC from '@/lib/tiramisu-class-content';
 
@@ -74,6 +79,7 @@ import { SupportPageTemplate as TDTSupport } from '@/components/tuscany-day-trip
 import { TDTContactPage } from '@/components/tuscany-day-trip/TDTContactPage';
 import { TDTFAQPage } from '@/components/tuscany-day-trip/TDTFAQPage';
 import { TDTPrivacyPolicyPage } from '@/components/tuscany-day-trip/TDTPrivacyPolicyPage';
+import { TDTNeighborhoodsPage } from '@/components/tuscany-day-trip/TDTNeighborhoodsPage';
 import * as TDT from '@/lib/tuscany-day-trip';
 import * as TDTC from '@/lib/tuscany-day-trip-content';
 
@@ -82,6 +88,7 @@ import { SupportPageTemplate as ADTSupport } from '@/components/amalfi-day-trip/
 import { ADTContactPage } from '@/components/amalfi-day-trip/ADTContactPage';
 import { ADTFAQPage } from '@/components/amalfi-day-trip/ADTFAQPage';
 import { ADTPrivacyPolicyPage } from '@/components/amalfi-day-trip/ADTPrivacyPolicyPage';
+import { ADTNeighborhoodsPage } from '@/components/amalfi-day-trip/ADTNeighborhoodsPage';
 import * as ADT from '@/lib/amalfi-day-trip';
 import * as ADTC from '@/lib/amalfi-day-trip-content';
 
@@ -90,6 +97,7 @@ import { SupportPageTemplate as TVDTSupport } from '@/components/tivoli-day-trip
 import { TVDTContactPage } from '@/components/tivoli-day-trip/TVDTContactPage';
 import { TVDTFAQPage } from '@/components/tivoli-day-trip/TVDTFAQPage';
 import { TVDTPrivacyPolicyPage } from '@/components/tivoli-day-trip/TVDTPrivacyPolicyPage';
+import { TVDTNeighborhoodsPage } from '@/components/tivoli-day-trip/TVDTNeighborhoodsPage';
 import * as TVDT from '@/lib/tivoli-day-trip';
 import * as TVDTC from '@/lib/tivoli-day-trip-content';
 
@@ -98,6 +106,7 @@ import { SupportPageTemplate as NSFSupport } from '@/components/naples-street-fo
 import { NSFContactPage } from '@/components/naples-street-food/NSFContactPage';
 import { NSFFAQPage } from '@/components/naples-street-food/NSFFAQPage';
 import { NSFPrivacyPolicyPage } from '@/components/naples-street-food/NSFPrivacyPolicyPage';
+import { NSFNeighborhoodsPage } from '@/components/naples-street-food/NSFNeighborhoodsPage';
 import * as NSF from '@/lib/naples-street-food';
 import * as NSFC from '@/lib/naples-street-food-content';
 
@@ -168,7 +177,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
       };
     },
     support: (h) => { const c = PVC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <PVSupport content={c} /> } : null; },
-    pages: { contact: () => <PVContactPage />, faq: () => <PVFAQPage />, privacy: () => <PVPrivacyPolicyPage /> },
+    pages: { contact: () => <PVContactPage />, faq: () => <PVFAQPage />, privacy: () => <PVPrivacyPolicyPage />, neighborhoods: () => <PVNeighborhoodsPage /> },
     legal: { terms: PV.TERMS_OF_SERVICE, 'cookie-policy': PV.COOKIE_POLICY, 'affiliate-disclosure': PV.AFFILIATE_DISCLOSURE },
     toursSubtitle: 'Early-entry, private and skip-the-line Vatican tours compared by crowd level, route and value.',
   },
@@ -201,7 +210,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     tours: GCR.FEATURED_TOURS,
     money: (h) => { const c = GCRC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <GCRMoney content={c} /> } : null; },
     support: (h) => { const c = GCRC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <GCRSupport content={c} /> } : null; },
-    pages: { contact: () => <GCRContactPage />, faq: () => <GCRFAQPage />, privacy: () => <GCRPrivacyPolicyPage /> },
+    pages: { contact: () => <GCRContactPage />, faq: () => <GCRFAQPage />, privacy: () => <GCRPrivacyPolicyPage />, neighborhoods: () => <GCRNeighborhoodsPage /> },
     legal: { terms: GCR.TERMS_OF_SERVICE, 'cookie-policy': GCR.COOKIE_POLICY, 'affiliate-disclosure': GCR.AFFILIATE_DISCLOSURE },
     toursSubtitle: 'Seated, shaded golf cart tours of Rome compared on route, accessibility and price.',
   },
@@ -212,7 +221,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     tours: CIR.FEATURED_TOURS,
     money: (h) => { const c = CIRC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <CIRMoney content={c} /> } : null; },
     support: (h) => { const c = CIRC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <CIRSupport content={c} /> } : null; },
-    pages: { contact: () => <CIRContactPage />, faq: () => <CIRFAQPage />, privacy: () => <CIRPrivacyPolicyPage /> },
+    pages: { contact: () => <CIRContactPage />, faq: () => <CIRFAQPage />, privacy: () => <CIRPrivacyPolicyPage />, neighborhoods: () => <CIRNeighborhoodsPage /> },
     legal: { terms: CIR.TERMS_OF_SERVICE, 'cookie-policy': CIR.COOKIE_POLICY, 'affiliate-disclosure': CIR.AFFILIATE_DISCLOSURE },
     toursSubtitle: 'Pasta, pizza, gelato and market-to-table cooking classes in Rome compared on group size, menu and value.',
   },
@@ -223,7 +232,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     tours: RPC.FEATURED_TOURS,
     money: (h) => { const c = RPCC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <RPCMoney content={c} /> } : null; },
     support: (h) => { const c = RPCC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <RPCSupport content={c} /> } : null; },
-    pages: { contact: () => <RPCContactPage />, faq: () => <RPCFAQPage />, privacy: () => <RPCPrivacyPolicyPage /> },
+    pages: { contact: () => <RPCContactPage />, faq: () => <RPCFAQPage />, privacy: () => <RPCPrivacyPolicyPage />, neighborhoods: () => <RPCNeighborhoodsPage /> },
     legal: { terms: RPC.TERMS_OF_SERVICE, 'cookie-policy': RPC.COOKIE_POLICY, 'affiliate-disclosure': RPC.AFFILIATE_DISCLOSURE },
     toursSubtitle: 'Hands-on pizza-making classes in Rome compared: wood-fired ovens, family and private options.',
   },
@@ -234,7 +243,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     tours: TC.FEATURED_TOURS,
     money: (h) => { const c = TCC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <TCMoney content={c} /> } : null; },
     support: (h) => { const c = TCC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <TCSupport content={c} /> } : null; },
-    pages: { contact: () => <TCContactPage />, faq: () => <TCFAQPage />, privacy: () => <TCPrivacyPolicyPage /> },
+    pages: { contact: () => <TCContactPage />, faq: () => <TCFAQPage />, privacy: () => <TCPrivacyPolicyPage />, neighborhoods: () => <TCNeighborhoodsPage /> },
     legal: {},
     toursSubtitle: 'Tiramisù and Italian dessert classes in Rome compared on what you make, group size and price.',
   },
@@ -245,7 +254,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     tours: TDT.FEATURED_TOURS,
     money: (h) => { const c = TDTC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <TDTMoney content={c} /> } : null; },
     support: (h) => { const c = TDTC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <TDTSupport content={c} /> } : null; },
-    pages: { contact: () => <TDTContactPage />, faq: () => <TDTFAQPage />, privacy: () => <TDTPrivacyPolicyPage /> },
+    pages: { contact: () => <TDTContactPage />, faq: () => <TDTFAQPage />, privacy: () => <TDTPrivacyPolicyPage />, neighborhoods: () => <TDTNeighborhoodsPage /> },
     legal: { terms: TDT.TERMS_OF_SERVICE, 'cookie-policy': TDT.COOKIE_POLICY, 'affiliate-disclosure': TDT.AFFILIATE_DISCLOSURE },
     toursSubtitle: 'Tuscany day trips from Florence compared: wine tours, hill towns and countryside routes.',
   },
@@ -256,7 +265,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     tours: ADT.FEATURED_TOURS,
     money: (h) => { const c = ADTC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <ADTMoney content={c} /> } : null; },
     support: (h) => { const c = ADTC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <ADTSupport content={c} /> } : null; },
-    pages: { contact: () => <ADTContactPage />, faq: () => <ADTFAQPage />, privacy: () => <ADTPrivacyPolicyPage /> },
+    pages: { contact: () => <ADTContactPage />, faq: () => <ADTFAQPage />, privacy: () => <ADTPrivacyPolicyPage />, neighborhoods: () => <ADTNeighborhoodsPage /> },
     legal: {},
     toursSubtitle: 'Amalfi Coast day trips from Rome, Naples and Sorrento compared — by road or by boat.',
   },
@@ -267,9 +276,9 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     tours: TVDT.FEATURED_TOURS,
     money: (h) => { const c = TVDTC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <TVDTMoney content={c} /> } : null; },
     support: (h) => { const c = TVDTC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <TVDTSupport content={c} /> } : null; },
-    pages: { contact: () => <TVDTContactPage />, faq: () => <TVDTFAQPage />, privacy: () => <TVDTPrivacyPolicyPage /> },
+    pages: { contact: () => <TVDTContactPage />, faq: () => <TVDTFAQPage />, privacy: () => <TVDTPrivacyPolicyPage />, neighborhoods: () => <TVDTNeighborhoodsPage /> },
     legal: {},
-    toursSubtitle: 'Villa d’Este and Hadrian’s Villa day trips from Rome compared: full-day, half-day, private and self-guided.',
+    toursSubtitle: ‘Villa d’Este and Hadrian’s Villa day trips from Rome compared: full-day, half-day, private and self-guided.’,
   },
   'naples-street-food': {
     scope: 'nsf-scope',
@@ -278,7 +287,7 @@ export const PROPERTIES: Record<string, PropertyDef> = {
     tours: NSF.FEATURED_TOURS,
     money: (h) => { const c = NSFC.getMoneyPageContent(h); return c ? { kind: 'compare', content: c, node: <NSFMoney content={c} /> } : null; },
     support: (h) => { const c = NSFC.getSupportPageContent(h); return c ? { kind: 'plan', content: c, node: <NSFSupport content={c} /> } : null; },
-    pages: { contact: () => <NSFContactPage />, faq: () => <NSFFAQPage />, privacy: () => <NSFPrivacyPolicyPage /> },
+    pages: { contact: () => <NSFContactPage />, faq: () => <NSFFAQPage />, privacy: () => <NSFPrivacyPolicyPage />, neighborhoods: () => <NSFNeighborhoodsPage /> },
     legal: {},
     toursSubtitle: 'Naples street food, pizza and market tours compared on route, tastings and price.',
   },
