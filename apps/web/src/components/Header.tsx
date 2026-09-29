@@ -83,57 +83,57 @@ export function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 h-[72px] border-b transition-colors duration-200 ${
+        className={`sticky top-0 z-40 h-16 sm:h-[72px] border-b transition-colors duration-200 ${
           scrolled ? 'border-ink/10 bg-cream/90 backdrop-blur' : 'border-ink/10 bg-cream'
         }`}
       >
-        <div className="mx-auto h-full max-w-full px-4 sm:px-6 lg:px-8">
-          <div className="flex h-full items-center justify-between gap-6">
+        <div className="mx-auto h-full max-w-full px-3 sm:px-4 lg:px-8">
+          <div className="flex h-full items-center justify-between gap-3 sm:gap-6">
             {/* Logo - Left */}
             <Link href={brandHref} className="flex shrink-0 items-center gap-2">
-              <span className="font-hero text-[20px] font-black tracking-[-0.01em] text-ink">{brandName}</span>
+              <span className="font-hero text-sm sm:text-[20px] font-black tracking-[-0.01em] text-ink">{brandName}</span>
             </Link>
 
             {/* Center Navigation - Desktop Only */}
             <nav className="hidden lg:flex items-center gap-0.5">
             <Link
               href={basePrefix || '/'}
-              className="relative shrink-0 whitespace-nowrap px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
             >
               Home
             </Link>
 
             <Link
               href={`${basePrefix}/about`}
-              className="relative shrink-0 whitespace-nowrap px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
             >
               About Us
             </Link>
 
             <Link
               href={`${basePrefix}/contact`}
-              className="relative shrink-0 whitespace-nowrap px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
             >
               Contact Us
             </Link>
 
             <Link
               href={`${basePrefix}/faq`}
-              className="relative shrink-0 whitespace-nowrap px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
             >
               FAQ
             </Link>
 
             <Link
               href={`${basePrefix}/privacy`}
-              className="relative shrink-0 whitespace-nowrap px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
             >
               Privacy Policy
             </Link>
 
             <Link
               href={`${basePrefix}/terms`}
-              className="relative shrink-0 whitespace-nowrap px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1.5rem)]"
+              className="relative shrink-0 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-2 lg:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-1rem)] lg:hover:after:w-[calc(100%-1.5rem)]"
             >
               Terms of Service
             </Link>
@@ -146,7 +146,7 @@ export function Header() {
                   setToursOpen((v) => !v);
                   setNetworkOpen(false);
                 }}
-                className="flex shrink-0 items-center gap-1 whitespace-nowrap px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand"
+                className="flex shrink-0 items-center gap-1 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand"
               >
                 Tours & Blog
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform duration-200 ${toursOpen ? 'rotate-180' : ''}`}>
@@ -209,7 +209,7 @@ export function Header() {
                   setNetworkOpen((v) => !v);
                   setToursOpen(false);
                 }}
-                className="flex shrink-0 items-center gap-1 whitespace-nowrap px-3 py-2 text-[15px] font-semibold text-ink transition-colors hover:text-brand"
+                className="flex shrink-0 items-center gap-1 whitespace-nowrap px-2 lg:px-3 py-2 text-sm lg:text-[15px] font-semibold text-ink transition-colors hover:text-brand"
               >
                 Our Network
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform duration-200 ${networkOpen ? 'rotate-180' : ''}`}>
@@ -238,10 +238,10 @@ export function Header() {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-4 ml-auto">
+          <div className="flex items-center gap-2 sm:gap-4 ml-auto">
             <Link
               href={`${basePrefix}/tours`}
-              className="hidden sm:inline-block rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
+              className="hidden sm:inline-block rounded-full bg-accent px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
             >
               See Tours
             </Link>
@@ -253,11 +253,11 @@ export function Header() {
                 setMobileSection(null);
               }}
               aria-expanded={mobileMenuOpen}
-              className="lg:hidden p-2 text-ink hover:text-accent transition-colors"
+              className="lg:hidden p-1.5 sm:p-2 text-ink hover:text-accent transition-colors"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               type="button"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 {mobileMenuOpen ? (
                   <path d="M18 6 6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 ) : (
@@ -273,8 +273,8 @@ export function Header() {
 
     {/* Mobile Menu */}
     {mobileMenuOpen && (
-      <div data-dropdown="mobile" className="fixed inset-0 top-[72px] z-30 overflow-y-auto bg-cream lg:hidden">
-        <div className="p-6 space-y-3">
+      <div data-dropdown="mobile" className="fixed inset-0 top-16 sm:top-[72px] z-30 overflow-y-auto bg-cream lg:hidden">
+        <div className="p-4 sm:p-6 space-y-2 sm:space-y-3">
           <Link
             href={basePrefix || '/'}
             className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
