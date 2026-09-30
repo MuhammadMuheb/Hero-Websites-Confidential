@@ -71,7 +71,10 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ sl
 
   const page = await safeGetPageDoc(`category-${category.slug}`);
   const allTours = await safeGetAllTours();
-  const tours = allTours.filter((t) => getTourEntryByRealSlug(t.slug)?.category === category.slug);
+  // STRICT FILTERING: Only Street Food Rome tours in this category
+  const tours = allTours
+    .filter((t) => (t.propertySlug || 'street-food-rome') === 'street-food-rome')
+    .filter((t) => getTourEntryByRealSlug(t.slug)?.category === category.slug);
 
   // Distinct neighbourhoods represented among this category's tours, for a
   // "find these tours in X neighbourhood" cross-link row below the grid.

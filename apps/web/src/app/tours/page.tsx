@@ -31,7 +31,8 @@ export default async function ToursIndexPage({
   const { category, neighborhood } = await searchParams;
   const allTours = await getAllTours();
 
-  let tours = allTours;
+  // STRICT FILTERING: Only Street Food Rome tours
+  let tours = allTours.filter((t) => (t.propertySlug || 'street-food-rome') === 'street-food-rome');
   if (category) tours = tours.filter((t) => matchesCategory(t, category));
   if (neighborhood) tours = tours.filter((t) => matchesNeighborhood(t, neighborhood));
 

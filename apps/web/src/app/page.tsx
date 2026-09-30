@@ -28,11 +28,14 @@ export async function generateMetadata(): Promise<Metadata> {
 const HOME_HERO_IMAGE_URL = 'https://images.unsplash.com/photo-1708628934823-a37e3fe0bb4e';
 
 export default async function HomePage() {
-  const [page, tours, allBlogPosts] = await Promise.all([
+  const [page, allTours, allBlogPosts] = await Promise.all([
     getPageDoc('home'),
     getAllTours(),
     getAllBlogPosts().catch(() => []),
   ]);
+
+  // STRICT FILTERING: Only Street Food Rome tours
+  const tours = allTours.filter((t) => (t.propertySlug || 'street-food-rome') === 'street-food-rome');
 
   return (
     <HomePageBody

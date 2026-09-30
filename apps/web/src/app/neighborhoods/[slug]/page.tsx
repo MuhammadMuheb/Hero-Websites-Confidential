@@ -81,7 +81,9 @@ export default async function NeighborhoodPage({ params }: { params: Promise<{ s
 
   const page = await safeGetPageDoc(`neighborhood-${neighborhood.slug}`);
   const allTours = await safeGetAllTours();
-  const tours = getToursForNeighborhood(allTours, neighborhood.slug);
+  // STRICT FILTERING: Only Street Food Rome tours
+  const streetFoodRomeTours = allTours.filter((t) => (t.propertySlug || 'street-food-rome') === 'street-food-rome');
+  const tours = getToursForNeighborhood(streetFoodRomeTours, neighborhood.slug);
 
   const jsonLd = {
     '@context': 'https://schema.org',

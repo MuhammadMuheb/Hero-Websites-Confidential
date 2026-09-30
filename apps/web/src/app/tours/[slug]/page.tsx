@@ -63,7 +63,9 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
   if (!tour) notFound();
 
   const allTours = await safeGetAllTours();
-  const others = getRelatedTours(allTours, tour);
+  // STRICT FILTERING: Only Street Food Rome tours for "related tours"
+  const streetFoodRomeTours = allTours.filter((t) => (t.propertySlug || 'street-food-rome') === 'street-food-rome');
+  const others = getRelatedTours(streetFoodRomeTours, tour);
 
   const category = getCategory(entry.category);
 
