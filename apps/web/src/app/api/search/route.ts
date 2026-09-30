@@ -80,6 +80,11 @@ async function searchPages(query: string): Promise<SearchResult[]> {
   try {
     const pages = await listPageDocs();
     return pages
+      .filter((page) => {
+        // Exclude category pages - they don't have actual routes
+        if (page.type === 'category') return false;
+        return true;
+      })
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.metaDesc);
         const propertySlug = page.propertySlug || 'street-food-rome';

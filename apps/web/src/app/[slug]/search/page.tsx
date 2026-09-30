@@ -104,6 +104,12 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
 
     const pageResults: SearchResult[] = pages
       .filter((page) => (page.propertySlug || 'street-food-rome') === currentPropertySlug)
+      .filter((page) => {
+        // Exclude category pages - they don't have actual routes
+        if (page.type === 'category') return false;
+        // Only include pages that are searchable
+        return true;
+      })
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.metaDesc);
         const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
