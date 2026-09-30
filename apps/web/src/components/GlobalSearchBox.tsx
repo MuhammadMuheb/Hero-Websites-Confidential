@@ -131,7 +131,6 @@ export function GlobalSearchBox({
               onClick={() => {
                 setQuery('');
                 setResults([]);
-                setGroupedResults({});
               }}
               className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
               aria-label="Clear search"
