@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from '@/components/NetworkLink';
 import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
-import { getAllTours, getAllBlogPosts, listPageDocs } from '@/lib/firestore';
+import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
 import { tourHref } from '@/lib/tours';
 
 interface SearchResult {
@@ -60,10 +60,9 @@ async function SearchResults({ query }: { query: string; propertySlug?: string }
   }
 
   try {
-    const [tours, blogs, pages] = await Promise.all([
+    const [tours, blogs] = await Promise.all([
       getAllTours().catch(() => []),
       getAllBlogPosts().catch(() => []),
-      listPageDocs().catch(() => []),
     ]);
 
     const pageRoutes: Record<string, string> = {
@@ -76,6 +75,15 @@ async function SearchResults({ query }: { query: string; propertySlug?: string }
       'faq': '/faq',
       'guides': '/guides',
     };
+
+    const essentialPages = [
+      { slug: 'about', title: 'About', description: 'Learn about Street Food Rome and who writes these guides' },
+      { slug: 'contact', title: 'Contact', description: 'Get in touch with Street Food Rome' },
+      { slug: 'privacy', title: 'Privacy Policy', description: 'Privacy policy for Street Food Rome' },
+      { slug: 'terms', title: 'Terms of Service', description: 'Terms of service and conditions' },
+      { slug: 'faq', title: 'FAQ', description: 'Frequently asked questions' },
+      { slug: 'guides', title: 'Guides', description: 'Travel guides and resources' },
+    ];
 
     const tourResults: SearchResult[] = tours
       .filter((tour) => (tour.propertySlug || 'street-food-rome') === STREET_FOOD_ROME)
@@ -113,15 +121,14 @@ async function SearchResults({ query }: { query: string; propertySlug?: string }
       .filter((result) => result.relevanceScore > 0)
       .sort((a, b) => b.relevanceScore - a.relevanceScore);
 
-    const pageResults: SearchResult[] = pages
-      .filter((page) => (page.propertySlug || 'street-food-rome') === STREET_FOOD_ROME)
+    const pageResults: SearchResult[] = essentialPages
       .map((page) => {
-        const score = calculateRelevance(query, page.title, page.metaDesc);
+        const score = calculateRelevance(query, page.title, page.description);
         return {
           id: page.slug,
           type: 'page' as const,
           title: page.title,
-          description: page.metaDesc || '',
+          description: page.description,
           url: pageRoutes[page.slug] || `/${page.slug}`,
           property: 'Street Food Rome',
           propertySlug: STREET_FOOD_ROME,

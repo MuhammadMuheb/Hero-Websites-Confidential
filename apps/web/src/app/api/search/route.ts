@@ -1,4 +1,4 @@
-import { getAllTours, getAllBlogPosts, listPageDocs } from '@/lib/firestore';
+import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
 import { tourHref } from '@/lib/tours';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -92,6 +92,16 @@ async function searchBlogPosts(query: string): Promise<SearchResult[]> {
 async function searchPages(query: string): Promise<SearchResult[]> {
   try {
     const pages = await listPageDocs();
+
+    const essentialPages = [
+      { slug: 'about', title: 'About', description: 'Learn about Street Food Rome and who writes these guides' },
+      { slug: 'contact', title: 'Contact', description: 'Get in touch with Street Food Rome' },
+      { slug: 'privacy', title: 'Privacy Policy', description: 'Privacy policy for Street Food Rome' },
+      { slug: 'terms', title: 'Terms of Service', description: 'Terms of service and conditions' },
+      { slug: 'faq', title: 'FAQ', description: 'Frequently asked questions' },
+      { slug: 'guides', title: 'Guides', description: 'Travel guides and resources' },
+    ];
+
     const pageRoutes: Record<string, string> = {
       'about': '/about',
       'contact': '/contact',
@@ -103,15 +113,16 @@ async function searchPages(query: string): Promise<SearchResult[]> {
       'guides': '/guides',
     };
 
-    return pages
-      .filter((page) => (page.propertySlug || 'street-food-rome') === 'street-food-rome')
+    const allPages = [...essentialPages];
+
+    return allPages
       .map((page) => {
-        const score = calculateRelevance(query, page.title, page.metaDesc);
+        const score = calculateRelevance(query, page.title, page.description);
         return {
           id: page.slug,
           type: 'page' as const,
           title: page.title,
-          description: page.metaDesc || '',
+          description: page.description,
           url: pageRoutes[page.slug] || `/${page.slug}`,
           property: 'Street Food Rome',
           propertySlug: 'street-food-rome',
