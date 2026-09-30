@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google';
 import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { RevealAnimations } from '@/components/RevealAnimations';
 import { BING_SITE_VERIFICATION, GA_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION } from '@/lib/analytics';
 import './globals.css';
 import './animations.css';
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </head>
       <body className="bg-cream text-ink font-sans">
+        <RevealAnimations />
         <Header />
         <main>{children}</main>
         <Footer />
