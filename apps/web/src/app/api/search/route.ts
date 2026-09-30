@@ -143,10 +143,13 @@ export async function GET(request: NextRequest) {
       Promise.resolve(searchProperties(query)),
     ]);
 
-    // Filter by property if specified
+    // Filter by property - always filter non-property results by propertySlug
     let allResults = [...tours, ...blogs, ...pages, ...properties];
-    if (propertySlug && propertySlug !== 'street-food-rome') {
-      allResults = allResults.filter((r) => r.propertySlug === propertySlug);
+    if (propertySlug) {
+      allResults = allResults.filter((r) => {
+        if (r.type === 'property') return true;
+        return r.propertySlug === propertySlug;
+      });
     }
 
     // Sort by relevance, limit to top 20

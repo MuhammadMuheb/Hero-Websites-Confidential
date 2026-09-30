@@ -65,49 +65,56 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
     ]);
 
     const tourResults: SearchResult[] = tours
+      .filter((tour) => (tour.propertySlug || 'street-food-rome') === propertySlug)
       .map((tour) => {
         const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
+        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
         return {
           id: tour.slug,
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
-          url: `/tours/${tour.slug}`,
-          property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
+          url: propertySlug === 'street-food-rome' ? `/tours/${tour.slug}` : `/${propertySlug}/tours/${tour.slug}`,
+          property: property?.name || propertySlug,
+          propertySlug: propertySlug,
           relevanceScore: score,
         };
       })
       .filter((result) => result.relevanceScore > 0);
 
     const blogResults: SearchResult[] = blogs
+      .filter((post) => (post.propertySlug || 'street-food-rome') === propertySlug)
       .map((post) => {
         const score = calculateRelevance(query, post.title, post.excerpt);
+        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
         return {
           id: post.slug,
           type: 'blog' as const,
           title: post.title,
           description: post.excerpt || '',
-          url: `/blog/${post.slug}`,
-          property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
+          url: propertySlug === 'street-food-rome' ? `/blog/${post.slug}` : `/${propertySlug}/blog/${post.slug}`,
+          property: property?.name || propertySlug,
+          propertySlug: propertySlug,
           relevanceScore: score,
         };
       })
       .filter((result) => result.relevanceScore > 0);
 
     const pageResults: SearchResult[] = pages
+      .filter((page) => (page.propertySlug || 'street-food-rome') === propertySlug)
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.metaDesc);
         const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
+        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
+        const url = propertySlug === 'street-food-rome' ? urlSegment : `/${propertySlug}${urlSegment}`;
         return {
           id: page.slug,
           type: 'page' as const,
           title: page.title,
           description: page.metaDesc || '',
-          url: urlSegment,
-          property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
+          url: url,
+          property: property?.name || propertySlug,
+          propertySlug: propertySlug,
           relevanceScore: score,
         };
       })
@@ -130,6 +137,10 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
       .filter((result) => result.relevanceScore > 0);
 
     const results = [...tourResults, ...blogResults, ...pageResults, ...propertyResults]
+      .filter((result) => {
+        if (result.type === 'property') return true;
+        return result.propertySlug === propertySlug;
+      })
       .sort((a, b) => b.relevanceScore - a.relevanceScore)
       .slice(0, 20);
 

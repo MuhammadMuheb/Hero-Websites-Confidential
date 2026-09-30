@@ -22,3 +22,4 @@ apps/web/Hero-Websites-Confidential/
 
 # Nested copy of the repo (causes "Failed to fetch git submodules" on Vercel)
 /Hero-Websites-Confidential/
+serviceAccountKey.json
