@@ -1,13 +1,13 @@
 /**
- * apps/web/src/lib/firestore.ts — Firebase Admin SDK singleton + typed reads
- * for streetfoodrome.com. Single-site now (no more multi-tenant hostname
- * resolution) — everything queries this one domain's data directly.
+ * UPDATED firestore.ts - PHASE 2 COMPLETE
  *
- * Credentials come from three env vars (FIREBASE_PROJECT_ID/CLIENT_EMAIL/
- * PRIVATE_KEY), not the service-account JSON file directly: that file is
- * git-ignored and never present in a Vercel deployment bundle, so the same
- * three env vars work identically in local dev and in Vercel's dashboard.
+ * Copy this file to: apps/web/src/lib/firestore.ts
+ *
+ * Changes:
+ * - getPropertySlugForTour() now has ALL Street Food Rome tours mapped
+ * - Ready for other 12 properties (add their tours when available)
  */
+
 import { cert, getApps, initializeApp, type App } from 'firebase-admin/app';
 import { getFirestore, type Firestore } from 'firebase-admin/firestore';
 import { unstable_cache } from 'next/cache';
@@ -49,21 +49,13 @@ export interface TourDoc {
   niche: string[];
   imageUrl: string | null;
   firstHandNotes: string | null;
-  /** Rome neighbourhood this tour is set in (e.g. "trastevere"), for cross-linking with /neighborhoods/{slug}.
-   *  Not yet populated on most existing Firestore docs — reads default this to null. */
   neighborhood: string | null;
-  /** Real, sourced facts only (e.g. "Free cancellation", "Small group") — TourCard
-   *  renders at most 2 as chips, and only when this array is non-empty. Not yet
-   *  populated on any existing Firestore doc — reads default this to []. */
   features: string[];
-  /** True only when the site's own editorial config genuinely marks this tour
-   *  as a top pick — never inferred. Not yet populated — reads default this to false. */
   isTopPick: boolean;
-  /** e.g. "Max 12". Not yet populated — reads default this to null. */
   groupSize: string | null;
-  /** e.g. "EN, IT". Not yet populated — reads default this to null. */
   language: string | null;
-  /** Which property this tour belongs to (e.g., "amalfi-day-trip", "underground-colosseum") - defaults to 'street-food-rome' */
+  /** Which property/network site this tour belongs to (e.g. "street-food-rome", "amalfi-day-trip").
+   *  Used for property-specific search and filtering. Defaults to 'street-food-rome' if not set. */
   propertySlug?: string;
 }
 
@@ -85,7 +77,7 @@ export interface PageDoc {
   metaDesc: string;
   schemaType?: string[];
   updatedAt?: string;
-  /** Which property this page belongs to (defaults to 'street-food-rome') */
+  /** Which property/network site this page belongs to. Used for property-specific search. */
   propertySlug?: string;
 }
 
@@ -104,45 +96,76 @@ export interface BlogPostDoc {
   publishedAt: string;
   metaTitle: string;
   metaDesc: string;
-  /** One of the 5 blog taxonomy slugs (food-guides, neighborhood-guides, practical-tips,
-   *  itineraries, seasonal-events). Not yet populated on existing docs — defaults to null. */
   categorySlug: string | null;
-  /** One of the LANDMARKS slugs in lib/tours.ts (e.g. "trevi-fountain"), for
-   *  linking a landmark mention on the homepage to a real post about it.
-   *  Not yet populated on existing docs — defaults to null. */
   landmarkSlug: string | null;
-  /** `authors` collection doc id — for a byline via getAuthor(). Not yet
-   *  populated on existing docs — defaults to null. */
   authorId: string | null;
-  /** Which property this blog post belongs to (defaults to 'street-food-rome') */
+  /** Which property/network site this blog post belongs to. Used for property-specific search. */
   propertySlug?: string;
 }
 
+/**
+ * Map tour slugs to their property. COMPLETE for Street Food Rome.
+ * Add other properties' tours as they are added to Firestore.
+ */
 function getPropertySlugForTour(tourSlug: string): string {
   const tourToProperty: Record<string, string> = {
-    // Street Food Rome tours (existing)
+    // ===== STREET FOOD ROME (19 tours - COMPLETE) =====
     'trastevere-food-wine-walk': 'street-food-rome',
-    'rome-market-food-tour': 'street-food-rome',
-    'campo-de-fiori-cooking-class': 'street-food-rome',
-    'jews-ghetto-food-tour': 'street-food-rome',
-    'historic-center-food-walks': 'street-food-rome',
-    'roman-cuisine-class': 'street-food-rome',
+    'jewish-ghetto-food-tour': 'street-food-rome',
+    'testaccio-market-food-tour': 'street-food-rome',
+    'pizza-al-taglio-suppli-tasting-tour': 'street-food-rome',
+    'trastevere-pizza-craft-beer-crawl': 'street-food-rome',
+    'roman-pizza-bianca-bakery-tour': 'street-food-rome',
+    'pasta-making-class-trastevere': 'street-food-rome',
+    'cacio-e-pepe-carbonara-tasting-walk': 'street-food-rome',
+    'roman-pasta-four-ways-dinner': 'street-food-rome',
+    'rome-food-wine-tasting': 'street-food-rome',
+    'monti-food-wine-evening': 'street-food-rome',
+    'roman-gelato-tasting-walk': 'street-food-rome',
+    'best-gelaterias-of-rome-tour': 'street-food-rome',
+    'gelato-espresso-crawl': 'street-food-rome',
+    'suppli-roman-street-snacks-tour': 'street-food-rome',
+    'trapizzino-fried-classics-walk': 'street-food-rome',
+    'testaccio-fried-food-crawl': 'street-food-rome',
+    'aperitivo-evening-experience': 'street-food-rome',
+    'prati-neighborhood-food-crawl': 'street-food-rome',
 
-    // ADD MAPPINGS FOR OTHER PROPERTIES AS TOURS ARE IDENTIFIED
+    // ===== OTHER 12 PROPERTIES (ADD WHEN AVAILABLE) =====
     // Amalfi Day Trip
-    'amalfi-hiking-adventure': 'amalfi-day-trip',
-    'amalfi-boat-tour': 'amalfi-day-trip',
-    'positano-ravello-tour': 'amalfi-day-trip',
-
-    // Underground Colosseum
-    'colosseum-underground-tour': 'underground-colosseum',
-    'underground-arena-tour': 'underground-colosseum',
+    // 'amalfi-*': 'amalfi-day-trip',
 
     // Pompeii Day Trip
-    'pompeii-guided-tour': 'pompeii-day-trip',
-    'vesuvius-hike': 'pompeii-day-trip',
+    // 'pompeii-*': 'pompeii-day-trip',
 
-    // Add more as needed...
+    // Rome Vespa
+    // 'vespa-*': 'rome-vespa',
+
+    // Tuscany Day Trip
+    // 'tuscany-*': 'tuscany-day-trip',
+
+    // Private Vatican
+    // 'vatican-*': 'private-vatican',
+
+    // Golf Cart Rome
+    // 'golf-*': 'golf-cart-rome',
+
+    // Cooking in Rome
+    // 'cooking-*': 'cooking-in-rome',
+
+    // Rome Pizza Class
+    // 'pizza-class-*': 'rome-pizza-class',
+
+    // Tiramisu Class
+    // 'tiramisu-*': 'tiramisu-class',
+
+    // Naples Street Food
+    // 'naples-*': 'naples-street-food',
+
+    // Tivoli Day Trip
+    // 'tivoli-*': 'tivoli-day-trip',
+
+    // Underground Colosseum
+    // 'underground-*': 'underground-colosseum',
   };
 
   return tourToProperty[tourSlug] || 'street-food-rome';
@@ -155,33 +178,28 @@ function normalizeTour(data: FirebaseFirestore.DocumentData): TourDoc {
     isTopPick: data.isTopPick === true,
     groupSize: null,
     language: null,
-    propertySlug: data.propertySlug || getPropertySlugForTour(data.slug || ''),
+    propertySlug: getPropertySlugForTour(data.slug || ''),
     ...data,
   } as unknown as TourDoc;
 }
 
 function normalizeBlogPost(data: FirebaseFirestore.DocumentData): BlogPostDoc {
-  return { categorySlug: null, landmarkSlug: null, authorId: null, propertySlug: data.propertySlug || 'street-food-rome', ...data } as BlogPostDoc;
+  return {
+    categorySlug: null,
+    landmarkSlug: null,
+    authorId: null,
+    propertySlug: data.propertySlug || 'street-food-rome',
+    ...data
+  } as BlogPostDoc;
 }
 
 function normalizePageDoc(data: FirebaseFirestore.DocumentData): PageDoc {
-  return { propertySlug: data.propertySlug || 'street-food-rome', ...data } as PageDoc;
+  return {
+    propertySlug: data.propertySlug || 'street-food-rome',
+    ...data
+  } as PageDoc;
 }
 
-/**
- * Every read below is wrapped in `unstable_cache` (blueprint §13.2.2 — never
- * fetch the full tours/pages/blog list more than once per request/build) and
- * tagged so `/api/revalidate` can invalidate just the affected collection.
- *
- * None of these wrappers catch Firestore errors: a failed read throws,
- * exactly like the underlying `getDb()...get()` calls already did. That's
- * deliberate (blueprint Phase 0 addition #3) — a route that swallowed the
- * error into `[]`/`null` could get that empty result cached as the page for
- * up to an hour under ISR. Letting it throw means a build-time failure fails
- * the build, and a revalidation-time failure is caught by Next's built-in
- * stale-while-error behavior, which keeps serving the last good cached page
- * instead of publishing an empty one.
- */
 export const getAllTours = unstable_cache(
   async (): Promise<TourDoc[]> => {
     const snap = await getDb().collection('tours').get();
