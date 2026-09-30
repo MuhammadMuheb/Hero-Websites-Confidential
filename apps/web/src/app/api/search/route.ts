@@ -43,30 +43,10 @@ function calculateRelevance(query: string, title: string, description: string): 
 }
 
 async function searchTours(query: string): Promise<SearchResult[]> {
-  try {
-    const tours = await getAllTours();
-    return tours
-      .map((tour) => {
-        const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
-        const propertySlug = tour.propertySlug || 'street-food-rome';
-        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
-        return {
-          id: tour.slug,
-          type: 'tour' as const,
-          title: tour.title,
-          description: tour.firstHandNotes || tour.niche?.join(', ') || '',
-          url: `/${propertySlug}/tours/${tour.slug}`,
-          property: property?.name || 'Street Food Rome',
-          propertySlug: propertySlug,
-          relevanceScore: score,
-        };
-      })
-      .filter((result) => result.relevanceScore > 0)
-      .sort((a, b) => b.relevanceScore - a.relevanceScore);
-  } catch (error) {
-    console.error('Error searching tours:', error);
-    return [];
-  }
+  // Tours don't have detail pages in the site structure - only listing pages exist.
+  // Return empty array to avoid 404 errors from broken URLs.
+  // TODO: Either create individual tour detail pages or link to tours listing page.
+  return [];
 }
 
 async function searchBlogPosts(query: string): Promise<SearchResult[]> {
