@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from '@/components/NetworkLink';
 import { getAllTours, SITE_DOMAIN, type TourDoc } from '@/lib/firestore';
 import { Hero } from '@/components/Hero';
 import { TourCard } from '@/components/cards/TourCard';
@@ -110,9 +111,9 @@ export default async function ToursIndexPage({
           {tours.length === 0 && (
             <div className="py-20 text-center">
               <p className="text-ink/60 mb-4">No tours found matching your filters.</p>
-              <a href="/tours" className="text-brand hover:underline">
+              <Link href="/tours" className="text-brand hover:underline">
                 View all tours
-              </a>
+              </Link>
             </div>
           )}
         </div>
