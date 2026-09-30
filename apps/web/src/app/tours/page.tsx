@@ -67,62 +67,68 @@ export default async function ToursIndexPage({
         accentWord="tour"
       />
 
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filters */}
-          <div className="mb-16">
-            <h2 className="font-display text-2xl font-bold text-ink mb-8">Filter by Category</h2>
-            <div className="flex flex-wrap gap-3 mb-12">
-              <Link
-                href="/tours"
-                className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
-                  !category && !neighborhood
-                    ? 'bg-brand text-cream shadow-md hover:shadow-lg'
-                    : 'border border-line bg-white text-ink hover:border-brand hover:bg-brand/5'
-                }`}
-              >
-                All Tours
-              </Link>
-              {CATEGORIES.map((cat) => (
+          {/* Filter Section */}
+          <div className="mb-12">
+            {/* Category Filters */}
+            <div className="mb-10">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-ink/60 mb-4">Category</h3>
+              <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible">
                 <Link
-                  key={cat.slug}
-                  href={`/tours?category=${cat.slug}`}
-                  className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
-                    activeCategory?.slug === cat.slug
-                      ? 'bg-brand text-cream shadow-md hover:shadow-lg'
-                      : 'border border-line bg-white text-ink hover:border-brand hover:bg-brand/5'
+                  href="/tours"
+                  className={`shrink-0 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                    !category && !neighborhood
+                      ? 'bg-brand text-cream'
+                      : 'border border-line bg-white text-ink hover:border-brand'
                   }`}
                 >
-                  {cat.name}
+                  All
                 </Link>
-              ))}
+                {CATEGORIES.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/tours?category=${cat.slug}`}
+                    className={`shrink-0 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                      activeCategory?.slug === cat.slug
+                        ? 'bg-brand text-cream'
+                        : 'border border-line bg-white text-ink hover:border-brand'
+                    }`}
+                  >
+                    {cat.name}
+                  </Link>
+                ))}
+              </div>
             </div>
 
-            <h2 className="font-display text-2xl font-bold text-ink mb-8">Filter by Neighborhood</h2>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/tours"
-                className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
-                  !neighborhood && !category
-                    ? 'bg-brand text-cream shadow-md hover:shadow-lg'
-                    : 'border border-line bg-white text-ink hover:border-brand hover:bg-brand/5'
-                }`}
-              >
-                All Areas
-              </Link>
-              {NEIGHBORHOODS.slice(0, 8).map((area) => (
+            {/* Neighborhood Filters */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-ink/60 mb-4">Area</h3>
+              <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible">
                 <Link
-                  key={area.slug}
-                  href={`/tours?neighborhood=${area.slug}`}
-                  className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
-                    activeNeighborhood?.slug === area.slug
-                      ? 'bg-brand text-cream shadow-md hover:shadow-lg'
-                      : 'border border-line bg-white text-ink hover:border-brand hover:bg-brand/5'
+                  href="/tours"
+                  className={`shrink-0 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                    !neighborhood && !category
+                      ? 'bg-brand text-cream'
+                      : 'border border-line bg-white text-ink hover:border-brand'
                   }`}
                 >
-                  {area.name}
+                  All
                 </Link>
-              ))}
+                {NEIGHBORHOODS.map((area) => (
+                  <Link
+                    key={area.slug}
+                    href={`/tours?neighborhood=${area.slug}`}
+                    className={`shrink-0 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                      activeNeighborhood?.slug === area.slug
+                        ? 'bg-brand text-cream'
+                        : 'border border-line bg-white text-ink hover:border-brand'
+                    }`}
+                  >
+                    {area.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
