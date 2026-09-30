@@ -1,10 +1,10 @@
-import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
+import { getAllTours, getAllBlogPosts, listPageDocs } from '@/lib/firestore';
 import { tourHref } from '@/lib/tours';
 import { NextRequest, NextResponse } from 'next/server';
 
 interface SearchResult {
   id: string;
-  type: 'tour' | 'blog';
+  type: 'tour' | 'blog' | 'page';
   title: string;
   description: string;
   url: string;
@@ -89,6 +89,43 @@ async function searchBlogPosts(query: string): Promise<SearchResult[]> {
   }
 }
 
+async function searchPages(query: string): Promise<SearchResult[]> {
+  try {
+    const pages = await listPageDocs();
+    const pageRoutes: Record<string, string> = {
+      'about': '/about',
+      'contact': '/contact',
+      'privacy': '/privacy',
+      'terms': '/terms',
+      'affiliate-disclosure': '/affiliate-disclosure',
+      'cookie-policy': '/cookie-policy',
+      'faq': '/faq',
+      'guides': '/guides',
+    };
+
+    return pages
+      .filter((page) => (page.propertySlug || 'street-food-rome') === 'street-food-rome')
+      .map((page) => {
+        const score = calculateRelevance(query, page.title, page.metaDesc);
+        return {
+          id: page.slug,
+          type: 'page' as const,
+          title: page.title,
+          description: page.metaDesc || '',
+          url: pageRoutes[page.slug] || `/${page.slug}`,
+          property: 'Street Food Rome',
+          propertySlug: 'street-food-rome',
+          relevanceScore: score,
+        };
+      })
+      .filter((result) => result.relevanceScore > 0)
+      .sort((a, b) => b.relevanceScore - a.relevanceScore);
+  } catch (error) {
+    console.error('Error searching pages:', error);
+    return [];
+  }
+}
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('q')?.trim();
@@ -98,12 +135,13 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const [tours, blogs] = await Promise.all([
+    const [tours, blogs, pages] = await Promise.all([
       searchTours(query),
       searchBlogPosts(query),
+      searchPages(query),
     ]);
 
-    const results = [...tours, ...blogs]
+    const results = [...tours, ...blogs, ...pages]
       .sort((a, b) => b.relevanceScore - a.relevanceScore)
       .slice(0, 20);
 

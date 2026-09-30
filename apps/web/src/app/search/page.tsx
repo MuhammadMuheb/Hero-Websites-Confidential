@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import Link from '@/components/NetworkLink';
 import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
-import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
+import { getAllTours, getAllBlogPosts, listPageDocs } from '@/lib/firestore';
 import { tourHref } from '@/lib/tours';
 
 interface SearchResult {
   id: string;
-  type: 'tour' | 'blog';
+  type: 'tour' | 'blog' | 'page';
   title: string;
   description: string;
   url: string;
@@ -60,10 +60,22 @@ async function SearchResults({ query }: { query: string; propertySlug?: string }
   }
 
   try {
-    const [tours, blogs] = await Promise.all([
+    const [tours, blogs, pages] = await Promise.all([
       getAllTours().catch(() => []),
       getAllBlogPosts().catch(() => []),
+      listPageDocs().catch(() => []),
     ]);
+
+    const pageRoutes: Record<string, string> = {
+      'about': '/about',
+      'contact': '/contact',
+      'privacy': '/privacy',
+      'terms': '/terms',
+      'affiliate-disclosure': '/affiliate-disclosure',
+      'cookie-policy': '/cookie-policy',
+      'faq': '/faq',
+      'guides': '/guides',
+    };
 
     const tourResults: SearchResult[] = tours
       .filter((tour) => (tour.propertySlug || 'street-food-rome') === STREET_FOOD_ROME)
@@ -101,7 +113,25 @@ async function SearchResults({ query }: { query: string; propertySlug?: string }
       .filter((result) => result.relevanceScore > 0)
       .sort((a, b) => b.relevanceScore - a.relevanceScore);
 
-    const results = [...tourResults, ...blogResults].slice(0, 20);
+    const pageResults: SearchResult[] = pages
+      .filter((page) => (page.propertySlug || 'street-food-rome') === STREET_FOOD_ROME)
+      .map((page) => {
+        const score = calculateRelevance(query, page.title, page.metaDesc);
+        return {
+          id: page.slug,
+          type: 'page' as const,
+          title: page.title,
+          description: page.metaDesc || '',
+          url: pageRoutes[page.slug] || `/${page.slug}`,
+          property: 'Street Food Rome',
+          propertySlug: STREET_FOOD_ROME,
+          relevanceScore: score,
+        };
+      })
+      .filter((result) => result.relevanceScore > 0)
+      .sort((a, b) => b.relevanceScore - a.relevanceScore);
+
+    const results = [...tourResults, ...blogResults, ...pageResults].slice(0, 20);
 
     if (results.length === 0) {
       return (
@@ -118,6 +148,7 @@ async function SearchResults({ query }: { query: string; propertySlug?: string }
 
     const tourGroup = results.filter((r) => r.type === 'tour');
     const blogGroup = results.filter((r) => r.type === 'blog');
+    const pageGroup = results.filter((r) => r.type === 'page');
 
     return (
       <div className="bg-cream py-20">
@@ -179,6 +210,34 @@ async function SearchResults({ query }: { query: string; propertySlug?: string }
                       </div>
                       <span className="ml-2 shrink-0 rounded-full bg-gold/20 px-3 py-1 text-xs font-medium text-gold">
                         Blog
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Pages */}
+          {pageGroup.length > 0 && (
+            <div className="mb-12">
+              <h2 className="mb-4 text-lg font-semibold text-ink">Pages</h2>
+              <div className="space-y-4">
+                {pageGroup.map((result) => (
+                  <Link
+                    key={result.id}
+                    href={result.url}
+                    className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="min-w-0">
+                        <h3 className="font-semibold text-ink">{result.title}</h3>
+                        {result.description && (
+                          <p className="mt-1 text-sm text-ink/70 line-clamp-2">{result.description}</p>
+                        )}
+                      </div>
+                      <span className="ml-2 shrink-0 rounded-full bg-slate-200 px-3 py-1 text-xs font-medium text-slate-700">
+                        Page
                       </span>
                     </div>
                   </Link>
