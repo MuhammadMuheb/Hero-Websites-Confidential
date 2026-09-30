@@ -3,6 +3,7 @@ import Link from '@/components/NetworkLink';
 import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
 import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
+import { tourHref } from '@/lib/tours';
 
 interface SearchResult {
   id: string;
@@ -73,7 +74,7 @@ async function SearchResults({ query }: { query: string; propertySlug?: string }
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
-          url: `/tours/${tour.slug}`,
+          url: tourHref(tour.slug),
           property: 'Street Food Rome',
           propertySlug: STREET_FOOD_ROME,
           relevanceScore: score,

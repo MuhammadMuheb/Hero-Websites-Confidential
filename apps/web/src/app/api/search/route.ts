@@ -1,4 +1,5 @@
 import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
+import { tourHref } from '@/lib/tours';
 import { NextRequest, NextResponse } from 'next/server';
 
 interface SearchResult {
@@ -48,7 +49,7 @@ async function searchTours(query: string): Promise<SearchResult[]> {
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
-          url: `/tours/${tour.slug}`,
+          url: tourHref(tour.slug),
           property: 'Street Food Rome',
           propertySlug: 'street-food-rome',
           relevanceScore: score,

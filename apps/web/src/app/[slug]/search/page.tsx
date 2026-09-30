@@ -3,6 +3,7 @@ import Link from '@/components/NetworkLink';
 import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
 import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
+import { tourHref } from '@/lib/tours';
 
 interface SearchResult {
   id: string;
@@ -68,12 +69,13 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
       .filter((tour) => (tour.propertySlug || 'street-food-rome') === REQUIRED_SLUG)
       .map((tour) => {
         const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
+        const baseTourHref = tourHref(tour.slug);
         return {
           id: tour.slug,
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
-          url: `/${propertySlug}/tours/${tour.slug}`,
+          url: propertySlug && propertySlug !== 'street-food-rome' ? `/${propertySlug}${baseTourHref}` : baseTourHref,
           property: 'Street Food Rome',
           propertySlug: REQUIRED_SLUG,
           relevanceScore: score,
@@ -108,7 +110,7 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-display text-4xl font-bold text-ink mb-4">No results found</h2>
             <p className="text-ink/70">
-              We couldn&apos;t find anything matching &quot;{query}&quot;. Try different keywords or browse our <a href={`/${propertySlug}/tours`} className="text-brand hover:underline">tours by category</a>.
+              We couldn&apos;t find anything matching &quot;{query}&quot;. Try different keywords or browse our <Link href={`/${propertySlug}/tours`} className="text-brand hover:underline">tours by category</Link>.
             </p>
           </div>
         </div>
