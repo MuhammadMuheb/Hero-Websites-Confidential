@@ -64,18 +64,19 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
       listPageDocs().catch(() => []),
     ]);
 
+    const propertyName = NETWORK_SITES.find((s) => s.slug === propertySlug)?.name || propertySlug;
+
     const tourResults: SearchResult[] = tours
       .filter((tour) => (tour.propertySlug || 'street-food-rome') === propertySlug)
       .map((tour) => {
         const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
-        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
         return {
           id: tour.slug,
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
           url: propertySlug === 'street-food-rome' ? `/tours/${tour.slug}` : `/${propertySlug}/tours/${tour.slug}`,
-          property: property?.name || propertySlug,
+          property: propertyName,
           propertySlug: propertySlug,
           relevanceScore: score,
         };
@@ -86,14 +87,13 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
       .filter((post) => (post.propertySlug || 'street-food-rome') === propertySlug)
       .map((post) => {
         const score = calculateRelevance(query, post.title, post.excerpt);
-        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
         return {
           id: post.slug,
           type: 'blog' as const,
           title: post.title,
           description: post.excerpt || '',
           url: propertySlug === 'street-food-rome' ? `/blog/${post.slug}` : `/${propertySlug}/blog/${post.slug}`,
-          property: property?.name || propertySlug,
+          property: propertyName,
           propertySlug: propertySlug,
           relevanceScore: score,
         };
@@ -105,7 +105,6 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.metaDesc);
         const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
-        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
         const url = propertySlug === 'street-food-rome' ? urlSegment : `/${propertySlug}${urlSegment}`;
         return {
           id: page.slug,
@@ -113,7 +112,7 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
           title: page.title,
           description: page.metaDesc || '',
           url: url,
-          property: property?.name || propertySlug,
+          property: propertyName,
           propertySlug: propertySlug,
           relevanceScore: score,
         };
