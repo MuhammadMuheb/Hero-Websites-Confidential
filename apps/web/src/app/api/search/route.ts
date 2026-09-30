@@ -91,8 +91,6 @@ async function searchBlogPosts(query: string): Promise<SearchResult[]> {
 
 async function searchPages(query: string): Promise<SearchResult[]> {
   try {
-    const pages = await listPageDocs();
-
     const essentialPages = [
       { slug: 'about', title: 'About', description: 'Learn about Street Food Rome and who writes these guides' },
       { slug: 'contact', title: 'Contact', description: 'Get in touch with Street Food Rome' },
@@ -113,9 +111,7 @@ async function searchPages(query: string): Promise<SearchResult[]> {
       'guides': '/guides',
     };
 
-    const allPages = [...essentialPages];
-
-    return allPages
+    return essentialPages
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.description);
         return {
