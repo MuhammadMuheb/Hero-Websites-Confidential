@@ -25,6 +25,11 @@ export interface NeighborhoodDef {
   name: string;
 }
 
+export interface CityDef {
+  slug: string;
+  name: string;
+}
+
 export interface TourRegistryEntry {
   /** The URL segment under /tours/{seoSlug}. */
   seoSlug: string;
@@ -34,6 +39,8 @@ export interface TourRegistryEntry {
   category: string;
   /** One of NEIGHBORHOODS' slugs, or null when a tour isn't tied to one place. */
   neighborhood: string | null;
+  /** One of CITIES' slugs. Defaults to 'rome' for Street Food Rome tours. */
+  city: string;
 }
 
 export const CATEGORIES: CategoryDef[] = [
@@ -42,6 +49,15 @@ export const CATEGORIES: CategoryDef[] = [
   { slug: 'beer-and-wine', name: 'Beer & Wine' },
   { slug: 'gelato', name: 'Gelato' },
   { slug: 'street-food-classics', name: 'Street Food Classics' },
+  { slug: 'cooking-classes', name: 'Cooking Classes' },
+  { slug: 'wine-tasting', name: 'Wine Tasting' },
+];
+
+export const CITIES: CityDef[] = [
+  { slug: 'rome', name: 'Rome' },
+  { slug: 'vatican', name: 'Vatican' },
+  { slug: 'trastevere-city', name: 'Trastevere' },
+  { slug: 'historical-center', name: 'Historical Center' },
 ];
 
 export const NEIGHBORHOODS: NeighborhoodDef[] = [
@@ -64,38 +80,38 @@ export const NEIGHBORHOODS: NeighborhoodDef[] = [
  */
 export const TOURS: TourRegistryEntry[] = [
   // --- previously "KEPT_TOURS" — keep these exact SEO slugs ---
-  { seoSlug: 'trastevere-food-tour', realSlug: 'trastevere-food-wine-walk', category: 'beer-and-wine', neighborhood: 'trastevere' },
-  { seoSlug: 'jewish-ghetto-tour', realSlug: 'jewish-ghetto-food-tour', category: 'street-food-classics', neighborhood: 'jewish-ghetto' },
-  { seoSlug: 'street-food-market-tour', realSlug: 'testaccio-market-food-tour', category: 'street-food-classics', neighborhood: 'testaccio' },
+  { seoSlug: 'trastevere-food-tour', realSlug: 'trastevere-food-wine-walk', category: 'beer-and-wine', neighborhood: 'trastevere', city: 'rome' },
+  { seoSlug: 'jewish-ghetto-tour', realSlug: 'jewish-ghetto-food-tour', category: 'street-food-classics', neighborhood: 'jewish-ghetto', city: 'rome' },
+  { seoSlug: 'street-food-market-tour', realSlug: 'testaccio-market-food-tour', category: 'street-food-classics', neighborhood: 'testaccio', city: 'rome' },
 
   // --- pizza ---
-  { seoSlug: 'pizza-al-taglio-suppli-tasting-tour', realSlug: 'pizza-al-taglio-suppli-tasting-tour', category: 'pizza', neighborhood: null },
-  { seoSlug: 'trastevere-pizza-craft-beer-crawl', realSlug: 'trastevere-pizza-craft-beer-crawl', category: 'pizza', neighborhood: 'trastevere' },
-  { seoSlug: 'roman-pizza-bianca-bakery-tour', realSlug: 'roman-pizza-bianca-bakery-tour', category: 'pizza', neighborhood: null },
+  { seoSlug: 'pizza-al-taglio-suppli-tasting-tour', realSlug: 'pizza-al-taglio-suppli-tasting-tour', category: 'pizza', neighborhood: null, city: 'rome' },
+  { seoSlug: 'trastevere-pizza-craft-beer-crawl', realSlug: 'trastevere-pizza-craft-beer-crawl', category: 'pizza', neighborhood: 'trastevere', city: 'rome' },
+  { seoSlug: 'roman-pizza-bianca-bakery-tour', realSlug: 'roman-pizza-bianca-bakery-tour', category: 'pizza', neighborhood: null, city: 'rome' },
 
   // --- pasta ---
-  { seoSlug: 'pasta-making-class-trastevere', realSlug: 'pasta-making-class-trastevere', category: 'pasta', neighborhood: 'trastevere' },
-  { seoSlug: 'cacio-e-pepe-carbonara-tasting-walk', realSlug: 'cacio-e-pepe-carbonara-tasting-walk', category: 'pasta', neighborhood: null },
-  { seoSlug: 'roman-pasta-four-ways-dinner', realSlug: 'roman-pasta-four-ways-dinner', category: 'pasta', neighborhood: null },
+  { seoSlug: 'pasta-making-class-trastevere', realSlug: 'pasta-making-class-trastevere', category: 'cooking-classes', neighborhood: 'trastevere', city: 'rome' },
+  { seoSlug: 'cacio-e-pepe-carbonara-tasting-walk', realSlug: 'cacio-e-pepe-carbonara-tasting-walk', category: 'pasta', neighborhood: null, city: 'rome' },
+  { seoSlug: 'roman-pasta-four-ways-dinner', realSlug: 'roman-pasta-four-ways-dinner', category: 'pasta', neighborhood: null, city: 'rome' },
 
   // --- beer & wine ---
-  { seoSlug: 'rome-food-wine-tasting', realSlug: 'rome-food-wine-tasting', category: 'beer-and-wine', neighborhood: null },
-  { seoSlug: 'monti-food-wine-evening', realSlug: 'monti-food-wine-evening', category: 'beer-and-wine', neighborhood: 'monti' },
+  { seoSlug: 'rome-food-wine-tasting', realSlug: 'rome-food-wine-tasting', category: 'wine-tasting', neighborhood: null, city: 'rome' },
+  { seoSlug: 'monti-food-wine-evening', realSlug: 'monti-food-wine-evening', category: 'beer-and-wine', neighborhood: 'monti', city: 'rome' },
   // trastevere-food-wine-walk is already covered above as trastevere-food-tour — not re-listed.
 
   // --- gelato ---
-  { seoSlug: 'roman-gelato-tasting-walk', realSlug: 'roman-gelato-tasting-walk', category: 'gelato', neighborhood: null },
-  { seoSlug: 'best-gelaterias-of-rome-tour', realSlug: 'best-gelaterias-of-rome-tour', category: 'gelato', neighborhood: null },
-  { seoSlug: 'gelato-espresso-crawl', realSlug: 'gelato-espresso-crawl', category: 'gelato', neighborhood: null },
+  { seoSlug: 'roman-gelato-tasting-walk', realSlug: 'roman-gelato-tasting-walk', category: 'gelato', neighborhood: null, city: 'rome' },
+  { seoSlug: 'best-gelaterias-of-rome-tour', realSlug: 'best-gelaterias-of-rome-tour', category: 'gelato', neighborhood: null, city: 'rome' },
+  { seoSlug: 'gelato-espresso-crawl', realSlug: 'gelato-espresso-crawl', category: 'gelato', neighborhood: null, city: 'rome' },
 
   // --- street food classics ---
-  { seoSlug: 'suppli-roman-street-snacks-tour', realSlug: 'suppli-roman-street-snacks-tour', category: 'street-food-classics', neighborhood: null },
-  { seoSlug: 'trapizzino-fried-classics-walk', realSlug: 'trapizzino-fried-classics-walk', category: 'street-food-classics', neighborhood: null },
-  { seoSlug: 'testaccio-fried-food-crawl', realSlug: 'testaccio-fried-food-crawl', category: 'street-food-classics', neighborhood: 'testaccio' },
+  { seoSlug: 'suppli-roman-street-snacks-tour', realSlug: 'suppli-roman-street-snacks-tour', category: 'street-food-classics', neighborhood: null, city: 'rome' },
+  { seoSlug: 'trapizzino-fried-classics-walk', realSlug: 'trapizzino-fried-classics-walk', category: 'street-food-classics', neighborhood: null, city: 'rome' },
+  { seoSlug: 'testaccio-fried-food-crawl', realSlug: 'testaccio-fried-food-crawl', category: 'street-food-classics', neighborhood: 'testaccio', city: 'rome' },
 
   // --- discovered in Firestore but missing from the blueprint's original 17-tour count ---
-  { seoSlug: 'aperitivo-evening-experience', realSlug: 'aperitivo-evening-experience', category: 'beer-and-wine', neighborhood: null },
-  { seoSlug: 'prati-neighborhood-food-crawl', realSlug: 'prati-neighborhood-food-crawl', category: 'street-food-classics', neighborhood: 'prati' },
+  { seoSlug: 'aperitivo-evening-experience', realSlug: 'aperitivo-evening-experience', category: 'beer-and-wine', neighborhood: null, city: 'rome' },
+  { seoSlug: 'prati-neighborhood-food-crawl', realSlug: 'prati-neighborhood-food-crawl', category: 'street-food-classics', neighborhood: 'prati', city: 'rome' },
 ];
 
 export interface NetworkSiteDef {
@@ -296,6 +312,10 @@ export function getCategory(slug: string): CategoryDef | undefined {
 
 export function getNeighborhood(slug: string): NeighborhoodDef | undefined {
   return NEIGHBORHOODS.find((n) => n.slug === slug);
+}
+
+export function getCity(slug: string): CityDef | undefined {
+  return CITIES.find((c) => c.slug === slug);
 }
 
 export function getTourEntryBySeoSlug(seoSlug: string): TourRegistryEntry | undefined {

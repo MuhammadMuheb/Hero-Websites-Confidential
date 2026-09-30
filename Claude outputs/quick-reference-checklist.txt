@@ -1,0 +1,270 @@
+════════════════════════════════════════════════════════════════════════════════
+                    STREET FOOD ROME - FILTER REDESIGN
+                              QUICK REFERENCE
+════════════════════════════════════════════════════════════════════════════════
+
+🎯 PRIMARY OBJECTIVE
+────────────────────────────────────────────────────────────────────────────────
+Redesign Category + Area filter layout from vertical stacking to horizontal
+carousel/slider style. Fix critical bug where category selection disappears
+when switching areas. Add City filter. Minimal animations.
+
+════════════════════════════════════════════════════════════════════════════════
+
+🐛 BUGS TO FIX (CRITICAL)
+────────────────────────────────────────────────────────────────────────────────
+
+[1] CATEGORY BUTTONS DISAPPEAR
+    Problem: User selects "Pizza" → Clicks area "Monti" → Pizza button gone ❌
+    Solution: Category selection must PERSIST when area changes
+    Test: Select category → Change area multiple times → Button stays
+
+[2] FILTER STATE NOT PRESERVED
+    Problem: Selected category resets when switching areas
+    Solution: Implement state management that keeps category selection
+    Test: Pizza + Monti → Switch to Testaccio → Still shows Pasta filtering
+
+[3] UGLY VERTICAL LAYOUT
+    Problem: Category buttons in one row, Area buttons in another = cluttered
+    Solution: Horizontal scrollable carousel like navbar navigation
+    Visual: All buttons in line, scrollable left-right
+
+════════════════════════════════════════════════════════════════════════════════
+
+✨ NEW DESIGN LAYOUT
+────────────────────────────────────────────────────────────────────────────────
+
+SECTION 1 - CATEGORIES (Horizontal Scrollable)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[All] [Pizza] [Pasta] [Beer & Wine] [Gelato] [Street Food Classics] ...
+      ↑ Green when selected, gray when not
+
+Add 2-3 new categories from existing website tours
+
+
+SECTION 2 - AREAS (Horizontal Scrollable)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[All] [Trastevere] [Testaccio] [Jewish Ghetto] [Campo de'Fiori] [Monti] ...
+      ↑ Green when selected, gray when not
+
+
+SECTION 3 - CITIES (NEW - Horizontal Scrollable)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[All Cities] [Rome] [Vatican] [Trastevere City] [Historical Center] ...
+             ↑ Green when selected, gray when not
+
+════════════════════════════════════════════════════════════════════════════════
+
+⚙️ FILTER LOGIC (What Should Happen)
+────────────────────────────────────────────────────────────────────────────────
+
+LOGIC:  Show tours WHERE (category matches) AND (area matches) AND (city matches)
+
+EXAMPLES:
+
+  [All] + [All] + [All Cities]     → Show ALL tours
+
+  [Pizza] + [All] + [All Cities]   → Show PIZZA tours from all areas & cities
+
+  [All] + [Monti] + [All Cities]   → Show ALL tours in Monti area
+
+  [Pizza] + [Monti] + [Rome]       → Show PIZZA tours in MONTI area in ROME
+
+  [Pasta] + [Testaccio] + [Vatican]→ Show PASTA tours in TESTACCIO in VATICAN
+
+
+SELECTION BEHAVIOR:
+
+  ✅ User selects one button in any section
+  ✅ That button highlights green (#2D7C3F background, white text)
+  ✅ Other buttons in same section turn gray
+  ✅ Selections in OTHER sections DON'T change
+  ✅ Results filter instantly based on ALL 3 selections
+  ✅ Selection PERSISTS even if user switches to different section
+
+
+PERSISTENCE RULE (MOST IMPORTANT):
+
+  IF User selects "Pizza" AND "Monti" AND "Rome"
+  THEN clicks another button in ANY section
+  THEN all 3 selections remain active ✅
+
+  If this doesn't work → BUG
+
+════════════════════════════════════════════════════════════════════════════════
+
+🎨 STYLING RULES
+────────────────────────────────────────────────────────────────────────────────
+
+BUTTONS:
+  • Padding: 10-12px horizontal, 8px vertical (bigger touch targets)
+  • Border Radius: Same as existing site style
+  • Font Size: 14px
+  • Font Weight: Medium (500)
+
+SELECTED STATE:
+  • Background: #2D7C3F (green, same as site)
+  • Text: White
+  • Transition: 150-200ms smooth color change
+
+UNSELECTED STATE:
+  • Background: #E8E8E8 or #F0F0F0 (light gray)
+  • Text: #333333 (dark gray)
+
+BUTTON SPACING:
+  • Gap between buttons: 8-12px
+  • Sections vertical gap: 20px
+
+RESPONSIVE:
+  • Mobile (<480px): Full-width scrollable carousel, swipe enabled
+  • Tablet (480-768px): Scrollable with scroll indicators
+  • Desktop (>768px): All visible or scrollable with arrow buttons
+
+════════════════════════════════════════════════════════════════════════════════
+
+🚫 ANIMATIONS - STRICT RULES
+────────────────────────────────────────────────────────────────────────────────
+
+ALLOWED:
+  ✅ Button click effect: 150ms fade/scale (user feedback)
+  ✅ Hover state: Subtle color change (desktop only)
+  ✅ Selection highlight: 200ms smooth transition
+  ✅ Carousel scroll: Native browser smooth scroll
+
+FORBIDDEN:
+  ❌ Page jumps or shifts
+  ❌ Slide-in animations from sides
+  ❌ Fade animations on load
+  ❌ Auto-scroll or carousel animations
+  ❌ Random scale/zoom effects
+  ❌ Bouncy or springy animations
+
+RULE: Motion should be INVISIBLE. User shouldn't NOTICE animation,
+      only feel that action was registered.
+
+════════════════════════════════════════════════════════════════════════════════
+
+📋 IMPLEMENTATION CHECKLIST
+────────────────────────────────────────────────────────────────────────────────
+
+STEP 1 - SETUP
+  □ Verify current filter component structure
+  □ Check existing data: tours have category? area?
+  □ Identify where to add city field
+  □ Understand current state management
+
+STEP 2 - STATE MANAGEMENT
+  □ Create/update state for: selectedCategory, selectedArea, selectedCity
+  □ Implement filter function: filterTours(cat, area, city)
+  □ Test persistence: selection doesn't reset on section change
+
+STEP 3 - DATA PREPARATION
+  □ Add city field to all existing tours
+  □ Add 2-3 new categories (if available in data)
+  □ Verify data structure consistency
+
+STEP 4 - LAYOUT REDESIGN
+  □ Convert vertical stacking → horizontal scrollable sections
+  □ Create 3 separate filter sections (Category, Area, City)
+  □ Implement responsive behavior
+  □ Add scroll indicators/arrows if needed
+
+STEP 5 - BUTTON FUNCTIONALITY
+  □ Clicking button highlights it
+  □ Other buttons in same section deselect
+  □ Other sections' selections preserved
+  □ Results update instantly
+
+STEP 6 - STYLING
+  □ Apply color scheme (#2D7C3F for active)
+  □ Set proper spacing/padding
+  □ Test hover states on desktop
+  □ Test mobile touch targets (min 44x44px)
+
+STEP 7 - ANIMATIONS
+  □ Add subtle transitions (150-200ms)
+  □ Ensure no page jumps
+  □ Test on mobile - no unnecessary motion
+  □ Verify smooth feeling
+
+STEP 8 - TESTING
+  □ Test single filter combinations (10+ scenarios)
+  □ Test multi-filter combinations (10+ scenarios)
+  □ Test persistence (select → switch → check)
+  □ Test responsive behavior
+  □ Test mobile swipe
+  □ Test keyboard navigation
+  □ Test URL query params if using them
+
+STEP 9 - CODE & COMMENTS
+  □ Add clear comments for complex logic
+  □ Document state management approach
+  □ Document filter function logic
+  □ Add JSDoc comments on key functions
+
+STEP 10 - GIT COMMIT & PUSH
+  □ Commit to feature branch (clear message)
+  □ Push to main branch with proper commit message
+  □ Push to staging branch
+  □ Include description of all changes
+
+════════════════════════════════════════════════════════════════════════════════
+
+📝 GIT COMMIT MESSAGE FORMAT
+────────────────────────────────────────────────────────────────────────────────
+
+TITLE:
+Fix: Category filter persistence and redesign layout to carousel style
+
+BODY:
+- Fixed critical bug where category buttons disappear when switching areas
+- Category selection now persists across area/city changes
+- Restructured filter layout: vertical stacking → horizontal scrollable carousels
+- Added City filter section with full functionality
+- Implemented proper 3-way filter logic (category + area + city)
+- Removed unnecessary animations, kept purpose-based smooth transitions
+- Added 2-3 new category options from existing tour data
+- Responsive design: swipe support on mobile, scroll on desktop
+- Updated button styling: active state #2D7C3F, inactive #E8E8E8
+- Added inline code comments and JSDoc documentation
+- All filter combinations tested and working
+- No page jumps or unnecessary motion
+
+ATTRIBUTION:
+Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>
+
+════════════════════════════════════════════════════════════════════════════════
+
+✅ SUCCESS CRITERIA (Final Check Before Merge)
+────────────────────────────────────────────────────────────────────────────────
+
+□ Category buttons NEVER disappear
+□ Category selection PERSISTS when area changes
+□ Area selection PERSISTS when category changes
+□ City selection PERSISTS when other sections change
+□ 3-way filter logic works (All combinations)
+□ Layout is horizontal carousel style (not vertical stacking)
+□ All 3 filter sections visible and functional
+□ New categories visible (2-3 added)
+□ City filter functional with proper data
+□ Page doesn't jump when changing filters
+□ Animations are subtle and purposeful only
+□ Mobile responsive and swipeable
+□ Desktop: smooth, no jank
+□ All code well-commented
+□ Commits pushed to main AND staging
+□ Ready for QA testing
+
+════════════════════════════════════════════════════════════════════════════════
+
+🚀 PRIORITY: HIGH
+   This is a major UX improvement + critical bug fix
+   Frontend-heavy changes, minimal backend impact
+
+📞 CONTACT: Check comments on main & staging branch commits for details
+
+════════════════════════════════════════════════════════════════════════════════
+Last Updated: 30 Sept 2026
+Status: Ready for Development
+For: Street Food Rome Frontend Team
+════════════════════════════════════════════════════════════════════════════════
