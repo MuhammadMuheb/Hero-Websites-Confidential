@@ -61,7 +61,7 @@ export function GlobalSearchBox({
       try {
         const params = new URLSearchParams();
         params.append('q', query);
-        params.append('property', currentPropertySlug);
+        params.append('property', currentPropertySlug || 'street-food-rome');
         const response = await fetch(`/api/search?${params}`);
         const data = await response.json();
         setResults(data.results || []);
