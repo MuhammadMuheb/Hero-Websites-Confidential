@@ -25,6 +25,10 @@ function normalizeQuery(query: string): string {
   return query.toLowerCase().trim();
 }
 
+function normalizeQuery(query: string): string {
+  return query.toLowerCase().trim();
+}
+
 function calculateRelevance(query: string, title: string, description: string): number {
   const normalizedQuery = normalizeQuery(query);
   const normalizedTitle = normalizeQuery(title);
@@ -43,6 +47,13 @@ function calculateRelevance(query: string, title: string, description: string): 
   score += matchedWords.length * 15;
 
   return score;
+}
+
+// Only these pages have actual routes and should appear in search
+const VALID_PAGE_SLUGS = new Set(['home', 'about', 'contact', 'faq', 'privacy', 'terms', 'cookie-policy', 'affiliate-disclosure']);
+
+function isValidSearchPage(slug: string): boolean {
+  return VALID_PAGE_SLUGS.has(slug);
 }
 
 async function SearchResults({ query, propertySlug }: { query: string; propertySlug?: string }) {
@@ -105,9 +116,8 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
     const pageResults: SearchResult[] = pages
       .filter((page) => (page.propertySlug || 'street-food-rome') === currentPropertySlug)
       .filter((page) => {
-        // Exclude category pages - they don't have actual routes
-        if (page.type === 'category') return false;
-        // Only include pages that are searchable
+        // STRICT WHITELIST: Only include pages that have actual routes
+        if (!isValidSearchPage(page.slug)) return false;
         return true;
       })
       .map((page) => {

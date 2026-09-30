@@ -81,8 +81,8 @@ async function searchPages(query: string): Promise<SearchResult[]> {
     const pages = await listPageDocs();
     return pages
       .filter((page) => {
-        // Exclude category pages - they don't have actual routes
-        if (page.type === 'category') return false;
+        // STRICT WHITELIST: Only include pages that have actual routes
+        if (!isValidSearchPage(page.slug)) return false;
         return true;
       })
       .map((page) => {
@@ -108,6 +108,13 @@ async function searchPages(query: string): Promise<SearchResult[]> {
     console.error('Error searching pages:', error);
     return [];
   }
+}
+
+// Only these pages have actual routes and should appear in search
+const VALID_PAGE_SLUGS = new Set(['home', 'about', 'contact', 'faq', 'privacy', 'terms', 'cookie-policy', 'affiliate-disclosure']);
+
+function isValidSearchPage(slug: string): boolean {
+  return VALID_PAGE_SLUGS.has(slug);
 }
 
 function searchProperties(query: string): SearchResult[] {
