@@ -92,7 +92,7 @@ export function GlobalSearchBox({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim().length >= 2) {
-      router.push(`/search?q=${encodeURIComponent(query)}&property=${currentPropertySlug}`);
+      router.push(`/${currentPropertySlug}/search?q=${encodeURIComponent(query)}`);
       setIsOpen(false);
     }
   };
@@ -190,7 +190,7 @@ export function GlobalSearchBox({
                     <button
                       onClick={() => {
                         router.push(
-                          `/search?q=${encodeURIComponent(query)}&property=${currentPropertySlug}`
+                          `/${currentPropertySlug}/search?q=${encodeURIComponent(query)}`
                         );
                         setIsOpen(false);
                       }}
