@@ -3,11 +3,10 @@ import Link from '@/components/NetworkLink';
 import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
 import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
-import { NETWORK_SITES } from '@/lib/tours';
 
 interface SearchResult {
   id: string;
-  type: 'tour' | 'blog' | 'page' | 'property';
+  type: 'tour' | 'blog';
   title: string;
   description: string;
   url: string;
@@ -45,16 +44,19 @@ function calculateRelevance(query: string, title: string, description: string): 
   return score;
 }
 
-async function SearchResults({ query, propertySlug }: { query: string; propertySlug?: string }) {
-  // Search disabled - returning no results
-  return (
-    <div className="bg-cream py-20">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="font-display text-4xl font-bold text-ink mb-4">Search Unavailable</h2>
-        <p className="text-ink/70">Search is temporarily unavailable. Please browse our tours or contact us directly.</p>
+async function SearchResults({ query }: { query: string; propertySlug?: string }) {
+  const STREET_FOOD_ROME = 'street-food-rome';
+
+  if (!query || query.length < 2) {
+    return (
+      <div className="bg-cream py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-display text-4xl font-bold text-ink mb-4">Enter a search term</h2>
+          <p className="text-ink/70">Search Street Food Rome tours and guides</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 
   try {
     const [tours, blogs] = await Promise.all([
@@ -63,6 +65,7 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
     ]);
 
     const tourResults: SearchResult[] = tours
+      .filter((tour) => (tour.propertySlug || 'street-food-rome') === STREET_FOOD_ROME)
       .map((tour) => {
         const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
         return {
@@ -72,13 +75,15 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
           url: `/tours/${tour.slug}`,
           property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
+          propertySlug: STREET_FOOD_ROME,
           relevanceScore: score,
         };
       })
-      .filter((result) => result.relevanceScore > 0);
+      .filter((result) => result.relevanceScore > 0)
+      .sort((a, b) => b.relevanceScore - a.relevanceScore);
 
     const blogResults: SearchResult[] = blogs
+      .filter((post) => (post.propertySlug || 'street-food-rome') === STREET_FOOD_ROME)
       .map((post) => {
         const score = calculateRelevance(query, post.title, post.excerpt);
         return {
@@ -88,34 +93,14 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
           description: post.excerpt || '',
           url: `/blog/${post.slug}`,
           property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
+          propertySlug: STREET_FOOD_ROME,
           relevanceScore: score,
         };
       })
-      .filter((result) => result.relevanceScore > 0);
+      .filter((result) => result.relevanceScore > 0)
+      .sort((a, b) => b.relevanceScore - a.relevanceScore);
 
-    // DISABLED: Pages in Firestore don't map to actual routes and cause 404s
-    const pageResults: SearchResult[] = [];
-
-    const propertyResults: SearchResult[] = NETWORK_SITES
-      .map((property) => {
-        const score = calculateRelevance(query, property.name, property.name);
-        return {
-          id: property.slug,
-          type: 'property' as const,
-          title: property.name,
-          description: `Explore ${property.name}`,
-          url: `/${property.slug}`,
-          property: property.name,
-          propertySlug: property.slug,
-          relevanceScore: score,
-        };
-      })
-      .filter((result) => result.relevanceScore > 0);
-
-    const results = [...tourResults, ...blogResults, ...pageResults, ...propertyResults]
-      .sort((a, b) => b.relevanceScore - a.relevanceScore)
-      .slice(0, 20);
+    const results = [...tourResults, ...blogResults].slice(0, 20);
 
     if (results.length === 0) {
       return (
@@ -123,19 +108,15 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-display text-4xl font-bold text-ink mb-4">No results found</h2>
             <p className="text-ink/70">
-              We couldn&apos;t find anything matching &quot;{query}&quot;. Try different keywords or explore our tours by category.
+              We couldn&apos;t find anything matching &quot;{query}&quot;. Try different keywords or browse our <Link href="/tours" className="text-brand hover:underline">tours by category</Link>.
             </p>
           </div>
         </div>
       );
     }
 
-    const groupedResults = {
-      properties: results.filter((r) => r.type === 'property'),
-      tours: results.filter((r) => r.type === 'tour'),
-      blogs: results.filter((r) => r.type === 'blog'),
-      pages: results.filter((r) => r.type === 'page'),
-    };
+    const tourGroup = results.filter((r) => r.type === 'tour');
+    const blogGroup = results.filter((r) => r.type === 'blog');
 
     return (
       <div className="bg-cream py-20">
@@ -145,105 +126,65 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
               Search results for &quot;{query}&quot;
             </h1>
             <p className="text-ink/70">
-              Found {results.length} result{results.length !== 1 ? 's' : ''}
+              Found {results.length} result{results.length !== 1 ? 's' : ''} for Street Food Rome
             </p>
           </div>
 
-          {/* Properties */}
-        {groupedResults.properties.length > 0 && (
-          <div className="mb-12">
-            <h2 className="mb-4 text-lg font-semibold text-ink">Network Properties</h2>
-            <div className="space-y-4">
-              {groupedResults.properties.map((result) => (
-                <Link
-                  key={result.id}
-                  href={result.url}
-                  className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
-                >
-                  <h3 className="font-semibold text-brand">{result.title}</h3>
-                  <p className="mt-1 text-sm text-ink/70">{result.description}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Tours */}
-        {groupedResults.tours.length > 0 && (
-          <div className="mb-12">
-            <h2 className="mb-4 text-lg font-semibold text-ink">Tours</h2>
-            <div className="space-y-4">
-              {groupedResults.tours.map((result) => (
-                <Link
-                  key={result.id}
-                  href={result.url}
-                  className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-ink">{result.title}</h3>
-                      {result.description && (
-                        <p className="mt-1 text-sm text-ink/70 line-clamp-2">{result.description}</p>
-                      )}
+          {/* Tours */}
+          {tourGroup.length > 0 && (
+            <div className="mb-12">
+              <h2 className="mb-4 text-lg font-semibold text-ink">Tours</h2>
+              <div className="space-y-4">
+                {tourGroup.map((result) => (
+                  <Link
+                    key={result.id}
+                    href={result.url}
+                    className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="min-w-0">
+                        <h3 className="font-semibold text-ink">{result.title}</h3>
+                        {result.description && (
+                          <p className="mt-1 text-sm text-ink/70 line-clamp-2">{result.description}</p>
+                        )}
+                      </div>
+                      <span className="ml-2 shrink-0 rounded-full bg-brand/10 px-3 py-1 text-xs font-medium text-brand">
+                        Tour
+                      </span>
                     </div>
-                    <span className="ml-2 shrink-0 rounded-full bg-brand/10 px-3 py-1 text-xs font-medium text-brand">
-                      Tour
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Blog Posts */}
-        {groupedResults.blogs.length > 0 && (
-          <div className="mb-12">
-            <h2 className="mb-4 text-lg font-semibold text-ink">Blog Posts</h2>
-            <div className="space-y-4">
-              {groupedResults.blogs.map((result) => (
-                <Link
-                  key={result.id}
-                  href={result.url}
-                  className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-ink">{result.title}</h3>
-                      {result.description && (
-                        <p className="mt-1 text-sm text-ink/70 line-clamp-2">{result.description}</p>
-                      )}
+          {/* Blog Posts */}
+          {blogGroup.length > 0 && (
+            <div className="mb-12">
+              <h2 className="mb-4 text-lg font-semibold text-ink">Blog Posts</h2>
+              <div className="space-y-4">
+                {blogGroup.map((result) => (
+                  <Link
+                    key={result.id}
+                    href={result.url}
+                    className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="min-w-0">
+                        <h3 className="font-semibold text-ink">{result.title}</h3>
+                        {result.description && (
+                          <p className="mt-1 text-sm text-ink/70 line-clamp-2">{result.description}</p>
+                        )}
+                      </div>
+                      <span className="ml-2 shrink-0 rounded-full bg-gold/20 px-3 py-1 text-xs font-medium text-gold">
+                        Blog
+                      </span>
                     </div>
-                    <span className="ml-2 shrink-0 rounded-full bg-gold/20 px-3 py-1 text-xs font-medium text-gold">
-                      Blog
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-
-        {/* Pages */}
-        {groupedResults.pages.length > 0 && (
-          <div className="mb-12">
-            <h2 className="mb-4 text-lg font-semibold text-ink">Pages</h2>
-            <div className="space-y-4">
-              {groupedResults.pages.map((result) => (
-                <Link
-                  key={result.id}
-                  href={result.url}
-                  className="block rounded-card border border-line p-4 bg-white transition-colors hover:border-brand hover:shadow-md"
-                >
-                  <h3 className="font-semibold text-ink">{result.title}</h3>
-                  {result.description && (
-                    <p className="mt-1 text-sm text-ink/70">{result.description}</p>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+          )}
         </div>
       </div>
     );
@@ -269,13 +210,12 @@ export default async function SearchPage({
 }) {
   const params = await searchParams;
   const query = typeof params.q === 'string' ? params.q : '';
-  const propertySlug = typeof params.property === 'string' ? params.property : undefined;
 
   return (
     <>
       <Hero imageUrl="https://images.unsplash.com/photo-1516594915649-c945b9c922c8?w=1600&q=80" title="Search Tours" subtitle="Find what you&apos;re looking for" accentWord="" />
       <Suspense fallback={<div className="bg-cream min-h-screen" />}>
-        <SearchResults query={query} propertySlug={propertySlug} />
+        <SearchResults query={query} />
       </Suspense>
     </>
   );
