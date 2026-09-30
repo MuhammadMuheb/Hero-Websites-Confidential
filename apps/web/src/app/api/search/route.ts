@@ -77,44 +77,9 @@ async function searchBlogPosts(query: string): Promise<SearchResult[]> {
 }
 
 async function searchPages(query: string): Promise<SearchResult[]> {
-  try {
-    const pages = await listPageDocs();
-    return pages
-      .filter((page) => {
-        // STRICT WHITELIST: Only include pages that have actual routes
-        if (!isValidSearchPage(page.slug)) return false;
-        return true;
-      })
-      .map((page) => {
-        const score = calculateRelevance(query, page.title, page.metaDesc);
-        const propertySlug = page.propertySlug || 'street-food-rome';
-        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
-        const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
-        const url = propertySlug === 'street-food-rome' ? urlSegment : `/${propertySlug}${urlSegment}`;
-        return {
-          id: page.slug,
-          type: 'page' as const,
-          title: page.title,
-          description: page.metaDesc || '',
-          url: url,
-          property: property?.name || 'Street Food Rome',
-          propertySlug: propertySlug,
-          relevanceScore: score,
-        };
-      })
-      .filter((result) => result.relevanceScore > 0)
-      .sort((a, b) => b.relevanceScore - a.relevanceScore);
-  } catch (error) {
-    console.error('Error searching pages:', error);
-    return [];
-  }
-}
-
-// Only these pages have actual routes and should appear in search
-const VALID_PAGE_SLUGS = new Set(['home', 'about', 'contact', 'faq', 'privacy', 'terms', 'cookie-policy', 'affiliate-disclosure']);
-
-function isValidSearchPage(slug: string): boolean {
-  return VALID_PAGE_SLUGS.has(slug);
+  // DISABLED: Pages in Firestore don't map to actual routes and cause 404s
+  // Only blog posts and tours should appear in search results
+  return [];
 }
 
 function searchProperties(query: string): SearchResult[] {

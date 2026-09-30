@@ -45,12 +45,6 @@ function calculateRelevance(query: string, title: string, description: string): 
   return score;
 }
 
-// Only these pages have actual routes and should appear in search
-const VALID_PAGE_SLUGS = new Set(['home', 'about', 'contact', 'faq', 'privacy', 'terms', 'cookie-policy', 'affiliate-disclosure']);
-
-function isValidSearchPage(slug: string): boolean {
-  return VALID_PAGE_SLUGS.has(slug);
-}
 
 async function SearchResults({ query, propertySlug }: { query: string; propertySlug?: string }) {
   const currentPropertySlug = propertySlug || 'street-food-rome';
@@ -109,29 +103,9 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
       })
       .filter((result) => result.relevanceScore > 0);
 
-    const pageResults: SearchResult[] = pages
-      .filter((page) => (page.propertySlug || 'street-food-rome') === currentPropertySlug)
-      .filter((page) => {
-        // STRICT WHITELIST: Only include pages that have actual routes
-        if (!isValidSearchPage(page.slug)) return false;
-        return true;
-      })
-      .map((page) => {
-        const score = calculateRelevance(query, page.title, page.metaDesc);
-        const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
-        const url = currentPropertySlug === 'street-food-rome' ? urlSegment : `/${currentPropertySlug}${urlSegment}`;
-        return {
-          id: page.slug,
-          type: 'page' as const,
-          title: page.title,
-          description: page.metaDesc || '',
-          url: url,
-          property: propertyName,
-          propertySlug: currentPropertySlug,
-          relevanceScore: score,
-        };
-      })
-      .filter((result) => result.relevanceScore > 0);
+    // DISABLED: Pages in Firestore don't map to actual routes and cause 404s
+    // Only blog posts and tours should appear in search results
+    const pageResults: SearchResult[] = [];
 
     const propertyResults: SearchResult[] = NETWORK_SITES
       .map((property) => {
