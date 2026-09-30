@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from '@/components/NetworkLink';
 import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
-import { getAllTours, getAllBlogPosts, listPageDocs } from '@/lib/firestore';
+import { getAllTours, getAllBlogPosts } from '@/lib/firestore';
 import { NETWORK_SITES } from '@/lib/tours';
 
 interface SearchResult {
@@ -58,10 +58,9 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
   }
 
   try {
-    const [tours, blogs, pages] = await Promise.all([
+    const [tours, blogs] = await Promise.all([
       getAllTours().catch(() => []),
       getAllBlogPosts().catch(() => []),
-      listPageDocs().catch(() => []),
     ]);
 
     const tourResults: SearchResult[] = tours
@@ -96,22 +95,8 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
       })
       .filter((result) => result.relevanceScore > 0);
 
-    const pageResults: SearchResult[] = pages
-      .map((page) => {
-        const score = calculateRelevance(query, page.title, page.metaDesc);
-        const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
-        return {
-          id: page.slug,
-          type: 'page' as const,
-          title: page.title,
-          description: page.metaDesc || '',
-          url: urlSegment,
-          property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
-          relevanceScore: score,
-        };
-      })
-      .filter((result) => result.relevanceScore > 0);
+    // DISABLED: Pages in Firestore don't map to actual routes and cause 404s
+    const pageResults: SearchResult[] = [];
 
     const propertyResults: SearchResult[] = NETWORK_SITES
       .map((property) => {
