@@ -104,12 +104,12 @@ export interface BlogPostDoc {
 }
 
 /**
- * Map tour slugs to their property. COMPLETE for Street Food Rome.
- * Add other properties' tours as they are added to Firestore.
+ * Map tour slugs to their property. COMPLETE for all 13 properties.
+ * Updated Phase 3: Added all 12 properties' tours (51 total new tours).
  */
 function getPropertySlugForTour(tourSlug: string): string {
   const tourToProperty: Record<string, string> = {
-    // ===== STREET FOOD ROME (19 tours - COMPLETE) =====
+    // ===== STREET FOOD ROME (19 tours) =====
     'trastevere-food-wine-walk': 'street-food-rome',
     'jewish-ghetto-food-tour': 'street-food-rome',
     'testaccio-market-food-tour': 'street-food-rome',
@@ -130,24 +130,80 @@ function getPropertySlugForTour(tourSlug: string): string {
     'aperitivo-evening-experience': 'street-food-rome',
     'prati-neighborhood-food-crawl': 'street-food-rome',
 
-    // ===== OTHER 12 PROPERTIES (ADD WHEN AVAILABLE) =====
-    // Amalfi Day Trip
-    // 'amalfi-*': 'amalfi-day-trip',
+    // ===== AMALFI DAY TRIP (4 tours) =====
+    'gyg-amalfi-coast-boat': 'amalfi-day-trip',
+    'viator-amalfi-positano-hike': 'amalfi-day-trip',
+    'tiqets-amalfi-lemon-grove': 'amalfi-day-trip',
+    'gyg-amalfi-full-day': 'amalfi-day-trip',
 
-    // Pompeii Day Trip
-    // 'pompeii-*': 'pompeii-day-trip',
+    // ===== COOKING IN ROME (4 tours) =====
+    'gyg-pasta-making-class': 'cooking-in-rome',
+    'viator-roman-cooking-course': 'cooking-in-rome',
+    'gyg-market-to-table': 'cooking-in-rome',
+    'civitatis-pizza-making': 'cooking-in-rome',
 
-    // Rome Vespa
-    // 'vespa-*': 'rome-vespa',
+    // ===== GOLF CART ROME (3 tours) =====
+    'gyg-golf-cart-city-tour': 'golf-cart-rome',
+    'viator-golf-cart-rome': 'golf-cart-rome',
+    'gyg-golf-cart-sunset': 'golf-cart-rome',
 
-    // Tuscany Day Trip
-    // 'tuscany-*': 'tuscany-day-trip',
+    // ===== NAPLES STREET FOOD (4 tours) =====
+    'gyg-naples-street-food': 'naples-street-food',
+    'viator-naples-pizza-tour': 'naples-street-food',
+    'tiqets-naples-market-food': 'naples-street-food',
+    'gyg-naples-cooking-class': 'naples-street-food',
 
-    // Private Vatican
-    // 'vatican-*': 'private-vatican',
+    // ===== POMPEII DAY TRIP (4 tours) =====
+    'gyg-pompeii-guided-tour': 'pompeii-day-trip',
+    'viator-pompeii-herculaneum': 'pompeii-day-trip',
+    'civitatis-pompeii-small-group': 'pompeii-day-trip',
+    'gyg-pompeii-vesuvius': 'pompeii-day-trip',
 
-    // Golf Cart Rome
-    // 'golf-*': 'golf-cart-rome',
+    // ===== PRIVATE VATICAN (8 tours) =====
+    'gyg-early-entry-sistine-chapel': 'private-vatican',
+    'viator-private-vatican-guide': 'private-vatican',
+    'tiqets-skip-the-line-vatican': 'private-vatican',
+    'gyg-vatican-dome-combo': 'private-vatican',
+    'viator-family-vatican-kid-paced': 'private-vatican',
+    'gyg-early-entry-dome-combo': 'private-vatican',
+    'tiqets-fast-track-vatican-gardens': 'private-vatican',
+    'viator-early-morning-private-vatican': 'private-vatican',
+
+    // ===== ROME PIZZA CLASS (4 tours) =====
+    'gyg-pizza-making-class': 'rome-pizza-class',
+    'viator-pizza-cooking-rome': 'rome-pizza-class',
+    'gyg-pizza-tour-trastevere': 'rome-pizza-class',
+    'civitatis-pizza-night-class': 'rome-pizza-class',
+
+    // ===== ROME VESPA (4 tours) =====
+    'gyg-vespa-city-tour': 'rome-vespa',
+    'viator-vespa-rome-classic': 'rome-vespa',
+    'gyg-vespa-food-wine': 'rome-vespa',
+    'civitatis-vespa-sunset': 'rome-vespa',
+
+    // ===== TIRAMISU CLASS (3 tours) =====
+    'gyg-tiramisu-making-class': 'tiramisu-class',
+    'viator-italian-dessert-class': 'tiramisu-class',
+    'gyg-tiramisu-gelato-combo': 'tiramisu-class',
+
+    // ===== TIVOLI DAY TRIP (4 tours) =====
+    'gyg-tivoli-day-trip': 'tivoli-day-trip',
+    'viator-tivoli-estates-tour': 'tivoli-day-trip',
+    'civitatis-tivoli-small-group': 'tivoli-day-trip',
+    'gyg-tivoli-extended': 'tivoli-day-trip',
+
+    // ===== TUSCANY DAY TRIP (4 tours) =====
+    'gyg-tuscany-day-trip': 'tuscany-day-trip',
+    'viator-tuscany-wine-tour': 'tuscany-day-trip',
+    'civitatis-tuscany-countryside': 'tuscany-day-trip',
+    'gyg-tuscany-cooking': 'tuscany-day-trip',
+
+    // ===== UNDERGROUND COLOSSEUM (5 tours) =====
+    'gyg-colosseum-underground': 'underground-colosseum',
+    'viator-colosseum-forum-palatine': 'underground-colosseum',
+    'tiqets-colosseum-arena': 'underground-colosseum',
+    'gyg-colosseum-evening': 'underground-colosseum',
+    'civitatis-underground-secrets': 'underground-colosseum',
 
     // Cooking in Rome
     // 'cooking-*': 'cooking-in-rome',
