@@ -2,36 +2,46 @@
 
 import { useEffect } from 'react';
 
-/**
- * Client-side component that triggers reveal animations for elements with data-reveal attribute.
- * Uses IntersectionObserver to add the "in-view" class when elements enter the viewport.
- */
 export function RevealAnimations() {
   useEffect(() => {
-    // Create intersection observer to trigger reveal animations
+    const revealElements = document.querySelectorAll('[data-reveal]');
+
+    if (revealElements.length === 0) {
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
-            // Unobserve once revealed to improve performance
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.1, // Trigger when 10% of element is visible
-        rootMargin: '0px 0px -50px 0px', // Start animation slightly before element fully visible
+        threshold: 0.01,
+        rootMargin: '0px 0px -50px 0px',
       }
     );
 
-    // Find all elements with data-reveal attribute
-    const revealElements = document.querySelectorAll('[data-reveal]');
     revealElements.forEach((el) => {
-      observer.observe(el);
+      // Check if element is already in viewport on initial load
+      const rect = el.getBoundingClientRect();
+      const isInitiallyVisible =
+        rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (isInitiallyVisible) {
+        // Immediately add in-view class for elements already visible
+        requestAnimationFrame(() => {
+          el.classList.add('in-view');
+        });
+      } else {
+        // Observe elements not yet in viewport
+        observer.observe(el);
+      }
     });
 
-    // Cleanup observer on unmount
     return () => {
       revealElements.forEach((el) => {
         observer.unobserve(el);
