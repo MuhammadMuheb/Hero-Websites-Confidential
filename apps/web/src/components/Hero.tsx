@@ -62,17 +62,30 @@ export function Hero({ imageUrl, title, subtitle, accentWord, home }: HeroProps)
   // Inner page hero mode
   if (isInnerPage) {
     return (
-      <section className="bg-paper">
-        {imageUrl ? (
-          <div className="relative h-64 w-full overflow-hidden sm:h-80">
-            <SafeImage src={imageUrl} alt={title} fill priority sizes="100vw" className="object-cover" />
+      <section className="bg-cream-light">
+        <div className="relative h-[280px] w-full overflow-hidden sm:h-96">
+          {imageUrl ? (
+            <>
+              <SafeImage src={imageUrl} alt={title} fill priority sizes="100vw" className="object-cover" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(12,35,26,0.75) 0%, rgba(12,35,26,0.50) 50%, rgba(12,35,26,0.25) 100%)',
+                }}
+              />
+            </>
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-brand/20 via-gold/10 to-cream-deep/20" />
+          )}
+          <div className="relative flex h-full flex-col items-center justify-center px-6 sm:px-8">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-light">Search & Discover</p>
+            <h1 className="mt-4 font-hero text-[36px] font-black leading-tight tracking-[-0.02em] text-cream-text sm:text-[48px]">
+              {title}{accentWord && <span className="text-gold"> {accentWord}</span>}
+            </h1>
+            {subtitle && (
+              <p className="mt-3 max-w-md text-base font-medium text-cream-text/90 sm:text-lg">{subtitle}</p>
+            )}
           </div>
-        ) : null}
-        <div className="mx-auto max-w-6xl px-6 py-12 text-center sm:px-8 sm:py-16">
-          <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">
-            {title}{accentWord && <span className="text-accent"> {accentWord}</span>}
-          </h1>
-          {subtitle && <p className="mt-3 text-lg text-ink-muted">{subtitle}</p>}
         </div>
       </section>
     );
