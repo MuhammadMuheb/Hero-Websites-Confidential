@@ -70,15 +70,15 @@ export default async function ToursIndexPage({
       <section className="bg-cream py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filters */}
-          <div className="mb-12">
-            <h2 className="font-display text-2xl font-bold text-ink mb-6">Filter by Category</h2>
-            <div className="flex flex-wrap gap-2 mb-8">
+          <div className="mb-16">
+            <h2 className="font-display text-2xl font-bold text-ink mb-8">Filter by Category</h2>
+            <div className="flex flex-wrap gap-3 mb-12">
               <Link
                 href="/tours"
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
                   !category && !neighborhood
-                    ? 'bg-brand text-cream'
-                    : 'border border-line bg-paper text-ink hover:border-brand hover:text-brand'
+                    ? 'bg-brand text-cream shadow-md hover:shadow-lg'
+                    : 'border border-line bg-white text-ink hover:border-brand hover:bg-brand/5'
                 }`}
               >
                 All Tours
@@ -87,10 +87,10 @@ export default async function ToursIndexPage({
                 <Link
                   key={cat.slug}
                   href={`/tours?category=${cat.slug}`}
-                  className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                  className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
                     activeCategory?.slug === cat.slug
-                      ? 'bg-brand text-cream'
-                      : 'border border-line bg-paper text-ink hover:border-brand hover:text-brand'
+                      ? 'bg-brand text-cream shadow-md hover:shadow-lg'
+                      : 'border border-line bg-white text-ink hover:border-brand hover:bg-brand/5'
                   }`}
                 >
                   {cat.name}
@@ -98,14 +98,14 @@ export default async function ToursIndexPage({
               ))}
             </div>
 
-            <h2 className="font-display text-2xl font-bold text-ink mb-6">Filter by Neighborhood</h2>
-            <div className="flex flex-wrap gap-2">
+            <h2 className="font-display text-2xl font-bold text-ink mb-8">Filter by Neighborhood</h2>
+            <div className="flex flex-wrap gap-3">
               <Link
                 href="/tours"
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
                   !neighborhood && !category
-                    ? 'bg-brand text-cream'
-                    : 'border border-line bg-paper text-ink hover:border-brand hover:text-brand'
+                    ? 'bg-brand text-cream shadow-md hover:shadow-lg'
+                    : 'border border-line bg-white text-ink hover:border-brand hover:bg-brand/5'
                 }`}
               >
                 All Areas
@@ -114,10 +114,10 @@ export default async function ToursIndexPage({
                 <Link
                   key={area.slug}
                   href={`/tours?neighborhood=${area.slug}`}
-                  className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                  className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
                     activeNeighborhood?.slug === area.slug
-                      ? 'bg-brand text-cream'
-                      : 'border border-line bg-paper text-ink hover:border-brand hover:text-brand'
+                      ? 'bg-brand text-cream shadow-md hover:shadow-lg'
+                      : 'border border-line bg-white text-ink hover:border-brand hover:bg-brand/5'
                   }`}
                 >
                   {area.name}
