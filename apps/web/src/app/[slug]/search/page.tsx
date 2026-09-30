@@ -25,10 +25,6 @@ function normalizeQuery(query: string): string {
   return query.toLowerCase().trim();
 }
 
-function normalizeQuery(query: string): string {
-  return query.toLowerCase().trim();
-}
-
 function calculateRelevance(query: string, title: string, description: string): number {
   const normalizedQuery = normalizeQuery(query);
   const normalizedTitle = normalizeQuery(title);
