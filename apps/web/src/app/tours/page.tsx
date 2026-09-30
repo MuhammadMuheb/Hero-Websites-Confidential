@@ -85,19 +85,24 @@ export default async function ToursIndexPage({
                 >
                   All
                 </Link>
-                {CATEGORIES.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    href={`/tours?category=${cat.slug}`}
-                    className={`shrink-0 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
-                      activeCategory?.slug === cat.slug
-                        ? 'bg-brand text-cream'
-                        : 'border border-line bg-white text-ink hover:border-brand'
-                    }`}
-                  >
-                    {cat.name}
-                  </Link>
-                ))}
+                {CATEGORIES.map((cat) => {
+                  const href = neighborhood
+                    ? `/tours?category=${cat.slug}&neighborhood=${neighborhood}`
+                    : `/tours?category=${cat.slug}`;
+                  return (
+                    <Link
+                      key={cat.slug}
+                      href={href}
+                      className={`shrink-0 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                        activeCategory?.slug === cat.slug
+                          ? 'bg-brand text-cream'
+                          : 'border border-line bg-white text-ink hover:border-brand'
+                      }`}
+                    >
+                      {cat.name}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
@@ -115,19 +120,24 @@ export default async function ToursIndexPage({
                 >
                   All
                 </Link>
-                {NEIGHBORHOODS.map((area) => (
-                  <Link
-                    key={area.slug}
-                    href={`/tours?neighborhood=${area.slug}`}
-                    className={`shrink-0 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
-                      activeNeighborhood?.slug === area.slug
-                        ? 'bg-brand text-cream'
-                        : 'border border-line bg-white text-ink hover:border-brand'
-                    }`}
-                  >
-                    {area.name}
-                  </Link>
-                ))}
+                {NEIGHBORHOODS.map((area) => {
+                  const href = category
+                    ? `/tours?category=${category}&neighborhood=${area.slug}`
+                    : `/tours?neighborhood=${area.slug}`;
+                  return (
+                    <Link
+                      key={area.slug}
+                      href={href}
+                      className={`shrink-0 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
+                        activeNeighborhood?.slug === area.slug
+                          ? 'bg-brand text-cream'
+                          : 'border border-line bg-white text-ink hover:border-brand'
+                      }`}
+                    >
+                      {area.name}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
