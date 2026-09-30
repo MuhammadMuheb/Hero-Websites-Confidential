@@ -9,24 +9,41 @@
  */
 
 const admin = require('firebase-admin');
+const fs = require('fs');
+const path = require('path');
 
-// Initialize Firebase (uses FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY env vars)
-const projectId = process.env.FIREBASE_PROJECT_ID;
-const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+// Try loading from serviceAccountKey.json first (easier)
+let credential;
+const keyPath = path.join(__dirname, 'serviceAccountKey.json');
 
-if (!projectId || !clientEmail || !privateKey) {
-  console.error('❌ Missing Firebase credentials!');
-  console.error('Set: FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY');
-  process.exit(1);
-}
+if (fs.existsSync(keyPath)) {
+  console.log('📁 Using serviceAccountKey.json');
+  const serviceAccount = require(keyPath);
+  credential = admin.credential.cert(serviceAccount);
+} else {
+  // Fallback to environment variables
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
-admin.initializeApp({
-  credential: admin.credential.cert({
+  if (!projectId || !clientEmail || !privateKey) {
+    console.error('❌ Missing Firebase credentials!');
+    console.error('\nOption 1: Place serviceAccountKey.json in project root');
+    console.error('  (Download from Firebase Console → Project Settings → Service Accounts)');
+    console.error('\nOption 2: Set environment variables:');
+    console.error('  FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY');
+    process.exit(1);
+  }
+
+  credential = admin.credential.cert({
     projectId,
     clientEmail,
     privateKey,
-  }),
+  });
+}
+
+admin.initializeApp({
+  credential: credential,
 });
 
 const db = admin.firestore();
