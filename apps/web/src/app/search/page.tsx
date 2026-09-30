@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from '@/components/NetworkLink';
 import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
+import { getAllTours, getAllBlogPosts, listPageDocs } from '@/lib/firestore';
+import { NETWORK_SITES } from '@/lib/tours';
 
 interface SearchResult {
   id: string;
@@ -19,6 +21,30 @@ export const metadata: Metadata = {
   robots: 'noindex, nofollow',
 };
 
+function normalizeQuery(query: string): string {
+  return query.toLowerCase().trim();
+}
+
+function calculateRelevance(query: string, title: string, description: string): number {
+  const normalizedQuery = normalizeQuery(query);
+  const normalizedTitle = normalizeQuery(title);
+  const normalizedDesc = normalizeQuery(description);
+
+  let score = 0;
+
+  if (normalizedTitle === normalizedQuery) score += 100;
+  else if (normalizedTitle.startsWith(normalizedQuery)) score += 80;
+  else if (normalizedTitle.includes(normalizedQuery)) score += 60;
+  else if (normalizedDesc.includes(normalizedQuery)) score += 40;
+
+  const queryWords = normalizedQuery.split(/\s+/);
+  const titleWords = normalizedTitle.split(/\s+/);
+  const matchedWords = queryWords.filter((w) => titleWords.some((tw) => tw.includes(w)));
+  score += matchedWords.length * 15;
+
+  return score;
+}
+
 async function SearchResults({ query }: { query: string }) {
   if (!query || query.length < 2) {
     return (
@@ -32,16 +58,80 @@ async function SearchResults({ query }: { query: string }) {
   }
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/search?q=${encodeURIComponent(query)}`, {
-      next: { revalidate: 60 },
-    });
+    const [tours, blogs, pages] = await Promise.all([
+      getAllTours().catch(() => []),
+      getAllBlogPosts().catch(() => []),
+      listPageDocs().catch(() => []),
+    ]);
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch search results');
-    }
+    const tourResults: SearchResult[] = tours
+      .map((tour) => {
+        const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
+        return {
+          id: tour.slug,
+          type: 'tour' as const,
+          title: tour.title,
+          description: tour.firstHandNotes || tour.niche?.join(', ') || '',
+          url: `/tours/${tour.slug}`,
+          property: 'Street Food Rome',
+          propertySlug: 'street-food-rome',
+          relevanceScore: score,
+        };
+      })
+      .filter((result) => result.relevanceScore > 0);
 
-    const data = await response.json();
-    const results: SearchResult[] = data.results || [];
+    const blogResults: SearchResult[] = blogs
+      .map((post) => {
+        const score = calculateRelevance(query, post.title, post.excerpt);
+        return {
+          id: post.slug,
+          type: 'blog' as const,
+          title: post.title,
+          description: post.excerpt || '',
+          url: `/blog/${post.slug}`,
+          property: 'Street Food Rome',
+          propertySlug: 'street-food-rome',
+          relevanceScore: score,
+        };
+      })
+      .filter((result) => result.relevanceScore > 0);
+
+    const pageResults: SearchResult[] = pages
+      .map((page) => {
+        const score = calculateRelevance(query, page.title, page.metaDesc);
+        const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
+        return {
+          id: page.slug,
+          type: 'page' as const,
+          title: page.title,
+          description: page.metaDesc || '',
+          url: urlSegment,
+          property: 'Street Food Rome',
+          propertySlug: 'street-food-rome',
+          relevanceScore: score,
+        };
+      })
+      .filter((result) => result.relevanceScore > 0);
+
+    const propertyResults: SearchResult[] = NETWORK_SITES
+      .map((property) => {
+        const score = calculateRelevance(query, property.name, property.name);
+        return {
+          id: property.slug,
+          type: 'property' as const,
+          title: property.name,
+          description: `Explore ${property.name}`,
+          url: `/${property.slug}`,
+          property: property.name,
+          propertySlug: property.slug,
+          relevanceScore: score,
+        };
+      })
+      .filter((result) => result.relevanceScore > 0);
+
+    const results = [...tourResults, ...blogResults, ...pageResults, ...propertyResults]
+      .sort((a, b) => b.relevanceScore - a.relevanceScore)
+      .slice(0, 20);
 
     if (results.length === 0) {
       return (
