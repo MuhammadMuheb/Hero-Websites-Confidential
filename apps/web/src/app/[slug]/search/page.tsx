@@ -46,6 +46,8 @@ function calculateRelevance(query: string, title: string, description: string): 
 }
 
 async function SearchResults({ query, propertySlug }: { query: string; propertySlug?: string }) {
+  const currentPropertySlug = propertySlug || 'street-food-rome';
+
   if (!query || query.length < 2) {
     return (
       <div className="bg-cream py-20">
@@ -64,10 +66,10 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
       listPageDocs().catch(() => []),
     ]);
 
-    const propertyName = NETWORK_SITES.find((s) => s.slug === propertySlug)?.name || propertySlug;
+    const propertyName = NETWORK_SITES.find((s) => s.slug === currentPropertySlug)?.name || currentPropertySlug;
 
     const tourResults: SearchResult[] = tours
-      .filter((tour) => (tour.propertySlug || 'street-food-rome') === propertySlug)
+      .filter((tour) => (tour.propertySlug || 'street-food-rome') === currentPropertySlug)
       .map((tour) => {
         const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
         return {
@@ -75,16 +77,16 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
-          url: propertySlug === 'street-food-rome' ? `/tours/${tour.slug}` : `/${propertySlug}/tours/${tour.slug}`,
+          url: currentPropertySlug === 'street-food-rome' ? `/tours/${tour.slug}` : `/${currentPropertySlug}/tours/${tour.slug}`,
           property: propertyName,
-          propertySlug: propertySlug,
+          propertySlug: currentPropertySlug,
           relevanceScore: score,
         };
       })
       .filter((result) => result.relevanceScore > 0);
 
     const blogResults: SearchResult[] = blogs
-      .filter((post) => (post.propertySlug || 'street-food-rome') === propertySlug)
+      .filter((post) => (post.propertySlug || 'street-food-rome') === currentPropertySlug)
       .map((post) => {
         const score = calculateRelevance(query, post.title, post.excerpt);
         return {
@@ -92,20 +94,20 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
           type: 'blog' as const,
           title: post.title,
           description: post.excerpt || '',
-          url: propertySlug === 'street-food-rome' ? `/blog/${post.slug}` : `/${propertySlug}/blog/${post.slug}`,
+          url: currentPropertySlug === 'street-food-rome' ? `/blog/${post.slug}` : `/${currentPropertySlug}/blog/${post.slug}`,
           property: propertyName,
-          propertySlug: propertySlug,
+          propertySlug: currentPropertySlug,
           relevanceScore: score,
         };
       })
       .filter((result) => result.relevanceScore > 0);
 
     const pageResults: SearchResult[] = pages
-      .filter((page) => (page.propertySlug || 'street-food-rome') === propertySlug)
+      .filter((page) => (page.propertySlug || 'street-food-rome') === currentPropertySlug)
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.metaDesc);
         const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
-        const url = propertySlug === 'street-food-rome' ? urlSegment : `/${propertySlug}${urlSegment}`;
+        const url = currentPropertySlug === 'street-food-rome' ? urlSegment : `/${currentPropertySlug}${urlSegment}`;
         return {
           id: page.slug,
           type: 'page' as const,
@@ -113,7 +115,7 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
           description: page.metaDesc || '',
           url: url,
           property: propertyName,
-          propertySlug: propertySlug,
+          propertySlug: currentPropertySlug,
           relevanceScore: score,
         };
       })
@@ -138,7 +140,7 @@ async function SearchResults({ query, propertySlug }: { query: string; propertyS
     const results = [...tourResults, ...blogResults, ...pageResults, ...propertyResults]
       .filter((result) => {
         if (result.type === 'property') return true;
-        return result.propertySlug === propertySlug;
+        return result.propertySlug === currentPropertySlug;
       })
       .sort((a, b) => b.relevanceScore - a.relevanceScore)
       .slice(0, 20);
