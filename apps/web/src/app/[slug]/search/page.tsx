@@ -47,18 +47,15 @@ function calculateRelevance(query: string, title: string, description: string): 
 
 
 async function SearchResults({ query, propertySlug }: { query: string; propertySlug?: string }) {
-  const currentPropertySlug = propertySlug || 'street-food-rome';
-
-  if (!query || query.length < 2) {
-    return (
-      <div className="bg-cream py-20">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-4xl font-bold text-ink mb-4">Enter a search term</h2>
-          <p className="text-ink/70">Try searching for a tour, neighborhood, or topic.</p>
-        </div>
+  // Search disabled - returning no results
+  return (
+    <div className="bg-cream py-20">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="font-display text-4xl font-bold text-ink mb-4">Search Unavailable</h2>
+        <p className="text-ink/70">Search is temporarily unavailable. Please browse our tours or contact us directly.</p>
       </div>
-    );
-  }
+    </div>
+  );
 
   try {
     const [tours, blogs, pages] = await Promise.all([
