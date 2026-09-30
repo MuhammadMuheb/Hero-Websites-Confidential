@@ -59,10 +59,9 @@ export function GlobalSearchBox({
 
       setIsLoading(true);
       try {
-        const params = new URLSearchParams({
-          q: query,
-          property: currentPropertySlug,
-        });
+        const params = new URLSearchParams();
+        params.append('q', query);
+        params.append('property', currentPropertySlug);
         const response = await fetch(`/api/search?${params}`);
         const data = await response.json();
         setResults(data.results || []);
