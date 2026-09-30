@@ -141,9 +141,10 @@ function searchProperties(query: string): SearchResult[] {
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('q')?.trim();
+  const propertySlug = searchParams.get('property')?.trim();
 
   if (!query || query.length < 2) {
-    return NextResponse.json({ results: [], query: '' });
+    return NextResponse.json({ results: [], query: '', property: propertySlug || null });
   }
 
   try {
@@ -155,20 +156,33 @@ export async function GET(request: NextRequest) {
       Promise.resolve(searchProperties(query)),
     ]);
 
-    // Combine and sort by relevance, limiting to top 20 results
-    const allResults = [...tours, ...blogs, ...pages, ...properties]
+    // Filter by property if specified
+    let allResults = [...tours, ...blogs, ...pages, ...properties];
+    if (propertySlug && propertySlug !== 'street-food-rome') {
+      allResults = allResults.filter((r) => r.propertySlug === propertySlug);
+    }
+
+    // Sort by relevance, limit to top 20
+    const results = allResults
       .sort((a, b) => b.relevanceScore - a.relevanceScore)
       .slice(0, 20);
 
+    // Get property name for display
+    const propertyName = propertySlug
+      ? NETWORK_SITES.find((s) => s.slug === propertySlug)?.name || 'Search Results'
+      : 'Street Food Rome';
+
     return NextResponse.json({
-      results: allResults,
+      results,
       query,
-      total: allResults.length,
+      total: results.length,
+      property: propertySlug || 'street-food-rome',
+      propertyName,
     });
   } catch (error) {
     console.error('Search error:', error);
     return NextResponse.json(
-      { error: 'Search failed', results: [], query },
+      { error: 'Search failed', results: [], query, property: propertySlug || null },
       { status: 500 }
     );
   }

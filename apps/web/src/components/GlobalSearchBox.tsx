@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { NETWORK_SITES } from '@/lib/tours';
 
 interface SearchResult {
   id: string;
@@ -9,7 +10,8 @@ interface SearchResult {
   title: string;
   description: string;
   url: string;
-  location: string;
+  property: string;
+  propertySlug: string;
   relevanceScore: number;
 }
 
@@ -17,47 +19,65 @@ interface GlobalSearchBoxProps {
   placeholder?: string;
   className?: string;
   compact?: boolean;
+  propertySlug?: string;
 }
 
 export function GlobalSearchBox({
   placeholder = 'Search across all websites...',
   className = '',
-  compact = false
+  compact = false,
+  propertySlug
 }: GlobalSearchBoxProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [groupedResults, setGroupedResults] = useState<Record<string, SearchResult[]>>({});
+  const [propertyName, setPropertyName] = useState('Search Results');
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Detect propertySlug from pathname if not provided
+  const currentPropertySlug = propertySlug || (() => {
+    const segments = pathname.split('/').filter(Boolean);
+    const firstSegment = segments[0];
+    if (NETWORK_SITES.some((s) => s.slug === firstSegment)) {
+      return firstSegment;
+    }
+    return 'street-food-rome';
+  })();
+
+  const currentPropertyName =
+    NETWORK_SITES.find((s) => s.slug === currentPropertySlug)?.name || 'Street Food Rome';
 
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (query.length < 2) {
         setResults([]);
-        setGroupedResults({});
         return;
       }
 
       setIsLoading(true);
       try {
-        const response = await fetch(`/api/global-search?q=${encodeURIComponent(query)}`);
+        const params = new URLSearchParams({
+          q: query,
+          property: currentPropertySlug,
+        });
+        const response = await fetch(`/api/search?${params}`);
         const data = await response.json();
         setResults(data.results || []);
-        setGroupedResults(data.groupedResults || {});
+        setPropertyName(data.propertyName || currentPropertyName);
         setIsOpen(true);
       } catch (error) {
         console.error('Search error:', error);
         setResults([]);
-        setGroupedResults({});
       } finally {
         setIsLoading(false);
       }
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [query]);
+  }, [query, currentPropertySlug, currentPropertyName]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -73,7 +93,7 @@ export function GlobalSearchBox({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim().length >= 2) {
-      router.push(`/search?q=${encodeURIComponent(query)}`);
+      router.push(`/search?q=${encodeURIComponent(query)}&property=${currentPropertySlug}`);
       setIsOpen(false);
     }
   };
@@ -141,40 +161,39 @@ export function GlobalSearchBox({
                 <p className="mt-1 text-xs text-gray-500">Try different keywords or browse by category</p>
               </div>
             ) : (
-              <div className="divide-y divide-gray-100">
-                {Object.entries(groupedResults).map(([location, locationResults]) => (
-                  <div key={location}>
-                    <div className="bg-gray-50 px-4 py-2">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">{location}</p>
-                    </div>
-                    <div className="space-y-0">
-                      {locationResults.slice(0, 5).map((result) => (
-                        <button
-                          key={`${result.location}-${result.id}`}
-                          onClick={() => handleResultClick(result)}
-                          className="w-full px-4 py-3 text-left hover:bg-blue-50 transition-colors flex items-start justify-between gap-3"
-                        >
-                          <div className="min-w-0 flex-1">
-                            <p className="font-medium text-gray-900 truncate">{result.title}</p>
-                            {result.description && (
-                              <p className="text-sm text-gray-600 truncate">{result.description}</p>
-                            )}
-                          </div>
-                          <span className="shrink-0 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700">
-                            {result.type}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+              <div>
+                {/* Property Header */}
+                <div className="bg-gray-50 px-4 py-2">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">{propertyName}</p>
+                </div>
+                <div className="space-y-0 divide-y divide-gray-100">
+                  {results.slice(0, 5).map((result) => (
+                    <button
+                      key={`${result.propertySlug}-${result.id}`}
+                      onClick={() => handleResultClick(result)}
+                      className="w-full px-4 py-3 text-left hover:bg-blue-50 transition-colors flex items-start justify-between gap-3"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium text-gray-900 truncate">{result.title}</p>
+                        {result.description && (
+                          <p className="text-sm text-gray-600 truncate">{result.description}</p>
+                        )}
+                      </div>
+                      <span className="shrink-0 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700">
+                        {result.type}
+                      </span>
+                    </button>
+                  ))}
+                </div>
 
                 {/* View All Results Link */}
                 {results.length > 0 && (
                   <div className="border-t border-gray-100 bg-gray-50 px-4 py-3">
                     <button
                       onClick={() => {
-                        router.push(`/search?q=${encodeURIComponent(query)}`);
+                        router.push(
+                          `/search?q=${encodeURIComponent(query)}&property=${currentPropertySlug}`
+                        );
                         setIsOpen(false);
                       }}
                       className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"

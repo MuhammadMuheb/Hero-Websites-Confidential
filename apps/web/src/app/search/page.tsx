@@ -45,7 +45,7 @@ function calculateRelevance(query: string, title: string, description: string): 
   return score;
 }
 
-async function SearchResults({ query }: { query: string }) {
+async function SearchResults({ query, propertySlug }: { query: string; propertySlug?: string }) {
   if (!query || query.length < 2) {
     return (
       <div className="bg-cream py-20">
@@ -281,16 +281,17 @@ async function SearchResults({ query }: { query: string }) {
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; property?: string }>;
 }) {
   const params = await searchParams;
   const query = typeof params.q === 'string' ? params.q : '';
+  const propertySlug = typeof params.property === 'string' ? params.property : undefined;
 
   return (
     <>
       <Hero imageUrl="https://images.unsplash.com/photo-1516594915649-c945b9c922c8?w=1600&q=80" title="Search Tours" subtitle="Find what you&apos;re looking for" accentWord="" />
       <Suspense fallback={<div className="bg-cream min-h-screen" />}>
-        <SearchResults query={query} />
+        <SearchResults query={query} propertySlug={propertySlug} />
       </Suspense>
     </>
   );
