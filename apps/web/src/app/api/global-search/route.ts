@@ -14,20 +14,22 @@ interface GlobalSearchResult {
 }
 
 // Property detection helper - determines which network site an item belongs to
-function detectPropertyForTour(): { name: string; slug: string } {
-  // Default to Street Food Rome - the base property with tours
-  return { name: 'Street Food Rome', slug: 'street-food-rome' };
+function detectPropertyForTour(tour: { propertySlug?: string }): { name: string; slug: string } {
+  const slug = tour.propertySlug || 'street-food-rome';
+  const property = NETWORK_SITES.find((s) => s.slug === slug);
+  return { name: property?.name || 'Street Food Rome', slug };
 }
 
-function detectPropertyForBlog(): { name: string; slug: string } {
-  // Default to Street Food Rome - the base property with blog posts
-  return { name: 'Street Food Rome', slug: 'street-food-rome' };
+function detectPropertyForBlog(post: { propertySlug?: string }): { name: string; slug: string } {
+  const slug = post.propertySlug || 'street-food-rome';
+  const property = NETWORK_SITES.find((s) => s.slug === slug);
+  return { name: property?.name || 'Street Food Rome', slug };
 }
 
-function detectPropertyForPage(): { name: string; slug: string } {
-  // Pages might have property metadata or slug-based detection
-  // For now, default to Street Food Rome for shared pages
-  return { name: 'Street Food Rome', slug: 'street-food-rome' };
+function detectPropertyForPage(page: { propertySlug?: string }): { name: string; slug: string } {
+  const slug = page.propertySlug || 'street-food-rome';
+  const property = NETWORK_SITES.find((s) => s.slug === slug);
+  return { name: property?.name || 'Street Food Rome', slug };
 }
 
 function normalizeQuery(query: string): string {
@@ -60,13 +62,13 @@ async function searchAllTours(query: string): Promise<GlobalSearchResult[]> {
     return tours
       .map((tour) => {
         const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
-        const property = detectPropertyForTour();
+        const property = detectPropertyForTour(tour);
         return {
           id: tour.slug,
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
-          url: `/tours/${tour.slug}`,
+          url: `/${property.slug}/tours/${tour.slug}`,
           location: property.name,
           locationSlug: property.slug,
           relevanceScore: score,
@@ -87,13 +89,13 @@ async function searchAllBlogPosts(query: string): Promise<GlobalSearchResult[]> 
     return posts
       .map((post) => {
         const score = calculateRelevance(query, post.title, post.excerpt);
-        const property = detectPropertyForBlog();
+        const property = detectPropertyForBlog(post);
         return {
           id: post.slug,
           type: 'blog' as const,
           title: post.title,
           description: post.excerpt || '',
-          url: `/blog/${post.slug}`,
+          url: `/${property.slug}/blog/${post.slug}`,
           location: property.name,
           locationSlug: property.slug,
           relevanceScore: score,
@@ -114,14 +116,15 @@ async function searchAllPages(query: string): Promise<GlobalSearchResult[]> {
     return pages
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.metaDesc);
+        const property = detectPropertyForPage(page);
         const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
-        const property = detectPropertyForPage();
+        const url = property.slug === 'street-food-rome' ? urlSegment : `/${property.slug}${urlSegment}`;
         return {
           id: page.slug,
           type: 'page' as const,
           title: page.title,
           description: page.metaDesc || '',
-          url: urlSegment,
+          url: url,
           location: property.name,
           locationSlug: property.slug,
           relevanceScore: score,

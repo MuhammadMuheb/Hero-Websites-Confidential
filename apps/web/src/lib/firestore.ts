@@ -63,6 +63,8 @@ export interface TourDoc {
   groupSize: string | null;
   /** e.g. "EN, IT". Not yet populated — reads default this to null. */
   language: string | null;
+  /** Which property this tour belongs to (e.g., "amalfi-day-trip", "underground-colosseum") - defaults to 'street-food-rome' */
+  propertySlug?: string;
 }
 
 export interface PageFaq {
@@ -83,6 +85,8 @@ export interface PageDoc {
   metaDesc: string;
   schemaType?: string[];
   updatedAt?: string;
+  /** Which property this page belongs to (defaults to 'street-food-rome') */
+  propertySlug?: string;
 }
 
 export interface AuthorDoc {
@@ -110,6 +114,38 @@ export interface BlogPostDoc {
   /** `authors` collection doc id — for a byline via getAuthor(). Not yet
    *  populated on existing docs — defaults to null. */
   authorId: string | null;
+  /** Which property this blog post belongs to (defaults to 'street-food-rome') */
+  propertySlug?: string;
+}
+
+function getPropertySlugForTour(tourSlug: string): string {
+  const tourToProperty: Record<string, string> = {
+    // Street Food Rome tours (existing)
+    'trastevere-food-wine-walk': 'street-food-rome',
+    'rome-market-food-tour': 'street-food-rome',
+    'campo-de-fiori-cooking-class': 'street-food-rome',
+    'jews-ghetto-food-tour': 'street-food-rome',
+    'historic-center-food-walks': 'street-food-rome',
+    'roman-cuisine-class': 'street-food-rome',
+
+    // ADD MAPPINGS FOR OTHER PROPERTIES AS TOURS ARE IDENTIFIED
+    // Amalfi Day Trip
+    'amalfi-hiking-adventure': 'amalfi-day-trip',
+    'amalfi-boat-tour': 'amalfi-day-trip',
+    'positano-ravello-tour': 'amalfi-day-trip',
+
+    // Underground Colosseum
+    'colosseum-underground-tour': 'underground-colosseum',
+    'underground-arena-tour': 'underground-colosseum',
+
+    // Pompeii Day Trip
+    'pompeii-guided-tour': 'pompeii-day-trip',
+    'vesuvius-hike': 'pompeii-day-trip',
+
+    // Add more as needed...
+  };
+
+  return tourToProperty[tourSlug] || 'street-food-rome';
 }
 
 function normalizeTour(data: FirebaseFirestore.DocumentData): TourDoc {
@@ -119,12 +155,17 @@ function normalizeTour(data: FirebaseFirestore.DocumentData): TourDoc {
     isTopPick: data.isTopPick === true,
     groupSize: null,
     language: null,
+    propertySlug: data.propertySlug || getPropertySlugForTour(data.slug || ''),
     ...data,
   } as unknown as TourDoc;
 }
 
 function normalizeBlogPost(data: FirebaseFirestore.DocumentData): BlogPostDoc {
-  return { categorySlug: null, landmarkSlug: null, authorId: null, ...data } as BlogPostDoc;
+  return { categorySlug: null, landmarkSlug: null, authorId: null, propertySlug: data.propertySlug || 'street-food-rome', ...data } as BlogPostDoc;
+}
+
+function normalizePageDoc(data: FirebaseFirestore.DocumentData): PageDoc {
+  return { propertySlug: data.propertySlug || 'street-food-rome', ...data } as PageDoc;
 }
 
 /**
@@ -162,7 +203,7 @@ export const getTourBySlug = unstable_cache(
 export const getPageDoc = unstable_cache(
   async (slug: string): Promise<PageDoc | null> => {
     const snap = await getDb().collection('sites').doc(SITE_DOMAIN).collection('pages').doc(slug).get();
-    return snap.exists ? (snap.data() as PageDoc) : null;
+    return snap.exists ? normalizePageDoc(snap.data()!) : null;
   },
   ['pages:by-slug'],
   { tags: ['pages'], revalidate: 3600 },
@@ -171,7 +212,7 @@ export const getPageDoc = unstable_cache(
 export const listPageDocs = unstable_cache(
   async (): Promise<PageDoc[]> => {
     const snap = await getDb().collection('sites').doc(SITE_DOMAIN).collection('pages').get();
-    return snap.docs.map((doc) => doc.data() as PageDoc);
+    return snap.docs.map((doc) => normalizePageDoc(doc.data()));
   },
   ['pages:all'],
   { tags: ['pages'], revalidate: 3600 },

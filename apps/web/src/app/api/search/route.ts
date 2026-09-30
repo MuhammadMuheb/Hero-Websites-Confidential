@@ -48,14 +48,16 @@ async function searchTours(query: string): Promise<SearchResult[]> {
     return tours
       .map((tour) => {
         const score = calculateRelevance(query, tour.title, tour.niche?.join(', ') || '');
+        const propertySlug = tour.propertySlug || 'street-food-rome';
+        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
         return {
           id: tour.slug,
           type: 'tour' as const,
           title: tour.title,
           description: tour.firstHandNotes || tour.niche?.join(', ') || '',
-          url: `/tours/${tour.slug}`,
-          property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
+          url: `/${propertySlug}/tours/${tour.slug}`,
+          property: property?.name || 'Street Food Rome',
+          propertySlug: propertySlug,
           relevanceScore: score,
         };
       })
@@ -73,14 +75,16 @@ async function searchBlogPosts(query: string): Promise<SearchResult[]> {
     return posts
       .map((post) => {
         const score = calculateRelevance(query, post.title, post.excerpt);
+        const propertySlug = post.propertySlug || 'street-food-rome';
+        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
         return {
           id: post.slug,
           type: 'blog' as const,
           title: post.title,
           description: post.excerpt || '',
-          url: `/blog/${post.slug}`,
-          property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
+          url: `/${propertySlug}/blog/${post.slug}`,
+          property: property?.name || 'Street Food Rome',
+          propertySlug: propertySlug,
           relevanceScore: score,
         };
       })
@@ -98,15 +102,18 @@ async function searchPages(query: string): Promise<SearchResult[]> {
     return pages
       .map((page) => {
         const score = calculateRelevance(query, page.title, page.metaDesc);
+        const propertySlug = page.propertySlug || 'street-food-rome';
+        const property = NETWORK_SITES.find((s) => s.slug === propertySlug);
         const urlSegment = page.slug === 'home' ? '' : `/${page.slug}`;
+        const url = propertySlug === 'street-food-rome' ? urlSegment : `/${propertySlug}${urlSegment}`;
         return {
           id: page.slug,
           type: 'page' as const,
           title: page.title,
           description: page.metaDesc || '',
-          url: urlSegment,
-          property: 'Street Food Rome',
-          propertySlug: 'street-food-rome',
+          url: url,
+          property: property?.name || 'Street Food Rome',
+          propertySlug: propertySlug,
           relevanceScore: score,
         };
       })
