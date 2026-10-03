@@ -9,7 +9,7 @@ function List({ groups, selected, base }: { groups: OutlineGroup[]; selected: st
     <nav aria-label="Site outline" className="space-y-4">
       {groups.map((g) => (
         <div key={g.title}>
-          <h3 className="px-2.5 pb-1 text-[11px] font-semibold uppercase tracking-wider text-ink-muted">{g.title}</h3>
+          {!(g.items.length === 1 && g.items[0].label === g.title) && <h3 className="px-2.5 pb-1 text-[11px] font-semibold uppercase tracking-wider text-ink-muted">{g.title}</h3>}
           <ul className="space-y-0.5">
             {g.items.map((item) => {
               const active = item.id === selected;
