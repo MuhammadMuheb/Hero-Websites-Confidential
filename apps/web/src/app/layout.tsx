@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
+import { headers } from 'next/headers';
 import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { RevealAnimations } from '@/components/RevealAnimations';
 import { NetworkProvider } from '@/components/NetworkProvider';
 import { getLiveNetworkSites } from '@/lib/network';
+import { TENANT_HEADER } from '@/lib/tenant-host';
 import { BING_SITE_VERIFICATION, GA_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION } from '@/lib/analytics';
 import './globals.css';
 import './animations.css';
@@ -37,16 +39,20 @@ const metadata: Metadata = {
 export { metadata };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const networkSites = await getLiveNetworkSites();
+  // Requests for another project's own domain (set by the middleware) are rendered by the generic site template
+  // under /sites/<domain>, which brings its own header and footer. Street Food Rome's chrome and analytics
+  // therefore apply to the legacy site only.
+  const isTenant = Boolean((await headers()).get(TENANT_HEADER));
+  const networkSites = isTenant ? [] : await getLiveNetworkSites();
   return (
     <html lang="en" className={montserrat.variable}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {GA_MEASUREMENT_ID && (
+        {!isTenant && GA_MEASUREMENT_ID && (
           <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
         )}
-        {GA_MEASUREMENT_ID && (
+        {!isTenant && GA_MEASUREMENT_ID && (
           <Script
             id="gtag-init"
             dangerouslySetInnerHTML={{
@@ -56,12 +62,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         )}
       </head>
       <body className="bg-cream text-ink font-sans">
-        <NetworkProvider sites={networkSites}>
-          <RevealAnimations />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </NetworkProvider>
+        {isTenant ? (
+          children
+        ) : (
+          <NetworkProvider sites={networkSites}>
+            <RevealAnimations />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </NetworkProvider>
+        )}
       </body>
     </html>
   );

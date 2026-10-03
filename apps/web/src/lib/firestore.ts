@@ -1,11 +1,8 @@
 /**
- * UPDATED firestore.ts - PHASE 2 COMPLETE
+ * Firestore reads for the legacy (Street Food Rome) pages. The generic multi-site template reads through
+ * lib/tenants.ts and lib/tenant-data.ts instead.
  *
- * Copy this file to: apps/web/src/lib/firestore.ts
- *
- * Changes:
- * - getPropertySlugForTour() now has ALL Street Food Rome tours mapped
- * - Ready for other 12 properties (add their tours when available)
+ * Which site a tour belongs to is the stored `propertySlug` on its document; there is no per-site table in code.
  */
 
 import { cert, getApps, initializeApp, type App } from 'firebase-admin/app';
@@ -109,130 +106,6 @@ export interface BlogPostDoc {
   propertySlug?: string;
 }
 
-/**
- * Map tour slugs to their property. COMPLETE for all 13 properties.
- * Updated Phase 3: Added all 12 properties' tours (51 total new tours).
- */
-function getPropertySlugForTour(tourSlug: string): string {
-  const tourToProperty: Record<string, string> = {
-    // ===== STREET FOOD ROME (19 tours) =====
-    'trastevere-food-wine-walk': 'street-food-rome',
-    'jewish-ghetto-food-tour': 'street-food-rome',
-    'testaccio-market-food-tour': 'street-food-rome',
-    'pizza-al-taglio-suppli-tasting-tour': 'street-food-rome',
-    'trastevere-pizza-craft-beer-crawl': 'street-food-rome',
-    'roman-pizza-bianca-bakery-tour': 'street-food-rome',
-    'pasta-making-class-trastevere': 'street-food-rome',
-    'cacio-e-pepe-carbonara-tasting-walk': 'street-food-rome',
-    'roman-pasta-four-ways-dinner': 'street-food-rome',
-    'rome-food-wine-tasting': 'street-food-rome',
-    'monti-food-wine-evening': 'street-food-rome',
-    'roman-gelato-tasting-walk': 'street-food-rome',
-    'best-gelaterias-of-rome-tour': 'street-food-rome',
-    'gelato-espresso-crawl': 'street-food-rome',
-    'suppli-roman-street-snacks-tour': 'street-food-rome',
-    'trapizzino-fried-classics-walk': 'street-food-rome',
-    'testaccio-fried-food-crawl': 'street-food-rome',
-    'aperitivo-evening-experience': 'street-food-rome',
-    'prati-neighborhood-food-crawl': 'street-food-rome',
-
-    // ===== AMALFI DAY TRIP (4 tours) =====
-    'gyg-amalfi-coast-boat': 'amalfi-day-trip',
-    'viator-amalfi-positano-hike': 'amalfi-day-trip',
-    'tiqets-amalfi-lemon-grove': 'amalfi-day-trip',
-    'gyg-amalfi-full-day': 'amalfi-day-trip',
-
-    // ===== COOKING IN ROME (4 tours) =====
-    'gyg-pasta-making-class': 'cooking-in-rome',
-    'viator-roman-cooking-course': 'cooking-in-rome',
-    'gyg-market-to-table': 'cooking-in-rome',
-    'civitatis-pizza-making': 'cooking-in-rome',
-
-    // ===== GOLF CART ROME (3 tours) =====
-    'gyg-golf-cart-city-tour': 'golf-cart-rome',
-    'viator-golf-cart-rome': 'golf-cart-rome',
-    'gyg-golf-cart-sunset': 'golf-cart-rome',
-
-    // ===== NAPLES STREET FOOD (4 tours) =====
-    'gyg-naples-street-food': 'naples-street-food',
-    'viator-naples-pizza-tour': 'naples-street-food',
-    'tiqets-naples-market-food': 'naples-street-food',
-    'gyg-naples-cooking-class': 'naples-street-food',
-
-    // ===== POMPEII DAY TRIP (4 tours) =====
-    'gyg-pompeii-guided-tour': 'pompeii-day-trip',
-    'viator-pompeii-herculaneum': 'pompeii-day-trip',
-    'civitatis-pompeii-small-group': 'pompeii-day-trip',
-    'gyg-pompeii-vesuvius': 'pompeii-day-trip',
-
-    // ===== PRIVATE VATICAN (8 tours) =====
-    'gyg-early-entry-sistine-chapel': 'private-vatican',
-    'viator-private-vatican-guide': 'private-vatican',
-    'tiqets-skip-the-line-vatican': 'private-vatican',
-    'gyg-vatican-dome-combo': 'private-vatican',
-    'viator-family-vatican-kid-paced': 'private-vatican',
-    'gyg-early-entry-dome-combo': 'private-vatican',
-    'tiqets-fast-track-vatican-gardens': 'private-vatican',
-    'viator-early-morning-private-vatican': 'private-vatican',
-
-    // ===== ROME PIZZA CLASS (4 tours) =====
-    'gyg-pizza-making-class': 'rome-pizza-class',
-    'viator-pizza-cooking-rome': 'rome-pizza-class',
-    'gyg-pizza-tour-trastevere': 'rome-pizza-class',
-    'civitatis-pizza-night-class': 'rome-pizza-class',
-
-    // ===== ROME VESPA (4 tours) =====
-    'gyg-vespa-city-tour': 'rome-vespa',
-    'viator-vespa-rome-classic': 'rome-vespa',
-    'gyg-vespa-food-wine': 'rome-vespa',
-    'civitatis-vespa-sunset': 'rome-vespa',
-
-    // ===== TIRAMISU CLASS (3 tours) =====
-    'gyg-tiramisu-making-class': 'tiramisu-class',
-    'viator-italian-dessert-class': 'tiramisu-class',
-    'gyg-tiramisu-gelato-combo': 'tiramisu-class',
-
-    // ===== TIVOLI DAY TRIP (4 tours) =====
-    'gyg-tivoli-day-trip': 'tivoli-day-trip',
-    'viator-tivoli-estates-tour': 'tivoli-day-trip',
-    'civitatis-tivoli-small-group': 'tivoli-day-trip',
-    'gyg-tivoli-extended': 'tivoli-day-trip',
-
-    // ===== TUSCANY DAY TRIP (4 tours) =====
-    'gyg-tuscany-day-trip': 'tuscany-day-trip',
-    'viator-tuscany-wine-tour': 'tuscany-day-trip',
-    'civitatis-tuscany-countryside': 'tuscany-day-trip',
-    'gyg-tuscany-cooking': 'tuscany-day-trip',
-
-    // ===== UNDERGROUND COLOSSEUM (5 tours) =====
-    'gyg-colosseum-underground': 'underground-colosseum',
-    'viator-colosseum-forum-palatine': 'underground-colosseum',
-    'tiqets-colosseum-arena': 'underground-colosseum',
-    'gyg-colosseum-evening': 'underground-colosseum',
-    'civitatis-underground-secrets': 'underground-colosseum',
-
-    // Cooking in Rome
-    // 'cooking-*': 'cooking-in-rome',
-
-    // Rome Pizza Class
-    // 'pizza-class-*': 'rome-pizza-class',
-
-    // Tiramisu Class
-    // 'tiramisu-*': 'tiramisu-class',
-
-    // Naples Street Food
-    // 'naples-*': 'naples-street-food',
-
-    // Tivoli Day Trip
-    // 'tivoli-*': 'tivoli-day-trip',
-
-    // Underground Colosseum
-    // 'underground-*': 'underground-colosseum',
-  };
-
-  return tourToProperty[tourSlug] || 'street-food-rome';
-}
-
 function normalizeTour(data: FirebaseFirestore.DocumentData): TourDoc {
   return {
     neighborhood: null,
@@ -240,7 +113,7 @@ function normalizeTour(data: FirebaseFirestore.DocumentData): TourDoc {
     isTopPick: data.isTopPick === true,
     groupSize: null,
     language: null,
-    propertySlug: getPropertySlugForTour(data.slug || ''),
+    propertySlug: PROPERTY_SLUG,
     ...data,
   } as unknown as TourDoc;
 }

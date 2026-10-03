@@ -31,7 +31,7 @@ function items<T extends Raw>(v: unknown, required: string[]): T[] | undefined {
 }
 
 /** Maps the admin's home data onto SiteConfig. Empty values are dropped so they never override the fallback. */
-function fromAdminData(d: Raw): Partial<SiteConfig> {
+export function fromAdminData(d: Raw): Partial<SiteConfig> {
   const hero = isObject(d.hero) ? d.hero : {};
   const heroImage = isObject(hero.image) && isText(hero.image.src) ? { src: hero.image.src, alt: text(hero.image.alt) ?? '' } : undefined;
   const seo = isObject(d.seo) ? d.seo : {};
