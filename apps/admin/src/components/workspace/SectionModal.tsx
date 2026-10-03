@@ -140,6 +140,7 @@ export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pag
         footer={
           canEdit ? (
             <>
+              {canPublish && <p className="mr-auto hidden max-w-xs text-xs text-ink-muted sm:block">Save draft keeps the change private. Publish now puts it on the live site.</p>}
               <Button onClick={requestClose} disabled={pending}>
                 Cancel
               </Button>

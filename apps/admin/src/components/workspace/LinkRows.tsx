@@ -92,21 +92,45 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
   const failing = checks.filter((c) => !c.ok);
   const unpublished = status !== "published" && state.hasPublished;
 
-  /** Stores the new list as the draft. `undo` is the list to go back to. */
+  /**
+   * Saves `draft`; a person who may publish also makes it live in the same step, so a change in the navbar or footer
+   * shows on the site at once. Returns false when nothing was saved.
+   */
+  const saveAndGoLive = async (draft: PageDraft, message: string, undo?: () => void): Promise<boolean> => {
+    const r = await saveDraft(projectSlug, "navigation", draft);
+    if (!r.ok) {
+      notify(`Could not save. ${r.error}`, { tone: "error" });
+      return false;
+    }
+    setBase(draft);
+    if (!canPublish) {
+      setStatus("draft");
+      notify(`${message} Saved as a draft.`, undo ? { actionLabel: "Undo", durationMs: 10_000, onAction: undo } : undefined);
+      router.refresh();
+      return true;
+    }
+    const p = await publishPage(projectSlug, "navigation");
+    if (!p.ok) {
+      setStatus("draft");
+      notify(`Saved, but not live yet: ${p.issues?.[0] ?? p.error}`, { tone: "error" });
+      router.refresh();
+      return true;
+    }
+    setStatus("published");
+    if (p.data.revalidateError) notify("Saved and published. The public site could not be refreshed yet. Your change is saved and will appear within the hour.", { tone: "error" });
+    else notify(`${message} It is live now.`, undo ? { actionLabel: "Undo", durationMs: 10_000, onAction: undo } : undefined);
+    router.refresh();
+    return true;
+  };
+
+  /** Stores the new list. `undo` is the list to go back to. */
   const persist = (next: Item[], message: string, undo?: Item[]) => {
     const before = items;
     setItems(next);
     startTransition(async () => {
       const draft: PageDraft = { ...base, data: { ...base.data, [kind]: next } };
-      const r = await saveDraft(projectSlug, "navigation", draft);
-      if (!r.ok) {
-        setItems(before);
-        return notify(`Could not save. ${r.error}`, { tone: "error" });
-      }
-      setBase(draft);
-      setStatus("draft");
-      notify(message, undo ? { actionLabel: "Undo", durationMs: 10_000, onAction: () => persist(undo, "Restored.") } : undefined);
-      router.refresh();
+      const saved = await saveAndGoLive(draft, message, undo ? () => persist(undo, "Restored.") : undefined);
+      if (!saved) setItems(before);
     });
   };
 
@@ -114,14 +138,10 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
     startTransition(async () => {
       const value = detail.trim();
       const draft: PageDraft = { ...base, data: { ...base.data, [detailKey]: value } };
-      const r = await saveDraft(projectSlug, "navigation", draft);
-      if (!r.ok) return notify(`Could not save. ${r.error}`, { tone: "error" });
-      setBase(draft);
-      setDetail(value);
-      setDetailSaved(value);
-      setStatus("draft");
-      notify("Saved as a draft. Publish to put it on the site.");
-      router.refresh();
+      if (await saveAndGoLive(draft, "Saved.")) {
+        setDetail(value);
+        setDetailSaved(value);
+      }
     });
 
   const publish = () =>
@@ -144,7 +164,7 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
   const move = (column: number | null, i: number, d: -1 | 1) => {
     const list = [...listAt(column)];
     [list[i], list[i + d]] = [list[i + d], list[i]];
-    persist(withList(column, list), "Order saved as a draft.", items);
+    persist(withList(column, list), "Order saved.", items);
   };
   const remove = (column: number | null, i: number) => {
     const list = listAt(column);
@@ -375,7 +395,7 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
             const list = [...listAt(editing.column)];
             if (editing.index === null) list.push(item);
             else list[editing.index] = { ...list[editing.index], ...item };
-            persist(withList(editing.column, list), editing.index === null ? "Link added as a draft." : "Link saved as a draft.");
+            persist(withList(editing.column, list), editing.index === null ? "Link added." : "Link saved.");
             setEditing(null);
           }}
         />
@@ -386,7 +406,7 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
           isNew={columnEdit.index === null}
           onClose={() => setColumnEdit(null)}
           onSave={(label) => {
-            persist(columnEdit.index === null ? [...items, { label, href: "", cta: false, children: [] }] : items.map((g, n) => (n === columnEdit.index ? { ...g, label } : g)), "Column saved as a draft.");
+            persist(columnEdit.index === null ? [...items, { label, href: "", cta: false, children: [] }] : items.map((g, n) => (n === columnEdit.index ? { ...g, label } : g)), "Column saved.");
             setColumnEdit(null);
           }}
         />
