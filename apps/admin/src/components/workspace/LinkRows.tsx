@@ -229,7 +229,7 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
                       )}
                       {canEdit && (
                         <>
-                          <Button size="sm" variant="primary" onClick={() => setEditing({ column, index: i, item })} aria-label={`Edit ${item.label}`}>
+                          <Button size="sm" onClick={() => setEditing({ column, index: i, item })} aria-label={`Edit ${item.label}`}>
                             Edit
                           </Button>
                           <button type="button" aria-label={`Move ${item.label} up`} disabled={pending || i === 0} onClick={() => move(column, i, -1)} className={iconButton}>
@@ -238,9 +238,9 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
                           <button type="button" aria-label={`Move ${item.label} down`} disabled={pending || i === list.length - 1} onClick={() => move(column, i, 1)} className={iconButton}>
                             <Icon name="down" size={16} />
                           </button>
-                          <Button size="sm" disabled={pending} onClick={() => remove(column, i)} aria-label={`Remove ${item.label}`}>
-                            Remove
-                          </Button>
+                          <button type="button" aria-label={`Remove ${item.label}`} title="Remove" disabled={pending} onClick={() => remove(column, i)} className="rounded p-1.5 text-danger hover:bg-danger-soft disabled:opacity-30">
+                            <Icon name="trash" size={16} />
+                          </button>
                         </>
                       )}
                     </div>
@@ -367,22 +367,21 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
       )}
 
       {automatic.length > 0 && (
-        <section className="mt-4 rounded-card border border-line bg-surface shadow-card">
-          <ul>
-            {automatic.map((a) => (
-              <li key={a.label} className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-4 py-3 last:border-0">
-                <div>
-                  <p className="text-sm font-medium text-ink">{a.label}</p>
-                  <p className="text-xs text-ink-muted">{a.note}</p>
-                </div>
-                <div className="flex gap-2">
-                  <Chip>Automatic</Chip>
-                  <Chip>Locked</Chip>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <div className="mt-4 flex flex-wrap items-start gap-3 rounded-card border border-dashed border-line bg-canvas/50 px-4 py-3">
+          <Icon name="lock" size={16} className="mt-0.5 shrink-0 text-ink-muted" />
+          <div className="min-w-0 text-[13px]">
+            <p className="font-medium text-ink">Managed by the site</p>
+            <p className="mt-0.5 text-ink-muted">
+              {automatic.map((x, n) => (
+                <span key={x.label}>
+                  {n > 0 && " · "}
+                  <span className="text-ink">{x.label}</span> ({x.note.charAt(0).toLowerCase() + x.note.slice(1)})
+                </span>
+              ))}
+              . These are filled in automatically and cannot be edited here.
+            </p>
+          </div>
+        </div>
       )}
 
       {editing && (

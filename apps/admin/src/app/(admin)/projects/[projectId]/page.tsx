@@ -11,7 +11,7 @@ import { SiteOutline } from "@/components/workspace/SiteOutline";
 import { TaxonomyEditor } from "@/components/workspace/TaxonomyEditor";
 import { ToursManager } from "@/components/workspace/ToursManager";
 import { can } from "@/lib/auth/permissions";
-import { LINK_TARGETS, OUTLINE_IDS, buildOutline } from "@/lib/content/outline";
+import { LINK_TARGETS, OUTLINE_IDS, buildOutline, pageForPath } from "@/lib/content/outline";
 import { getPageDef } from "@/lib/content/pages";
 import { projectOpenUrl } from "@/lib/project-open-url";
 import { gateContext, gateFor, getPageState } from "@/lib/repo/content";
@@ -50,7 +50,10 @@ export default async function ProjectEditor({ params, searchParams }: { params: 
   const [navState, taxonomies] = await Promise.all([getPageState(project, "navigation"), getTaxonomies(project.slug)]);
   const navbarCount = ((navState.draft.data.navbar as unknown[]) ?? []).length;
   const footerCount = ((navState.draft.data.footer as unknown[]) ?? []).length;
-  const outline = buildOutline({ navbar: navbarCount, footer: footerCount, tours: project.cards, areas: taxonomies.neighbourhoods.length });
+  const navbarPages = ((navState.draft.data.navbar as { label?: string; href?: string }[]) ?? [])
+    .map((l) => ({ label: String(l?.label ?? ""), page: l?.href && !/^[a-z]+:/i.test(l.href) ? pageForPath(l.href) : null }))
+    .filter((l): l is { label: string; page: string } => l.label !== "" && l.page !== null);
+  const outline = buildOutline({ navbarPages, navbar: navbarCount, footer: footerCount, tours: project.cards, areas: taxonomies.neighbourhoods.length });
 
   const canPublish = can(user, "publish", project.slug);
   const status = STATUS[project.status];

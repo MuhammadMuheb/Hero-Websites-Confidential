@@ -585,7 +585,7 @@ export function ToursManager({ projectSlug, projectName, tours, taxonomies, canP
                         </Button>
                       ) : (
                         <>
-                          <Button size="sm" variant="primary" onClick={() => setModal({ kind: "edit", tour: t })} aria-label={`Edit ${t.title}`}>
+                          <Button size="sm" onClick={() => setModal({ kind: "edit", tour: t })} aria-label={`Edit ${t.title}`}>
                             Edit
                           </Button>
                           <Button size="sm" onClick={() => setTrashTarget(t)} aria-label={`Move ${t.title} to Trash`}>

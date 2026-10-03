@@ -173,7 +173,7 @@ export function SectionRows({ projectSlug, domain, pageSlug, def, state, checks,
                     </Chip>
                   </td>
                   <td className="px-4 py-2 text-right">
-                    <Button size="sm" variant="primary" onClick={() => setEditing({ id: META_SECTION, label: "Page title and SEO", keys: [] })}>
+                    <Button size="sm" onClick={() => setEditing({ id: META_SECTION, label: "Page title and SEO", keys: [] })}>
                       {canEdit ? "Edit" : "View"}
                     </Button>
                   </td>
@@ -205,7 +205,7 @@ export function SectionRows({ projectSlug, domain, pageSlug, def, state, checks,
                     <td className="px-2 py-2">{!s.visible ? <span className="text-xs text-ink-muted">n/a</span> : missingAlt > 0 ? <Chip tone="red">Alt text</Chip> : <Chip tone="green">OK</Chip>}</td>
                     <td className="px-4 py-2">
                       <div className="flex items-center justify-end gap-1">
-                        <Button size="sm" variant="primary" onClick={() => setEditing({ id: s.id, label: s.label, keys: s.keys })} aria-label={`${canEdit ? "Edit" : "View"} ${s.label}`}>
+                        <Button size="sm" onClick={() => setEditing({ id: s.id, label: s.label, keys: s.keys })} aria-label={`${canEdit ? "Edit" : "View"} ${s.label}`}>
                           {canEdit ? "Edit" : "View"}
                         </Button>
                         {canEdit && (

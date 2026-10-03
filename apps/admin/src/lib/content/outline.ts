@@ -8,6 +8,8 @@ export interface OutlineItem {
   count?: number;
   /** Small text next to the count, for example "cols". */
   unit?: string;
+  /** Entries nested under this one. They slide open while this item is selected. */
+  children?: { id: string; label: string }[];
 }
 
 export interface OutlineGroup {
@@ -16,6 +18,8 @@ export interface OutlineGroup {
 }
 
 export interface OutlineCounts {
+  /** The navbar's links that lead to one of the project's pages, so they can be opened from the outline. */
+  navbarPages?: { label: string; page: string }[];
   navbar: number;
   footer: number;
   tours: number;
@@ -28,7 +32,18 @@ export interface OutlineCounts {
  */
 export function buildOutline(counts: OutlineCounts): OutlineGroup[] {
   return [
-    { title: "Navbar", items: [{ id: "navbar", label: "Navbar", count: counts.navbar }] },
+    {
+      title: "Navbar",
+      items: [
+        {
+          id: "navbar",
+          label: "Navbar",
+          count: counts.navbar,
+          // Each page once, named as the navbar names it.
+          children: (counts.navbarPages ?? []).filter((p, i, all) => all.findIndex((q) => q.page === p.page) === i).map((p) => ({ id: p.page, label: p.label })),
+        },
+      ],
+    },
     { title: "Pages", items: PAGE_DEFS.map((p) => ({ id: p.slug, label: p.title, count: p.sections.length })) },
     {
       title: "Content",

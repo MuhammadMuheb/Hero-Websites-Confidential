@@ -181,6 +181,7 @@ export type IconName =
   | "map"
   | "alert"
   | "pencil"
+  | "lock"
   | "trash";
 
 /** Result of every server action: never throws to the client with internals. */
