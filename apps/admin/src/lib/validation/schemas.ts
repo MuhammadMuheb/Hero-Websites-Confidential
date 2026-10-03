@@ -14,6 +14,16 @@ export const httpsUrl = z
   .refine((v) => v.startsWith("https://"), "Must start with https://")
   .transform((v) => v.replace(/\/+$/, ""));
 
+/** A project's domain: a bare hostname, lower-case. "www." is dropped because www.example.com and example.com are one site. */
+const domainSchema = (message: string) =>
+  z
+    .string()
+    .trim()
+    .toLowerCase()
+    .regex(HOSTNAME_RE, message)
+    .transform((d) => d.replace(/^www./, ""))
+    .or(z.literal(""));
+
 export const emailSchema = z.string().trim().toLowerCase().email().max(254);
 
 export const themeSchema = z.object({
@@ -42,7 +52,7 @@ export const projectCreateSchema = z
       .max(60)
       // "new" and "edit" are screens of their own under /projects, so a project cannot use them.
       .refine((v) => v !== "new" && v !== "edit", "This slug is reserved"),
-    domain: z.string().trim().toLowerCase().regex(HOSTNAME_RE, "Enter a valid hostname like example.com").or(z.literal("")),
+    domain: domainSchema("Enter a valid hostname like example.com"),
     publicUrl: z.union([httpsUrl, z.literal("")]),
     status: z.enum(["coming_soon", "live", "archived"]).default("coming_soon"),
     contactEmail: emailSchema,
@@ -61,7 +71,7 @@ export type ProjectCreateInput = z.infer<typeof projectCreateSchema>;
 export const projectUpdateSchema = z
   .object({
     name: text(60).min(2),
-    domain: z.string().trim().toLowerCase().regex(HOSTNAME_RE, "Enter a valid hostname").or(z.literal("")),
+    domain: domainSchema("Enter a valid hostname"),
     publicUrl: z.union([httpsUrl, z.literal("")]),
     status: z.enum(["coming_soon", "live", "archived"]),
     contactEmail: emailSchema,

@@ -67,7 +67,7 @@ export function ProjectForm({ project }: { project?: Project }) {
           setError(r.error);
           return setIssues(r.issues ?? []);
         }
-        notify("Project created");
+        notify(r.data.revalidateError ? "Project created, but the public site could not be refreshed yet." : "Project created", { tone: r.data.revalidateError ? "error" : "success" });
         router.push(`/projects/${r.data.slug}/import`);
         router.refresh();
         return;
@@ -121,7 +121,7 @@ export function ProjectForm({ project }: { project?: Project }) {
         />
       </Field>
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Domain" htmlFor="p-domain" hint="Hostname only, for example streetfoodrome.com. Required to go live.">
+        <Field label="Domain" htmlFor="p-domain" hint="Hostname only, for example streetfoodrome.com (www is the same site). Each domain belongs to one project. Once the domain points at the web app, this project is served there automatically.">
           <Input id="p-domain" value={domain} onChange={(e) => setDomain(e.target.value)} />
         </Field>
         <Field label="Public URL" htmlFor="p-url" hint="Must start with https://. This exact value is the Our Network link.">

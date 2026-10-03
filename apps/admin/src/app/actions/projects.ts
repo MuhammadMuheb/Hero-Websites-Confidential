@@ -12,18 +12,33 @@ import { projectCreateSchema, projectUpdateSchema, themeSchema } from "@/lib/val
 import { UserError, fail, guard, ok } from "@/lib/actions-util";
 import type { ActionResult } from "@/lib/types";
 
-export async function createProject(input: unknown): Promise<ActionResult<{ slug: string }>> {
+/**
+ * A domain may belong to only one project: the public site chooses the project from the request's host, so two
+ * projects on one domain would be ambiguous. "www." and the bare domain count as the same.
+ */
+async function assertDomainFree(domain: string, ownSlug?: string): Promise<void> {
+  if (!domain) return;
+  const snap = await adminDb().collection("properties").where("domain", "in", [domain, `www.${domain}`]).get();
+  const other = snap.docs.find((d) => d.id !== ownSlug);
+  if (other) throw new UserError(`That domain is already used by ${String(other.data().name ?? other.id)}.`, ["domain: already in use"]);
+}
+
+export async function createProject(input: unknown): Promise<ActionResult<{ slug: string; revalidateError?: string }>> {
   return guard(async () => {
     const user = await requirePermission("project:create");
     const data = projectCreateSchema.parse(input);
     if (data.status === "live") throw new UserError("New projects start as Coming soon. Publish the Home page first, then switch to Live.");
     if (await slugExists(data.slug)) throw new UserError("That slug is already used by another project.", ["slug: already exists"]);
+    await assertDomainFree(data.domain);
 
     const ref = adminDb().collection("properties").doc(data.slug);
     await ref.create({ ...data, defaultLocale: "en", createdAt: new Date(), createdBy: user.uid, updatedAt: new Date() });
     await writeAudit({ actor: user, propertySlug: data.slug, entityType: "property", entityId: data.slug, action: "create", summary: `Created project ${data.name}`, after: data });
+    // The public site resolves a project from its domain and caches the lookup: refresh it so the new domain works at once.
+    const r = await revalidateWeb(["network"]);
+    if (!r.ok) await writeAudit({ actor: user, propertySlug: data.slug, entityType: "revalidate", entityId: "network", action: "update", summary: `Revalidation FAILED (new project): ${r.error}` });
     revalidatePath("/projects");
-    return ok({ slug: data.slug });
+    return ok({ slug: data.slug, revalidateError: r.ok ? undefined : r.error });
   });
 }
 
@@ -34,6 +49,7 @@ export async function updateProject(slug: string, input: unknown, confirmName?: 
     const project = await getProject(user, slug);
     if (!project) throw new UserError("Project not found.");
     const data = projectUpdateSchema.parse(input);
+    await assertDomainFree(data.domain, slug);
 
     if (data.status === "archived" && project.status !== "archived" && confirmName?.trim() !== project.name) {
       throw new UserError("Type the project name exactly to confirm archiving.");
