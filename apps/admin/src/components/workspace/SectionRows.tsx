@@ -25,12 +25,14 @@ interface Props {
   canEdit: boolean;
   canPublish: boolean;
   tours?: TourOption[];
+  /** What the publish checks need to know about the project (tour slugs, other page titles). */
+  gateCtx: { tourSlugs: string[]; otherMetaTitles: string[] };
 }
 
 const iconButton = "rounded p-1.5 text-ink-muted hover:bg-canvas hover:text-ink disabled:opacity-30";
 
 /** A page as ordered rows, top to bottom, exactly like the live page. */
-export function SectionRows({ projectSlug, domain, pageSlug, def, state, checks, canEdit, canPublish, tours }: Props) {
+export function SectionRows({ projectSlug, domain, pageSlug, def, state, checks, canEdit, canPublish, tours, gateCtx }: Props) {
   const router = useRouter();
   const { notify } = useToast();
   const [pending, startTransition] = useTransition();
@@ -242,6 +244,7 @@ export function SectionRows({ projectSlug, domain, pageSlug, def, state, checks,
           canEdit={canEdit}
           canPublish={canPublish}
           tours={tours}
+          gateCtx={gateCtx}
           onSaved={(next, live) => {
             setDraft(next);
             setStatus(live ? "published" : "draft");

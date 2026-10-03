@@ -59,13 +59,9 @@ export async function gateContext(project: Pick<Project, "slug" | "domain">, slu
   const tours = await db.collection("tours").where("propertySlug", "==", project.slug).select("slug", "status").get();
   const tourSlugs = new Set(tours.docs.filter((t) => t.data().status !== "trashed").map((t) => t.data().slug as string));
 
-  const others: string[] = [];
-  const pageSlugs = ["home", "about", "contact", "faq", "legal"].filter((s) => s !== slug);
-  for (const s of pageSlugs) {
-    if (s !== "home" && !project.domain) continue;
-    const d = (await contentRef(project, s).get()).data();
-    if (d?.draft) others.push(metaFor(s, normalizeDraft(s, d.draft)).metaTitle);
-  }
+  const pageSlugs = ["home", "about", "contact", "faq", "legal"].filter((s) => s !== slug && (s === "home" || project.domain));
+  const docs = await Promise.all(pageSlugs.map(async (s) => ({ s, d: (await contentRef(project, s).get()).data() })));
+  const others = docs.filter((x) => x.d?.draft).map((x) => metaFor(x.s, normalizeDraft(x.s, x.d!.draft)).metaTitle);
   return { tourSlugs, otherMetaTitles: others.filter(Boolean) };
 }
 

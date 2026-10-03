@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { useEffect, useMemo, useState, useTransition } from "react";
-import { checkPage, publishPage, saveDraft } from "@/app/actions/content";
+import { publishPage, saveDraft } from "@/app/actions/content";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { DiscardDialog } from "@/components/ui/DiscardDialog";
@@ -13,7 +13,7 @@ import { UploadContext } from "@/components/ui/ImageUploader";
 import { useToast } from "@/components/ui/Toast";
 import { metaFor } from "@/lib/content/pages";
 import { pagePath } from "@/lib/content/outline";
-import type { GateCheck } from "@/lib/publish/gate";
+import { runPageGate } from "@/lib/publish/gate";
 import type { PageDraft } from "@/lib/types";
 import { hasHomeForm, HomeSectionForm, type TourOption } from "./HomeForms";
 import { humanize, JsonField } from "./JsonField";
@@ -42,6 +42,7 @@ interface Props {
   canPublish: boolean;
   /** Tours of the project, for the pickers of the Home page. */
   tours?: TourOption[];
+  gateCtx: { tourSlugs: string[]; otherMetaTitles: string[] };
   /** Called after a successful save with the new saved draft (and whether it went live). */
   onSaved: (draft: PageDraft, published: boolean) => void;
 }
@@ -63,7 +64,7 @@ function SearchPreview({ title, url, description }: { title: string; url: string
 }
 
 /** One section of a page in a pop-up: its fields, a search preview, the publish checks, and Save draft / Publish now. */
-export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pageTitle, target, draft, canEdit, canPublish, tours = [], onSaved }: Props) {
+export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pageTitle, target, draft, canEdit, canPublish, tours = [], gateCtx, onSaved }: Props) {
   const { notify } = useToast();
   const [pending, startTransition] = useTransition();
   const isMeta = target.id === META_SECTION;
@@ -72,7 +73,6 @@ export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pag
   // The edit lives here until it is saved; `draft` stays the stored copy.
   const [data, setData] = useState<Record<string, unknown>>({});
   const [meta, setMeta] = useState(draft.meta);
-  const [checks, setChecks] = useState<GateCheck[] | null>(null);
   const [error, setError] = useState<{ text: string; issues?: string[] } | null>(null);
   const [asking, setAsking] = useState(false);
 
@@ -81,7 +81,6 @@ export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pag
     setData(Object.fromEntries(target.keys.map((k) => [k, draft.data[k] ?? ""])));
     setMeta(draft.meta);
     setError(null);
-    setChecks(null);
     setAsking(false);
     // Only when the pop-up opens on a section; later changes to `draft` must not wipe what is being typed.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,19 +90,13 @@ export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pag
 
   const merged: PageDraft = useMemo(() => (isMeta ? { ...draft, meta } : { ...draft, data: { ...draft.data, ...data } }), [isMeta, draft, meta, data]);
 
-  // Server-side checks for the page as it would be after this edit.
-  useEffect(() => {
-    if (!open) return;
-    const t = window.setTimeout(async () => {
-      const r = await checkPage(projectSlug, pageSlug, merged);
-      if (r.ok) setChecks(r.data);
-    }, 600);
-    return () => window.clearTimeout(t);
-  }, [open, merged, projectSlug, pageSlug]);
+  // The publish checks for the page as it would be after this edit. They run here, so they are instant and
+  // typing never waits for the server. The server runs the same checks again when you publish.
+  const checks = useMemo(() => runPageGate(pageSlug, merged, { tourSlugs: new Set(gateCtx.tourSlugs), otherMetaTitles: gateCtx.otherMetaTitles }), [pageSlug, merged, gateCtx]);
 
   const seo = metaFor(pageSlug, merged);
   const url = `${domain || "No address set"}${pagePath(pageSlug) === "/" ? "" : ` › ${pagePath(pageSlug).slice(1)}`}`;
-  const failing = checks?.filter((c) => !c.ok) ?? [];
+  const failing = checks.filter((c) => !c.ok);
 
   const requestClose = () => (dirty ? setAsking(true) : onClose());
 
@@ -215,9 +208,7 @@ export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pag
             </div>
             <div>
               <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-ink-muted">Publish checks</h3>
-              {checks === null ? (
-                <p className="text-[13px] text-ink-muted">Checking...</p>
-              ) : (
+              {(
                 <ul className="space-y-2">
                   {checks.map((c) => (
                     <li key={c.id} className="flex items-start gap-2 text-[13px]">
@@ -231,7 +222,7 @@ export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pag
                   ))}
                 </ul>
               )}
-              {checks !== null && failing.length === 0 && <p className="mt-2 text-xs text-primary">All checks pass.</p>}
+              {failing.length === 0 && <p className="mt-2 text-xs text-primary">All checks pass.</p>}
             </div>
             {error && (
               <div role="alert" className="rounded-control bg-danger-soft px-3 py-2 text-[13px] text-danger">

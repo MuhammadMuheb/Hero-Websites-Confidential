@@ -14,7 +14,8 @@ import { can } from "@/lib/auth/permissions";
 import { LINK_TARGETS, OUTLINE_IDS, buildOutline } from "@/lib/content/outline";
 import { getPageDef } from "@/lib/content/pages";
 import { projectOpenUrl } from "@/lib/project-open-url";
-import { gateFor, getPageState } from "@/lib/repo/content";
+import { gateContext, gateFor, getPageState } from "@/lib/repo/content";
+import { runPageGate } from "@/lib/publish/gate";
 import { projectContext } from "@/lib/repo/ctx";
 import { getTaxonomies } from "@/lib/repo/misc";
 import { listTours } from "@/lib/repo/tours";
@@ -97,9 +98,10 @@ export default async function ProjectEditor({ params, searchParams }: { params: 
       );
     } else {
       const state = await getPageState(project, item);
-      const checks = await gateFor(project, item, state.draft);
+      const gateCtx = await gateContext(project, item);
+      const checks = runPageGate(item, state.draft, gateCtx);
       const tourOptions = item === "home" ? (await listTours(project.slug)).filter((t) => t.status !== "trashed").map((t) => ({ slug: t.slug, title: t.title })) : undefined;
-      detail = <SectionRows tours={tourOptions} key={`${item}-${state.version}-${state.updatedAt}`} projectSlug={project.slug} domain={project.domain} pageSlug={item} def={def} state={state} checks={checks} canEdit={can(user, "draft:write", project.slug)} canPublish={canPublish} />;
+      detail = <SectionRows tours={tourOptions} gateCtx={{ tourSlugs: [...gateCtx.tourSlugs], otherMetaTitles: gateCtx.otherMetaTitles }} key={`${item}-${state.version}-${state.updatedAt}`} projectSlug={project.slug} domain={project.domain} pageSlug={item} def={def} state={state} checks={checks} canEdit={can(user, "draft:write", project.slug)} canPublish={canPublish} />;
     }
   } else if (item === "tours") {
     const tours = await listTours(project.slug);
