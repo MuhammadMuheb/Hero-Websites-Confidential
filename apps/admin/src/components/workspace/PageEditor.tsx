@@ -198,7 +198,7 @@ export function PageEditor({ projectSlug, projectName, pageSlug, def, state, ini
     <UploadContext.Provider value={projectSlug}>
       <PageHeader
         title={title}
-        breadcrumbs={[{ label: projectName, href: `/projects/${projectSlug}/pages/home` }, { label: breadcrumbGroup }, { label: title }]}
+        breadcrumbs={[{ label: projectName, href: `/projects/${projectSlug}` }, { label: breadcrumbGroup }, { label: title }]}
         badge={badge}
         description={onlySection ? undefined : def.description}
         actions={

@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { RevealAnimations } from '@/components/RevealAnimations';
 import { NetworkProvider } from '@/components/NetworkProvider';
 import { getLiveNetworkSites } from '@/lib/network';
+import { DEFAULT_NAVIGATION, getNavigation } from '@/lib/navigation';
 import { TENANT_HEADER } from '@/lib/tenant-host';
 import { BING_SITE_VERIFICATION, GA_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION } from '@/lib/analytics';
 import './globals.css';
@@ -44,6 +45,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   // therefore apply to the legacy site only.
   const isTenant = Boolean((await headers()).get(TENANT_HEADER));
   const networkSites = isTenant ? [] : await getLiveNetworkSites();
+  const navigation = isTenant ? DEFAULT_NAVIGATION : await getNavigation();
   return (
     <html lang="en" className={montserrat.variable}>
       <head>
@@ -67,9 +69,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         ) : (
           <NetworkProvider sites={networkSites}>
             <RevealAnimations />
-            <Header />
+            <Header links={navigation.navbar} />
             <main>{children}</main>
-            <Footer />
+            <Footer groups={navigation.footer} />
           </NetworkProvider>
         )}
       </body>

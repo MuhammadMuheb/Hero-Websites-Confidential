@@ -3,25 +3,13 @@
 import Link from 'next/link';
 import { EXTERNAL_LINK, useNetworkSites } from './NetworkProvider';
 
-const SFR_COMPANY_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Rome Food Tours', href: '/tours' },
-  { label: 'Top Attractions', href: '/neighborhoods' },
-];
+interface FooterGroup {
+  title: string;
+  links: { label: string; href: string }[];
+}
 
-const LEGAL_LINKS = [
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Terms of Service', href: '/terms' },
-  { label: 'Cookie Policy', href: '/cookie-policy' },
-  { label: 'Affiliate Disclosure', href: '/affiliate-disclosure' },
-  { label: 'FAQ', href: '/faq' },
-];
-
-
-export function Footer() {
+/** `groups` are the editable link columns (admin: Footer). The network column and contact details are automatic. */
+export function Footer({ groups }: { groups: FooterGroup[] }) {
   const year = new Date().getFullYear();
   const networkSites = useNetworkSites();
   const brandName = 'Street Food Rome';
@@ -32,18 +20,20 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 sm:px-8 py-16">
         {/* 4 columns */}
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-ink">Company</h3>
-            <ul className="mt-4 space-y-2.5">
-              {SFR_COMPANY_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-ink-muted hover:text-accent transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {groups[0] && (
+            <div key={groups[0].title}>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-ink">{groups[0].title}</h3>
+              <ul className="mt-4 space-y-2.5">
+                {groups[0].links.map((link) => (
+                  <li key={link.label + link.href}>
+                    <Link href={link.href} className="text-sm text-ink-muted hover:text-accent transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {networkSites.length > 0 && (
             <div>
@@ -60,18 +50,20 @@ export function Footer() {
             </div>
           )}
 
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-ink">Privacy &amp; Terms</h3>
-            <ul className="mt-4 space-y-2.5">
-              {LEGAL_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-ink-muted hover:text-accent transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {groups.slice(1).map((group) => (
+            <div key={group.title}>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-ink">{group.title}</h3>
+              <ul className="mt-4 space-y-2.5">
+                {group.links.map((link) => (
+                  <li key={link.label + link.href}>
+                    <Link href={link.href} className="text-sm text-ink-muted hover:text-accent transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-ink">Contact Us</h3>

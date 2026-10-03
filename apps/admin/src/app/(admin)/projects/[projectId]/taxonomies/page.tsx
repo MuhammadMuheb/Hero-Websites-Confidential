@@ -20,7 +20,7 @@ export default async function TaxonomiesPage({ params }: { params: Promise<{ pro
       <PageHeader
         title="Taxonomies"
         description="Managed lists that cards point to. Cards appear on matching category and neighbourhood pages automatically."
-        breadcrumbs={[{ label: project.name, href: `/projects/${project.id}/pages/home` }, { label: "Taxonomies" }]}
+        breadcrumbs={[{ label: project.name, href: `/projects/${project.id}` }, { label: "Taxonomies" }]}
       />
       <TaxonomyEditor projectSlug={project.slug} initial={taxonomies} canEdit={can(user, "nav:edit", project.slug)} />
     </>

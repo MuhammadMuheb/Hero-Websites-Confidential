@@ -11,12 +11,20 @@ export interface TreeGroup {
   items: { label: string; path: string; count?: number }[];
 }
 
-/** What can be edited inside a project. */
+/** What can be edited inside a project, in the order a visitor meets it. */
 export const WORKSPACE_TREE: TreeGroup[] = [
   {
-    title: "Pages",
+    title: "Site",
     items: [
-      { label: "Home", path: "pages/home" },
+      { label: "Overview", path: "" },
+      { label: "Navbar", path: "global/navbar" },
+      { label: "Home page", path: "pages/home" },
+      { label: "Footer", path: "global/footer" },
+    ],
+  },
+  {
+    title: "Other pages",
+    items: [
       { label: "About", path: "pages/about" },
       { label: "Contact", path: "pages/contact" },
       { label: "FAQ", path: "pages/faq" },
@@ -31,16 +39,11 @@ export const WORKSPACE_TREE: TreeGroup[] = [
     ],
   },
   {
-    title: "Site",
+    title: "Look and tools",
     items: [
-      { label: "Navbar", path: "global/navbar" },
-      { label: "Footer", path: "global/footer" },
       { label: "Theme and brand", path: "global/theme" },
       { label: "SEO defaults", path: "global/seo" },
+      { label: "Content import", path: "import" },
     ],
-  },
-  {
-    title: "Tools",
-    items: [{ label: "Content import", path: "import" }],
   },
 ];

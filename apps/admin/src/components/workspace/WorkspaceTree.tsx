@@ -31,18 +31,13 @@ function TreeList({ projectId, counts = {}, liveUrl }: { projectId: string; coun
             </a>
           </li>
         )}
-        <li>
-          <Link href={`/projects/edit/${projectId}`} className="flex items-center rounded-control px-2 py-1.5 text-sm text-ink hover:bg-canvas">
-            Project settings
-          </Link>
-        </li>
       </ul>
       {WORKSPACE_TREE.map((group) => (
         <div key={group.title}>
           <h3 className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-ink-muted">{group.title}</h3>
           <ul className="space-y-0.5">
             {group.items.map((item) => {
-              const href = `/projects/${projectId}/${item.path}`;
+              const href = item.path ? `/projects/${projectId}/${item.path}` : `/projects/${projectId}`;
               const active = pathname === href;
               return (
                 <li key={item.path}>

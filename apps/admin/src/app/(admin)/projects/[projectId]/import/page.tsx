@@ -17,7 +17,7 @@ export default async function ImportPage({ params }: { params: Promise<{ project
     <>
       <PageHeader
         title="Content import"
-        breadcrumbs={[{ label: project.name, href: `/projects/${project.id}/pages/home` }, { label: "Tools" }, { label: "Content import" }]}
+        breadcrumbs={[{ label: project.name, href: `/projects/${project.id}` }, { label: "Tools" }, { label: "Content import" }]}
         description="Upload a content JSON file, review every change field by field, then save it as drafts. Imports never go straight to the live site."
       />
       <ImportPanel projectSlug={project.slug} canEdit={can(user, "draft:write", project.slug)} />

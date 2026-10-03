@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ThemeForm } from "@/components/workspace/ThemeForm";
+import { MenuManager } from "@/components/workspace/MenuManager";
 import { PageEditor } from "@/components/workspace/PageEditor";
 import { Card } from "@/components/ui/Card";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -9,7 +10,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { ProjectStatusBadge } from "@/components/ui/Badge";
 import { Table, Td, Th } from "@/components/ui/Table";
 import { can } from "@/lib/auth/permissions";
-import { NAVIGATION_SECTIONS, getPageDef } from "@/lib/content/pages";
+import { getPageDef } from "@/lib/content/pages";
 import { gateFor, getPageState } from "@/lib/repo/content";
 import { projectContext } from "@/lib/repo/ctx";
 import { getNetwork } from "@/lib/repo/properties";
@@ -30,24 +31,20 @@ export default async function GlobalItemPage({ params }: { params: Params }) {
   const ctx = await projectContext(projectId);
   if (ctx.denied) return <NoPermission what="this project" />;
   const { user, project } = ctx;
-  const crumbs = [{ label: project.name, href: `/projects/${project.id}/pages/home` }, { label: "Global" }, { label: TITLES[item] }];
+  const crumbs = [{ label: project.name, href: `/projects/${project.id}` }, { label: "Global" }, { label: TITLES[item] }];
 
   if (item === "navbar" || item === "footer") {
     const state = await getPageState(project, "navigation");
-    const checks = await gateFor(project, "navigation", state.draft);
     return (
-      <PageEditor
+      <MenuManager
         key={`nav-${item}-${state.version}-${state.updatedAt}`}
         projectSlug={project.slug}
         projectName={project.name}
-        pageSlug="navigation"
-        def={NAVIGATION_SECTIONS}
-        onlySection={item}
-        breadcrumbGroup="Global"
+        kind={item}
         state={state}
-        initialChecks={checks}
         canEdit={can(user, "nav:edit", project.slug)}
         canPublish={can(user, "publish", project.slug)}
+        automatic={item === "navbar" ? [{ label: "Tours & Blog", note: "built from your tours" }, { label: "Our Network", note: "built from your projects" }] : [{ label: "Our Network", note: "built from your projects" }, { label: "Contact details", note: "from the project settings" }]}
       />
     );
   }

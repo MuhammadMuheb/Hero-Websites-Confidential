@@ -48,7 +48,7 @@ export default async function ProjectsPage() {
               <p className="mt-1 text-xs text-ink-muted">{p.lastEdit ? `Last edit ${new Date(p.lastEdit).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" })}` : "No edits yet"}</p>
 
               <div className="mt-4 flex flex-wrap items-center gap-2">
-                <ButtonLink href={`/projects/${p.id}/pages/home`} variant="primary" size="sm">
+                <ButtonLink href={`/projects/${p.id}`} variant="primary" size="sm">
                   Open
                 </ButtonLink>
                 {canManage && (

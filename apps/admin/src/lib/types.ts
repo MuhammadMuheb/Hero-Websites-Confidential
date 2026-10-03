@@ -179,7 +179,9 @@ export type IconName =
   | "file"
   | "tag"
   | "map"
-  | "alert";
+  | "alert"
+  | "pencil"
+  | "trash";
 
 /** Result of every server action: never throws to the client with internals. */
 export type ActionResult<T = void> = { ok: true; data: T } | { ok: false; error: string; issues?: string[] };

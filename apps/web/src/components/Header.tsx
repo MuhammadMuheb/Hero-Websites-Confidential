@@ -12,7 +12,12 @@ interface NavItem {
   href: string;
 }
 
-export function Header() {
+const NAV_LINK =
+  'relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]';
+const MOBILE_LINK = 'block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand';
+
+/** `links` are the editable navbar links (admin: Navbar). The two dropdowns are filled automatically. */
+export function Header({ links }: { links: NavItem[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [toursOpen, setToursOpen] = useState(false);
   const [networkOpen, setNetworkOpen] = useState(false);
@@ -92,47 +97,11 @@ export function Header() {
 
             {/* Center Navigation - Desktop Only */}
             <nav className="hidden lg:flex items-center gap-0.5 min-w-0 shrink">
-            <Link
-              href="/"
-              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
-            >
-              Home
-            </Link>
-
-            <Link
-              href="/about"
-              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
-            >
-              About Us
-            </Link>
-
-            <Link
-              href="/contact"
-              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
-            >
-              Contact Us
-            </Link>
-
-            <Link
-              href="/faq"
-              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
-            >
-              FAQ
-            </Link>
-
-            <Link
-              href="/privacy"
-              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
-            >
-              Privacy Policy
-            </Link>
-
-            <Link
-              href="/terms"
-              className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
-            >
-              Terms of Service
-            </Link>
+            {links.map((link) => (
+              <Link key={`${link.label}-${link.href}`} href={link.href} className={NAV_LINK}>
+                {link.label}
+              </Link>
+            ))}
 
             <div className="relative" data-dropdown="tours">
               <button
@@ -273,53 +242,11 @@ export function Header() {
     {mobileMenuOpen && (
       <div data-dropdown="mobile" className="fixed inset-0 top-16 sm:top-[72px] z-30 overflow-y-auto bg-cream lg:hidden">
         <div className="p-4 sm:p-6 space-y-2 sm:space-y-3">
-          <Link
-            href="/"
-            className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Home
-          </Link>
-
-          <Link
-            href="/about"
-            className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            About Us
-          </Link>
-
-          <Link
-            href="/contact"
-            className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Contact Us
-          </Link>
-
-          <Link
-            href="/faq"
-            className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            FAQ
-          </Link>
-
-          <Link
-            href="/privacy"
-            className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Privacy Policy
-          </Link>
-
-          <Link
-            href="/terms"
-            className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Terms of Service
-          </Link>
+          {links.map((link) => (
+            <Link key={`${link.label}-${link.href}`} href={link.href} className={MOBILE_LINK} onClick={() => setMobileMenuOpen(false)}>
+              {link.label}
+            </Link>
+          ))}
 
           <div className="h-px bg-line my-4" />
 
