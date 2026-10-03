@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { createProject, updateProject, updateTheme } from "@/app/actions/projects";
 import { DeleteProjectButton } from "@/components/DeleteProjectButton";
 import { Button } from "@/components/ui/Button";
@@ -37,7 +37,16 @@ function Issues({ error, issues }: { error: string | null; issues: string[] }) {
 }
 
 /** New project (project undefined) or project settings (Super Admin only; the server enforces it). */
-export function ProjectForm({ project }: { project?: Project }) {
+interface ProjectFormProps {
+  project?: Project;
+  /** Set when the form is shown in a pop-up: the form then reports back instead of navigating. */
+  onSaved?: (result: { created: boolean; slug: string }) => void;
+  onCancel?: () => void;
+  /** Tells the pop-up whether there are edits that would be lost on close. */
+  onDirtyChange?: (dirty: boolean) => void;
+}
+
+export function ProjectForm({ project, onSaved, onCancel, onDirtyChange }: ProjectFormProps) {
   const router = useRouter();
   const { notify } = useToast();
   const [pending, startTransition] = useTransition();
@@ -55,6 +64,12 @@ export function ProjectForm({ project }: { project?: Project }) {
   const [theme, setTheme] = useState<Theme>(project?.theme ?? DEFAULT_THEME);
   const [confirmName, setConfirmName] = useState("");
 
+  const snapshot = JSON.stringify({ name, slug, domain, publicUrl, status, contactEmail, logoUrl, theme });
+  const [initialSnapshot] = useState(snapshot);
+  useEffect(() => {
+    onDirtyChange?.(snapshot !== initialSnapshot);
+  }, [snapshot, initialSnapshot, onDirtyChange]);
+
   const archiving = project && status === "archived" && project.status !== "archived";
 
   const submit = () => {
@@ -67,7 +82,12 @@ export function ProjectForm({ project }: { project?: Project }) {
           setError(r.error);
           return setIssues(r.issues ?? []);
         }
-        notify(r.data.revalidateError ? "Project created, but the public site could not be refreshed yet." : "Project created", { tone: r.data.revalidateError ? "error" : "success" });
+        notify(r.data.revalidateError ? "Project created, but the public site could not be refreshed yet." : "Project created.", { tone: r.data.revalidateError ? "error" : "success" });
+        if (onSaved) {
+          onSaved({ created: true, slug: r.data.slug });
+          router.refresh();
+          return;
+        }
         router.push(`/projects/${r.data.slug}/import`);
         router.refresh();
         return;
@@ -82,7 +102,8 @@ export function ProjectForm({ project }: { project?: Project }) {
         setError(t.error);
         return setIssues(t.issues ?? []);
       }
-      notify(r.data.revalidateError || t.data.revalidateError ? "Saved, but the public site could not be refreshed." : "Project saved", { tone: r.data.revalidateError || t.data.revalidateError ? "error" : "success" });
+      notify(r.data.revalidateError || t.data.revalidateError ? "Saved, but the public site could not be refreshed." : "Project saved.", { tone: r.data.revalidateError || t.data.revalidateError ? "error" : "success" });
+      onSaved?.({ created: false, slug: project.slug });
       router.refresh();
     });
   };
@@ -90,7 +111,7 @@ export function ProjectForm({ project }: { project?: Project }) {
   return (
     <>
     <form
-      className="max-w-2xl space-y-4"
+      className={onSaved ? "space-y-4" : "max-w-2xl space-y-4"}
       onSubmit={(e) => {
         e.preventDefault();
         submit();
@@ -179,16 +200,16 @@ export function ProjectForm({ project }: { project?: Project }) {
 
       <div className="flex gap-2">
         <Button type="submit" variant="primary" disabled={pending}>
-          {pending ? "Saving..." : project ? "Save project" : "Create project"}
+          {pending ? "Saving..." : project ? (onSaved ? "Save changes" : "Save project") : "Create project"}
         </Button>
-        <Button onClick={() => router.push("/projects")} disabled={pending}>
-          {project ? "Back to projects" : "Cancel"}
+        <Button onClick={() => (onCancel ? onCancel() : router.push("/projects"))} disabled={pending}>
+          {project && !onCancel ? "Back to projects" : "Cancel"}
         </Button>
       </div>
     </form>
 
     {/* Outside the form on purpose: its confirmation field must not submit the settings form. */}
-    {project && (
+    {project && !onSaved && (
       <section className="mt-8 max-w-2xl space-y-3 rounded-control border border-danger/40 p-4">
         <h3 className="text-[13px] font-semibold text-danger">Danger zone</h3>
         <p className="text-[13px] text-ink-muted">Deleting a project permanently removes it and everything stored for it. Its link stops working for everyone.</p>

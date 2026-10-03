@@ -17,3 +17,35 @@
     text-wrap: balance;
   }
 }
+
+/* Dialogs: a 150 ms fade, and an 8 px slide for the panel. Off when the visitor prefers reduced motion. */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-modal {
+  animation: modal-in 150ms ease-out;
+}
+.animate-fade {
+  animation: fade-in 150ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-modal,
+  .animate-fade {
+    animation: none;
+  }
+}

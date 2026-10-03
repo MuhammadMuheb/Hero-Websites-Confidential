@@ -198,3 +198,23 @@ export async function updateTheme(slug: string, input: unknown): Promise<ActionR
     return ok({ revalidateError: r.ok ? undefined : r.error });
   });
 }
+
+/**
+ * Read-only: what deleting this project would remove, so the confirmation can say it in numbers.
+ * Same permission as the delete itself. Never changes anything.
+ */
+export async function getProjectDeleteInfo(slug: string): Promise<ActionResult<{ cards: number; images: number }>> {
+  return guard(async () => {
+    const user = await requirePermission("project:archive");
+    const project = await getProject(user, slug);
+    if (!project) throw new UserError("Project not found.");
+    let images = 0;
+    try {
+      const [files] = await adminBucket().getFiles({ prefix: `projects/${slug}/` });
+      images = files.length;
+    } catch {
+      // No storage bucket yet: there is nothing stored to remove.
+    }
+    return ok({ cards: project.cards, images });
+  });
+}
