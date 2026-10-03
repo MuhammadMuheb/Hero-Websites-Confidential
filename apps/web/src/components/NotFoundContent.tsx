@@ -1,8 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import Link from '@/components/NetworkLink';
-import { NETWORK_SITES } from '@/lib/tours';
+import Link from 'next/link';
 
 const SUGGESTIONS = [
   { label: 'Compare tours', href: '/tours', note: 'Every option side by side, with honest prices.' },
@@ -11,11 +9,9 @@ const SUGGESTIONS = [
   { label: 'Contact', href: '/contact', note: 'Ask us directly — we reply within 24 hours.' },
 ];
 
-/** Body of the branded 404 page; reads the URL so it names the right property. */
+/** Body of the branded 404 page. */
 export function NotFoundContent() {
-  const pathname = usePathname() ?? '/';
-  const site = NETWORK_SITES.find((s) => s.slug === pathname.split('/')[1]);
-  const siteName = site?.name ?? 'Street Food Rome';
+  const siteName = 'Street Food Rome';
 
   return (
     <section className="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center sm:px-6 sm:py-32">

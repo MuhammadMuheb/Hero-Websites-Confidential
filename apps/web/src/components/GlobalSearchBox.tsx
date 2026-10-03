@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { NETWORK_SITES } from '@/lib/tours';
+import { useRouter } from 'next/navigation';
 
 interface SearchResult {
   id: string;
@@ -35,20 +34,10 @@ export function GlobalSearchBox({
   const [propertyName, setPropertyName] = useState('Search Results');
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const pathname = usePathname();
 
-  // Detect propertySlug from pathname if not provided
-  const currentPropertySlug = propertySlug || (() => {
-    const segments = pathname.split('/').filter(Boolean);
-    const firstSegment = segments[0];
-    if (NETWORK_SITES.some((s) => s.slug === firstSegment)) {
-      return firstSegment;
-    }
-    return 'street-food-rome';
-  })();
-
-  const currentPropertyName =
-    NETWORK_SITES.find((s) => s.slug === currentPropertySlug)?.name || 'Street Food Rome';
+  // This deployment is a single site: search is scoped to it.
+  const currentPropertySlug = propertySlug || 'street-food-rome';
+  const currentPropertyName = 'Street Food Rome';
 
   useEffect(() => {
     const timer = setTimeout(async () => {

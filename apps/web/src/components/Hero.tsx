@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 import { SafeImage } from './SafeImage';
 import { GlobalSearchBox } from './GlobalSearchBox';
 import { tourHref } from '@/lib/tours';

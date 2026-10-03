@@ -1,8 +1,7 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import Link from '@/components/NetworkLink';
-import { NETWORK_SITES } from '@/lib/tours';
+import Link from 'next/link';
+import { EXTERNAL_LINK, useNetworkSites } from './NetworkProvider';
 
 const SFR_COMPANY_LINKS = [
   { label: 'Home', href: '/' },
@@ -12,21 +11,6 @@ const SFR_COMPANY_LINKS = [
   { label: 'Rome Food Tours', href: '/tours' },
   { label: 'Top Attractions', href: '/neighborhoods' },
 ];
-
-/** Properties with a real /neighborhoods area guide (see app/[slug]/[...rest]/registry.tsx). */
-const AREA_GUIDE_SLUGS = new Set(['underground-colosseum', 'pompeii-day-trip', 'rome-vespa']);
-
-function companyLinks(slug: string) {
-  if (slug === 'street-food-rome') return SFR_COMPANY_LINKS;
-  return [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
-    { label: 'Guides', href: '/blog' },
-    { label: 'Compare Tours', href: '/tours' },
-    ...(AREA_GUIDE_SLUGS.has(slug) ? [{ label: 'Explore by Area', href: '/neighborhoods' }] : []),
-  ];
-}
 
 const LEGAL_LINKS = [
   { label: 'Privacy Policy', href: '/privacy' },
@@ -39,13 +23,9 @@ const LEGAL_LINKS = [
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const pathname = usePathname();
-
-  const segments = pathname.split('/').filter(Boolean);
-  const networkSite = NETWORK_SITES.find((s) => s.slug === segments[0]);
-  const currentSiteSlug = networkSite ? networkSite.slug : 'street-food-rome';
-  const brandName = networkSite ? networkSite.name : 'Street Food Rome';
-  const contactEmail = `hello@${currentSiteSlug.replace(/-/g, '')}.com`;
+  const networkSites = useNetworkSites();
+  const brandName = 'Street Food Rome';
+  const contactEmail = 'hello@streetfoodrome.com';
 
   return (
     <footer className="border-t border-line bg-cream-deep text-ink-muted">
@@ -55,9 +35,9 @@ export function Footer() {
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-ink">Company</h3>
             <ul className="mt-4 space-y-2.5">
-              {companyLinks(currentSiteSlug).map((link) => (
+              {SFR_COMPANY_LINKS.map((link) => (
                 <li key={link.label}>
-                  <Link href={`${networkSite ? `/${networkSite.slug}` : ''}${link.href}`} className="text-sm text-ink-muted hover:text-accent transition-colors">
+                  <Link href={link.href} className="text-sm text-ink-muted hover:text-accent transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -65,28 +45,27 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-ink">Our Network</h3>
-            <ul className="mt-4 space-y-2.5">
-              {NETWORK_SITES.map((site) => (
-                <li key={site.number}>
-                  <Link
-                    href={`/${site.slug}`}
-                    className="text-sm text-ink-muted hover:text-accent transition-colors"
-                  >
-                    {site.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {networkSites.length > 0 && (
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-ink">Our Network</h3>
+              <ul className="mt-4 space-y-2.5">
+                {networkSites.map((site) => (
+                  <li key={site.slug}>
+                    <a href={site.publicUrl} {...EXTERNAL_LINK} className="text-sm text-ink-muted hover:text-accent transition-colors">
+                      {site.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-ink">Privacy &amp; Terms</h3>
             <ul className="mt-4 space-y-2.5">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.label}>
-                  <Link href={`${networkSite ? `/${networkSite.slug}` : ''}${link.href}`} className="text-sm text-ink-muted hover:text-accent transition-colors">
+                  <Link href={link.href} className="text-sm text-ink-muted hover:text-accent transition-colors">
                     {link.label}
                   </Link>
                 </li>

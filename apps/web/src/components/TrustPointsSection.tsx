@@ -1,4 +1,4 @@
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 
 interface TrustPointsSectionProps {
   items?: Array<{ name: string; href: string }>;

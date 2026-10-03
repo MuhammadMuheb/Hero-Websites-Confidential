@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllBlogPosts, getPageDoc, SITE_DOMAIN } from '@/lib/firestore';
 import { InnerHero } from '@/components/InnerHero';
 import { SafeImage } from '@/components/SafeImage';
 import { getBlogCategory } from '@/lib/blog';
-import { CATEGORIES, NETWORK_SITES } from '@/lib/tours';
+import { CATEGORIES } from '@/lib/tours';
+import { getLiveNetworkSites } from '@/lib/network';
 import { BLOG_CATEGORY_HERO_IMAGES } from '@/lib/blog-category-images';
 
 export const revalidate = 3600;
@@ -66,6 +67,7 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
 
   const page = await safeGetPageDoc(`blog-category-${category.slug}`);
   const allPosts = await safeGetAllBlogPosts();
+  const networkSites = await getLiveNetworkSites();
   const posts = allPosts.filter((p) => p.categorySlug === category.slug);
 
   const jsonLd = {
@@ -141,18 +143,20 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
                 ))}
               </ul>
             </div>
-            <div>
-              <h2 className="font-display text-base font-semibold text-ink">Our Network</h2>
-              <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                {NETWORK_SITES.map((site) => (
-                  <li key={site.number}>
-                    <Link href={`/${site.slug}`} className="font-bold text-accent hover:underline">
-                      {site.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {networkSites.length > 0 && (
+              <div>
+                <h2 className="font-display text-base font-semibold text-ink">Our Network</h2>
+                <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                  {networkSites.map((site) => (
+                    <li key={site.slug}>
+                      <a href={site.publicUrl} target="_blank" rel="noopener" className="font-bold text-accent hover:underline">
+                        {site.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 import { SafeImage } from './SafeImage';
 
 const STEPS = [

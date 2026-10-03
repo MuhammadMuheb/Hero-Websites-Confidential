@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 
 interface DropdownItem {
   label: string;

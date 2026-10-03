@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 import { Hero } from '@/components/Hero';
 import { Suspense } from 'react';
 import { getAllTours, getAllBlogPosts } from '@/lib/firestore';

@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 import type { BlogPostDoc, TourDoc } from '@/lib/firestore';
-import { NETWORK_SITES, getBlogPostForLandmark, tourHref } from '@/lib/tours';
+import { getBlogPostForLandmark, tourHref } from '@/lib/tours';
+import { EXTERNAL_LINK, useNetworkSites } from './NetworkProvider';
 
 /** Neighbourhood/market items link to /neighborhoods/{slug}; pure landmarks (no dedicated
  *  hub page exists or is planned for them) link to a matching blog post via `landmarkSlug`,
@@ -39,6 +40,8 @@ interface LinkItem {
   href: string | null;
   /** Suppresses the position-number prefix — used for the network sites' clean labels. */
   hideNumber?: boolean;
+  /** Leaves this site: opens in a new tab. */
+  external?: boolean;
 }
 
 interface ExploreLinksSectionProps {
@@ -63,11 +66,14 @@ export function ExploreLinksSection({ tours, allBlogPosts, title, attractions, t
   });
 
   // Sister properties in the same affiliate network — each links to its own internal page.
-  const destinationItems: LinkItem[] = NETWORK_SITES.map((site) => ({
+  const networkSites = useNetworkSites();
+  const destinationItems: LinkItem[] = networkSites.map((site) => ({
     label: site.name,
-    href: `/${site.slug}`,
+    href: site.publicUrl,
     hideNumber: true,
+    external: true,
   }));
+  const visibleTabs = TABS.filter((tab) => tab !== 'Top Destinations' || destinationItems.length > 0);
 
   const tourItems: LinkItem[] = topTours ?? [
     ...tours.slice(0, 19).map((tour) => ({ label: tour.title, href: tourHref(tour.slug) })),
@@ -91,7 +97,7 @@ export function ExploreLinksSection({ tours, allBlogPosts, title, attractions, t
 
         <div className="mt-8 flex justify-center">
           <div className="inline-flex flex-wrap justify-center gap-1 rounded-full bg-line/70 p-1">
-            {TABS.map((tab) => (
+            {visibleTabs.map((tab) => (
               <button
                 key={tab}
                 type="button"
@@ -110,7 +116,16 @@ export function ExploreLinksSection({ tours, allBlogPosts, title, attractions, t
 
         <div className="mx-auto mt-12 grid max-w-[1100px] grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4 md:gap-x-12">
           {items.map((item, index) =>
-            item.href ? (
+            item.href && item.external ? (
+              <a
+                key={`${item.label}-${index}`}
+                href={item.href}
+                {...EXTERNAL_LINK}
+                className="flex items-baseline gap-2 text-[15px] text-ink-muted transition-colors hover:text-accent"
+              >
+                <span className="font-medium">{item.label}</span>
+              </a>
+            ) : item.href ? (
               <Link
                 key={`${item.label}-${index}`}
                 href={item.href}

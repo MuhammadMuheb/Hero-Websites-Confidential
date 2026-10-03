@@ -1,4 +1,4 @@
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 import { SITE_DOMAIN, type TourDoc } from '@/lib/firestore';
 import { tourHref, getTourEntryByRealSlug, getCategory } from '@/lib/tours';
 import { CATEGORY_HERO_IMAGES } from '@/lib/category-images';

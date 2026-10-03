@@ -26,7 +26,7 @@
  * one shared root layout, so today this is one platform-wide measurement ID
  * rather than a distinct one per hero site. If/when each property gets its
  * own GA4 property, extend GA_MEASUREMENT_ID to a per-slug lookup here
- * (keyed off NETWORK_SITES' `slug`) rather than changing every call site.
+ * (keyed off the site slug) rather than changing every call site.
  */
 
 /** GA4 measurement ID, e.g. "G-XXXXXXXXXX" — unset until a real one is configured. */

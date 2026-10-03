@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Button } from '@/components/Button';
 import { TourCard } from '@/components/cards/TourCard';
@@ -20,6 +21,8 @@ export const metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function ComponentsPage() {
+  // Internal component showcase: never served in production.
+  if (process.env.NODE_ENV === 'production') notFound();
   const tours = await getAllTours();
   const sampleTour = tours[0];
 

@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from '@/components/NetworkLink';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { GlobalSearchBox } from './GlobalSearchBox';
-import { NETWORK_SITES, getPropertyToursAndBlog } from '@/lib/tours';
+import { getPropertyToursAndBlog } from '@/lib/tours';
+import { EXTERNAL_LINK, useNetworkSites } from './NetworkProvider';
 
 interface NavItem {
   label: string;
@@ -20,23 +21,18 @@ export function Header() {
   const [mobileSection, setMobileSection] = useState<'tours' | 'network' | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
-  const segments = pathname.split('/').filter(Boolean);
-  const networkSite = NETWORK_SITES.find((s) => s.slug === segments[0]);
-  const brandName = networkSite ? networkSite.name : 'Street Food Rome';
-  const brandHref = networkSite ? `/${networkSite.slug}` : '/';
-  const basePrefix = networkSite ? `/${networkSite.slug}` : '';
-  const currentSiteSlug = networkSite?.slug || 'street-food-rome';
+  const networkSites = useNetworkSites();
+  const brandName = 'Street Food Rome';
 
-  const propertyTours = getPropertyToursAndBlog(currentSiteSlug);
-  const toursItems: NavItem[] = propertyTours.map((item) => ({
+  const toursItems: NavItem[] = getPropertyToursAndBlog('street-food-rome').map((item) => ({
     label: item.label,
-    href: basePrefix ? `${basePrefix}${item.href}` : item.href,
+    href: item.href,
   }));
   const tourLinks = toursItems.filter((item) => !item.href.endsWith('/blog'));
   const guideLinks: NavItem[] = [
-    { label: 'Travel Blog', href: `${basePrefix}/blog` },
-    { label: 'Neighborhood Guides', href: `${basePrefix}/neighborhoods` },
-    { label: 'FAQ', href: `${basePrefix}/faq` },
+    { label: 'Travel Blog', href: '/blog' },
+    { label: 'Neighborhood Guides', href: '/neighborhoods' },
+    { label: 'FAQ', href: '/faq' },
   ];
 
   // Close every menu when the page changes.
@@ -90,49 +86,49 @@ export function Header() {
         <div className="mx-auto h-full max-w-full px-2 sm:px-3 lg:px-8">
           <div className="flex h-full items-center justify-between gap-2 sm:gap-3 lg:gap-6 min-w-0">
             {/* Logo - Left */}
-            <Link href={brandHref} className="flex shrink-0 items-center gap-2 min-w-0">
+            <Link href="/" className="flex shrink-0 items-center gap-2 min-w-0">
               <span className="font-hero text-base sm:text-lg lg:text-[20px] font-black tracking-[-0.01em] text-ink truncate">{brandName}</span>
             </Link>
 
             {/* Center Navigation - Desktop Only */}
             <nav className="hidden lg:flex items-center gap-0.5 min-w-0 shrink">
             <Link
-              href={basePrefix || '/'}
+              href="/"
               className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               Home
             </Link>
 
             <Link
-              href={`${basePrefix}/about`}
+              href="/about"
               className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               About Us
             </Link>
 
             <Link
-              href={`${basePrefix}/contact`}
+              href="/contact"
               className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               Contact Us
             </Link>
 
             <Link
-              href={`${basePrefix}/faq`}
+              href="/faq"
               className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               FAQ
             </Link>
 
             <Link
-              href={`${basePrefix}/privacy`}
+              href="/privacy"
               className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               Privacy Policy
             </Link>
 
             <Link
-              href={`${basePrefix}/terms`}
+              href="/terms"
               className="relative shrink-0 whitespace-nowrap px-1.5 xl:px-3 py-2 text-xs xl:text-sm font-semibold text-ink transition-colors hover:text-brand after:absolute after:bottom-1 after:left-1.5 xl:after:left-3 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-200 hover:after:w-[calc(100%-0.75rem)] xl:hover:after:w-[calc(100%-1.5rem)]"
             >
               Terms of Service
@@ -190,10 +186,10 @@ export function Header() {
                     </div>
                   </div>
                   <div className="mt-5 flex items-center justify-between border-t border-line pt-4">
-                    <Link href={`${basePrefix}/tours`} onClick={() => setToursOpen(false)} className="text-sm font-bold text-brand hover:underline">
+                    <Link href="/tours" onClick={() => setToursOpen(false)} className="text-sm font-bold text-brand hover:underline">
                       See all tours →
                     </Link>
-                    <Link href={`${basePrefix}/blog`} onClick={() => setToursOpen(false)} className="text-sm font-bold text-brand hover:underline">
+                    <Link href="/blog" onClick={() => setToursOpen(false)} className="text-sm font-bold text-brand hover:underline">
                       All guides →
                     </Link>
                   </div>
@@ -201,6 +197,7 @@ export function Header() {
               )}
             </div>
 
+            {networkSites.length > 0 && (
             <div className="relative" data-dropdown="network">
               <button
                 type="button"
@@ -220,27 +217,28 @@ export function Header() {
                 <div className="absolute right-0 top-full z-50 mt-3 w-[440px] rounded-[20px] border border-line bg-paper p-5 shadow-dropdown">
                   <p className="mb-3 px-2 text-[11px] font-bold uppercase tracking-[0.18em] text-gold-deep">Italy Tours Network</p>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
-                    {[...NETWORK_SITES].map((site) => (
-                      <Link
-                        key={site.number}
-                        href={`/${site.slug}`}
+                    {networkSites.map((site) => (
+                      <a
+                        key={site.slug}
+                        href={site.publicUrl}
+                        {...EXTERNAL_LINK}
                         onClick={() => setNetworkOpen(false)}
                         className="block whitespace-nowrap rounded-lg px-2 py-1.5 text-ink transition-colors hover:bg-accent-soft hover:text-brand"
                       >
                         <span className="text-[14px] font-semibold">{site.name}</span>
-                        {site.slug === currentSiteSlug && <span className="block text-[11px] font-bold text-brand">You are here</span>}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>
               )}
             </div>
+            )}
           </nav>
 
           {/* Right Actions */}
           <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-4 ml-auto shrink-0">
             <Link
-              href={`${basePrefix}/tours`}
+              href="/tours"
               className="hidden lg:inline-flex rounded-full bg-accent px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white hover:bg-accent-hover transition-colors whitespace-nowrap"
             >
               See Tours
@@ -276,7 +274,7 @@ export function Header() {
       <div data-dropdown="mobile" className="fixed inset-0 top-16 sm:top-[72px] z-30 overflow-y-auto bg-cream lg:hidden">
         <div className="p-4 sm:p-6 space-y-2 sm:space-y-3">
           <Link
-            href={basePrefix || '/'}
+            href="/"
             className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -284,7 +282,7 @@ export function Header() {
           </Link>
 
           <Link
-            href={`${basePrefix}/about`}
+            href="/about"
             className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -292,7 +290,7 @@ export function Header() {
           </Link>
 
           <Link
-            href={`${basePrefix}/contact`}
+            href="/contact"
             className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -300,7 +298,7 @@ export function Header() {
           </Link>
 
           <Link
-            href={`${basePrefix}/faq`}
+            href="/faq"
             className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -308,7 +306,7 @@ export function Header() {
           </Link>
 
           <Link
-            href={`${basePrefix}/privacy`}
+            href="/privacy"
             className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -316,7 +314,7 @@ export function Header() {
           </Link>
 
           <Link
-            href={`${basePrefix}/terms`}
+            href="/terms"
             className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand"
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -354,6 +352,8 @@ export function Header() {
             </div>
           )}
 
+          {networkSites.length > 0 && (
+          <>
           <button
             onClick={() => setMobileSection((v) => (v === 'network' ? null : 'network'))}
             aria-expanded={mobileSection === 'network'}
@@ -367,10 +367,11 @@ export function Header() {
           </button>
           {mobileSection === 'network' && (
             <div className="space-y-1 pl-4">
-              {NETWORK_SITES.map((site) => (
-                <Link
-                  key={site.number}
-                  href={`/${site.slug}`}
+              {networkSites.map((site) => (
+                <a
+                  key={site.slug}
+                  href={site.publicUrl}
+                  {...EXTERNAL_LINK}
                   onClick={() => {
                     setMobileSection(null);
                     setMobileMenuOpen(false);
@@ -378,16 +379,17 @@ export function Header() {
                   className="block px-3 py-2 text-sm hover:text-accent transition-colors"
                 >
                   <div className="font-semibold text-ink">{site.name}</div>
-                  {site.slug === currentSiteSlug && <div className="mt-0.5 text-xs font-bold text-brand">You are here</div>}
-                </Link>
+                </a>
               ))}
             </div>
+          )}
+          </>
           )}
 
           <div className="h-px bg-line my-4" />
 
           <Link
-            href={`${basePrefix}/tours`}
+            href="/tours"
             className="block rounded-full bg-accent px-4 py-2 text-center text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
