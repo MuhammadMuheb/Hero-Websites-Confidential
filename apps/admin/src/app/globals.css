@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-canvas font-sans text-base text-ink antialiased;
+  }
+  /* One focus ring style, everywhere (blueprint section 11). */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-white;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}

@@ -58,6 +58,22 @@ jobs:
       - name: Typecheck all packages
         run: pnpm turbo run typecheck
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.7.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Unit tests
+        run: pnpm turbo run test
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -71,9 +87,9 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Production build (apps/web)
+      - name: Production build (apps/web and apps/admin)
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-        run: pnpm turbo run build --filter=@italy-tours/web
+        run: pnpm turbo run build --filter=@italy-tours/web --filter=@italy-tours/admin

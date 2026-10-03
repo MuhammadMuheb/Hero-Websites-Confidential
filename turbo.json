@@ -1,6 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["infra/env/.env.example", "infra/env/.env"],
+  "globalDependencies": [
+    "infra/env/.env.example",
+    "infra/env/.env"
+  ],
   "globalEnv": [
     "FIREBASE_PROJECT_ID",
     "FIREBASE_CLIENT_EMAIL",
@@ -8,25 +11,43 @@
     "REVALIDATE_SECRET",
     "SITE_DOMAIN",
     "PROPERTY_SLUG",
-    "VERCEL_URL"
+    "VERCEL_URL",
+    "FIREBASE_STORAGE_BUCKET",
+    "FIREBASE_WEB_API_KEY",
+    "WEB_BASE_URL",
+    "NEXT_PUBLIC_FIREBASE_API_KEY",
+    "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+    "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN"
   ],
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**"
+      ]
     },
     "dev": {
       "cache": false,
       "persistent": true
     },
     "lint": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "typecheck": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "test": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     }
   }
 }
