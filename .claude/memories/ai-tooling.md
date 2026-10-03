@@ -43,5 +43,6 @@ The root `CLAUDE.md` has an auto-generated block (`crg-dev-kit`) mandating CRG
 tools (`get_review_context`, `query_graph`, etc.) for all exploration. A later,
 manually-added section in the same file explicitly overrides this: treat CRG as
 optional, not mandatory, and use plain file tools when CRG isn't available (it
-isn't, in this session — no CRG MCP tools are present). `check-crg.sh` and
-`setup-crg.ps1` exist at repo root if CRG setup is ever revisited.
+isn't, in this session — no CRG MCP tools are present). The old `check-crg.sh` /
+`setup-crg.ps1` helpers were removed in the single-site cleanup; they remain on the
+`archive/old-13-sites` branch if CRG setup is ever revisited.

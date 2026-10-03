@@ -1,3 +1,9 @@
+> **Historical.** This file describes the old 13-site structure. In the single-site cleanup
+> (branch `cleanup/single-site`, Blueprint 2) the 12 other sites, `app/[slug]`, `middleware.ts` and
+> `NETWORK_SITES` were removed; the old code is on `archive/old-13-sites` (tag `v-before-cleanup`).
+> Current model: one site, `SITE_DOMAIN` / `PROPERTY_SLUG` from the environment, Our Network from
+> Firestore `properties`.
+
 # Architecture — apps/web
 
 ## Network-of-sites model

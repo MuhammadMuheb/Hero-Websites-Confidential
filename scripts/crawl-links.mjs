@@ -10,7 +10,7 @@
 // <head> checks would otherwise flag).
 const UA = process.env.UA || 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
 const BASE = process.env.BASE || 'http://localhost:3100';
-const SLUGS = ['underground-colosseum','pompeii-day-trip','rome-vespa','street-food-rome','tuscany-day-trip','private-vatican','golf-cart-rome','cooking-in-rome','rome-pizza-class','tiramisu-class','naples-street-food','amalfi-day-trip','tivoli-day-trip'];
+const SLUGS = ['street-food-rome']; // single-site app: the old per-site slugs were removed
 const queue = ['/', ...SLUGS.map((s) => '/' + s)];
 const seen = new Set(queue);
 const referrers = new Map();

@@ -25,9 +25,8 @@ content/routing model. Property registry lives in
 - `infra/env/` — env var files referenced by `turbo.json` globalDependencies
 - `docs/ai-tooling/` — docs for the 4 AI-tooling additions (repo nav, repomix,
   prompt-caching, persistent-memory) — see [ai-tooling.md](ai-tooling.md)
-- `MASTER-NETWORK-BLUEPRINT.md` — canonical 13-property blueprint spec (root)
-- `STATUS.md` — human-maintained build-status log; **goes stale** — cross-check
-  against `NETWORK_SITES` / actual `lib/*-content.ts` files, don't trust blindly
+- `docs/archive/MASTER-NETWORK-BLUEPRINT.md` — the old 13-property blueprint spec (historical; the app is now single-site)
+- `docs/archive/STATUS.md` — old build-status log from the 13-site era (stale; historical only)
 - `CLAUDE.md` (root) — contains an auto-generated "MANDATORY: use CRG tools"
   section from a third-party `crg-dev-kit` tool; a later note in the same file
   says CRG's tools are **not actually installed/configured** in this repo and
