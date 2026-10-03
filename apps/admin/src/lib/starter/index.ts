@@ -37,11 +37,27 @@ function fit(candidates: string[]): string {
 /** A description of 70 to 160 characters. */
 const describe = (s: string) => clip(s.length >= 70 ? s : `${s} Hand-picked and easy to book through trusted partners.`, 160);
 
-export function buildHome(p: StarterProject, tours: StarterTour[], layout: { id: string; visible: boolean }[], image: { src: string; alt: string }) {
+/** What a project is about, in its own words. Everything is optional; anything missing falls back to the generic text. */
+export interface HomeProfile {
+  eyebrow?: string;
+  headline?: string;
+  /** The word of the headline shown in gold. */
+  highlight?: string;
+  subtitle?: string;
+  /** Short topics for the round buttons under the search bar. */
+  keywords?: string[];
+  /** Category tabs with the tours that belong to each (every tab needs at least one tour). */
+  categories?: { name: string; description?: string; tourSlugs: string[] }[];
+}
+
+const slugOf = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+export function buildHome(p: StarterProject, tours: StarterTour[], layout: { id: string; visible: boolean }[], image: { src: string; alt: string }, profile: HomeProfile = {}) {
   const { name } = p;
   const generic = ["Small groups", "Local guides", "Trusted partners", "Italy"];
-  const chips = [...new Set([...tours.map((t) => clip(t.title, 60)), ...generic])].slice(0, 20);
-  const groups = [
+  const chips = [...new Set([...(profile.keywords ?? []), ...tours.map((t) => clip(t.title, 60)), ...generic])].slice(0, 20);
+  const custom = (profile.categories ?? []).filter((c) => c.name && c.tourSlugs.length > 0);
+  const groups = custom.length >= 3 ? custom.map((c) => ({ name: clip(c.name, 80), slug: slugOf(c.name), description: clip(c.description ?? `${c.name}: ${name} experiences worth a look.`, 400), imageUrl: image.src, tourSlugs: c.tourSlugs.slice(0, 8) })) : [
     { name: "Top picks", slug: "top-picks", description: `Our most popular ${name} experiences, a good place to start.` },
     { name: "Small group experiences", slug: "small-group-experiences", description: "Guided by locals, in small groups, with time to ask questions." },
     { name: "More ways to explore", slug: "more-ways-to-explore", description: `Other ${name} tours worth a look.` },
@@ -49,7 +65,7 @@ export function buildHome(p: StarterProject, tours: StarterTour[], layout: { id:
   const metaTitle = fit([`${name}: Tours and Experiences in Italy`, `${name}: Tours in Italy`, `${name} | Tours and Experiences`, `${name}: Hand-Picked Tours and Experiences in Italy`]);
   const metaDescription = describe(`Hand-picked ${name} tours and experiences in Italy, from trusted booking partners.`);
   const data = {
-    hero: { eyebrow: "Italy", title: `Discover ${name}`, goldWord: name, subtitle: "Hand-picked tours and experiences, booked through trusted partners.", image, searchPlaceholder: clip(`Search ${name} tours...`, 120) },
+    hero: { eyebrow: clip(profile.eyebrow ?? "Italy", 120), title: clip(profile.headline ?? `Discover ${name}`, 160), goldWord: clip(profile.highlight ?? name, 60), subtitle: clip(profile.subtitle ?? "Hand-picked tours and experiences, booked through trusted partners.", 400), image, searchPlaceholder: clip(`Search ${name} tours...`, 120) },
     chips,
     namesStripLabel: "Popular tours",
     namesStrip: tours.slice(0, 10).map((t) => ({ name: clip(t.title, 80), href: `/tours/${t.slug}` })),
@@ -196,14 +212,17 @@ export interface StarterResult {
  * navigation or page is never replaced (unless `force`). Pages need the project's domain, because that is where
  * they are stored. Safe to call again: a second call writes nothing.
  */
-export async function ensureStarterContent(db: Firestore, project: StarterProject, opts: { force?: boolean; dryRun?: boolean } = {}): Promise<StarterResult> {
-  const { force = false, dryRun = false } = opts;
+export async function ensureStarterContent(db: Firestore, project: StarterProject, opts: { force?: boolean; dryRun?: boolean; profile?: HomeProfile; refresh?: boolean } = {}): Promise<StarterResult> {
+  const { force = false, dryRun = false, profile, refresh = false } = opts;
   const stamp = { propertySlug: project.slug, status: "published", version: 1, dirty: false, inReview: false, updatedBy: "starter-content", updatedAt: new Date() };
   const result: StarterResult = { home: "kept", navigation: "kept", pages: [] };
 
   // Home
   const homeRef = db.collection("siteContent").doc(project.slug);
-  if (force || !(await homeRef.get()).data()?.draft) {
+  const existing = (await homeRef.get()).data();
+  // `refresh` rewrites a Home that this code wrote and nobody has edited since (never one an editor has saved).
+  const ours = existing?.updatedBy === "seed-script" || existing?.updatedBy === "starter-content";
+  if (force || !existing?.draft || (refresh && ours)) {
     const toursSnap = await db.collection("tours").where("propertySlug", "==", project.slug).get();
     const tours: StarterTour[] = toursSnap.docs
       .map((t) => t.data())
@@ -216,7 +235,7 @@ export async function ensureStarterContent(db: Firestore, project: StarterProjec
       const main = (await db.collection("siteContent").doc("street-food-rome").get()).data();
       const layout: { id: string; visible: boolean }[] = main?.draft?.layout ?? layoutOf("hero", "names", "slider", "categories", "choose", "places", "seo");
       const image = main?.draft?.data?.hero?.image?.src ? String(main.draft.data.hero.image.src) : STARTER_IMAGE;
-      const home = buildHome(project, tours, layout, { src: image, alt: `${project.name}: tours in Italy` });
+      const home = buildHome(project, tours, layout, { src: image, alt: `${project.name}: tours in Italy` }, profile);
       if (!homeSchema.safeParse(home.data).success) result.home = "invalid";
       else {
         if (!dryRun) await homeRef.set({ slug: "home", draft: home, published: home, ...stamp }, { merge: true });
