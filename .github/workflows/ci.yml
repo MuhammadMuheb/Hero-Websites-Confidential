@@ -1,6 +1,6 @@
 name: CI
 
-# Runs on every push/PR to main: typecheck and a real production build.
+# Runs on every push/PR to main or staging: typecheck and a real production build.
 # Two independent jobs so a typecheck failure doesn't block you from seeing
 # whether the build would also have passed.
 #
@@ -15,9 +15,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, staging]
   pull_request:
-    branches: [main]
+    branches: [main, staging]
 
 env:
   # CI-only, not real secrets.
