@@ -89,6 +89,8 @@ export const projectUpdateSchema = z
 const req = (max: number) => z.string().trim().min(1, "Required").max(max);
 
 export const HOME_COUNTS = { chips: 20, namesStrip: 10, categories: 5, tourSlugs: 3, howWeChoose: 4, placesTabs: 3 } as const;
+/** Places tabs: at least HOME_COUNTS.placesTabs, at most this many. */
+export const PLACES_TABS_MAX = 30;
 
 /** Strict home schema: used by import and by the publish gate. */
 export const homeSchema = z.strictObject({
@@ -121,7 +123,7 @@ export const homeSchema = z.strictObject({
   howWeChooseTitle: req(160),
   howWeChoose: z.array(z.strictObject({ title: req(120), description: req(400), icon: req(60) })).length(HOME_COUNTS.howWeChoose),
   placesTitle: req(160),
-  placesTabs: z.array(z.strictObject({ name: req(80), href: req(500), description: req(400) })).length(HOME_COUNTS.placesTabs),
+  placesTabs: z.array(z.strictObject({ name: req(80), href: req(500), description: text(400) })).min(HOME_COUNTS.placesTabs).max(PLACES_TABS_MAX),
   seo: z.strictObject({
     metaTitle: req(120),
     metaDescription: req(400),

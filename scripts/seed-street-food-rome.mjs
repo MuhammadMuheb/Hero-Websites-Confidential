@@ -124,7 +124,7 @@ function homeDraftFrom(cfg) {
     placesTitle: cfg.placesTitle ?? '',
     // The admin form expects 3 tab definitions; the site's static config holds a flat list of 20 places.
     // The two models differ, so the places are NOT converted here. See the note printed by this script.
-    placesTabs: fit([], 3, () => ({ name: '', href: '', description: '' })),
+    placesTabs: (cfg.placesTabs ?? []).map((p) => ({ name: p.name, href: p.href, description: p.description ?? '' })),
     seo: {
       metaTitle: cfg.metaTitle ?? '',
       metaDescription: cfg.metaDescription ?? '',

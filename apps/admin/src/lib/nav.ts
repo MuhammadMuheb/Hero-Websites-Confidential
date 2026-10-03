@@ -11,19 +11,8 @@ export interface TreeGroup {
   items: { label: string; path: string; count?: number }[];
 }
 
-/** Page tree shown inside a project workspace (blueprint diagram D3). */
+/** What can be edited inside a project. */
 export const WORKSPACE_TREE: TreeGroup[] = [
-  {
-    title: "Global",
-    items: [
-      { label: "Navbar", path: "global/navbar" },
-      { label: "Footer", path: "global/footer" },
-      { label: "Theme & brand", path: "global/theme" },
-      { label: "SEO defaults", path: "global/seo" },
-      { label: "Redirects", path: "global/redirects" },
-      { label: "Our Network", path: "global/network" },
-    ],
-  },
   {
     title: "Pages",
     items: [
@@ -35,17 +24,20 @@ export const WORKSPACE_TREE: TreeGroup[] = [
     ],
   },
   {
-    title: "Listings",
+    title: "Content",
     items: [
       { label: "Tours", path: "listings/tours" },
-      { label: "Neighbourhoods", path: "listings/neighbourhoods" },
-      { label: "Blog", path: "listings/blog" },
-      { label: "Guides & Stories", path: "listings/guides" },
+      { label: "Categories and areas", path: "taxonomies" },
     ],
   },
   {
-    title: "Taxonomies",
-    items: [{ label: "Categories, areas, cities", path: "taxonomies" }],
+    title: "Site",
+    items: [
+      { label: "Navbar", path: "global/navbar" },
+      { label: "Footer", path: "global/footer" },
+      { label: "Theme and brand", path: "global/theme" },
+      { label: "SEO defaults", path: "global/seo" },
+    ],
   },
   {
     title: "Tools",
