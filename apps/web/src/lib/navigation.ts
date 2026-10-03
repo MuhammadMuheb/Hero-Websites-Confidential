@@ -26,11 +26,23 @@ export interface SiteNavigation {
   siteTitle: string;
   /** The address in the footer's contact details. */
   contactEmail: string;
+  /** The button at the right of the header. */
+  cta: NavLink;
+  /** The lines under the email in the footer's contact column. */
+  contactLines: string[];
+  /** The small badge under the contact lines. */
+  contactBadge: string;
+  /** The line at the bottom of the footer, next to the copyright. */
+  bottomNote: string;
 }
 
 export const DEFAULT_NAVIGATION: SiteNavigation = {
   siteTitle: 'Street Food Rome',
   contactEmail: 'hello@streetfoodrome.com',
+  cta: { label: 'See Tours', href: '/tours' },
+  contactLines: ['Based in Italy', 'We usually reply within 24 hours'],
+  contactBadge: 'Bookings via trusted partners',
+  bottomNote: 'We may earn a commission when you book through partner links on this site, at no extra cost to you.',
   navbar: [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
@@ -100,7 +112,14 @@ export function fromAdminNavigation(data: unknown): SiteNavigation {
     .slice(0, 4);
   const title = typeof d.siteTitle === 'string' ? d.siteTitle.trim().slice(0, 60) : '';
   const email = typeof d.contactEmail === 'string' ? d.contactEmail.trim() : '';
+  const text = (v: unknown, max: number): string => (typeof v === 'string' ? v.trim().slice(0, max) : '');
+  const cta = link({ label: d.ctaLabel, href: d.ctaHref });
+  const lines = Array.isArray(d.contactLines) ? d.contactLines.map((l) => text(l, 120)).filter(Boolean).slice(0, 6) : null;
   return {
+    cta: cta ?? DEFAULT_NAVIGATION.cta,
+    contactLines: lines && lines.length > 0 ? lines : DEFAULT_NAVIGATION.contactLines,
+    contactBadge: text(d.contactBadge, 80) || DEFAULT_NAVIGATION.contactBadge,
+    bottomNote: text(d.bottomNote, 300) || DEFAULT_NAVIGATION.bottomNote,
     navbar: navbar.length > 0 ? navbar : DEFAULT_NAVIGATION.navbar,
     footer: footer.length > 0 ? footer : DEFAULT_NAVIGATION.footer,
     siteTitle: title || DEFAULT_NAVIGATION.siteTitle,
@@ -115,14 +134,15 @@ const readNavigation = unstable_cache(
     const published = doc && isObject(doc.published) ? doc.published : undefined;
     return published ? fromAdminNavigation(published.data) : null;
   },
-  ['site:navigation'],
+  ['site:navigation:v2'],
   { tags: ['navigation'], revalidate: 3600 },
 );
 
 /** Never throws. */
 export async function getNavigation(): Promise<SiteNavigation> {
   try {
-    return (await readNavigation(PROPERTY_SLUG)) ?? DEFAULT_NAVIGATION;
+    // Merged over the defaults so an entry cached by an older version of the app can never lack a field.
+    return { ...DEFAULT_NAVIGATION, ...((await readNavigation(PROPERTY_SLUG)) ?? {}) };
   } catch (error) {
     console.warn('[navigation] could not read the navigation, using the defaults:', error instanceof Error ? error.message : error);
     return DEFAULT_NAVIGATION;

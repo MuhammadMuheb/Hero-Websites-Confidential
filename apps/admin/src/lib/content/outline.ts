@@ -22,43 +22,71 @@ export interface OutlineCounts {
   navbarPages?: { label: string; page: string }[];
   navbar: number;
   footer: number;
+  redirects: number;
   tours: number;
+  /** Tours in the Trash. */
+  trashed: number;
+  /** Tour categories, areas, cities and blog categories (the managed lists). */
+  categories: number;
   areas: number;
+  cities: number;
+  /** Projects listed in Our Network. */
+  network: number;
 }
 
 /**
- * The editor's outline, in the order a visitor meets the site: Navbar, pages, content, Footer, then the look.
- * Pages come from the shared page definitions, so every project gets the same outline; only the counts differ.
+ * The editor's outline. Every project gets the same one: the groups come from here and from the shared page
+ * definitions, and only the counts differ. The order is: what is shown on every page, the pages, the lists the
+ * pages are built from, the managed lists they point to, and the record of changes.
  */
-export function buildOutline(counts: OutlineCounts): OutlineGroup[] {
+export function buildOutline(c: OutlineCounts): OutlineGroup[] {
   return [
     {
-      title: "Navbar",
+      title: "Global settings",
       items: [
         {
           id: "navbar",
           label: "Navbar",
-          count: counts.navbar,
+          count: c.navbar,
           // Each page once, named as the navbar names it.
-          children: (counts.navbarPages ?? []).filter((p, i, all) => all.findIndex((q) => q.page === p.page) === i).map((p) => ({ id: p.page, label: p.label })),
+          children: (c.navbarPages ?? []).filter((p, i, all) => all.findIndex((q) => q.page === p.page) === i).map((p) => ({ id: p.page, label: p.label })),
         },
+        { id: "footer", label: "Footer", count: c.footer, unit: c.footer === 1 ? "col" : "cols" },
+        { id: "theme", label: "Theme and brand" },
+        { id: "seo", label: "SEO defaults" },
+        { id: "redirects", label: "Redirects", count: c.redirects },
       ],
     },
     { title: "Pages", items: PAGE_DEFS.map((p) => ({ id: p.slug, label: p.title, count: p.sections.length })) },
     {
-      title: "Content",
+      title: "Listings",
       items: [
-        { id: "tours", label: "Tours", count: counts.tours },
-        { id: "neighbourhoods", label: "Neighbourhoods", count: counts.areas },
+        { id: "tours", label: "Tours", count: c.tours },
+        { id: "neighbourhoods", label: "Neighbourhoods", count: c.areas },
         { id: "blog", label: "Blog" },
+        { id: "guides", label: "Guides and Stories" },
       ],
     },
-    { title: "Footer", items: [{ id: "footer", label: "Footer", count: counts.footer, unit: counts.footer === 1 ? "col" : "cols" }] },
-    { title: "Look and SEO", items: [{ id: "look", label: "Theme, SEO, Import" }] },
+    {
+      title: "Taxonomies",
+      items: [
+        { id: "categories", label: "Tour categories", count: c.categories },
+        { id: "areas", label: "Areas", count: c.areas },
+        { id: "cities", label: "Cities and blog categories", count: c.cities },
+        { id: "network", label: "Network sites", count: c.network },
+      ],
+    },
+    {
+      title: "Activity",
+      items: [
+        { id: "activity", label: "Audit log" },
+        { id: "trash", label: "Trash", count: c.trashed },
+      ],
+    },
   ];
 }
 
-export const OUTLINE_IDS = ["navbar", ...PAGE_DEFS.map((p) => p.slug), "tours", "neighbourhoods", "blog", "footer", "look"];
+export const OUTLINE_IDS = ["navbar", "footer", "theme", "seo", "redirects", ...PAGE_DEFS.map((p) => p.slug), "tours", "neighbourhoods", "blog", "guides", "categories", "areas", "cities", "network", "activity", "trash"];
 
 /** The path a page has on the live site. Home is "/". */
 export const pagePath = (slug: string) => (slug === "home" ? "/" : `/${slug}`);
@@ -85,5 +113,6 @@ export const LINK_TARGETS: { label: string; path: string }[] = [
   { label: "Affiliate Disclosure", path: "/affiliate-disclosure" },
   { label: "Tours", path: "/tours" },
   { label: "Blog", path: "/blog" },
+  { label: "Guides and Stories", path: "/guides" },
   { label: "Neighbourhoods", path: "/neighborhoods" },
 ];

@@ -27,7 +27,7 @@ function usedBy(tours: TourRef[], key: keyof Taxonomies, value: string): TourRef
   return field ? tours.filter((x) => x.status !== "trashed" && x[field] === value) : [];
 }
 
-export function TaxonomyEditor({ projectSlug, initial, canEdit, tours = [] }: { projectSlug: string; initial: Taxonomies; canEdit: boolean; tours?: TourRef[] }) {
+export function TaxonomyEditor({ projectSlug, initial, canEdit, tours = [], only }: { projectSlug: string; initial: Taxonomies; canEdit: boolean; tours?: TourRef[]; /** Show only these lists (the editor groups them under different headings). */ only?: (keyof Taxonomies)[] }) {
   const router = useRouter();
   const { notify } = useToast();
   const [pending, startTransition] = useTransition();
@@ -47,7 +47,7 @@ export function TaxonomyEditor({ projectSlug, initial, canEdit, tours = [] }: { 
   return (
     <>
       <div className="grid gap-4 md:grid-cols-2">
-        {GROUPS.map((g) => (
+        {GROUPS.filter((g) => !only || only.includes(g.key)).map((g) => (
           <Card key={g.key} title={`${g.title} (${tax[g.key].length})`}>
             {tax[g.key].length === 0 ? (
               <p className="mb-3 text-[13px] text-ink-muted">Nothing here yet.</p>

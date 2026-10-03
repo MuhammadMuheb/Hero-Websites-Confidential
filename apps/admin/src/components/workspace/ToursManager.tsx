@@ -457,15 +457,18 @@ interface ManagerProps {
   embedded?: boolean;
   initialCategory?: string;
   initialArea?: string;
+  /** Start on this status ("trashed" for the Trash) and use this heading. */
+  initialStatus?: "active" | ContentStatus;
+  heading?: string;
 }
 
-export function ToursManager({ projectSlug, projectName, tours, taxonomies, canPublish, embedded, initialCategory = "all", initialArea = "all" }: ManagerProps) {
+export function ToursManager({ projectSlug, projectName, tours, taxonomies, canPublish, embedded, initialCategory = "all", initialArea = "all", initialStatus = "active", heading }: ManagerProps) {
   const router = useRouter();
   const { notify } = useToast();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState(initialCategory);
   const [area, setArea] = useState(initialArea);
-  const [statusFilter, setStatusFilter] = useState<"active" | ContentStatus>("active");
+  const [statusFilter, setStatusFilter] = useState<"active" | ContentStatus>(initialStatus);
   const [modal, setModal] = useState<ModalMode>(null);
   const [trashTarget, setTrashTarget] = useState<Tour | null>(null);
 
@@ -497,8 +500,8 @@ export function ToursManager({ projectSlug, projectName, tours, taxonomies, canP
     <>
       {embedded ? (
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-[20px] font-semibold tracking-tight text-ink">Tours ({active})</h2>
-          {addButton}
+          <h2 className="text-[20px] font-semibold tracking-tight text-ink">{heading ?? `Tours (${active})`}</h2>
+          {initialStatus === "trashed" ? null : addButton}
         </div>
       ) : (
         <PageHeader title={`Tours (${active})`} breadcrumbs={[{ label: projectName, href: `/projects/${projectSlug}` }, { label: "Tours" }]} description="Each tour is a row. Edit opens it in a pop-up. New tours are always created as a draft." actions={addButton} />

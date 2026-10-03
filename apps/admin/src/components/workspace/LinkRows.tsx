@@ -12,6 +12,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { Field, Input, Select } from "@/components/ui/Field";
 import { Icon } from "@/components/ui/Icon";
 import { Modal } from "@/components/ui/Modal";
+import { SiteDetails } from "./SiteDetails";
 import { useToast } from "@/components/ui/Toast";
 import { pageForPath } from "@/lib/content/outline";
 import type { GateCheck } from "@/lib/publish/gate";
@@ -81,14 +82,6 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
   const [columnEdit, setColumnEdit] = useState<{ index: number | null; label: string } | null>(null);
   const [results, setResults] = useState<Record<string, LinkCheck | "checking">>({});
 
-  // One value that appears in several places on the site is edited once, here: the site title (header and footer)
-  // on the Navbar page, the contact email (footer) on the Footer page.
-  const detailKey = kind === "navbar" ? "siteTitle" : "contactEmail";
-  const savedDetail = typeof state.draft.data[detailKey] === "string" ? (state.draft.data[detailKey] as string) : "";
-  const [detailSaved, setDetailSaved] = useState(savedDetail);
-  const [detail, setDetail] = useState(savedDetail);
-  const detailProblem = kind === "navbar" ? (detail.trim().length < 1 || detail.trim().length > 60 ? "Use 1 to 60 characters." : null) : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(detail.trim()) ? null : "Enter a valid email address.";
-
   const failing = checks.filter((c) => !c.ok);
   const unpublished = status !== "published" && state.hasPublished;
 
@@ -133,16 +126,6 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
       if (!saved) setItems(before);
     });
   };
-
-  const saveDetail = () =>
-    startTransition(async () => {
-      const value = detail.trim();
-      const draft: PageDraft = { ...base, data: { ...base.data, [detailKey]: value } };
-      if (await saveAndGoLive(draft, "Saved.")) {
-        setDetail(value);
-        setDetailSaved(value);
-      }
-    });
 
   const publish = () =>
     startTransition(async () => {
@@ -297,28 +280,7 @@ export function LinkRows({ projectSlug, kind, state, checks, canEdit, canPublish
         </div>
       )}
 
-      <section className="mb-4 rounded-card border border-line bg-surface p-4 shadow-card">
-        <h3 className="text-sm font-semibold text-ink">{kind === "navbar" ? "Site title" : "Contact email"}</h3>
-        <p className="mb-3 text-xs text-ink-muted">{kind === "navbar" ? "The name at the left of the header. It is also used in the footer's copyright line, so you change it in one place." : "Shown under Contact Us in the footer."}</p>
-        <div className="flex flex-wrap items-start gap-2">
-          <div className="min-w-[240px] flex-1">
-            <label htmlFor="detail" className="sr-only">
-              {kind === "navbar" ? "Site title" : "Contact email"}
-            </label>
-            <Input id="detail" value={detail} disabled={!canEdit} maxLength={kind === "navbar" ? 60 : 120} onChange={(e) => setDetail(e.target.value)} aria-invalid={Boolean(detail && detailProblem)} />
-            {detail !== detailSaved && detailProblem && (
-              <p role="alert" className="mt-1 text-xs text-danger">
-                {detailProblem}
-              </p>
-            )}
-          </div>
-          {canEdit && (
-            <Button variant="primary" disabled={pending || detail.trim() === detailSaved || detailProblem !== null} onClick={saveDetail}>
-              Save
-            </Button>
-          )}
-        </div>
-      </section>
+      <SiteDetails kind={kind} initial={state.draft.data} canEdit={canEdit} onSave={(patch) => saveAndGoLive({ ...base, data: { ...base.data, ...patch } }, "Saved.")} />
 
       {kind === "navbar" ? (
         <section className="rounded-card border border-line bg-surface shadow-card">

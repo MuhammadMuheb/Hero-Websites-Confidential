@@ -17,7 +17,7 @@ const NAV_LINK =
 const MOBILE_LINK = 'block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand';
 
 /** `links` are the editable navbar links (admin: Navbar). The two dropdowns are filled automatically. */
-export function Header({ links, siteTitle }: { links: NavItem[]; siteTitle: string }) {
+export function Header({ links, siteTitle, cta }: { links: NavItem[]; siteTitle: string; cta: NavItem }) {
   const [scrolled, setScrolled] = useState(false);
   const [toursOpen, setToursOpen] = useState(false);
   const [networkOpen, setNetworkOpen] = useState(false);
@@ -207,10 +207,10 @@ export function Header({ links, siteTitle }: { links: NavItem[]; siteTitle: stri
           {/* Right Actions */}
           <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-4 ml-auto shrink-0">
             <Link
-              href="/tours"
+              href={cta.href}
               className="hidden lg:inline-flex rounded-full bg-accent px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white hover:bg-accent-hover transition-colors whitespace-nowrap"
             >
-              See Tours
+              {cta.label}
             </Link>
 
             {/* Mobile Menu Button */}
@@ -316,11 +316,11 @@ export function Header({ links, siteTitle }: { links: NavItem[]; siteTitle: stri
           <div className="h-px bg-line my-4" />
 
           <Link
-            href="/tours"
+            href={cta.href}
             className="block rounded-full bg-accent px-4 py-2 text-center text-sm font-semibold text-white hover:bg-accent-hover transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
-            See Tours
+            {cta.label}
           </Link>
         </div>
       </div>

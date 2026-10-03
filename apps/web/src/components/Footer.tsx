@@ -9,7 +9,7 @@ interface FooterGroup {
 }
 
 /** `groups` are the editable link columns (admin: Footer). The network column and contact details are automatic. */
-export function Footer({ groups, siteTitle, contactEmail }: { groups: FooterGroup[]; siteTitle: string; contactEmail: string }) {
+export function Footer({ groups, siteTitle, contactEmail, contactLines, contactBadge, bottomNote }: { groups: FooterGroup[]; siteTitle: string; contactEmail: string; contactLines: string[]; contactBadge: string; bottomNote: string }) {
   const year = new Date().getFullYear();
   const networkSites = useNetworkSites();
   const brandName = siteTitle;
@@ -72,11 +72,12 @@ export function Footer({ groups, siteTitle, contactEmail }: { groups: FooterGrou
                   {contactEmail}
                 </a>
               </li>
-              <li>Based in Italy</li>
-              <li>We usually reply within 24 hours</li>
+              {contactLines.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
             </ul>
             <p className="mt-4 inline-flex items-center gap-1.5 rounded-control border border-line bg-white px-2.5 py-1.5 text-xs text-ink-muted">
-              Bookings via trusted partners
+              {contactBadge}
             </p>
           </div>
         </div>
@@ -85,7 +86,7 @@ export function Footer({ groups, siteTitle, contactEmail }: { groups: FooterGrou
         <div className="mt-12 flex flex-col gap-2 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-ink-muted">© {year} {brandName}. All rights reserved.</p>
           <p className="text-xs text-ink-muted">
-            We may earn a commission when you book through partner links on this site, at no extra cost to you.
+            {bottomNote}
           </p>
         </div>
       </div>
