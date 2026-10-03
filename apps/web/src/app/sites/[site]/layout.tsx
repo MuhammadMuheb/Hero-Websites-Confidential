@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { TenantFooter, TenantHeader } from '@/components/tenant/TenantChrome';
 import { getLiveNetworkSites } from '@/lib/network';
+import { getNavigationFor, navigationDefaults, type NavLink } from '@/lib/navigation';
+import { getTenantPage } from '@/lib/tenant-data';
 import { TENANT_VIA_PATH_HEADER } from '@/lib/tenant-host';
 import { getTenantByDomain } from '@/lib/tenants';
 import { themeVars } from '@/lib/theme';
@@ -34,11 +36,17 @@ export default async function TenantLayout({ children, params }: { children: Rea
   if (!tenant) notFound();
   const network = await getLiveNetworkSites();
 
+  // Until the project publishes its own navbar, the header links only to pages that exist: Tours always, and
+  // About, FAQ and Contact once the project has published them. No link ever leads to a 404.
+  const [about, faq, contact] = await Promise.all([getTenantPage(tenant, 'about'), getTenantPage(tenant, 'faq'), getTenantPage(tenant, 'contact')]);
+  const links: NavLink[] = [{ label: 'Tours', href: '/tours' }, ...(about ? [{ label: 'About', href: '/about' }] : []), ...(faq ? [{ label: 'FAQ', href: '/faq' }] : []), ...(contact ? [{ label: 'Contact', href: '/contact' }] : [])];
+  const nav = await getNavigationFor(tenant.slug, navigationDefaults(tenant.name, tenant.contactEmail, links));
+
   return (
     <div style={themeVars(tenant.theme)} className="min-h-screen bg-cream text-ink">
-      <TenantHeader tenant={tenant} network={network} />
+      <TenantHeader tenant={tenant} network={network} nav={nav} />
       <main>{children}</main>
-      <TenantFooter tenant={tenant} network={network} />
+      <TenantFooter tenant={tenant} network={network} nav={nav} />
     </div>
   );
 }

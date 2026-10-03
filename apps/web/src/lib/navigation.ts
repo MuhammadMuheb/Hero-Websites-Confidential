@@ -99,7 +99,7 @@ function links(v: unknown): NavLink[] {
 }
 
 /** Maps the admin's published navigation onto the site's shape. Anything unusable falls back to the defaults. */
-export function fromAdminNavigation(data: unknown): SiteNavigation {
+export function fromAdminNavigation(data: unknown, defaults: SiteNavigation = DEFAULT_NAVIGATION): SiteNavigation {
   const d = isObject(data) ? data : {};
   const navbar = links(d.navbar);
   const footer = (Array.isArray(d.footer) ? d.footer : [])
@@ -116,35 +116,54 @@ export function fromAdminNavigation(data: unknown): SiteNavigation {
   const cta = link({ label: d.ctaLabel, href: d.ctaHref });
   const lines = Array.isArray(d.contactLines) ? d.contactLines.map((l) => text(l, 120)).filter(Boolean).slice(0, 6) : null;
   return {
-    cta: cta ?? DEFAULT_NAVIGATION.cta,
-    contactLines: lines && lines.length > 0 ? lines : DEFAULT_NAVIGATION.contactLines,
-    contactBadge: text(d.contactBadge, 80) || DEFAULT_NAVIGATION.contactBadge,
-    bottomNote: text(d.bottomNote, 300) || DEFAULT_NAVIGATION.bottomNote,
-    navbar: navbar.length > 0 ? navbar : DEFAULT_NAVIGATION.navbar,
-    footer: footer.length > 0 ? footer : DEFAULT_NAVIGATION.footer,
-    siteTitle: title || DEFAULT_NAVIGATION.siteTitle,
-    contactEmail: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : DEFAULT_NAVIGATION.contactEmail,
+    cta: cta ?? defaults.cta,
+    contactLines: lines && lines.length > 0 ? lines : defaults.contactLines,
+    contactBadge: text(d.contactBadge, 80) || defaults.contactBadge,
+    bottomNote: text(d.bottomNote, 300) || defaults.bottomNote,
+    navbar: navbar.length > 0 ? navbar : defaults.navbar,
+    footer: footer.length > 0 ? footer : defaults.footer,
+    siteTitle: title || defaults.siteTitle,
+    contactEmail: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : defaults.contactEmail,
   };
 }
 
+/** The raw published navigation of a project, or null. Refreshed by the admin through the "navigation" tag. */
 const readNavigation = unstable_cache(
-  async (slug: string): Promise<SiteNavigation | null> => {
+  async (slug: string): Promise<Raw | null> => {
     const snap = await getDb().collection('navigation').doc(slug).get();
     const doc = snap.data();
     const published = doc && isObject(doc.published) ? doc.published : undefined;
-    return published ? fromAdminNavigation(published.data) : null;
+    return published && isObject(published.data) ? published.data : null;
   },
-  ['site:navigation:v2'],
+  ['site:navigation:v3'],
   { tags: ['navigation'], revalidate: 3600 },
 );
 
-/** Never throws. */
-export async function getNavigation(): Promise<SiteNavigation> {
+/** Defaults for a project that has not published its own navigation: its name, its email, and links that exist. */
+export function navigationDefaults(name: string, email: string, links: NavLink[]): SiteNavigation {
+  return {
+    ...DEFAULT_NAVIGATION,
+    siteTitle: name,
+    contactEmail: email,
+    navbar: links,
+    footer: [{ title: name, links: [{ label: 'Home', href: '/' }, ...links.filter((l) => l.href !== '/')] }],
+    contactLines: [],
+    contactBadge: '',
+    bottomNote: '',
+  };
+}
+
+/** Never throws. Anything the project has not set falls back to `defaults`. */
+export async function getNavigationFor(slug: string, defaults: SiteNavigation): Promise<SiteNavigation> {
   try {
-    // Merged over the defaults so an entry cached by an older version of the app can never lack a field.
-    return { ...DEFAULT_NAVIGATION, ...((await readNavigation(PROPERTY_SLUG)) ?? {}) };
+    return fromAdminNavigation(await readNavigation(slug), defaults);
   } catch (error) {
-    console.warn('[navigation] could not read the navigation, using the defaults:', error instanceof Error ? error.message : error);
-    return DEFAULT_NAVIGATION;
+    console.warn('[navigation] could not read the navigation of', slug, '- using the defaults:', error instanceof Error ? error.message : error);
+    return defaults;
   }
+}
+
+/** The main site's navigation. */
+export async function getNavigation(): Promise<SiteNavigation> {
+  return getNavigationFor(PROPERTY_SLUG, DEFAULT_NAVIGATION);
 }

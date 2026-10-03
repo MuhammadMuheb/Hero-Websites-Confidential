@@ -78,3 +78,19 @@ refresh, project data is cached for 60 seconds and page content for 5 minutes.
 - The project name in the admin opens that same address. If it shows a parking page, the domain is not connected yet:
   the project's Edit page checks the domain (the web app sends `X-Served-By: italy-tours-web`) and says what to do.
   Connecting a domain = add it (and `www.`) in the Vercel **web** project, then set the DNS records Vercel shows.
+
+## Starting content for the network projects
+
+`apps/admin/scripts/seed-network-projects.mts` gives every project that has at least three published tours a
+complete Home and a navigation (draft and published), built from the project's own name, contact email and tours.
+It writes only what is missing, never touches domains, status or tours, and is a dry run unless `--apply` is passed:
+
+```bash
+cd apps/admin
+npx tsx --env-file=../../infra/env/.env scripts/seed-network-projects.mts          # dry run
+npx tsx --env-file=../../infra/env/.env scripts/seed-network-projects.mts --apply  # write
+```
+
+As soon as a project has a domain that points at the web app, `/` shows that Home, `/tours` lists its tours and the
+header and footer come from its navigation. The navbar only links to pages that exist (Home and Tours to begin
+with); About, FAQ and the others join when they are written and published.
