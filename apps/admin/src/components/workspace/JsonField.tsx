@@ -12,7 +12,10 @@ const NAV_LISTS = new Set(["navbar", "footer", "children"]);
 const NAV_ITEM = { label: "", href: "", cta: false, children: [] };
 const LONG_KEYS = new Set(["description", "subtitle", "body", "answer", "text", "privacy", "terms", "cookie", "affiliate", "metaDescription"]);
 
+const LABELS: Record<string, string> = { src: "Image address", url: "Image address", alt: "Alt text (required)", imageUrl: "Image address", href: "Link (where it goes)" };
+
 export function humanize(key: string): string {
+  if (LABELS[key]) return LABELS[key];
   const s = key.replace(/([a-z0-9])([A-Z])/g, "$1 $2").replace(/[_-]+/g, " ");
   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 }

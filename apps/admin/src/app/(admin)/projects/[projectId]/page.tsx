@@ -1,75 +1,161 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
+import { Chip, type ChipTone } from "@/components/ui/Chip";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { NoPermission } from "@/components/ui/NoPermission";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { getPageState } from "@/lib/repo/content";
-import { projectContext } from "@/lib/repo/ctx";
+import { LinkRows } from "@/components/workspace/LinkRows";
+import { ProjectSettingsButton } from "@/components/workspace/ProjectSettingsButton";
+import { SectionRows } from "@/components/workspace/SectionRows";
+import { SiteOutline } from "@/components/workspace/SiteOutline";
+import { TaxonomyEditor } from "@/components/workspace/TaxonomyEditor";
+import { ToursManager } from "@/components/workspace/ToursManager";
+import { can } from "@/lib/auth/permissions";
+import { LINK_TARGETS, OUTLINE_IDS, buildOutline } from "@/lib/content/outline";
+import { getPageDef } from "@/lib/content/pages";
 import { projectOpenUrl } from "@/lib/project-open-url";
-import type { IconName, PageState } from "@/lib/types";
+import { gateFor, getPageState } from "@/lib/repo/content";
+import { projectContext } from "@/lib/repo/ctx";
+import { getTaxonomies } from "@/lib/repo/misc";
+import { listTours } from "@/lib/repo/tours";
+import type { ProjectStatus } from "@/lib/types";
 
 export const metadata: Metadata = { title: "Project" };
 
-type Params = Promise<{ projectId: string }>;
+const STATUS: Record<ProjectStatus, { label: string; tone: ChipTone }> = {
+  live: { label: "Live", tone: "green" },
+  coming_soon: { label: "Coming soon", tone: "amber" },
+  archived: { label: "Archived", tone: "grey" },
+};
 
-function StatusBadge({ state, dirty }: { state: PageState; dirty?: boolean }) {
-  if (dirty) return <Badge tone="amber">Unsaved draft</Badge>;
-  return state.status === "published" ? <Badge tone="green">Live</Badge> : <Badge tone="grey">Draft</Badge>;
-}
+const LOOK_ROWS = [
+  { title: "Theme and brand", note: "Colours and fonts shown across the site.", path: "global/theme" },
+  { title: "SEO defaults", note: "The Home page title, description and sharing image.", path: "global/seo" },
+  { title: "Content import", note: "Fill the project from a content file.", path: "import" },
+];
 
-interface BlockProps {
-  icon: IconName;
-  title: string;
-  summary: string;
-  href: string;
-  status?: React.ReactNode;
-  children?: React.ReactNode;
-}
-
-/** One top-level block of the site. Its button leads to the items inside it. */
-function Block({ icon, title, summary, href, status, children }: BlockProps) {
-  return (
-    <section className="flex flex-col rounded-card border border-line bg-surface p-5 shadow-card">
-      <div className="flex items-start justify-between gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-control bg-primary-soft text-primary">
-          <Icon name={icon} size={20} />
-        </span>
-        {status}
-      </div>
-      <h2 className="mt-4 text-base font-semibold text-ink">{title}</h2>
-      <p className="mt-1 text-[13px] text-ink-muted">{summary}</p>
-      {children && <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[13px]">{children}</div>}
-      <div className="mt-auto pt-5">
-        <ButtonLink href={href} variant="primary" size="sm">
-          <Icon name="pencil" size={14} /> Edit {title.toLowerCase()}
-        </ButtonLink>
-      </div>
-    </section>
-  );
-}
-
-const SUB_LINK = "text-primary underline-offset-2 hover:underline";
-
-export default async function ProjectOverview({ params }: { params: Params }) {
+export default async function ProjectEditor({ params, searchParams }: { params: Promise<{ projectId: string }>; searchParams: Promise<{ item?: string }> }) {
   const { projectId } = await params;
+  const { item: requested } = await searchParams;
   const ctx = await projectContext(projectId);
   if (ctx.denied) return <NoPermission what="this project" />;
-  const { project } = ctx;
-  const base = `/projects/${project.id}`;
+  const { user, project } = ctx;
 
-  const [home, nav] = await Promise.all([getPageState(project, "home"), getPageState(project, "navigation")]);
-  const navbar = ((nav.draft.data.navbar as unknown[]) ?? []).length;
-  const footer = ((nav.draft.data.footer as unknown[]) ?? []).length;
-  const homeSections = home.draft.layout.filter((l) => l.visible).length;
+  const item = requested && OUTLINE_IDS.includes(requested) ? requested : "home";
+  const base = `/projects/${project.id}`;
   const liveUrl = projectOpenUrl(project);
+
+  // Counts for the outline come from the project's own data.
+  const [navState, taxonomies] = await Promise.all([getPageState(project, "navigation"), getTaxonomies(project.slug)]);
+  const navbarCount = ((navState.draft.data.navbar as unknown[]) ?? []).length;
+  const footerCount = ((navState.draft.data.footer as unknown[]) ?? []).length;
+  const outline = buildOutline({ navbar: navbarCount, footer: footerCount, tours: project.cards, areas: taxonomies.neighbourhoods.length });
+
+  const canPublish = can(user, "publish", project.slug);
+  const status = STATUS[project.status];
+
+  let detail: React.ReactNode;
+  const def = getPageDef(item);
+
+  if (item === "navbar" || item === "footer") {
+    const checks = await gateFor(project, "navigation", navState.draft);
+    detail = (
+      <LinkRows
+        key={`${item}-${navState.version}-${navState.updatedAt}`}
+        projectSlug={project.slug}
+        kind={item}
+        state={navState}
+        checks={checks}
+        canEdit={can(user, "nav:edit", project.slug)}
+        canPublish={canPublish}
+        pages={LINK_TARGETS}
+        automatic={
+          item === "navbar"
+            ? [
+                { label: "Tours & Blog", note: "From your tours and posts" },
+                { label: "Our Network", note: "From live projects" },
+              ]
+            : [
+                { label: "Our Network", note: "From live projects" },
+                { label: "Contact details", note: "From the project settings" },
+              ]
+        }
+      />
+    );
+  } else if (def) {
+    if (item !== "home" && !project.domain) {
+      detail = (
+        <EmptyState
+          title="Set the project domain first"
+          description="Pages other than Home are stored under the project's domain. Add it in Project settings."
+          action={
+            <ButtonLink href={`/projects/edit/${project.id}`} variant="primary">
+              Open project settings
+            </ButtonLink>
+          }
+        />
+      );
+    } else {
+      const state = await getPageState(project, item);
+      const checks = await gateFor(project, item, state.draft);
+      detail = <SectionRows key={`${item}-${state.version}-${state.updatedAt}`} projectSlug={project.slug} domain={project.domain} pageSlug={item} def={def} state={state} checks={checks} canEdit={can(user, "draft:write", project.slug)} canPublish={canPublish} />;
+    }
+  } else if (item === "tours") {
+    const tours = await listTours(project.slug);
+    detail = <ToursManager projectSlug={project.slug} projectName={project.name} tours={tours} taxonomies={taxonomies} canPublish={canPublish} embedded />;
+  } else if (item === "neighbourhoods") {
+    detail = (
+      <>
+        <h2 className="mb-1 text-[20px] font-semibold tracking-tight text-ink">Neighbourhoods</h2>
+        <p className="mb-4 max-w-2xl text-[13px] text-ink-muted">Areas, categories and cities that tours point to. Tours appear on the matching pages automatically.</p>
+        <TaxonomyEditor projectSlug={project.slug} initial={taxonomies} canEdit={can(user, "nav:edit", project.slug)} />
+      </>
+    );
+  } else if (item === "blog") {
+    detail = (
+      <>
+        <h2 className="mb-1 text-[20px] font-semibold tracking-tight text-ink">Blog</h2>
+        <EmptyState
+          title="Blog posts and guides are not edited here yet"
+          description="They stay on the live site as they are. Editing them in the admin comes in a later phase."
+          action={
+            liveUrl ? (
+              <a href={`${liveUrl.replace(/\/$/, "")}/blog`} target="_blank" rel="noopener noreferrer" className="inline-flex h-9 items-center rounded-control border border-line bg-surface px-4 text-sm font-medium hover:bg-canvas">
+                View the blog on the live site <span aria-hidden="true">&nbsp;&#8599;</span>
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            ) : undefined
+          }
+        />
+      </>
+    );
+  } else {
+    detail = (
+      <>
+        <h2 className="mb-4 text-[20px] font-semibold tracking-tight text-ink">Theme, SEO and Import</h2>
+        <ul className="rounded-card border border-line bg-surface shadow-card">
+          {LOOK_ROWS.map((r) => (
+            <li key={r.path} className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3 last:border-0">
+              <div>
+                <p className="text-sm font-medium text-ink">{r.title}</p>
+                <p className="text-xs text-ink-muted">{r.note}</p>
+              </div>
+              <ButtonLink href={`${base}/${r.path}`} variant="primary" size="sm">
+                Open
+              </ButtonLink>
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  }
 
   return (
     <>
       <PageHeader
         title={project.name}
-        description="Pick a block to edit. Everything you save here goes straight to the live site."
+        badge={<Chip tone={status.tone}>{status.label}</Chip>}
+        breadcrumbs={[{ label: "Projects", href: "/projects" }, { label: project.name }]}
         actions={
           <>
             {liveUrl && (
@@ -78,31 +164,15 @@ export default async function ProjectOverview({ params }: { params: Params }) {
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
             )}
-            <ButtonLink href={`/projects/edit/${project.id}`} size="sm">
-              Project settings
-            </ButtonLink>
+            {can(user, "project:archive") && <ProjectSettingsButton project={project} />}
           </>
         }
       />
+      {!liveUrl && <p className="-mt-3 mb-4 text-[13px] text-warning">No address set. Add a public URL in Project settings.</p>}
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        <Block icon="menu" title="Navbar" summary={`${navbar} ${navbar === 1 ? "link" : "links"} at the top of every page.`} href={`${base}/global/navbar`} status={<StatusBadge state={nav} />} />
-        <Block icon="layout" title="Home page" summary={`${homeSections} sections, from the hero to the contact details.`} href={`${base}/pages/home`} status={<StatusBadge state={home} />} />
-        <Block icon="menu" title="Footer" summary={`${footer} ${footer === 1 ? "column" : "columns"} of links at the bottom of every page.`} href={`${base}/global/footer`} status={<StatusBadge state={nav} />} />
-        <Block icon="file" title="Other pages" summary="Story, contact details, questions and legal text." href={`${base}/pages/about`}>
-          <Link href={`${base}/pages/about`} className={SUB_LINK}>About</Link>
-          <Link href={`${base}/pages/contact`} className={SUB_LINK}>Contact</Link>
-          <Link href={`${base}/pages/faq`} className={SUB_LINK}>FAQ</Link>
-          <Link href={`${base}/pages/legal`} className={SUB_LINK}>Legal</Link>
-        </Block>
-        <Block icon="tag" title="Tours" summary={`${project.cards} ${project.cards === 1 ? "tour" : "tours"}, with their categories and areas.`} href={`${base}/listings/tours`}>
-          <Link href={`${base}/taxonomies`} className={SUB_LINK}>Categories and areas</Link>
-        </Block>
-        <Block icon="settings" title="Look and SEO" summary="Colours, fonts, search titles and the content import." href={`${base}/global/theme`}>
-          <Link href={`${base}/global/theme`} className={SUB_LINK}>Theme and brand</Link>
-          <Link href={`${base}/global/seo`} className={SUB_LINK}>SEO defaults</Link>
-          <Link href={`${base}/import`} className={SUB_LINK}>Import</Link>
-        </Block>
+      <div className="grid gap-6 lg:grid-cols-[232px_minmax(0,1fr)]">
+        <SiteOutline groups={outline} selected={item} base={base} />
+        <div className="min-w-0">{detail}</div>
       </div>
     </>
   );

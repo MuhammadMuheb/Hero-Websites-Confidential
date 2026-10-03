@@ -344,7 +344,7 @@ function CardForm({ projectSlug, tour, taxonomies, canPublish, onClose }: FormPr
 
 type DrawerMode = { kind: "edit"; tour: Tour } | { kind: "new" } | null;
 
-export function ToursManager({ projectSlug, projectName, tours, taxonomies, canPublish }: { projectSlug: string; projectName: string; tours: Tour[]; taxonomies: Taxonomies; canPublish: boolean }) {
+export function ToursManager({ projectSlug, projectName, tours, taxonomies, canPublish, embedded }: { projectSlug: string; projectName: string; tours: Tour[]; taxonomies: Taxonomies; canPublish: boolean; embedded?: boolean }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
   const [statusFilter, setStatusFilter] = useState<"active" | ContentStatus>("active");
@@ -367,6 +367,14 @@ export function ToursManager({ projectSlug, projectName, tours, taxonomies, canP
 
   return (
     <>
+      {embedded ? (
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-[20px] font-semibold tracking-tight text-ink">Tours ({active})</h2>
+          <Button variant="primary" size="sm" onClick={() => setDrawer({ kind: "new" })}>
+            <Icon name="plus" size={16} /> Add card
+          </Button>
+        </div>
+      ) : (
       <PageHeader
         title={`Tours (${active})`}
         breadcrumbs={[{ label: projectName }, { label: "Listings" }, { label: "Tours" }]}
@@ -377,6 +385,7 @@ export function ToursManager({ projectSlug, projectName, tours, taxonomies, canP
           </Button>
         }
       />
+      )}
 
       <div className="mb-3 flex flex-wrap gap-2">
         <div className="relative min-w-[200px] flex-1 sm:max-w-xs">
