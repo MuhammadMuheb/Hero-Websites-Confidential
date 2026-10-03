@@ -15,6 +15,7 @@ import { metaFor } from "@/lib/content/pages";
 import { pagePath } from "@/lib/content/outline";
 import type { GateCheck } from "@/lib/publish/gate";
 import type { PageDraft } from "@/lib/types";
+import { hasHomeForm, HomeSectionForm, type TourOption } from "./HomeForms";
 import { humanize, JsonField } from "./JsonField";
 
 /** The pseudo-section that holds a page's title, SEO title and description (pages other than Home). */
@@ -39,6 +40,8 @@ interface Props {
   draft: PageDraft;
   canEdit: boolean;
   canPublish: boolean;
+  /** Tours of the project, for the pickers of the Home page. */
+  tours?: TourOption[];
   /** Called after a successful save with the new saved draft (and whether it went live). */
   onSaved: (draft: PageDraft, published: boolean) => void;
 }
@@ -60,7 +63,7 @@ function SearchPreview({ title, url, description }: { title: string; url: string
 }
 
 /** One section of a page in a pop-up: its fields, a search preview, the publish checks, and Save draft / Publish now. */
-export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pageTitle, target, draft, canEdit, canPublish, onSaved }: Props) {
+export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pageTitle, target, draft, canEdit, canPublish, tours = [], onSaved }: Props) {
   const { notify } = useToast();
   const [pending, startTransition] = useTransition();
   const isMeta = target.id === META_SECTION;
@@ -196,7 +199,11 @@ export function SectionModal({ open, onClose, projectSlug, domain, pageSlug, pag
                 </Field>
               </>
             ) : (
-              target.keys.map((k) => <JsonField key={k} name={k} label={humanize(k)} value={data[k] ?? ""} readOnly={!canEdit} freeform={false} onChange={(next) => setData((d) => ({ ...d, [k]: next }))} />)
+              isHome && hasHomeForm(target.id) ? (
+                <HomeSectionForm sectionId={target.id} values={data} set={(k, v) => setData((d) => ({ ...d, [k]: v }))} readOnly={!canEdit} tours={tours} projectId={projectSlug} />
+              ) : (
+                target.keys.map((k) => <JsonField key={k} name={k} label={humanize(k)} value={data[k] ?? ""} readOnly={!canEdit} freeform={false} onChange={(next) => setData((d) => ({ ...d, [k]: next }))} />)
+              )
             )}
           </div>
 

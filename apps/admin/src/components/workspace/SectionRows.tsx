@@ -12,6 +12,7 @@ import { pagePath } from "@/lib/content/outline";
 import { firstImage, imagesMissingAlt, summarize } from "@/lib/content/summary";
 import type { GateCheck } from "@/lib/publish/gate";
 import type { LayoutItem, PageDef, PageDraft, PageState } from "@/lib/types";
+import type { TourOption } from "./HomeForms";
 import { META_SECTION, SectionModal, type EditTarget } from "./SectionModal";
 
 interface Props {
@@ -23,12 +24,13 @@ interface Props {
   checks: GateCheck[];
   canEdit: boolean;
   canPublish: boolean;
+  tours?: TourOption[];
 }
 
 const iconButton = "rounded p-1.5 text-ink-muted hover:bg-canvas hover:text-ink disabled:opacity-30";
 
 /** A page as ordered rows, top to bottom, exactly like the live page. */
-export function SectionRows({ projectSlug, domain, pageSlug, def, state, checks, canEdit, canPublish }: Props) {
+export function SectionRows({ projectSlug, domain, pageSlug, def, state, checks, canEdit, canPublish, tours }: Props) {
   const router = useRouter();
   const { notify } = useToast();
   const [pending, startTransition] = useTransition();
@@ -239,6 +241,7 @@ export function SectionRows({ projectSlug, domain, pageSlug, def, state, checks,
           draft={draft}
           canEdit={canEdit}
           canPublish={canPublish}
+          tours={tours}
           onSaved={(next, live) => {
             setDraft(next);
             setStatus(live ? "published" : "draft");

@@ -9,11 +9,10 @@ interface FooterGroup {
 }
 
 /** `groups` are the editable link columns (admin: Footer). The network column and contact details are automatic. */
-export function Footer({ groups }: { groups: FooterGroup[] }) {
+export function Footer({ groups, siteTitle, contactEmail }: { groups: FooterGroup[]; siteTitle: string; contactEmail: string }) {
   const year = new Date().getFullYear();
   const networkSites = useNetworkSites();
-  const brandName = 'Street Food Rome';
-  const contactEmail = 'hello@streetfoodrome.com';
+  const brandName = siteTitle;
 
   return (
     <footer className="border-t border-line bg-cream-deep text-ink-muted">

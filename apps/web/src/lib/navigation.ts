@@ -22,9 +22,15 @@ export interface FooterGroup {
 export interface SiteNavigation {
   navbar: NavLink[];
   footer: FooterGroup[];
+  /** The name in the header and in the footer's copyright line. */
+  siteTitle: string;
+  /** The address in the footer's contact details. */
+  contactEmail: string;
 }
 
 export const DEFAULT_NAVIGATION: SiteNavigation = {
+  siteTitle: 'Street Food Rome',
+  contactEmail: 'hello@streetfoodrome.com',
   navbar: [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about' },
@@ -92,7 +98,14 @@ export function fromAdminNavigation(data: unknown): SiteNavigation {
     })
     .filter((g): g is FooterGroup => g !== null)
     .slice(0, 4);
-  return { navbar: navbar.length > 0 ? navbar : DEFAULT_NAVIGATION.navbar, footer: footer.length > 0 ? footer : DEFAULT_NAVIGATION.footer };
+  const title = typeof d.siteTitle === 'string' ? d.siteTitle.trim().slice(0, 60) : '';
+  const email = typeof d.contactEmail === 'string' ? d.contactEmail.trim() : '';
+  return {
+    navbar: navbar.length > 0 ? navbar : DEFAULT_NAVIGATION.navbar,
+    footer: footer.length > 0 ? footer : DEFAULT_NAVIGATION.footer,
+    siteTitle: title || DEFAULT_NAVIGATION.siteTitle,
+    contactEmail: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : DEFAULT_NAVIGATION.contactEmail,
+  };
 }
 
 const readNavigation = unstable_cache(

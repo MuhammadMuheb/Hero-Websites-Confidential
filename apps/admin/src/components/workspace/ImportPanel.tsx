@@ -159,10 +159,10 @@ export function ImportPanel({ projectSlug, canEdit }: { projectSlug: string; can
             {done.pages} page(s) and {done.cards} card(s) were saved as drafts. Nothing is live yet: review and publish each page and card.
           </p>
           <div className="flex gap-2">
-            <ButtonLink href={`/projects/${projectSlug}/pages/home`} variant="primary" size="sm">
+            <ButtonLink href={`/projects/${projectSlug}?item=home`} variant="primary" size="sm">
               Review Home
             </ButtonLink>
-            <ButtonLink href={`/projects/${projectSlug}/listings/tours`} size="sm">
+            <ButtonLink href={`/projects/${projectSlug}?item=tours`} size="sm">
               Review cards
             </ButtonLink>
           </div>

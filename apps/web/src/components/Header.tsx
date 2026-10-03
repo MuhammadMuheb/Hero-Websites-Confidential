@@ -17,7 +17,7 @@ const NAV_LINK =
 const MOBILE_LINK = 'block rounded-lg px-3 py-2.5 text-base font-semibold text-ink transition-colors hover:bg-accent-soft hover:text-brand';
 
 /** `links` are the editable navbar links (admin: Navbar). The two dropdowns are filled automatically. */
-export function Header({ links }: { links: NavItem[] }) {
+export function Header({ links, siteTitle }: { links: NavItem[]; siteTitle: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [toursOpen, setToursOpen] = useState(false);
   const [networkOpen, setNetworkOpen] = useState(false);
@@ -27,7 +27,7 @@ export function Header({ links }: { links: NavItem[] }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
   const networkSites = useNetworkSites();
-  const brandName = 'Street Food Rome';
+  const brandName = siteTitle;
 
   const toursItems: NavItem[] = getPropertyToursAndBlog('street-food-rome').map((item) => ({
     label: item.label,

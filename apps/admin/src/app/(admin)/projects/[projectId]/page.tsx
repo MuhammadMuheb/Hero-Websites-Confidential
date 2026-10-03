@@ -98,7 +98,8 @@ export default async function ProjectEditor({ params, searchParams }: { params: 
     } else {
       const state = await getPageState(project, item);
       const checks = await gateFor(project, item, state.draft);
-      detail = <SectionRows key={`${item}-${state.version}-${state.updatedAt}`} projectSlug={project.slug} domain={project.domain} pageSlug={item} def={def} state={state} checks={checks} canEdit={can(user, "draft:write", project.slug)} canPublish={canPublish} />;
+      const tourOptions = item === "home" ? (await listTours(project.slug)).filter((t) => t.status !== "trashed").map((t) => ({ slug: t.slug, title: t.title })) : undefined;
+      detail = <SectionRows tours={tourOptions} key={`${item}-${state.version}-${state.updatedAt}`} projectSlug={project.slug} domain={project.domain} pageSlug={item} def={def} state={state} checks={checks} canEdit={can(user, "draft:write", project.slug)} canPublish={canPublish} />;
     }
   } else if (item === "tours") {
     const tours = await listTours(project.slug);

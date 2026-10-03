@@ -69,9 +69,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         ) : (
           <NetworkProvider sites={networkSites}>
             <RevealAnimations />
-            <Header links={navigation.navbar} />
+            <Header links={navigation.navbar} siteTitle={navigation.siteTitle} />
             <main>{children}</main>
-            <Footer groups={navigation.footer} />
+            <Footer groups={navigation.footer} siteTitle={navigation.siteTitle} contactEmail={navigation.contactEmail} />
           </NetworkProvider>
         )}
       </body>

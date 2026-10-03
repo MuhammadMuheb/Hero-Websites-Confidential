@@ -88,7 +88,16 @@ export const projectUpdateSchema = z
 
 const req = (max: number) => z.string().trim().min(1, "Required").max(max);
 
+/** Starting sizes of the Home lists (a new project starts with this many blank entries). */
 export const HOME_COUNTS = { chips: 20, namesStrip: 10, categories: 5, tourSlugs: 3, howWeChoose: 4, placesTabs: 3 } as const;
+/** The Home lists can grow and shrink between these sizes. */
+export const HOME_LIMITS = {
+  chips: { min: 4, max: 40 },
+  namesStrip: { min: 3, max: 20 },
+  categories: { min: 3, max: 12 },
+  tourSlugs: { min: 1, max: 8 },
+  howWeChoose: { min: 3, max: 8 },
+} as const;
 /** Places tabs: at least HOME_COUNTS.placesTabs, at most this many. */
 export const PLACES_TABS_MAX = 30;
 
@@ -102,9 +111,9 @@ export const homeSchema = z.strictObject({
     image: z.strictObject({ src: req(2000), alt: req(200) }),
     searchPlaceholder: req(120),
   }),
-  chips: z.array(req(60)).length(HOME_COUNTS.chips),
+  chips: z.array(req(60)).min(HOME_LIMITS.chips.min).max(HOME_LIMITS.chips.max),
   namesStripLabel: req(120),
-  namesStrip: z.array(z.strictObject({ name: req(80), href: req(500) })).length(HOME_COUNTS.namesStrip),
+  namesStrip: z.array(z.strictObject({ name: req(80), href: req(500) })).min(HOME_LIMITS.namesStrip.min).max(HOME_LIMITS.namesStrip.max),
   sliderEyebrow: req(120),
   sliderTitle: req(160),
   categoryEyebrow: req(120),
@@ -116,12 +125,13 @@ export const homeSchema = z.strictObject({
         slug: z.string().regex(SLUG_RE, "Lowercase letters, digits and hyphens only"),
         description: req(400),
         imageUrl: req(2000),
-        tourSlugs: z.array(z.string().regex(SLUG_RE)).length(HOME_COUNTS.tourSlugs),
+        tourSlugs: z.array(z.string().regex(SLUG_RE)).min(HOME_LIMITS.tourSlugs.min).max(HOME_LIMITS.tourSlugs.max),
       }),
     )
-    .length(HOME_COUNTS.categories),
+    .min(HOME_LIMITS.categories.min)
+    .max(HOME_LIMITS.categories.max),
   howWeChooseTitle: req(160),
-  howWeChoose: z.array(z.strictObject({ title: req(120), description: req(400), icon: req(60) })).length(HOME_COUNTS.howWeChoose),
+  howWeChoose: z.array(z.strictObject({ title: req(120), description: req(400), icon: req(60) })).min(HOME_LIMITS.howWeChoose.min).max(HOME_LIMITS.howWeChoose.max),
   placesTitle: req(160),
   placesTabs: z.array(z.strictObject({ name: req(80), href: req(500), description: text(400) })).min(HOME_COUNTS.placesTabs).max(PLACES_TABS_MAX),
   seo: z.strictObject({
