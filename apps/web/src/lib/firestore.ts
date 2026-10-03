@@ -12,7 +12,13 @@ import { cert, getApps, initializeApp, type App } from 'firebase-admin/app';
 import { getFirestore, type Firestore } from 'firebase-admin/firestore';
 import { unstable_cache } from 'next/cache';
 
-export const SITE_DOMAIN = 'streetfoodrome.com';
+/**
+ * Which site this deployment serves. Both come from the environment so the same
+ * code can serve another site later; the defaults keep Street Food Rome unchanged.
+ * `||` (not `??`) so an empty value in a hosting dashboard also falls back.
+ */
+export const SITE_DOMAIN = process.env.SITE_DOMAIN || 'streetfoodrome.com';
+export const PROPERTY_SLUG = process.env.PROPERTY_SLUG || 'street-food-rome';
 
 function loadApp(): App {
   if (getApps().length > 0) return getApps()[0]!;

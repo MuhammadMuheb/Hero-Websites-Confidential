@@ -6,6 +6,8 @@
     "FIREBASE_CLIENT_EMAIL",
     "FIREBASE_PRIVATE_KEY",
     "REVALIDATE_SECRET",
+    "SITE_DOMAIN",
+    "PROPERTY_SLUG",
     "VERCEL_URL"
   ],
   "tasks": {
