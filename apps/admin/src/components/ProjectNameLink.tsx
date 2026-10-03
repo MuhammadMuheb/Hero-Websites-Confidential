@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { projectLiveUrl } from "@/lib/project-url";
+import { projectOpenUrl } from "@/lib/project-open-url";
 import type { Project } from "@/lib/types";
 
 /**
@@ -7,7 +7,7 @@ import type { Project } from "@/lib/types";
  * site in a new tab. Without one it is plain text.
  */
 export function ProjectNameLink({ project, className }: { project: Pick<Project, "name" | "publicUrl" | "domain">; className?: string }) {
-  const url = projectLiveUrl(project);
+  const url = projectOpenUrl(project);
   if (!url) return <span className={className}>{project.name}</span>;
 
   return (

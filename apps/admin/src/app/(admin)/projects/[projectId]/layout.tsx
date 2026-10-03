@@ -4,7 +4,7 @@ import { ProjectStatusBadge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { NoPermission } from "@/components/ui/NoPermission";
-import { projectLiveUrl } from "@/lib/project-url";
+import { projectOpenUrl } from "@/lib/project-open-url";
 import { projectContext } from "@/lib/repo/ctx";
 
 export default async function WorkspaceLayout({ children, params }: { children: ReactNode; params: Promise<{ projectId: string }> }) {
@@ -29,7 +29,7 @@ export default async function WorkspaceLayout({ children, params }: { children: 
 
   return (
     <div className="grid gap-6 lg:grid-cols-[240px_minmax(0,1fr)]">
-      <WorkspaceTree projectId={project.id} projectName={project.name} badge={<ProjectStatusBadge status={project.status} />} counts={{ "listings/tours": project.cards }} liveUrl={projectLiveUrl(project)} />
+      <WorkspaceTree projectId={project.id} projectName={project.name} badge={<ProjectStatusBadge status={project.status} />} counts={{ "listings/tours": project.cards }} liveUrl={projectOpenUrl(project)} />
       <div className="min-w-0">{children}</div>
     </div>
   );
