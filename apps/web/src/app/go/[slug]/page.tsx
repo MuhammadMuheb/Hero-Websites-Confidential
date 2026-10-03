@@ -7,13 +7,10 @@ interface RouteParams {
 
 export const metadata = { robots: { index: false, follow: false } };
 
-/**
- * Affiliate redirect for every property. Property-prefixed links
- * (/{property}/go/{slug}) are rewritten here by middleware.ts.
- */
+/** Affiliate redirect: sends /go/{slug} to that tour's affiliateUrl in Firestore. */
 export default async function GoRedirectPage({ params }: RouteParams) {
   const { slug } = await params;
-  const redirectUrl = getAffiliateRedirect(slug);
+  const redirectUrl = await getAffiliateRedirect(slug);
 
   if (!redirectUrl) {
     notFound();
