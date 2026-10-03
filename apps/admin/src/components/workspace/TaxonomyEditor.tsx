@@ -4,12 +4,13 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { saveTaxonomies } from "@/app/actions/tours";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
+import { Modal } from "@/components/ui/Modal";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Field";
 import { Icon } from "@/components/ui/Icon";
 import { useToast } from "@/components/ui/Toast";
-import type { Taxonomies } from "@/lib/types";
+import type { Taxonomies, Tour } from "@/lib/types";
 
 const GROUPS: { key: keyof Taxonomies; title: string }[] = [
   { key: "categories", title: "Tour categories" },
@@ -18,13 +19,22 @@ const GROUPS: { key: keyof Taxonomies; title: string }[] = [
   { key: "blogCategories", title: "Blog categories" },
 ];
 
-export function TaxonomyEditor({ projectSlug, initial, canEdit }: { projectSlug: string; initial: Taxonomies; canEdit: boolean }) {
+type TourRef = Pick<Tour, "id" | "title" | "status" | "category" | "neighbourhood" | "city">;
+
+/** Which tours still use a value of a list. Only these three lists are referenced by tours. */
+function usedBy(tours: TourRef[], key: keyof Taxonomies, value: string): TourRef[] {
+  const field = key === "categories" ? "category" : key === "neighbourhoods" ? "neighbourhood" : key === "cities" ? "city" : null;
+  return field ? tours.filter((x) => x.status !== "trashed" && x[field] === value) : [];
+}
+
+export function TaxonomyEditor({ projectSlug, initial, canEdit, tours = [] }: { projectSlug: string; initial: Taxonomies; canEdit: boolean; tours?: TourRef[] }) {
   const router = useRouter();
   const { notify } = useToast();
   const [pending, startTransition] = useTransition();
   const [tax, setTax] = useState(initial);
   const [draft, setDraft] = useState<Record<string, string>>({});
   const [dirty, setDirty] = useState(false);
+  const [blocked, setBlocked] = useState<{ key: keyof Taxonomies; value: string; list: TourRef[] } | null>(null);
 
   const add = (key: keyof Taxonomies) => {
     const v = (draft[key] ?? "").trim();
@@ -52,6 +62,8 @@ export function TaxonomyEditor({ projectSlug, initial, canEdit }: { projectSlug:
                         aria-label={`Remove ${i}`}
                         className="rounded p-0.5 text-danger hover:bg-danger-soft"
                         onClick={() => {
+                          const list = usedBy(tours, g.key, i);
+                          if (list.length > 0) return setBlocked({ key: g.key, value: i, list });
                           setTax({ ...tax, [g.key]: tax[g.key].filter((x) => x !== i) });
                           setDirty(true);
                         }}
@@ -102,6 +114,36 @@ export function TaxonomyEditor({ projectSlug, initial, canEdit }: { projectSlug:
       ) : (
         <p className="mt-4 text-[13px] text-ink-muted">Only Admin and Super Admin can change the managed lists.</p>
       )}
+      <Modal
+        open={blocked !== null}
+        title="This item is still in use"
+        size="md"
+        onClose={() => setBlocked(null)}
+        footer={
+          <>
+            <Button onClick={() => setBlocked(null)}>Cancel</Button>
+            {blocked && (
+              <ButtonLink href={`/projects/${projectSlug}?item=tours&${blocked.key === "neighbourhoods" ? "area" : "category"}=${encodeURIComponent(blocked.value)}`} variant="primary">
+                Reassign
+              </ButtonLink>
+            )}
+          </>
+        }
+      >
+        {blocked && (
+          <div className="space-y-3 text-sm">
+            <p>
+              <strong>{blocked.value}</strong> cannot be removed while {blocked.list.length} {blocked.list.length === 1 ? "tour uses" : "tours use"} it. Give these tours another value first.
+            </p>
+            <ul className="list-disc space-y-0.5 pl-5 text-[13px] text-ink-muted">
+              {blocked.list.slice(0, 8).map((x) => (
+                <li key={x.id}>{x.title}</li>
+              ))}
+            </ul>
+            {blocked.list.length > 8 && <p className="text-[13px] text-ink-muted">and {blocked.list.length - 8} more.</p>}
+          </div>
+        )}
+      </Modal>
     </>
   );
 }

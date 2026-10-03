@@ -34,9 +34,9 @@ const LOOK_ROWS = [
   { title: "Content import", note: "Fill the project from a content file.", path: "import" },
 ];
 
-export default async function ProjectEditor({ params, searchParams }: { params: Promise<{ projectId: string }>; searchParams: Promise<{ item?: string }> }) {
+export default async function ProjectEditor({ params, searchParams }: { params: Promise<{ projectId: string }>; searchParams: Promise<{ item?: string; category?: string; area?: string }> }) {
   const { projectId } = await params;
-  const { item: requested } = await searchParams;
+  const { item: requested, category, area } = await searchParams;
   const ctx = await projectContext(projectId);
   if (ctx.denied) return <NoPermission what="this project" />;
   const { user, project } = ctx;
@@ -102,13 +102,14 @@ export default async function ProjectEditor({ params, searchParams }: { params: 
     }
   } else if (item === "tours") {
     const tours = await listTours(project.slug);
-    detail = <ToursManager projectSlug={project.slug} projectName={project.name} tours={tours} taxonomies={taxonomies} canPublish={canPublish} embedded />;
+    detail = <ToursManager key={`${category ?? ""}-${area ?? ""}`} projectSlug={project.slug} projectName={project.name} tours={tours} taxonomies={taxonomies} canPublish={canPublish} embedded initialCategory={category} initialArea={area} />;
   } else if (item === "neighbourhoods") {
+    const tours = await listTours(project.slug);
     detail = (
       <>
         <h2 className="mb-1 text-[20px] font-semibold tracking-tight text-ink">Neighbourhoods</h2>
         <p className="mb-4 max-w-2xl text-[13px] text-ink-muted">Areas, categories and cities that tours point to. Tours appear on the matching pages automatically.</p>
-        <TaxonomyEditor projectSlug={project.slug} initial={taxonomies} canEdit={can(user, "nav:edit", project.slug)} />
+        <TaxonomyEditor projectSlug={project.slug} initial={taxonomies} canEdit={can(user, "nav:edit", project.slug)} tours={tours} />
       </>
     );
   } else if (item === "blog") {
