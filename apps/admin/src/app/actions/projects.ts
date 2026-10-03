@@ -6,6 +6,7 @@ import { requirePermission } from "@/lib/auth/session";
 import { getProject, slugExists } from "@/lib/repo/properties";
 import { gateFor, getPageState } from "@/lib/repo/content";
 import { writeAudit } from "@/lib/repo/audit";
+import { ensureStarterContent } from "@/lib/starter";
 import { gatePasses } from "@/lib/publish/gate";
 import { revalidateWeb } from "@/lib/publish/revalidate";
 import { projectCreateSchema, projectUpdateSchema, themeSchema } from "@/lib/validation/schemas";
@@ -23,6 +24,22 @@ async function assertDomainFree(domain: string, ownSlug?: string): Promise<void>
   if (other) throw new UserError(`That domain is already used by ${String(other.data().name ?? other.id)}.`, ["domain: already in use"]);
 }
 
+/**
+ * Gives a project that has a domain the content it needs to be served: a Home (when it has tours), a navigation and
+ * the standard pages. Only what is missing is written, so edited content is never replaced. A failure is logged and
+ * never fails the save. Returns true when something was written.
+ */
+async function seedStarter(project: { slug: string; name: string; domain: string; contactEmail: string }): Promise<boolean> {
+  if (!project.domain) return false;
+  try {
+    const r = await ensureStarterContent(adminDb(), project);
+    return r.home === "written" || r.navigation === "written" || r.pages.length > 0;
+  } catch (error) {
+    console.error("[projects] starter content failed for", project.slug, error);
+    return false;
+  }
+}
+
 export async function createProject(input: unknown): Promise<ActionResult<{ slug: string; revalidateError?: string }>> {
   return guard(async () => {
     const user = await requirePermission("project:create");
@@ -34,8 +51,9 @@ export async function createProject(input: unknown): Promise<ActionResult<{ slug
     const ref = adminDb().collection("properties").doc(data.slug);
     await ref.create({ ...data, defaultLocale: "en", createdAt: new Date(), createdBy: user.uid, updatedAt: new Date() });
     await writeAudit({ actor: user, propertySlug: data.slug, entityType: "property", entityId: data.slug, action: "create", summary: `Created project ${data.name}`, after: data });
+    const seeded = await seedStarter({ slug: data.slug, name: data.name, domain: data.domain, contactEmail: data.contactEmail });
     // The public site resolves a project from its domain and caches the lookup: refresh it so the new domain works at once.
-    const r = await revalidateWeb(["network"]);
+    const r = await revalidateWeb(seeded ? ["network", "home", "navigation", "pages"] : ["network"]);
     if (!r.ok) await writeAudit({ actor: user, propertySlug: data.slug, entityType: "revalidate", entityId: "network", action: "update", summary: `Revalidation FAILED (new project): ${r.error}` });
     revalidatePath("/projects");
     return ok({ slug: data.slug, revalidateError: r.ok ? undefined : r.error });
@@ -77,9 +95,12 @@ export async function updateProject(slug: string, input: unknown, confirmName?: 
       after: data,
     });
 
+    // A project that has just been given its domain gets the content it needs to be served right away.
+    const seeded = await seedStarter({ slug, name: data.name, domain: data.domain, contactEmail: data.contactEmail });
+
     let revalidateError: string | undefined;
-    if (networkChanged) {
-      const r = await revalidateWeb(["network"]);
+    if (networkChanged || seeded || project.domain !== data.domain) {
+      const r = await revalidateWeb(seeded ? ["network", "home", "navigation", "pages"] : ["network"]);
       if (!r.ok) {
         revalidateError = r.error;
         await writeAudit({ actor: user, propertySlug: slug, entityType: "revalidate", entityId: "network", action: "update", summary: `Revalidation FAILED (network): ${r.error}` });

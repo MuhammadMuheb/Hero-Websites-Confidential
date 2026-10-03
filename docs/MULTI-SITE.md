@@ -94,3 +94,11 @@ npx tsx --env-file=../../infra/env/.env scripts/seed-network-projects.mts --appl
 As soon as a project has a domain that points at the web app, `/` shows that Home, `/tours` lists its tours and the
 header and footer come from its navigation. The navbar only links to pages that exist (Home and Tours to begin
 with); About, FAQ and the others join when they are written and published.
+
+### Content that appears with a domain
+
+When a project is given a domain (in the admin, or with `--domains` in the seed script), the admin writes whatever
+the project is missing from one shared template (`apps/admin/src/lib/starter`): a Home (needs three published
+tours), a navigation, and the About, Contact, FAQ and Legal pages. Text already there is never replaced, and a
+navigation nobody has edited learns about the pages once they exist. The Legal text is plain starter text:
+have it reviewed before launch.
