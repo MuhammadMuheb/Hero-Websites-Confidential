@@ -98,7 +98,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
 async function NetworkTab() {
   const network = await getNetwork();
-  if (network.length === 0) return <EmptyState title="No live projects yet" description="A project appears in Our Network when its status is Live and it has a public URL." />;
+  if (network.length === 0) return <EmptyState title="No live projects yet" description="A project appears in Our Network as soon as it has a domain or public URL and is not archived." />;
   return (
     <Card title={`Our Network (${network.length})`} bodyClassName="p-0">
       <ul className="divide-y divide-line">

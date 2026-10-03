@@ -124,10 +124,10 @@ export function ProjectForm({ project }: { project?: Project }) {
         <Field label="Domain" htmlFor="p-domain" hint="Hostname only, for example streetfoodrome.com (www is the same site). Each domain belongs to one project. Once the domain points at the web app, this project is served there automatically.">
           <Input id="p-domain" value={domain} onChange={(e) => setDomain(e.target.value)} />
         </Field>
-        <Field label="Public URL" htmlFor="p-url" hint="Must start with https://. This exact value is the Our Network link.">
+        <Field label="Public URL" htmlFor="p-url" hint="Must start with https://. This exact value is the Our Network link. Leave it empty to use https:// plus the domain.">
           <Input id="p-url" type="url" value={publicUrl} onChange={(e) => setPublicUrl(e.target.value)} />
         </Field>
-        <Field label="Status" htmlFor="p-status" hint="Live needs a public URL and a Home page that passes the publish checks.">
+        <Field label="Status" htmlFor="p-status" hint="Live needs a public URL and a Home page that passes the publish checks. Any project that is not archived and has a domain or public URL is listed in Our Network.">
           <Select id="p-status" value={status} onChange={(e) => setStatus(e.target.value as typeof status)}>
             <option value="coming_soon">Coming soon</option>
             {project && <option value="live">Live</option>}

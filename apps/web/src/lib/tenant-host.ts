@@ -42,3 +42,14 @@ export function isLegacyHost(host: string, env: Record<string, string | undefine
 export function isValidDomain(domain: string): boolean {
   return /^(?=.{1,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/.test(domain);
 }
+
+/**
+ * The address of a project's site: its public URL when that is a valid https URL, otherwise https:// plus its
+ * domain, otherwise null. Only https addresses are returned, so the value is safe to use as a link.
+ */
+export function projectSiteUrl(publicUrl: unknown, domain: unknown): string | null {
+  const url = typeof publicUrl === 'string' ? publicUrl.trim() : '';
+  if (/^https:\/\/[^\s/$.?#][^\s]*$/i.test(url)) return url;
+  const host = typeof domain === 'string' ? domain.trim().toLowerCase() : '';
+  return isValidDomain(host) ? `https://${host}` : null;
+}

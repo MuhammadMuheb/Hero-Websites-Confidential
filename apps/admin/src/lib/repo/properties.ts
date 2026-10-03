@@ -4,6 +4,7 @@ import { adminDb } from "@/lib/firebase/admin";
 import { canAccessProject, type SessionUser } from "@/lib/auth/permissions";
 import type { NetworkEntry, Project, Theme } from "@/lib/types";
 import { DEFAULT_THEME } from "@/lib/validation/schemas";
+import { projectLiveUrl } from "@/lib/project-url";
 import { toIso } from "./util";
 
 const col = () => adminDb().collection("properties");
@@ -62,11 +63,15 @@ export async function slugExists(slug: string): Promise<boolean> {
   return (await col().doc(slug).get()).exists;
 }
 
-/** Our Network: projects with status live and a public URL (blueprint section 11). */
+/**
+ * Our Network, exactly as the web app lists it: every project that is not archived and has an address (public URL,
+ * or https:// plus its domain). A new project appears here as soon as it is created with a domain.
+ */
 export async function getNetwork(): Promise<NetworkEntry[]> {
-  const snap = await col().where("status", "==", "live").get();
+  const snap = await col().select("name", "domain", "publicUrl", "status").get();
   return snap.docs
-    .map((d) => ({ name: d.data().name as string, publicUrl: d.data().publicUrl as string }))
-    .filter((n) => n.publicUrl?.startsWith("https://"))
+    .map((d) => ({ name: String(d.data().name ?? "").trim(), status: d.data().status, publicUrl: projectLiveUrl({ publicUrl: d.data().publicUrl ?? "", domain: d.data().domain ?? "" }) }))
+    .filter((n): n is { name: string; status: unknown; publicUrl: string } => n.status !== "archived" && n.name !== "" && n.publicUrl !== null)
+    .map(({ name, publicUrl }) => ({ name, publicUrl }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }

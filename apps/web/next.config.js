@@ -53,6 +53,10 @@ const nextConfig = {
     loaderFile: './src/lib/unsplash-image-loader.ts',
     remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
   },
+  // Lets the admin check that a project's domain really reaches this app (and not a parking page).
+  async headers() {
+    return [{ source: '/:path*', headers: [{ key: 'X-Served-By', value: 'italy-tours-web' }] }];
+  },
   // Street Food Rome is the root site ("/"). Old or shared links to
   // /street-food-rome must open it instead of a 404.
   async redirects() {

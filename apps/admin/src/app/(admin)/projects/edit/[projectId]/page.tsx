@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { DomainStatus } from "@/components/DomainStatus";
 import { ProjectForm } from "@/components/ProjectForm";
 import { ProjectNameLink } from "@/components/ProjectNameLink";
 import { ProjectStatusBadge } from "@/components/ui/Badge";
@@ -35,6 +37,12 @@ export default async function EditProjectPage({ params }: { params: Params }) {
         badge={<ProjectStatusBadge status={project.status} />}
         actions={<ProjectNameLink project={project} className="text-sm font-medium" />}
       />
+      {/* The check can take a few seconds when a domain is slow, so the form must not wait for it. */}
+      <div className="mb-6">
+        <Suspense fallback={<p className="max-w-2xl rounded-control border border-line bg-surface px-3 py-2 text-[13px] text-ink-muted">Checking the domain...</p>}>
+          <DomainStatus domain={project.domain} />
+        </Suspense>
+      </div>
       <ProjectForm project={project} />
     </>
   );

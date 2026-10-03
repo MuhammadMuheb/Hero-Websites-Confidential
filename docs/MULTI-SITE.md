@@ -69,3 +69,12 @@ refresh, project data is cached for 60 seconds and page content for 5 minutes.
 - The generic Home shows the sections the admin's Home form has (hero, chips, tours, categories, how we choose).
 - Search, blog and neighbourhood pages are not part of the generic template yet.
 - Legal and page text is HTML/text saved in the admin (legal HTML is sanitised when it is saved there).
+
+## Our Network and the live link
+
+- **Our Network** lists every project that is not archived and has an address (its public URL, or `https://` plus its
+  domain). A new project appears as soon as it is created with a domain; the admin refreshes the web app's `network`
+  tag (needs `WEB_BASE_URL` and `REVALIDATE_SECRET` on both apps), and without it the list is at most a minute old.
+- The project name in the admin opens that same address. If it shows a parking page, the domain is not connected yet:
+  the project's Edit page checks the domain (the web app sends `X-Served-By: italy-tours-web`) and says what to do.
+  Connecting a domain = add it (and `www.`) in the Vercel **web** project, then set the DNS records Vercel shows.
